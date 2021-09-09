@@ -11,7 +11,7 @@ label = tk.Label(
 label.pack()
 
 button = tk.Button(
-    text="Click me!",
+    text="Click here!",
     width=25,
     height=5,
     bg="blue",
