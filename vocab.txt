@@ -1,4 +1,5 @@
-_pinyin_gloss
+#lemma_pinyin_gloss
+*CCC.4
 美好_mei3hao3_wonderful
 當選_dang1xuan3_be elected to office
 落選_luo4xuan3_lose an election
@@ -10,15 +11,15 @@ _pinyin_gloss
 修改_xiu1gai3_amend
 法規_fa3gui1_laws and regulations, statues
 安養_an1yang4_care for / provide nursing care for (old people)
-河川_he2chuan4 rivers and streams
-脫離_to separate oneself from / break away from
+河川_he2chuan4_rivers and streams
+脫離_tuo1li2_to separate oneself from / break away from
 背景_bei4jing3_background
 領域_ling3yu4_area of study / walk of life
 竟然_jing4ran2_unexpectedly, surprisingly
 總統_zong3tong3_president
-保障_(job) security; to guarantee
+保障_bao3zhang4_(job) security; to guarantee
 特權_te4quan2_special privileges
-保持_to control
+把持_ba3chi2_to control
 監督_jian1du1_to oversee/monitor/supervise
 罷免_ba4mian3_to remove from office
 權_quan2_power, authority
