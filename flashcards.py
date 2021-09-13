@@ -12,6 +12,7 @@ Subjective ranking: 0 none / 10 too easy (skip) /
 with thanks to https://stackabuse.com/read-a-file-line-by-line-in-python/ 
 """
 
+import random
 from dataclasses import dataclass
 import datetime
 
@@ -35,17 +36,18 @@ class Flashcard:
 
 def list_entries_in_file(source_file):
     with open(source_file, "r", encoding="utf-8") as f:
-        curr_deck = "undef"
+        tmp_deck = []
+        deck_title = "undef"
         for line, curr_line in enumerate(f):
             if len(curr_line.strip()) == 0:
                 print("empty line")
             elif curr_line[0] == "*":
-                curr_deck = curr_line[1:].strip()
+                deck_title = curr_line[1:].strip()
             elif curr_line[0] != "#" or len(curr_line.strip()) > 0:
                 entry = curr_line.split("_")
                 if len(entry) == 3:
                     # flashcards[entry[0]] = (entry[1],entry[2].strip())
-                    flashcards[entry[0]] = Flashcard(
+                    tmp_deck.append(Flashcard(
                             entry[0],
                             entry[1],
                             entry[2].strip(),
@@ -53,26 +55,64 @@ def list_entries_in_file(source_file):
                             line,
                             datetime.datetime.now(),
                             None,
-                            curr_deck,
+                            deck_title,
                             0,
                             0,
                             0,
                             0,
-                            0
+                            0)
                             )
+                    if line > 10: tmp_deck[-1].ranking = 101
                 else:
                     print("problem at line:",line)
+    return tmp_deck
 
 source_file="vocab.txt"
-flashcards = {}
-list_entries_in_file(source_file)
+# flashcards = {}
+flashcards = list_entries_in_file(source_file)
 
-session = {}
-session["set"] = input("Which set do you want to use?")
-session["skip"] = input("Do you want to skip any cards?")
-session["shuffle"] = input("Do you want to see the cards in a random order?")
-session["review"] = input("Do you want to review incorrectly answered cards?")
+session = {
+        "layout": "a",
+        "set": flashcards,
+        "skip": False,
+        "shuffle": True,
+        "review": True
+        }
 
-print(session)
+session["layout"] = input("What prompt do you want to see?"
+        "\nA: Show English first (default)"
+        "\nB: Show pinyin first"
+        "\nC: Show Chinese\n").lower()
+if session["layout"] not in ["a", "b", "c"]: session["layout"] = "a"
+
+layouts = { 
+        "a": {"prompt":"gloss", "hint":"pinyin", "key":"lemma"},
+        "b": {"prompt":"pinyin", "hint":"gloss", "key":"lemma"},
+        "c": {"prompt":"lemma", "hint":"pinyin", "key":"gloss"}}
+layout = layouts[session["layout"]]
+
+# print(card)
+# quit()
+
+tmp = input("Which set do you want to use?")
+session["set"] = flashcards
+
+tmp = input("Do you want to skip marked cards?").lower()
+session["skip"] = tmp[0] == "y"
+if session["skip"] :
+    session["set"] = [card for card in session["set"] if card.ranking < 100]
+
+tmp = input("Do you want to see the cards in a random order?").lower()
+session["shuffle"] = tmp[0] == "y"
+if session["shuffle"] :
+    random.shuffle(session["set"])
+
+tmp = input("Do you want to review incorrectly answered cards?").lower()
+session["review"] = tmp[0] == "y"
+
+for card in session["set"]:
+    # print(f"prompt: {card.lemma}")
+    print(f"prompt: {getattr(card,layout['prompt'])}")
+# print(session)
 
 # print(flashcards)
