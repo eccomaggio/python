@@ -13,10 +13,9 @@ with thanks to https://stackabuse.com/read-a-file-line-by-line-in-python/
 """
 
 """TODO
-playing fast and loose with the flashcards
-need to update the info in them, so...
-- take ID out of flashcard (they could be put in diff decks, anyway)
-- work on the original set
+change logic: 
+    start: load in all_decks.json, then check for any new .csv's, move csv's to folder
+    end: overwrite all_decks.json with updated version
 """
 
 import random
@@ -44,20 +43,23 @@ class Flashcard:
     skipped: int
 
 
-def save_deck(filename, flashcard_deck):
+def save_json_deck(filename, flashcard_deck):
     with open(filename,"w") as new_deck:
-        saved_deck = json.dump(flashcard_deck)
+        saved_deck = json.dump(new_deck)
 
-def retrieve_decks():
+def retrieve_json_decks():
     current_dir = Path(".")
-    tmp_decks = []
+    tmp_decks = {}
     for saved_deck in current_dir.glob("*.json"):
         with open(saved_deck, "w") as retrieved_deck:
-            return json.load(retrieved_deck)
+            tmp = json.load(retrieved_deck)
+            tmp_decks[tmp[0].title] = tmp
+    return tmp_decks
         
 def create_deck_from_file(source_file):
     deck_title = "undef"
-    with open(source_file, "r", encoding="utf-8") as f:
+    # with open(source_file, "r", encoding="utf-8") as f:
+    with source_file.open(mode="r", encoding="utf-8") as f:
         tmp_deck = []
         for line, curr_line in enumerate(f):
             if len(curr_line.strip()) == 0:
@@ -88,16 +90,28 @@ def create_deck_from_file(source_file):
                     # if line > 10: tmp_deck[-1].ranking = 101
             else:
                 print("problem at line:",line)
+
+    save_json_deck(Path.cwd() / f"{deck_title}.json", tmp_deck)
+    csv_dir = Path.cwd() / "csv_files"
+    if not csv_dir.exists():
+        csv_dir.mkdir(mode=0o777,parents=False,exist_ok=False)
+    source_file.replace(csv_dir) 
+
     return tmp_deck
 
 # source_file="vocab.txt"
 # flashcards = {}
 all_decks = {}
-current_dir = Path(".")
-for f in current_dir.glob("*.csv"):
+current_dir = Path().cwd()
+for f in sorted(current_dir.glob("*.csv")):
     new_deck = create_deck_from_file(f)
     # print(new_deck.title)
     all_decks[new_deck[0].title] = new_deck
+
+more_decks = retrieve_json_decks()
+print(more_decks)
+exit()
+all_decks.append(more_decks)
 
 decks_available = {}
 tmp_count = 0
