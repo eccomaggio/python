@@ -23,6 +23,9 @@ import random
 from dataclasses import dataclass
 import datetime
 import time
+from pathlib import Path
+import json
+import string
 
 @dataclass
 class Flashcard:
@@ -33,7 +36,7 @@ class Flashcard:
     seq: int
     added: datetime.datetime
     lastview: datetime.datetime
-    deck: str
+    title: str
     views: int
     rating: int
     ranking: int
@@ -41,11 +44,21 @@ class Flashcard:
     skipped: int
 
 
+def save_deck(filename, flashcard_deck):
+    with open(filename,"w") as new_deck:
+        saved_deck = json.dump(flashcard_deck)
 
-def list_entries_in_file(source_file):
+def retrieve_decks():
+    current_dir = Path(".")
+    tmp_decks = []
+    for saved_deck in current_dir.glob("*.json"):
+        with open(saved_deck, "w") as retrieved_deck:
+            return json.load(retrieved_deck)
+        
+def create_deck_from_file(source_file):
+    deck_title = "undef"
     with open(source_file, "r", encoding="utf-8") as f:
         tmp_deck = []
-        deck_title = "undef"
         for line, curr_line in enumerate(f):
             if len(curr_line.strip()) == 0:
                 print("empty line")
@@ -70,22 +83,41 @@ def list_entries_in_file(source_file):
                             0,
                             0,
                             0,
-                            0)
-                            )
-                    if line > 10: tmp_deck[-1].ranking = 101
+                            0))
+                            
+                    # if line > 10: tmp_deck[-1].ranking = 101
             else:
                 print("problem at line:",line)
     return tmp_deck
 
-source_file="vocab.txt"
+# source_file="vocab.txt"
 # flashcards = {}
-flashcards = list_entries_in_file(source_file)
+all_decks = {}
+current_dir = Path(".")
+for f in current_dir.glob("*.csv"):
+    new_deck = create_deck_from_file(f)
+    # print(new_deck.title)
+    all_decks[new_deck[0].title] = new_deck
+
+decks_available = {}
+tmp_count = 0
+for key in all_decks.keys():
+    decks_available[string.ascii_lowercase[tmp_count]] = key
+    tmp_count += 1
+# Insert decks from .json files here
+# print(tmp)
+#     print(key)
+#     for card in all_decks[key]:
+#         print(card.lemma)
+        
+# exit()
+
 hide_cards = True
 
 session = {
         # "layout": "a",
         "layout": {},
-        "set": flashcards,
+        "set": {},
         "skip": False,
         "shuffle": True,
         "review": True
@@ -112,8 +144,16 @@ session["layout"] = layouts[tmp]
 # print(card)
 # quit()
 
-tmp = input("Which set do you want to use?")
-session["set"] = flashcards
+# decks_available = all_decks.keys()
+display_text = ""
+for key in decks_available.keys():
+    display_text += f"{key} = {decks_available[key]}  "
+print(display_text)
+tmp = input("Which set do you want to use? ('a', 'b', etc.)").lower()
+while True:
+    if tmp in decks_available:
+        break
+session["set"] = all_decks[decks_available[tmp]]
 
 tmp = input("Do you want to skip marked cards?").lower()
 session["skip"] = tmp[0] == "y"
