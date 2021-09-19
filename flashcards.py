@@ -23,9 +23,12 @@ import random
 from dataclasses import dataclass
 import datetime
 import time
+# import dateutil.parser
 from pathlib import Path
 import json
+from json import JSONEncoder
 import string
+
 
 """
 class Flashcard:
@@ -44,16 +47,33 @@ class Flashcard:
     skipped: int
 """
 
+
+# subclass JSONEncoder
+class DateTimeEncoder(JSONEncoder):
+    #Override the default method
+    def default(self, obj):
+        if isinstance(obj, (datetime.date, datetime.datetime)):
+            return obj.isoformat()
+
+def DecodeDateTime(flashcard):
+    if "added"  in flashcard:
+        # flashcard["added"] = dateutil.parser.parse(flashcard["added"])
+        flashcard["added"] = datetime.fromisoformat(flashcard["added"])
+    elif "lastview" in flashcard:
+        # flashcard["lastview"] = dateutil.parser.parse(flashcard["lastview"])
+        flashcard["lastview"] = datetime.fromisoformat(flashcard["lastview"])
+    return flashcard
+
 def save_json_deck(filename, flashcard_deck):
     with open(filename,"w") as new_deck:
-        saved_deck = json.dump(flashcard_deck, new_deck)
+        saved_deck = json.dump(flashcard_deck, new_deck, cls=DateTimeEncoder)
 
 def retrieve_json_decks():
     current_dir = Path(".")
     tmp_decks = {}
     for saved_deck in current_dir.glob("*.json"):
         with open(saved_deck, "w") as retrieved_deck:
-            tmp = json.load(retrieved_deck)
+            tmp = json.load(retrieved_deck, object_hook=DecodeDateTime)
             tmp_decks[tmp[0].title] = tmp
     return tmp_decks
         
@@ -95,9 +115,10 @@ def create_deck_from_file(source_file):
     csv_dir = Path.cwd() / "csv_files"
     if not csv_dir.exists():
         csv_dir.mkdir(mode=0o777,parents=False,exist_ok=False)
-    source_file.replace(csv_dir) 
+    # This line moves the files successfully (but temp disabled to help debugging)
+    # source_file.replace(source_file.parent.joinpath("csv_files", source_file.name))
 
-    return tmp_deck
+    return [deck_title, tmp_deck]
 
 # source_file="vocab.txt"
 # flashcards = {}
@@ -105,9 +126,10 @@ all_decks = {}
 current_dir = Path().cwd()
 for f in sorted(current_dir.glob("*.csv")):
     new_deck = create_deck_from_file(f)
-    # print(new_deck.title)
-    all_decks[new_deck[0].title] = new_deck
+    print(new_deck[0])
+    all_decks[new_deck[0]] = new_deck[1]
 
+exit()
 more_decks = retrieve_json_decks()
 print(more_decks)
 exit()
@@ -186,11 +208,11 @@ session["review"] = tmp[0] == "y"
 card_total = len(session["set"])
 count = 0
 for card in session["set"]:
-    if hide_cards and card.ranking > 100 :
+    if hide_cards and card["ranking"] > 100 :
         continue
     count += 1
-    card.lastview == datetime.datetime.now()
-    card.views += 1
+    card["lastview"] == datetime.datetime.now()
+    card["views"] += 1
 
     skip_card = hint_shown = quit_session = False
     # print(f"prompt: {card.lemma}")
@@ -205,7 +227,7 @@ for card in session["set"]:
                 print(f"(Hint: {getattr(card, session['layout']['hint'])})")
             elif action[0] == "s":
                 skip_card = True
-                card.skipped += 1
+                card["skipped"] += 1
                 break
             elif action[0] == "q":
                 quit_session = True
@@ -217,7 +239,7 @@ for card in session["set"]:
                     tmp = input("Were you correct? y(es) or n(o)?").lower()
                     if tmp[0] in ["y","n"]:
                         if tmp[0] == "n":
-                            card.wrong += 1
+                            card["wrong"] += 1
                     break
                 break
 
@@ -229,4 +251,4 @@ for card in session["set"]:
     # print(session)
 
 for card in session["set"]:
-    print(f"{card.lemma} views: {card.views} [wrong: {card.wrong}, skipped: {card.skipped}] {card.lastview}")
+    print(f'{card["lemma"]} views: {card["views"]} [wrong: {card["wrong"]}, skipped: {card["skipped"]}] {card["lastview"]}')
