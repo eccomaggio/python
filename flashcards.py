@@ -13,6 +13,7 @@ with thanks to https://stackabuse.com/read-a-file-line-by-line-in-python/
 """
 
 """TODO
+ABANDONED - strip out dataclass as not crucial and a pain to serialize
 change logic: 
     start: load in all_decks.json, then check for any new .csv's, move csv's to folder
     end: overwrite all_decks.json with updated version
@@ -26,13 +27,13 @@ from pathlib import Path
 import json
 import string
 
-@dataclass
+"""
 class Flashcard:
     lemma: str
-    pinyin: str
-    gloss: str
-    ID: int
-    seq: int
+    pinyin: entry[1],
+    gloss: entry[2],
+    ID: count,
+    seq: count,
     added: datetime.datetime
     lastview: datetime.datetime
     title: str
@@ -41,11 +42,11 @@ class Flashcard:
     ranking: int
     wrong: int
     skipped: int
-
+"""
 
 def save_json_deck(filename, flashcard_deck):
     with open(filename,"w") as new_deck:
-        saved_deck = json.dump(new_deck)
+        saved_deck = json.dump(flashcard_deck, new_deck)
 
 def retrieve_json_decks():
     current_dir = Path(".")
@@ -60,7 +61,7 @@ def create_deck_from_file(source_file):
     deck_title = "undef"
     # with open(source_file, "r", encoding="utf-8") as f:
     with source_file.open(mode="r", encoding="utf-8") as f:
-        tmp_deck = []
+        tmp_deck = {}
         for line, curr_line in enumerate(f):
             if len(curr_line.strip()) == 0:
                 print("empty line")
@@ -72,21 +73,20 @@ def create_deck_from_file(source_file):
                 entry = curr_line.split("_")
                 if len(entry) == 3:
                     # flashcards[entry[0]] = (entry[1],entry[2].strip())
-                    tmp_deck.append(Flashcard(
-                            entry[0],
-                            entry[1],
-                            entry[2].strip(),
-                            line,
-                            line,
-                            datetime.datetime.now(),
-                            None,
-                            deck_title,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0))
-                            
+                    tmp_deck[entry[0]] = {
+                            "pinyin": entry[1],
+                            "gloss": entry[2].strip(),
+                            "ID": line,
+                            "seq": line,
+                            "added": datetime.datetime.now(),
+                            "lastview": None,
+                            "title": deck_title,
+                            "views": 0,
+                            "rating": 0,
+                            "ranking": 0,
+                            "wrong": 0,
+                            "skipped": 0}
+                           
                     # if line > 10: tmp_deck[-1].ranking = 101
             else:
                 print("problem at line:",line)
