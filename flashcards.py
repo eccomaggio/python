@@ -1,18 +1,24 @@
 """
 Takes a text file containing vocab: lemma_pinyin_gloss
+parses it and adds extra information
+saves it as a json file (expands to a 2-level dictionary:
+decks > cards
 
-Lemma/pinyin/gloss/ID/sequence/set-added/subjective_ranking/official_ranking/
-...date-view/count-last/viewed/correctly_answered_count/skipped_count
-=13 slots
+The csv files are hidden away in a folder called csv_files
+& the json files are used instead (unless fresh .csv files are added)
 
 Subjective ranking: 0 none / 10 too easy (skip) /
-20 difficult (prompt more) / 30 very difficult (prompt a lot!) / 
-40 irrelevant (skip)
+20 difficult (prompt more) / 110 very difficult (prompt a lot!) / 
+101  irrelevant (skip)
 
 with thanks to https://stackabuse.com/read-a-file-line-by-line-in-python/ 
-"""
 
-"""TODO
+TODO
+- make the recap work
+- add in color
+- make work with better display? (e.g. webserver or tkinter)
+- make the skip work
+
 ABANDONED - strip out dataclass as not crucial and a pain to serialize
 change logic: 
     start: load in all_decks.json, then check for any new .csv's, move csv's to folder
@@ -21,7 +27,7 @@ change logic:
 
 import random
 from dataclasses import dataclass
-import datetime
+import datetime as dt
 import time
 # import dateutil.parser
 from pathlib import Path
@@ -47,34 +53,34 @@ class Flashcard:
     skipped: int
 """
 
+# OR import colorama for command line colors?
+# class bcolors:
+#     HEADER = '\033[95m'
+#     BLUE = '\033[94m'
+#     OKCYAN = '\033[96m'
+#     OKGREEN = '\033[92m'
+#     WARNING = '\033[93m'
+#     FAIL = '\033[91m'
+#     ENDC = '\033[0m'
+#     BOLD = '\033[1m'
+#     UNDERLINE = '\033[4m'
 
-# subclass JSONEncoder
-class DateTimeEncoder(JSONEncoder):
-    #Override the default method
-    def default(self, obj):
-        if isinstance(obj, (datetime.date, datetime.datetime)):
-            return obj.isoformat()
-
-def DecodeDateTime(flashcard):
-    if "added"  in flashcard:
-        # flashcard["added"] = dateutil.parser.parse(flashcard["added"])
-        flashcard["added"] = datetime.fromisoformat(flashcard["added"])
-    elif "lastview" in flashcard:
-        # flashcard["lastview"] = dateutil.parser.parse(flashcard["lastview"])
-        flashcard["lastview"] = datetime.fromisoformat(flashcard["lastview"])
-    return flashcard
 
 def save_json_deck(filename, flashcard_deck):
     with open(filename,"w") as new_deck:
-        saved_deck = json.dump(flashcard_deck, new_deck, cls=DateTimeEncoder)
+        # saved_deck = json.dump(flashcard_deck, new_deck, cls=DateTimeEncoder)
+        saved_deck = json.dump(flashcard_deck, new_deck)
 
-def retrieve_json_decks():
-    current_dir = Path(".")
+def retrieve_json_decks(current_dir):
     tmp_decks = {}
     for saved_deck in current_dir.glob("*.json"):
-        with open(saved_deck, "w") as retrieved_deck:
-            tmp = json.load(retrieved_deck, object_hook=DecodeDateTime)
-            tmp_decks[tmp[0].title] = tmp
+        with open(saved_deck, "r") as retrieved_deck:
+            # tmp = json.load(retrieved_deck, object_hook=DecodeDateTime)
+            tmp = json.load(retrieved_deck)
+            first_card = list(tmp.keys())[0]
+            # print(tmp[first_card]["title"])
+            # exit()
+            tmp_decks[tmp[first_card]["title"]] = tmp
     return tmp_decks
         
 def create_deck_from_file(source_file):
@@ -94,29 +100,32 @@ def create_deck_from_file(source_file):
                 if len(entry) == 3:
                     # flashcards[entry[0]] = (entry[1],entry[2].strip())
                     tmp_deck[entry[0]] = {
+                            "lemma": entry[0],
                             "pinyin": entry[1],
                             "gloss": entry[2].strip(),
                             "ID": line,
                             "seq": line,
-                            "added": datetime.datetime.now(),
-                            "lastview": None,
+                            "added": dt.datetime.now(dt.timezone.utc).isoformat(),
+                            "lastview": "",
                             "title": deck_title,
                             "views": 0,
                             "rating": 0,
                             "ranking": 0,
                             "wrong": 0,
-                            "skipped": 0}
+                            "skipped": 0
+                            }
                            
                     # if line > 10: tmp_deck[-1].ranking = 101
+                    # print(tmp_deck[entry[0]])
             else:
-                print("problem at line:",line)
+                print("Field missing at line:",line)
 
     save_json_deck(Path.cwd() / f"{deck_title}.json", tmp_deck)
     csv_dir = Path.cwd() / "csv_files"
     if not csv_dir.exists():
         csv_dir.mkdir(mode=0o777,parents=False,exist_ok=False)
     # This line moves the files successfully (but temp disabled to help debugging)
-    # source_file.replace(source_file.parent.joinpath("csv_files", source_file.name))
+    source_file.replace(source_file.parent.joinpath("csv_files", source_file.name))
 
     return [deck_title, tmp_deck]
 
@@ -124,16 +133,17 @@ def create_deck_from_file(source_file):
 # flashcards = {}
 all_decks = {}
 current_dir = Path().cwd()
+
+more_decks = retrieve_json_decks(current_dir)
+# print(more_decks)
+if more_decks: all_decks.update(more_decks)
+
 for f in sorted(current_dir.glob("*.csv")):
     new_deck = create_deck_from_file(f)
     print(new_deck[0])
     all_decks[new_deck[0]] = new_deck[1]
 
-exit()
-more_decks = retrieve_json_decks()
-print(more_decks)
-exit()
-all_decks.append(more_decks)
+# print(all_decks)
 
 decks_available = {}
 tmp_count = 0
@@ -159,72 +169,74 @@ session = {
         "review": True
         }
 
-# session["layout"] = input("What prompt do you want to see?"
-tmp = input("What prompt do you want to see?"
+choice = input("What prompt do you want to see?"
         "\nA: Show English first (default)"
         "\nB: Show pinyin first"
         "\nC: Show Chinese\n").lower()
-# if session["layout"] not in ["a", "b", "c"]: session["layout"] = "a"
-if tmp not in ["a", "b", "c"]: tmp = "a"
+if choice not in ["a", "b", "c"]: choice = "a"
 
 layouts = { 
         "a": {"prompt":"gloss", "hint":"pinyin", "key":"lemma"},
         "b": {"prompt":"pinyin", "hint":"gloss", "key":"lemma"},
         "c": {"prompt":"lemma", "hint":"pinyin", "key":"gloss"}}
-# layout = layouts[session["layout"]]
-session["layout"] = layouts[tmp]
+session["layout"] = layouts[choice]
 
-# print(f">> {session['set'][2].lemma}")
-# print(f">> {getattr(session['set'][2],session['layout']['prompt'])}")
-# exit()
-# print(card)
-# quit()
 
-# decks_available = all_decks.keys()
 display_text = ""
 for key in decks_available.keys():
     display_text += f"{key} = {decks_available[key]}  "
 print(display_text)
-tmp = input("Which set do you want to use? ('a', 'b', etc.)").lower()
+choice = input("Which set do you want to use? ('a', 'b', etc.)").lower()
 while True:
-    if tmp in decks_available:
+    if choice in decks_available:
         break
-session["set"] = all_decks[decks_available[tmp]]
+session["set"] = all_decks[decks_available[choice]]
+session["order"] = list(session["set"].keys())
 
-tmp = input("Do you want to skip marked cards?").lower()
-session["skip"] = tmp[0] == "y"
+
+choice = input("Do you want to skip marked cards?").lower()
+session["skip"] = choice[0] == "y"
 if session["skip"] :
     # session["set"] = [card for card in session["set"] if card.ranking < 100]
-    hide_cards = True
+    # hide_cards = True
+    session["order"] = [lemma for lemma in session["order"] if session["set"][lemma]["ranking"] < 100]
+# session["order"] = [lemma for lemma in session["order"] if session["set"][lemma]["seq"] < 5]
 
-tmp = input("Do you want to see the cards in a random order?").lower()
-session["shuffle"] = tmp[0] == "y"
+
+choice = input("Do you want to see the cards in a random order?").lower()
+session["shuffle"] = choice[0] == "y"
 if session["shuffle"] :
-    random.shuffle(session["set"])
+    random.shuffle(session["order"])
 
-tmp = input("Do you want to review incorrectly answered cards?").lower()
-session["review"] = tmp[0] == "y"
 
-card_total = len(session["set"])
+choice = input("Do you want to review incorrectly answered cards?").lower()
+session["review"] = choice[0] == "y"
+
+# print(session)
+
+card_total = len(session["order"])
 count = 0
-for card in session["set"]:
-    if hide_cards and card["ranking"] > 100 :
-        continue
+for lemma in session["order"]:
+    card = session["set"][lemma]
+    # print(card)
+    # if hide_cards and card["ranking"] > 100 :
+    #     continue
     count += 1
-    card["lastview"] == datetime.datetime.now()
+    card["lastview"] = dt.datetime.now().isoformat()
     card["views"] += 1
 
     skip_card = hint_shown = quit_session = False
     # print(f"prompt: {card.lemma}")
     print()
-    print(f"{count} out of {card_total}")
-    print(f"prompt: {getattr(card,session['layout']['prompt'])}")
+    print(f"{count} out of {card_total} (card no.{card['seq']})")
+    # print(f"prompt: {getattr(card,session['layout']['prompt'])}")
+    print(f"prompt: {card[session['layout']['prompt']]}")
     timing = time.perf_counter()
     while True: 
         action = input("Select: press h(int), s(kip), r(eveal answer) or q(uit)").lower()
         if action[0] in ["h","s","r", "q"]:
             if action[0] == "h" and hint_shown == False:
-                print(f"(Hint: {getattr(card, session['layout']['hint'])})")
+                print(f"(Hint: {card[session['layout']['hint']]})")
             elif action[0] == "s":
                 skip_card = True
                 card["skipped"] += 1
@@ -234,11 +246,11 @@ for card in session["set"]:
                 break
             else:
                 timing = time.perf_counter() - timing
-                print(f"Answer: {getattr(card, session['layout']['key'])}")
+                print(f"Answer: {card[session['layout']['key']]}")
                 while True:
-                    tmp = input("Were you correct? y(es) or n(o)?").lower()
-                    if tmp[0] in ["y","n"]:
-                        if tmp[0] == "n":
+                    choice = input("Were you correct? y(es) or n(o)?").lower()
+                    if choice[0] in ["y","n"]:
+                        if choice[0] == "n":
                             card["wrong"] += 1
                     break
                 break
@@ -250,5 +262,6 @@ for card in session["set"]:
 
     # print(session)
 
-for card in session["set"]:
+for lemma in session["set"]:
+    card = session["set"][lemma]
     print(f'{card["lemma"]} views: {card["views"]} [wrong: {card["wrong"]}, skipped: {card["skipped"]}] {card["lastview"]}')
