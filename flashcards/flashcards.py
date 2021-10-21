@@ -4,7 +4,11 @@ parses it and adds extra information
 saves it as a json file (expands to a 2-level dictionary:
 decks > cards
 
-The csv files are hidden away in a folder called csv_files
+Once the csv files have been added to the .json file, 
+their names are added to an exclude file
+this way, they won't be parsed next time. 
+Delete ALL json files and clear the exclusion files to reload.
+
 & the json files are used instead (unless fresh .csv files are added)
 
 Subjective ranking: 0 none / 10 too easy (skip) /
