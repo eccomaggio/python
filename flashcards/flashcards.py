@@ -88,11 +88,30 @@ def retrieve_json_decks(current_dir):
             # exit()
             # tmp_decks[tmp[first_card]["title"]] = tmp
             # tmp_decks.update(tmp)
-    # print(tmp_decks)
-    for key in tmp_decks.keys():
-        print (f">> {key}")
+    # for key in tmp_decks.keys():
+    #     print (f">> {key}")
     return tmp_decks
         
+def populate_exclusion_list(files_to_exclude):
+    tmp_set = set()
+    with files_to_exclude.open(mode="r", encoding="utf-8") as f:
+        for line in f:
+            if line[0] == "#":
+                # print("bit of a comment there...")
+                pass
+            elif len(line.strip()) == 0:
+                # print("empty line")
+                pass
+            else:
+                tmp = line.strip()
+                if Path(Path().cwd() / tmp).is_file():
+                    # print(f"File <{tmp}> exists, the penguin be praised!")
+                    tmp_set.add(tmp)
+                else:
+                    print(f"File <{tmp}> to exclude doesn't exist.")
+    return tmp_set
+
+
 def create_deck_from_file(source_file):
     # from a file, create as many decks as there are title lines (i.e. beginning with *
     # is_default_deck = True
@@ -104,12 +123,14 @@ def create_deck_from_file(source_file):
         # tmp_deck = {}
         for line, curr_line in enumerate(f):
             if len(curr_line.strip()) == 0:
-                print("empty line")
+                # print("empty line")
+                pass
             elif curr_line[0] == "*":
                 deck_title = curr_line[1:].strip()
                 loaded_decks[deck_title] = {}
             elif curr_line[0] == "#":
-                print("comment at line:", line)
+                # print("comment at line:", line)
+                pass
             elif len(curr_line.strip()) > 0:
                 entry = curr_line.split("_")
                 if len(entry) == 3:
@@ -138,11 +159,11 @@ def create_deck_from_file(source_file):
                 print("Field missing at line:",line)
 
     # save_json_deck(Path.cwd() / f"{deck_title}.json", loaded_decks)
-    csv_dir = Path.cwd() / "csv_files"
-    if not csv_dir.exists():
-        csv_dir.mkdir(mode=0o777,parents=False,exist_ok=False)
+    # csv_dir = Path.cwd() / "csv_files"
+    # if not csv_dir.exists():
+    #     csv_dir.mkdir(mode=0o777,parents=False,exist_ok=False)
     # This line moves the files successfully (but temp disabled to help debugging)
-    source_file.replace(source_file.parent.joinpath("csv_files", source_file.name))
+    # source_file.replace(source_file.parent.joinpath("csv_files", source_file.name))
 
     # return [deck_title, tmp_deck]
     return loaded_decks
@@ -150,19 +171,41 @@ def create_deck_from_file(source_file):
 def main():
     all_decks = {}
     current_dir = Path().cwd()
+    exclude_file = Path().cwd() / "exclude_these.txt"
+    exclude_these = populate_exclusion_list(exclude_file)
+
+    # print (f">>>Files to exclude: {exclude_these}.")
 
     more_decks = retrieve_json_decks(current_dir)
     if more_decks: all_decks.update(more_decks)
 
-    for f in sorted(current_dir.glob("*.csv")):
-        # print(f"___{f}____")
-        csv_decks = create_deck_from_file(f)
-        # print(csv_decks)
-        tmp_decks = {key:val for key, val in csv_decks.items() if len(csv_decks[key]) > 0}
-        # for key in tmp_decks.keys():
-        #     print (f"{key} has {len(tmp_decks[key])} ")
-        # all_decks[new_deck[0]] = new_deck[1]
-        all_decks.update(tmp_decks)
+    files_read = []
+    for full_path in sorted(current_dir.glob("*.csv")):
+        file_name = Path(full_path).name
+        # print(f"___{file_name}____")
+        if file_name in exclude_these:
+            # print(f"Cards in file <{file_name}> already loaded.")
+            pass
+        else:
+            csv_decks = create_deck_from_file(full_path)
+            files_read.append(file_name)
+            # print(csv_decks)
+            tmp_decks = {key:val for key, val in csv_decks.items() if len(csv_decks[key]) > 0}
+            # for key in tmp_decks.keys():
+            #     print (f"{key} has {len(tmp_decks[key])} ")
+            # all_decks[new_deck[0]] = new_deck[1]
+            all_decks.update(tmp_decks)
+
+    ## Add newly read files to exclusion files
+    ## They are now stored in the .json file
+    if files_read:
+        with open(exclude_file, "a") as f:
+            for entry in files_read:
+                f.write(f"{entry}\n")
+                # print(f"....{entry}")
+
+    for deck in all_decks.keys():
+        print(f"{deck} has {len(all_decks[deck])} entries.")
 
     save_json_deck("all_fcards.json",all_decks)
     decks_available = {}
@@ -170,13 +213,6 @@ def main():
     for key in all_decks.keys():
         decks_available[string.ascii_lowercase[tmp_count]] = key
         tmp_count += 1
-    # Insert decks from .json files here
-    # print(tmp)
-    #     print(key)
-    #     for card in all_decks[key]:
-    #         print(card.lemma)
-            
-    # exit()
 
     hide_cards = True
 
@@ -189,7 +225,7 @@ def main():
             "review": True
             }
 
-    choice = input("What prompt do you want to see?"
+    choice = input("\n> What prompt do you want to see?"
             "\nA: Show English first (default)"
             "\nB: Show pinyin first"
             "\nC: Show Chinese\n").lower()
@@ -206,7 +242,7 @@ def main():
     for key in decks_available.keys():
         display_text += f"{key} = {decks_available[key]}  "
     print(display_text)
-    choice = input("Which set do you want to use? ('a', 'b', etc.)").lower()
+    choice = input("> Which set do you want to use? ('a', 'b', etc.)").lower()
     while True:
         if choice in decks_available:
             break
@@ -214,7 +250,7 @@ def main():
     session["order"] = list(session["set"].keys())
 
 
-    choice = input("Do you want to skip marked cards?").lower()
+    choice = input("> Do you want to skip marked cards?").lower()
     session["skip"] = choice[0] == "y"
     if session["skip"] :
         # session["set"] = [card for card in session["set"] if card.ranking < 100]
@@ -223,13 +259,13 @@ def main():
     # session["order"] = [lemma for lemma in session["order"] if session["set"][lemma]["seq"] < 5]
 
 
-    choice = input("Do you want to see the cards in a random order?").lower()
+    choice = input("> Do you want to see the cards in a random order?").lower()
     session["shuffle"] = choice[0] == "y"
     if session["shuffle"] :
         random.shuffle(session["order"])
 
 
-    choice = input("Do you want to review incorrectly answered cards?").lower()
+    choice = input("> Do you want to review incorrectly answered cards?").lower()
     session["review"] = choice[0] == "y"
 
     # print(session)
@@ -269,9 +305,12 @@ def main():
                     print(f"Answer: {card[session['layout']['key']]}")
                     while True:
                         choice = input("Were you correct? y(es) or n(o)?").lower()
-                        if choice[0] in ["y","n"]:
-                            if choice[0] == "n":
-                                card["wrong"] += 1
+                        ## default = "y"
+                        if choice[0] == "n":
+                            card["wrong"] += 1
+                        # if choice[0] in ["y","n"]:
+                        #     if choice[0] == "n":
+                        #         card["wrong"] += 1
                         break
                     break
 
