@@ -241,7 +241,6 @@ def main():
             "c": {"prompt":"lemma", "hint":"pinyin", "key":"gloss"}}
     session["layout"] = layouts[choice]
 
-    # decks = [*all_decks.keys()]
     decks = sorted([*all_decks.keys()])
     displ_cols = 2
     displ_rows = math.ceil(len(decks) / displ_cols)
@@ -252,7 +251,7 @@ def main():
         for c in range(displ_cols):
             try:
                 # tmp_row.append(f"{i}: {decks_available[i]} ({len(decks_available[i])})")
-                tmp_row.append(f"{i}: {decks[i]}")
+                tmp_row.append(f"{i}: {decks[i]} ({len(all_decks[decks[i]])})")
             except:
                 tmp_row.append("")
             i += 1
@@ -260,14 +259,7 @@ def main():
         tmp_row = []
     
 
-    # decks = [*all_decks.keys()]
-    # print(decks.sort())
-    # print(displ_table)
-    # display_text = ""
-    # for key in decks_available.keys():
-    #     display_text += f"{key} = {decks_available[key]}  "
-    # print(display_text)
-    f_string = "{: <25} " * displ_cols
+    f_string = "{: <30} " * displ_cols
     for r in displ_table:
         print(f_string.format(*r))
     tmp = input("\n> Which set do you want to use? ")
@@ -280,53 +272,54 @@ def main():
         choice = len(decks) - 1
 
     session["set"] = all_decks[decks[choice]]
-    # print(decks[choice])
-    # quit()
-
-    # choice = input("> Which set do you want to use? ('a', 'b', etc.)").lower()
-    # while True:
-    #     if choice in decks_available:
-    #         break
-    # session["set"] = all_decks[decks_available[choice]]
     session["order"] = list(session["set"].keys())
 
+    
 
     choice = input("\n> Do you want to skip marked cards? ").lower() or "y"
     session["skip"] = choice[0] == "y"
-    if session["skip"] :
-        # session["set"] = [card for card in session["set"] if card.ranking < 100]
-        # hide_cards = True
-        session["order"] = [lemma for lemma in session["order"] if session["set"][lemma]["ranking"] < 100]
-    # session["order"] = [lemma for lemma in session["order"] if session["set"][lemma]["seq"] < 5]
+    # if session["skip"] :
+    #     session["order"] = [lemma for lemma in session["order"] if session["set"][lemma]["ranking"] < 100]
 
 
     choice = input("\n> Do you want to see the cards in a random order? ").lower() or "y"
     session["shuffle"] = choice[0] == "y"
-    if session["shuffle"] :
-        random.shuffle(session["order"])
+    # if session["shuffle"] :
+    #     random.shuffle(session["order"])
 
 
     choice = input("\n> Do you want to review incorrectly answered cards? ").lower() or "y"
     session["review"] = choice[0] == "y"
 
-    # print(session)
+
+    ## Create the running list according to specifications
+    running_list = []
+    if session["skip"]:
+        deck = session["set"]
+        running_list = [deck[card]["lemma"] for card in deck if deck[card]["ranking"] < 100]
+        # running_list = [card["lemma"] for card in session["set"] if \
+        #         card["ranking"] < 100]
+    else:
+        running_list = [*session["set"].keys()]
+    if session["shuffle"]:
+        random.shuffle(running_list)
+    running_list_count = len(running_list) - 1
 
     card_total = len(session["order"])
     count = 0
-    for lemma in session["order"]:
+    # for lemma in session["order"]:
+    while running_list_count >= 0:
+        lemma = running_list[running_list_count]
+        running_list_count -= 1
+        
         card = session["set"][lemma]
-        # print(card)
-        # if hide_cards and card["ranking"] > 100 :
-        #     continue
         count += 1
         card["lastview"] = dt.datetime.now().isoformat()
         card["views"] += 1
 
         skip_card = hint_shown = quit_session = False
-        # print(f"prompt: {card.lemma}")
         print()
         print(f"{count} out of {card_total} (card no.{card['seq']})")
-        # print(f"prompt: {getattr(card,session['layout']['prompt'])}")
         print(f"prompt: {card[session['layout']['prompt']]}")
         timing = time.perf_counter()
         while True: 
@@ -343,16 +336,14 @@ def main():
                     break
                 else:
                     timing = time.perf_counter() - timing
-                    # print(f"Answer: {card[session['layout']['key']]}")
                     print(f'Answer: {card["lemma"]} ({card["pinyin"]}) = {card["gloss"]}')
                     while True:
                         choice = input("Were you correct? y(es) or n(o)? ").lower() or "y"
-                        ## default = "y"
                         if choice[0] == "n":
                             card["wrong"] += 1
-                        # if choice[0] in ["y","n"]:
-                        #     if choice[0] == "n":
-                        #         card["wrong"] += 1
+                            if session["review"]:
+                                running_list.append(lemma)
+                                running_list_count += 1
                         break
                     break
 
@@ -366,6 +357,6 @@ def main():
 
     for lemma in session["set"]:
         card = session["set"][lemma]
-        print(f'{card["lemma"]} views: {card["views"]} [wrong: {card["wrong"]}, skipped: {card["skipped"]}] {card["lastview"]}')
+        print(f'{card["lemma"]} views: {card["views"]} [wrong: {card["wrong"]}, skipped: {card["skipped"]}]')
 
 main()
