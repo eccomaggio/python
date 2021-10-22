@@ -96,7 +96,7 @@ def retrieve_json_decks(current_dir):
     #     print (f">> {key}")
     return tmp_decks
         
-def populate_exclusion_list(files_to_exclude):
+def populate_exclusion_list(current_dir,files_to_exclude):
     tmp_set = set()
     with files_to_exclude.open(mode="r", encoding="utf-8") as f:
         for line in f:
@@ -108,7 +108,7 @@ def populate_exclusion_list(files_to_exclude):
                 pass
             else:
                 tmp = line.strip()
-                if Path(Path().cwd() / tmp).is_file():
+                if Path(current_dir / tmp).is_file():
                     # print(f"File <{tmp}> exists, the penguin be praised!")
                     tmp_set.add(tmp)
                 else:
@@ -174,9 +174,10 @@ def create_deck_from_file(source_file):
 
 def main():
     all_decks = {}
-    current_dir = Path().cwd()
-    exclude_file = Path().cwd() / "exclude_these.txt"
-    exclude_these = populate_exclusion_list(exclude_file)
+    # current_dir = Path().cwd()
+    current_dir = Path( __file__ ).parent.absolute()
+    exclude_file = Path(current_dir / "exclude_these.txt")
+    exclude_these = populate_exclusion_list(current_dir, exclude_file)
 
     # print (f">>>Files to exclude: {exclude_these}.")
 
@@ -211,7 +212,9 @@ def main():
     for deck in all_decks.keys():
         print(f"{deck} has {len(all_decks[deck])} entries.")
 
-    save_json_deck("all_fcards.json",all_decks)
+    # save_json_deck("all_fcards.json",all_decks)
+    json_file = Path(current_dir / "all_decks.json")
+    save_json_deck(json_file,all_decks)
     decks_available = {}
     tmp_count = 0
     for key in all_decks.keys():
