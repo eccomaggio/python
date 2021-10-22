@@ -38,6 +38,7 @@ from pathlib import Path
 import json
 from json import JSONEncoder
 import string
+import math
 
 
 """
@@ -177,6 +178,7 @@ def main():
     # current_dir = Path().cwd()
     current_dir = Path( __file__ ).parent.absolute()
     exclude_file = Path(current_dir / "exclude_these.txt")
+    json_file = Path(current_dir / "all_decks.json")
     exclude_these = populate_exclusion_list(current_dir, exclude_file)
 
     # print (f">>>Files to exclude: {exclude_these}.")
@@ -212,14 +214,8 @@ def main():
     for deck in all_decks.keys():
         print(f"{deck} has {len(all_decks[deck])} entries.")
 
-    # save_json_deck("all_fcards.json",all_decks)
-    json_file = Path(current_dir / "all_decks.json")
+    ## Resave json file          
     save_json_deck(json_file,all_decks)
-    decks_available = {}
-    tmp_count = 0
-    for key in all_decks.keys():
-        decks_available[string.ascii_lowercase[tmp_count]] = key
-        tmp_count += 1
 
     hide_cards = True
 
@@ -232,7 +228,8 @@ def main():
             "review": True
             }
 
-    choice = input("\n> What prompt do you want to see?"
+    ## Decide layout of flashcards for this session
+    choice = input("\n> What prompt do you want to see? "
             "\nA: Show English first (default)"
             "\nB: Show pinyin first"
             "\nC: Show Chinese\n").lower()
@@ -244,20 +241,57 @@ def main():
             "c": {"prompt":"lemma", "hint":"pinyin", "key":"gloss"}}
     session["layout"] = layouts[choice]
 
+    # decks = [*all_decks.keys()]
+    decks = sorted([*all_decks.keys()])
+    displ_cols = 2
+    displ_rows = math.ceil(len(decks) / displ_cols)
+    displ_table = []
+    tmp_row = []
+    i = 0
+    for r in range(displ_rows):
+        for c in range(displ_cols):
+            try:
+                # tmp_row.append(f"{i}: {decks_available[i]} ({len(decks_available[i])})")
+                tmp_row.append(f"{i}: {decks[i]}")
+            except:
+                tmp_row.append("")
+            i += 1
+        displ_table.append(tmp_row)
+        tmp_row = []
+    
 
-    display_text = ""
-    for key in decks_available.keys():
-        display_text += f"{key} = {decks_available[key]}  "
-    print(display_text)
-    choice = input("> Which set do you want to use? ('a', 'b', etc.)").lower()
-    while True:
-        if choice in decks_available:
-            break
-    session["set"] = all_decks[decks_available[choice]]
+    # decks = [*all_decks.keys()]
+    # print(decks.sort())
+    # print(displ_table)
+    # display_text = ""
+    # for key in decks_available.keys():
+    #     display_text += f"{key} = {decks_available[key]}  "
+    # print(display_text)
+    f_string = "{: <25} " * displ_cols
+    for r in displ_table:
+        print(f_string.format(*r))
+    tmp = input("\n> Which set do you want to use? ")
+    choice = 0
+    try:
+        choice = int(tmp)
+    except:
+        pass
+    if choice >= len(decks):
+        choice = len(decks) - 1
+
+    session["set"] = all_decks[decks[choice]]
+    # print(decks[choice])
+    # quit()
+
+    # choice = input("> Which set do you want to use? ('a', 'b', etc.)").lower()
+    # while True:
+    #     if choice in decks_available:
+    #         break
+    # session["set"] = all_decks[decks_available[choice]]
     session["order"] = list(session["set"].keys())
 
 
-    choice = input("> Do you want to skip marked cards?").lower()
+    choice = input("\n> Do you want to skip marked cards? ").lower() or "y"
     session["skip"] = choice[0] == "y"
     if session["skip"] :
         # session["set"] = [card for card in session["set"] if card.ranking < 100]
@@ -266,13 +300,13 @@ def main():
     # session["order"] = [lemma for lemma in session["order"] if session["set"][lemma]["seq"] < 5]
 
 
-    choice = input("> Do you want to see the cards in a random order?").lower()
+    choice = input("\n> Do you want to see the cards in a random order? ").lower() or "y"
     session["shuffle"] = choice[0] == "y"
     if session["shuffle"] :
         random.shuffle(session["order"])
 
 
-    choice = input("> Do you want to review incorrectly answered cards?").lower()
+    choice = input("\n> Do you want to review incorrectly answered cards? ").lower() or "y"
     session["review"] = choice[0] == "y"
 
     # print(session)
@@ -296,7 +330,7 @@ def main():
         print(f"prompt: {card[session['layout']['prompt']]}")
         timing = time.perf_counter()
         while True: 
-            action = input("Select: press h(int), s(kip), r(eveal answer) or q(uit)").lower()
+            action = input("Select: press h(int), s(kip), r(eveal answer) or q(uit) ").lower()
             if action[0] in ["h","s","r", "q"]:
                 if action[0] == "h" and hint_shown == False:
                     print(f"(Hint: {card[session['layout']['hint']]})")
@@ -309,9 +343,10 @@ def main():
                     break
                 else:
                     timing = time.perf_counter() - timing
-                    print(f"Answer: {card[session['layout']['key']]}")
+                    # print(f"Answer: {card[session['layout']['key']]}")
+                    print(f'Answer: {card["lemma"]} ({card["pinyin"]}) = {card["gloss"]}')
                     while True:
-                        choice = input("Were you correct? y(es) or n(o)?").lower()
+                        choice = input("Were you correct? y(es) or n(o)? ").lower() or "y"
                         ## default = "y"
                         if choice[0] == "n":
                             card["wrong"] += 1
@@ -325,7 +360,7 @@ def main():
         if quit_session: break
         print(f"That took you: {timing:0.1f} seconds.")
 
-        save_json_deck("all_fcards.json",all_decks)
+        save_json_deck(json_file,all_decks)
 
         # print(session)
 
