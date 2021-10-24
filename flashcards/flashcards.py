@@ -71,11 +71,16 @@ class Flashcard:
 #     UNDERLINE = '\033[4m'
 
 
+reset = "\u001b[0m"
+blue = "\u001b[34m"
+green = "\u001b[32m"
+red = "\u001b[31m"
+
 def save_json_deck(filename, flashcard_deck):
     with open(filename,"w") as new_deck:
         # saved_deck = json.dump(flashcard_deck, new_deck, cls=DateTimeEncoder)
         saved_deck = json.dump(flashcard_deck, new_deck)
-        print(f"++ json file ({filename}) saved.")
+        print(f"{red}>> json file ({filename.name}) saved.{reset}")
 
 def retrieve_json_file(file):
     with open(file,"r") as f:
@@ -225,10 +230,6 @@ def main():
             "user": user,
             }
 
-    reset = "\u001b[0m"
-    blue = "\u001b[34m"
-    green = "\u001b[32m"
-
     ## Decide layout of flashcards for this session
     query = (f"{blue}\n>\u001b[34m What prompt do you want to see? "
             f"{green}\nA: Show English first (default)"
@@ -355,14 +356,20 @@ answer) or q(uit){reset} ").lower()
     #     card = session["set"][lemma]
     #     print(f'{card["lemma"]} views: {card["views"]} [wrong: {card["wrong"]}, skipped: {card["skipped"]}]')
 
-    report = [["word", "views", "wrong", "skipped"]]
+    titles = ["lemma", "views", "wrong", "skipped"]
+    report = [titles]
     deck = session["set"]
     for key in deck.keys():
         card = deck[key]
-        report.append([card["lemma"], card["views"], card["wrong"],
-        card["skipped"]])
+        row = []
+        for field in titles:
+            row.append(card[field])
+        report.append(row)
+
+        # report.append([card["lemma"], card["views"], card["wrong"], card["skipped"]])
 
     for row in report:
-        print(f"{green}{row[0]:>10} {blue}{row[1]:>10} {row[2]:>10} {row[3]:>10}{reset}") 
+        print(f"  {green}{row[0]:<10} {blue}{row[1]:<10} {row[2]:>10} "
+        f"{row[3]:>10}{reset}") 
 
 main()
