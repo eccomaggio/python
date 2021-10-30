@@ -18,8 +18,6 @@ Subjective ranking: 0 none / 10 too easy (skip) /
 with thanks to https://stackabuse.com/read-a-file-line-by-line-in-python/ 
 
 TODO
-- make the recap work
-- add in color
 - make work with better display? (e.g. webserver or tkinter)
 - make the skip work
 
@@ -71,16 +69,16 @@ class Flashcard:
 #     UNDERLINE = '\033[4m'
 
 
-reset = "\u001b[0m"
-blue = "\u001b[34m"
-green = "\u001b[32m"
-red = "\u001b[31m"
+RESET = "\u001b[0m"
+BLUE = "\u001b[34m"
+GREEN = "\u001b[32m"
+RED = "\u001b[31m"
 
 def save_json_deck(filename, flashcard_deck):
     with open(filename,"w") as new_deck:
         # saved_deck = json.dump(flashcard_deck, new_deck, cls=DateTimeEncoder)
         saved_deck = json.dump(flashcard_deck, new_deck)
-        print(f"{red}>> json file ({filename.name}) saved.{reset}")
+        print(f"{RED}>> json file ({filename.name}) saved.{RESET}")
 
 def retrieve_json_file(file):
     with open(file,"r") as f:
@@ -231,10 +229,10 @@ def main():
             }
 
     ## Decide layout of flashcards for this session
-    query = (f"{blue}\n>\u001b[34m What prompt do you want to see? "
-            f"{green}\nA: Show English first (default)"
-            f"{green}\nB: Show pinyin first"
-            f"{green}\nC: Show Chinese\n{reset}")
+    query = (f"{BLUE}\n>\u001b[34m What prompt do you want to see? "
+            f"{GREEN}\nA: Show English first [default]"
+            f"{GREEN}\nB: Show pinyin first"
+            f"{GREEN}\nC: Show Chinese\n{RESET}")
     choice = input(query).lower()
     if choice not in ["a", "b", "c"]: choice = "a"
 
@@ -264,7 +262,7 @@ def main():
     f_string = "{: <30} " * displ_cols
     for r in displ_table:
         print(f_string.format(*r))
-    tmp = input(f"{blue}\n> Which set do you want to use? {reset}")
+    tmp = input(f"{BLUE}\n> Which set do you want to use? {RESET}")
     choice = 0
     try:
         choice = int(tmp)
@@ -275,16 +273,16 @@ def main():
 
     session["set"] = all_decks[decks[choice]]
 
-    choice = input(f"{blue}\n> Do you want to skip marked cards?{reset} ").lower() or "y"
+    choice = input(f"{BLUE}\n> Do you want to skip marked cards? [y]{RESET} ").lower() or "y"
     session["skip"] = choice[0] == "y"
 
 
-    choice = input(f"{blue}\n> Do you want to see the cards in a random order?{reset} ").lower() or "y"
+    choice = input(f"{BLUE}\n> Do you want to see the cards in a random order? [n]{RESET} ").lower() or "n"
     session["shuffle"] = choice[0] == "y"
 
 
-    choice = input(f"{blue}\n> Do you want to review incorrectly answered \
-cards?{reset} ").lower() or "y"
+    choice = input(f"{BLUE}\n> Do you want to review incorrectly answered \
+cards? [y]{RESET} ").lower() or "y"
     session["review"] = choice[0] == "y"
 
     ## Create the running list according to specifications
@@ -310,19 +308,19 @@ cards?{reset} ").lower() or "y"
 
         skip_card = hint_shown = quit_session = False
         print()
-        print(f"{blue}{running_list_count + 1} out of {len(running_list)} \
-(card no.{card['seq']}){reset}")
-        print(f"{blue}prompt:{reset} {card[session['layout']['prompt']]}")
+        print(f"{BLUE}{running_list_count + 1} out of {len(running_list)} \
+(card no.{card['seq']}){RESET}")
+        print(f"{BLUE}prompt:{RESET} {card[session['layout']['prompt']]}")
         timing = time.perf_counter()
         while True: 
-            action = input(f"{blue}Select: press h(int), s(kip), r(eveal \
-answer) or q(uit){reset} ").lower()
+            action = input(f"{BLUE}Select: press h(int), s(kip), r(eveal \
+answer) or q(uit){RESET} ").lower()
             if action == "":
                 action = "r"
             if action[0] in ["h","s","r", "q"]:
                 if action[0] == "h" and hint_shown == False:
-                    print(f"{blue}(Hint: \
-                            {card[session['layout']['hint']]}){reset}")
+                    print(f"{BLUE}(Hint: \
+{card[session['layout']['hint']]}){RESET}")
                 elif action[0] == "s":
                     skip_card = True
                     card["skipped"] += 1
@@ -332,10 +330,10 @@ answer) or q(uit){reset} ").lower()
                     break
                 else:
                     timing = time.perf_counter() - timing
-                    print(f'\n{green}Answer:{reset} {card["lemma"]} ({card["pinyin"]}) = \
-{card["gloss"]}{reset}')
+                    print(f'\n{GREEN}Answer:{RESET} {card["lemma"]} ({card["pinyin"]}) = \
+{card["gloss"]}{RESET}')
                     while True:
-                        choice = input(f"{blue}Were you correct? y/(n)?{reset} ").lower() or "y"
+                        choice = input(f"{BLUE}Were you correct? [y]/n?{RESET} ").lower() or "y"
                         if choice[0] == "n":
                             card["wrong"] += 1
                             if session["review"]:
@@ -345,7 +343,7 @@ answer) or q(uit){reset} ").lower()
 
         if skip_card: continue    
         if quit_session: break
-        print(f"{green}That took you: {timing:0.1f} seconds.{reset}")
+        print(f"{GREEN}That took you: {timing:0.1f} seconds.{RESET}")
 
         running_list_count += 1
 
@@ -369,7 +367,7 @@ answer) or q(uit){reset} ").lower()
         # report.append([card["lemma"], card["views"], card["wrong"], card["skipped"]])
 
     for row in report:
-        print(f"  {green}{row[0]:<10} {blue}{row[1]:<10} {row[2]:>10} "
-        f"{row[3]:>10}{reset}") 
+        print(f"  {GREEN}{row[0]:<10} {BLUE}{row[1]:<10} {row[2]:>10} "
+        f"{row[3]:>10}{RESET}") 
 
 main()
