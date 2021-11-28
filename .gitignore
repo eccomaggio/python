@@ -1,2 +1,5 @@
 # *.json
 ignore_me/
+flashcards/*.json
+flashcards/exclude_these.txt
+
