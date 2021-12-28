@@ -1,5 +1,4 @@
 """
-TRYING OUT GIT BRANCHES!!
 Takes a text file containing vocab: lemma_pinyin_gloss
 parses it and adds extra information
 saves it as a json file (expands to a 2-level dictionary:
@@ -18,9 +17,17 @@ Subjective ranking: 0 none / 10 too easy (skip) /
 
 with thanks to https://stackabuse.com/read-a-file-line-by-line-in-python/ 
 
+LOG:
+06-dec-2021: simplified .json to remove duplication of card deck storage:
+{lemma : { "lemma" : x, "gloss" : ...}} -> {lemma: { "gloss" : ...}}
+
+
+
 TODO
+- remove the user stats from the card deck and add to a separate "user" file
+- maybe make the card dictionary into an array + enumeration to save space?
 - make work with better display? (e.g. webserver or tkinter)
-- make the skip work
+- implement skip
 
 ABANDONED - strip out dataclass as not crucial and a pain to serialize
 change logic: 
@@ -148,7 +155,7 @@ def create_deck_from_file(source_file):
                     # flashcards[entry[0]] = (entry[1],entry[2].strip())
                     # tmp_deck[entry[0]] = {
                     loaded_decks[deck_title][entry[0]] = {
-                            "lemma": entry[0],
+                            #"lemma": entry[0],
                             "pinyin": entry[1],
                             "gloss": entry[2].strip(),
                             "ID": line,
@@ -273,6 +280,9 @@ def main():
         choice = len(decks) - 1
 
     session["set"] = all_decks[decks[choice]]
+    session["set_title"] = decks[choice]
+    # print(session)
+    # quit()
 
     choice = input(f"{BLUE}\n> Do you want to skip marked cards? [y]{RESET} ").lower() or "y"
     session["skip"] = choice[0] == "y"
@@ -289,8 +299,10 @@ cards? [y]{RESET} ").lower() or "y"
     ## Create the running list according to specifications
     running_list = []
     if session["skip"]:
-        deck = session["set"]
-        running_list = [deck[card]["lemma"] for card in deck if deck[card]["ranking"] < 100]
+        # deck = session["set"]
+        # running_list = [deck[card]["lemma"] for card in deck if deck[card]["ranking"] < 100]
+        running_list = [key for key in session["set"].keys() if \
+                session["set"][key]["ranking"] < 100]
     else:
         running_list = [*session["set"].keys()]
     if session["shuffle"]:
@@ -331,7 +343,8 @@ answer) or q(uit){RESET} ").lower()
                     break
                 else:
                     timing = time.perf_counter() - timing
-                    print(f'\n{GREEN}Answer:{RESET} {card["lemma"]} ({card["pinyin"]}) = \
+                    # print(f'\n{GREEN}Answer:{RESET} {card["lemma"]} ({card["pinyin"]}) = \
+                    print(f'\n{GREEN}Answer:{RESET} {lemma} ({card["pinyin"]}) = \
 {card["gloss"]}{RESET}')
                     while True:
                         choice = input(f"{BLUE}Were you correct? [y]/n?{RESET} ").lower() or "y"
@@ -358,11 +371,14 @@ answer) or q(uit){RESET} ").lower()
     titles = ["lemma", "views", "wrong", "skipped"]
     report = [titles]
     deck = session["set"]
-    for key in deck.keys():
+    for key in session["set"].keys():
         card = deck[key]
-        row = []
-        for field in titles:
-            row.append(card[field])
+        row = [
+            key,
+            session["set"][key][titles[1]],
+            session["set"][key][titles[2]],
+            session["set"][key][titles[3]]
+            ]
         report.append(row)
 
         # report.append([card["lemma"], card["views"], card["wrong"], card["skipped"]])
