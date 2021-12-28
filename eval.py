@@ -1,7 +1,7 @@
 import re
 
 # math_string = "1+246x3"
-math_input = "-1.5 + -24.0 x 3 / 2 - 40 + 2 * 8"
+math_input = "1.5 + 24.0 x 3 / 2 - 40 + 2 * 8"
 ALLOWED_OPS = "+-/*x"
 debug = True
 
