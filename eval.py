@@ -5,7 +5,7 @@ math_input = "1.5 + 24.0 x 3 / 2 - 40 + 2 * 8"
 ALLOWED_OPS = "+-/*x"
 debug = True
 
-def make_array(raw_string):
+def tokenize(raw_string):
     math_string = raw_string.replace(" ","")
     if debug: print(f"Cleaned input: {math_string}")
     math_array = []
@@ -38,6 +38,7 @@ def make_array(raw_string):
             i += 1
         prev = el_type
 
+    ## Clean up and validate math code   
     if debug: print(f"first pass:\n{math_array}")
     for i, el in enumerate(math_array):
         if el in ALLOWED_OPS:
@@ -80,7 +81,8 @@ def final_pass(arr):
     return sum(final_result)
     # return f_p(basic_array,[])
 
-def f_p(arr,result_arr):
+"""
+def OLD_f_p(arr,result_arr):
     if len(arr) <= 1:
         result_arr += arr
         if debug: print(f"end of array:\n{result_arr},\n{arr}\n")
@@ -99,9 +101,75 @@ def f_p(arr,result_arr):
         recurse = [right] + arr[3:]
         if debug: print(f"division / multiplication:\n{result_arr}: ({left} {op} {int(arr[2])}) => {right}\n{recurse}\n")
         return f_p(recurse,result_arr)
+"""
 
-math_array = make_array(math_input)
-if debug: print(f"Primary processing: {math_array}\n")
+def f_p(arr,result_arr):
+    ## end of string = return condition (return final argument)
+    if len(arr) <= 1:
+        result_arr += arr
+        if debug: print(f"end of array:\n{result_arr},\n{arr}\n")
+        return result_arr
+    left = arr[0]
+    op = arr[1]
+
+    if op in "+-":
+        symbol = "ADD" if op == "+" else "SUB"
+        result_arr += [symbol,left]
+        if debug: print(f"addition / subtraction:\n{result_arr[2:]},\n{arr}\n")
+        return f_p(arr[2:],result_arr)
+
+    elif op in "*x/":
+        ## process op & return as right hand argument of another op
+        ## do this by removing the original right-hand argument
+        symbol = "DIV" if op == "/" else "MUL"
+        right = [symbol,left,arr[2]]
+        # recurse = [str(right)] + arr[3:]
+        recurse = [right] + arr[3:]
+        if debug: print(f"division / multiplication:\n{result_arr}: ({left} {op} {int(arr[2])}) => {right}\n{recurse}\n")
+        return f_p(recurse,result_arr)
+
+
+def parse(arr):
+    i = 0
+    arr1 = []
+    while arr:
+        if len(arr) == 1:
+            arr1 += arr[0]
+            break
+        left = arr[0]
+        op = arr[1]
+        print(f"{left=},{op=}\n\t{arr=}\n\t{arr1=}")
+        if op in "*x/":
+            symbol = "DIV" if op == "/" else "MUL"
+            right = [[symbol,left,arr[i + 2]]]
+            arr1 += right
+            # arr1 = arr1[:-1] + right
+            arr = right + arr[3:]
+        else:
+            arr1 += [left,op]
+            arr = arr[2:]
+    return arr1
+        
+def pass_1(arr):
+    dict_arr = {}
+    for i,el in enumerate(arr):
+        if isinstance(el,float):
+            opID = "1" if i == 0 else None
+            dict_arr[i] = {
+                    "type" : "arg", 
+                    "value" : el, 
+                    "precedence" : None,
+                    "headID" : None,
+                    "sharedOpID" : None
+                    }
+
+math_array = tokenize(math_input)
+if debug: print(f"Math array: {math_array}\n")
+# tmp = f_p(math_array,[])
+tmp = parse(math_array)
+print(tmp)
+quit()
+
 result_array = final_pass(math_array)
 if debug: print(f"Raw input: {math_input}")
 print(result_array)
