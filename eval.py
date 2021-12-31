@@ -1,11 +1,17 @@
 import re
+import json
 
 # math_string = "1+246x3"
-math_input = "1.5 + 24.0 x 3 / 2 - 40 + 2 * 8"
+math_input = "1.5 + 24.0 x -3 / 2 - 40 + 2 * 8"
 ALLOWED_OPS = "+-/*x"
+op_lookup = {"+" : ["ADD",2], "-" : ["SUB",2], "*" : ["MUL",1], "/" : ["DIV",1]}
 debug = True
+debug1 = False
 
 def tokenize(raw_string):
+    """
+    Parses character by character to create and validate an array of expressions
+    """
     math_string = raw_string.replace(" ","")
     if debug: print(f"Cleaned input: {math_string}")
     math_array = []
@@ -23,18 +29,18 @@ def tokenize(raw_string):
         elif char in "()":
             el_type = "BR"
         else:
-            print (f"Character at position {count} not a number or operator.")
+            print (f"Error: Character at position {count} not a number or operator.")
             continue
 
         if el_type == prev and el_type != "BR":
             if el_type == "NUM":
                 math_array[i] += char
-                if debug: print(f"{el_type} added: {char}")
+                if debug1: print(f"{el_type} added: {char}")
             else:
-                print(f"Character el_type {count}: only one operator at a time allowed.")
+                print(f"Error: Character el_type {count}: only one operator at a time allowed.")
         else:
             math_array.append(char)
-            if debug: print(f"{el_type} added: {char}")
+            if debug1: print(f"{el_type} added: {char}")
             i += 1
         prev = el_type
 
@@ -129,45 +135,83 @@ def f_p(arr,result_arr):
         return f_p(recurse,result_arr)
 
 
+# def parse(arr):
+#     i = 0
+#     arr1 = []
+#     while arr:
+#         if len(arr) == 1:
+#             arr1 += arr[0]
+#             break
+#         left = arr[0]
+#         op = arr[1]
+#         print(f"{left=},{op=}\n\t{arr=}\n\t{arr1=}")
+#         if op in "*x/":
+#             symbol = "DIV" if op == "/" else "MUL"
+#             right = [[symbol,left,arr[i + 2]]]
+#             arr1 += right
+#             # arr1 = arr1[:-1] + right
+#             arr = right + arr[3:]
+#         else:
+#             arr1 += [left,op]
+#             arr = arr[2:]
+#     return arr1
+        
+
 def parse(arr):
     i = 0
-    arr1 = []
-    while arr:
-        if len(arr) == 1:
-            arr1 += arr[0]
-            break
-        left = arr[0]
-        op = arr[1]
-        print(f"{left=},{op=}\n\t{arr=}\n\t{arr1=}")
-        if op in "*x/":
-            symbol = "DIV" if op == "/" else "MUL"
-            right = [[symbol,left,arr[i + 2]]]
-            arr1 += right
-            # arr1 = arr1[:-1] + right
-            arr = right + arr[3:]
-        else:
-            arr1 += [left,op]
-            arr = arr[2:]
-    return arr1
-        
-def pass_1(arr):
-    dict_arr = {}
-    for i,el in enumerate(arr):
+    math_dict = {}
+    for id,el in enumerate(arr):
         if isinstance(el,float):
-            opID = "1" if i == 0 else None
-            dict_arr[i] = {
-                    "type" : "arg", 
-                    "value" : el, 
-                    "precedence" : None,
-                    "headID" : None,
-                    "sharedOpID" : None
-                    }
+            math_dict[id] = {"type": "ARG", "value": el}
+        elif el in "()":
+            math_dict[id] = {"type": "BR"}
+        else:
+            math_dict[id] = {
+                    "type": "OP", 
+                    "op":   op_lookup[el][0],
+                    "precedence": op_lookup[el][1],
+                    "argIDs": [None, None]}
+            if id == 1:
+                math_dict[id]["argIDs"] = [0,None]
+            elif id == len(arr) - 2:
+                math_dict[id]["argIDs"] = [None,0]
+    return math_dict
+
+
+
+def pass_1(math_dict):
+    for precedence in range(1,3):
+        for op in [el for el in math_dict 
+                if math_dict[el]["type"] == "OP" and
+                math_dict[el]["precedence"] == precedence
+                ]:
+            # print(math_dict[op],op)
+            curr_op = math_dict[op]
+            arg1 = math_dict[op - 1]
+            arg2 = math_dict[op + 1]
+            prev_op = math_dict.get[op - 1] 
+            next_op = math_dict.get[op + 1]
+
+            if prev_op:
+                if curr_op["precedence"] > prev_opp["precedence"]:
+                    curr_op["argIDs"][0] = arg1["value"]
+                    prev_op["argIDs"][1] = op - 1
+                elif curr_op["precedence"] == prev_op["precedence"]:  
+                    curr_op["argIDs"][0] = op - 1
+                else:
+                    pass #add in the rest of the logic here 
+
+        
 
 math_array = tokenize(math_input)
 if debug: print(f"Math array: {math_array}\n")
+math_dict = parse(math_array)
+
 # tmp = f_p(math_array,[])
-tmp = parse(math_array)
-print(tmp)
+# tmp = parse(math_array)
+# for i in math_dict:
+#     print(f"id={i}: {tmp[i]}")
+result = pass_1(math_dict)
 quit()
 
 result_array = final_pass(math_array)
