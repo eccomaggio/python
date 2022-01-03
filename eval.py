@@ -49,12 +49,6 @@ class Bracket:
 
 
 
-# math_string = "1+246x3"
-math_input = "1.5 + 24.0 x -3 / 2 - 40 + 2 * 8"
-ALLOWED_OPS = "+-/*x"
-# op_lookup = {"+" : ["ADD",2], "-" : ["SUB",2], "*" : ["MUL",1], "/" : ["DIV",1]}
-debug = True
-debug1 = True
 
 def tokenize(raw_string):
     """
@@ -102,22 +96,6 @@ def tokenize(raw_string):
             continue
         else:
             math_array[i] = float(el)
-
-    # i = 0
-    # while i < len(math_array) - 1:
-    #     num = math_array[i]
-    #     if isinstance(num,str) and num in "()":
-    #         i += 1 
-    #         continue
-    #     i += 1
-    #     while math_array[i] in "()":
-    #         i += 1
-    #     op = math_array[i]
-    #     assert isinstance(num,float), f"Problem here: {math_array[:i]}^"
-    #     assert isinstance(op,str), f"Problem here: {math_array[:i]}^"
-    #     i += 1
-
-    # assert isinstance(math_array[-1],float), f"End with a number: {math_array}"
 
     return math_array
 
@@ -176,47 +154,42 @@ def resolve(math_dict):
     if debug1:
         print(f"\n\n{expected_pattern} {expr_pattern}\n")
     assert expected_pattern == expr_pattern,"ERROR: expression should be <arg1 op arg2...>" 
+    op_ids = [id for id in math_dict if isinstance(math_dict[id],Op)]
+    arg_ids = [id for id in math_dict if isinstance(math_dict[id],Arg)]
     ## Fill in implied arguments
-    first_op = math_dict[id_list[1]]
-    last_op = math_dict[id_list[-2]]
-    first_arg = math_dict[id_list[0]]
-    last_arg = math_dict[id_list[-1]]
+    first_op = math_dict[op_ids[0]]
+    last_op = math_dict[op_ids[-1]]
+    first_arg = math_dict[arg_ids[0]]
+    last_arg = math_dict[arg_ids[-1]]
+    
     first_op.arg_ids[0] = first_arg.id
     last_op.arg_ids[1] = last_arg.id
-    for precedence in [2,3]:
-        if debug: print(f"\nresolving, precedence {precedence}")
-        for id in math_dict:
-            curr_op = math_dict[id]
-            ## Only need to parse OPs
-            if isinstance(curr_op,Op) and curr_op.precedence == precedence:
-                curr_pos = id_list.index(id)
-                arg1 = math_dict[id_list[curr_pos - 1]]
-                arg2 = math_dict[id_list[curr_pos + 1]]
-                ## Use .get to avoid exceptions (None means 'out of range')
-                prev = curr_pos - 2
-                next = curr_pos + 2
-                prev_op = math_dict.get(id_list[prev]) if prev >= 0 else None
-                next_op = math_dict.get(id_list[next]) if next < len(math_dict) else None
-                if debug: print(f"\tresolving op: {id}\n\t{arg1=}\n\t{arg2=}\n\t{prev_op=}\n\t{next_op=}")
+    for count, id in enumerate(op_ids):
+        curr_op = math_dict[id]
+        next_op = None if id == op_ids[-1] else math_dict[op_ids[count + 1]]
+        next_arg_id = id_list[id_list.index(id) + 1]
+        next_arg = math_dict[next_arg_id]
+        if debug1:
+           print(f"\n{curr_op=}\n> {next_op=}\n {next_arg}")
+        if next_op:
+            if curr_op < next_op:
+                curr_op.arg_ids[1] = next_op.id
+                next_op.arg_ids[0] = next_arg.id
+            else:
+                curr_op.arg_ids[1] = next_arg.id
+                next_op.arg_ids[0] = curr_op.id
 
-                if prev_op:
-                    if curr_op > prev_op:
-                        curr_op.arg_ids[0] = arg1.id
-                        prev_op.arg_ids[1] = id
-                    elif curr_op <= prev_op:  
-                        curr_op.arg_ids[0] = prev_op.id
-                if next_op:
-                    if curr_op > next_op:
-                        curr_op.arg_ids[1] = arg2.id
-                        next_op.arg_ids[0] = id
-                    elif curr_op == next_op:
-                        curr_op.arg_ids[1] = arg1.id
-                        next_op.arg_ids[0] = id
-                    else:
-                        curr_op.arg_ids[1] = next_op.id
     return math_dict
 
         
+
+# math_string = "1+246x3"
+math_input = "1.5 + 24.0 x -3 / 2 - 40 + 2 * 8"
+ALLOWED_OPS = "+-/*x"
+# op_lookup = {"+" : ["ADD",2], "-" : ["SUB",2], "*" : ["MUL",1], "/" : ["DIV",1]}
+debug = True
+debug1 = True
+
 
 math_array = tokenize(math_input)
 if debug: print(f"Math array: {math_array}\n")
