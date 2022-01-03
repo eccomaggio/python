@@ -1,12 +1,60 @@
 import re
 import json
+from collections import OrderedDict
+from dataclasses import dataclass,field
+from typing import List
+
+@dataclass(order=True)
+class Arg:
+    """
+    For float arguments
+    """
+    id: int = field(compare = False)
+    value: float
+    # value_id: int = field(compare = False, default = None)
+
+@dataclass(order=True)
+class Op:
+    """
+    For operators (+/-*)
+    Comparison is based on precedence
+    Update __post_init__ if more ops allowed
+    """
+    id: int = field(compare = False)
+    symbol: str = field(compare = False)
+    arg_ids: List[int] = field(compare = False,default_factory=list)
+    op: int = field(compare = False,default=None)
+    precedence: int = field(default=None)
+    
+    def __post_init__(self):
+        self.arg_ids = [None, None]
+        if not self.precedence:
+            self.precedence = {"+": 1,"-":1,"*":2, "/":2}[self.symbol]
+        if not self.op:
+            self.op = {"+": "add","-":"sub","*":"mul", "x":
+                    "mul","/":"div"}[self.symbol]
+
+@dataclass(order=True)
+class Bracket:
+    """
+    For brackets
+    Comparison according to id (i.e. it is used to pair right/left braces)
+    """
+    id: int = field(compare = False)
+    paired_with: int = field(default=None)
+    is_opening: bool = field(compare = False, default=None)
+    kind: int = field(compare = False, default=None)
+    precedence: int = field(compare = False, default=10)
+    nest_level: int = field(compare = False, default=None)
+
+
 
 # math_string = "1+246x3"
 math_input = "1.5 + 24.0 x -3 / 2 - 40 + 2 * 8"
 ALLOWED_OPS = "+-/*x"
-op_lookup = {"+" : ["ADD",2], "-" : ["SUB",2], "*" : ["MUL",1], "/" : ["DIV",1]}
+# op_lookup = {"+" : ["ADD",2], "-" : ["SUB",2], "*" : ["MUL",1], "/" : ["DIV",1]}
 debug = True
-debug1 = False
+debug1 = True
 
 def tokenize(raw_string):
     """
@@ -55,60 +103,26 @@ def tokenize(raw_string):
         else:
             math_array[i] = float(el)
 
-    i = 0
-    while i < len(math_array) - 1:
-        num = math_array[i]
-        if isinstance(num,str) and num in "()":
-            i += 1 
-            continue
-        i += 1
-        while math_array[i] in "()":
-            i += 1
-        op = math_array[i]
-        assert isinstance(num,float), f"Problem here: {math_array[:i]}^"
-        assert isinstance(op,str), f"Problem here: {math_array[:i]}^"
-        i += 1
+    # i = 0
+    # while i < len(math_array) - 1:
+    #     num = math_array[i]
+    #     if isinstance(num,str) and num in "()":
+    #         i += 1 
+    #         continue
+    #     i += 1
+    #     while math_array[i] in "()":
+    #         i += 1
+    #     op = math_array[i]
+    #     assert isinstance(num,float), f"Problem here: {math_array[:i]}^"
+    #     assert isinstance(op,str), f"Problem here: {math_array[:i]}^"
+    #     i += 1
 
-    assert isinstance(math_array[-1],float), f"End with a number: {math_array}"
+    # assert isinstance(math_array[-1],float), f"End with a number: {math_array}"
 
     return math_array
 
-def final_pass(arr):
-    ## Strip out brackets for now
-    basic_array = [el for el in arr if isinstance(el,float) or 
-            (isinstance(el,str) and el not in "()")]
-    if debug: print(f"basic array:\n{basic_array}")
-    for i,el in enumerate(basic_array):
-        if isinstance(el,str) and el == "-":
-           basic_array[i] = "+"
-           basic_array[i + 1] = 0 - basic_array[i + 1]
-    
-    final_result = [el for el in f_p(basic_array,[]) if isinstance(el,float)]
-    return sum(final_result)
-    # return f_p(basic_array,[])
 
 """
-def OLD_f_p(arr,result_arr):
-    if len(arr) <= 1:
-        result_arr += arr
-        if debug: print(f"end of array:\n{result_arr},\n{arr}\n")
-        return result_arr
-    left = float(arr[0])
-    op = arr[1]
-
-    if op in "+-":
-        result_arr += [left,op]
-        if debug: print(f"addition / subtraction:\n{result_arr[2:]},\n{arr}\n")
-        return f_p(arr[2:],result_arr)
-
-    elif op in "*x/":
-        right = left / float(arr[2]) if op == "/" else left * float(arr[2])
-        # recurse = [str(right)] + arr[3:]
-        recurse = [right] + arr[3:]
-        if debug: print(f"division / multiplication:\n{result_arr}: ({left} {op} {int(arr[2])}) => {right}\n{recurse}\n")
-        return f_p(recurse,result_arr)
-"""
-
 def f_p(arr,result_arr):
     ## end of string = return condition (return final argument)
     if len(arr) <= 1:
@@ -133,85 +147,88 @@ def f_p(arr,result_arr):
         recurse = [right] + arr[3:]
         if debug: print(f"division / multiplication:\n{result_arr}: ({left} {op} {int(arr[2])}) => {right}\n{recurse}\n")
         return f_p(recurse,result_arr)
-
-
-# def parse(arr):
-#     i = 0
-#     arr1 = []
-#     while arr:
-#         if len(arr) == 1:
-#             arr1 += arr[0]
-#             break
-#         left = arr[0]
-#         op = arr[1]
-#         print(f"{left=},{op=}\n\t{arr=}\n\t{arr1=}")
-#         if op in "*x/":
-#             symbol = "DIV" if op == "/" else "MUL"
-#             right = [[symbol,left,arr[i + 2]]]
-#             arr1 += right
-#             # arr1 = arr1[:-1] + right
-#             arr = right + arr[3:]
-#         else:
-#             arr1 += [left,op]
-#             arr = arr[2:]
-#     return arr1
-        
+"""
 
 def parse(arr):
-    i = 0
-    math_dict = {}
+    # firstArg, lastArg, firstOp, lastOp = None, None, None, None
+    math_dict = OrderedDict({})
     for id,el in enumerate(arr):
+        ## ARG
         if isinstance(el,float):
-            math_dict[id] = {"type": "ARG", "value": el}
+            math_dict[id] = Arg(id,el)
+        ## BRACKET
         elif el in "()":
-            math_dict[id] = {"type": "BR"}
+            math_dict[id] = Bracket(id,is_opening = (el == "("))
+        ## OP
         else:
-            math_dict[id] = {
-                    "type": "OP", 
-                    "op":   op_lookup[el][0],
-                    "precedence": op_lookup[el][1],
-                    "argIDs": [None, None]}
-            if id == 1:
-                math_dict[id]["argIDs"] = [0,None]
-            elif id == len(arr) - 2:
-                math_dict[id]["argIDs"] = [None,0]
+            math_dict[id] = Op(id,el)
+
     return math_dict
 
 
 
-def pass_1(math_dict):
-    for precedence in range(1,3):
-        for op in [el for el in math_dict 
-                if math_dict[el]["type"] == "OP" and
-                math_dict[el]["precedence"] == precedence
-                ]:
-            # print(math_dict[op],op)
-            curr_op = math_dict[op]
-            arg1 = math_dict[op - 1]
-            arg2 = math_dict[op + 1]
-            prev_op = math_dict.get[op - 1] 
-            next_op = math_dict.get[op + 1]
+def resolve(math_dict):
+    ## Validate the expression first by listing elements excluding brackets
+    id_list = [id for id in math_dict if not isinstance(math_dict[id], Bracket)]
+    expr_pattern = "".join([type(math_dict[id]).__name__[0] for id in
+        id_list])
+    expected_pattern = ("AO" * (len(id_list) // 2)) + "A"
+    if debug1:
+        print(f"\n\n{expected_pattern} {expr_pattern}\n")
+    assert expected_pattern == expr_pattern,"ERROR: expression should be <arg1 op arg2...>" 
+    ## Fill in implied arguments
+    first_op = math_dict[id_list[1]]
+    last_op = math_dict[id_list[-2]]
+    first_arg = math_dict[id_list[0]]
+    last_arg = math_dict[id_list[-1]]
+    first_op.arg_ids[0] = first_arg.id
+    last_op.arg_ids[1] = last_arg.id
+    for precedence in [2,3]:
+        if debug: print(f"\nresolving, precedence {precedence}")
+        for id in math_dict:
+            curr_op = math_dict[id]
+            ## Only need to parse OPs
+            if isinstance(curr_op,Op) and curr_op.precedence == precedence:
+                curr_pos = id_list.index(id)
+                arg1 = math_dict[id_list[curr_pos - 1]]
+                arg2 = math_dict[id_list[curr_pos + 1]]
+                ## Use .get to avoid exceptions (None means 'out of range')
+                prev = curr_pos - 2
+                next = curr_pos + 2
+                prev_op = math_dict.get(id_list[prev]) if prev >= 0 else None
+                next_op = math_dict.get(id_list[next]) if next < len(math_dict) else None
+                if debug: print(f"\tresolving op: {id}\n\t{arg1=}\n\t{arg2=}\n\t{prev_op=}\n\t{next_op=}")
 
-            if prev_op:
-                if curr_op["precedence"] > prev_opp["precedence"]:
-                    curr_op["argIDs"][0] = arg1["value"]
-                    prev_op["argIDs"][1] = op - 1
-                elif curr_op["precedence"] == prev_op["precedence"]:  
-                    curr_op["argIDs"][0] = op - 1
-                else:
-                    pass #add in the rest of the logic here 
+                if prev_op:
+                    if curr_op > prev_op:
+                        curr_op.arg_ids[0] = arg1.id
+                        prev_op.arg_ids[1] = id
+                    elif curr_op <= prev_op:  
+                        curr_op.arg_ids[0] = prev_op.id
+                if next_op:
+                    if curr_op > next_op:
+                        curr_op.arg_ids[1] = arg2.id
+                        next_op.arg_ids[0] = id
+                    elif curr_op == next_op:
+                        curr_op.arg_ids[1] = arg1.id
+                        next_op.arg_ids[0] = id
+                    else:
+                        curr_op.arg_ids[1] = next_op.id
+    return math_dict
 
         
 
 math_array = tokenize(math_input)
 if debug: print(f"Math array: {math_array}\n")
 math_dict = parse(math_array)
-
-# tmp = f_p(math_array,[])
-# tmp = parse(math_array)
-# for i in math_dict:
-#     print(f"id={i}: {tmp[i]}")
-result = pass_1(math_dict)
+for i in math_dict:
+    print(f"id>> {i}: {math_dict[i]}")
+parsed_dict = resolve(math_dict)
+print(parsed_dict)
+print()
+for i in parsed_dict:
+    print(f"id={i}: {parsed_dict[i]}")
+print(parsed_dict[11].arg_ids)
 quit()
 
 result_array = final_pass(math_array)
