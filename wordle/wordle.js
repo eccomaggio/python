@@ -44,14 +44,33 @@ function currCell() {
     return `${currRow}-${currCol}`
 }
 
+function updateWordle(id,i, feedback){
+    console.log(id,i,feedback)
+    classNames = ["wrong","nearly","exact"]
+    document.getElementById(id).className = classNames[feedback]
+}
+
+function checkGuess(rowID,guess){
+    // feedback = [0,1,2,0,2]
+    feedback = [2,2,2,2,2]
+    // KEY: 0=wrong, 1=nearly, 2=exact
+    const guessIDs = []
+    Array.from(document.getElementById(rowID).childNodes).forEach(e => guessIDs.push(e.id))
+    console.log(guessIDs)
+    guessIDs.forEach((id,i) => updateWordle(id, i, feedback[i]))
+    // console.log((prevVal,currVal) => prevVal + currVal, 0)
+    const total = feedback.reduce((prevVal,currVal) => prevVal + currVal, 0)
+    if (total == 10) alert("You guessed!!")
+}
+
 function keyDownHandler(e) {
     const testDiv = document.getElementById("test")
-    keyPressed = e.key.charCodeAt(0)
-    message = `key=${e.key} (${e.key.charCodeAt(0)}, ${e.key.length}),
-     code=${e.code}; shift key? ${e.shiftKey} [c=${currCol}/${maxCol},
-     r=${currRow}/${maxRow}]; at
-     EOR? ${atEOR}`
-    testDiv.innerHTML = message 
+    // keyPressed = e.key.charCodeAt(0)
+    // message = `key=${e.key} (${e.key.charCodeAt(0)}, ${e.key.length}),
+    //  code=${e.code}; shift key? ${e.shiftKey} [c=${currCol}/${maxCol},
+    //  r=${currRow}/${maxRow}]; at
+    //  EOR? ${atEOR}`
+    // testDiv.innerHTML = message 
     switch (e.code.slice(0,3)) {
         case "Key":
             if (!atEOR) document.getElementById(currCell()).innerHTML = e.key
@@ -72,6 +91,7 @@ function keyDownHandler(e) {
                 break
             }
             console.log(`current line (id=${rowID}): ${guess} [${guess.length} char(s)]`)
+            checkGuess(rowID,guess)
             incRow()
             currCol = 0
             atEOR = false
