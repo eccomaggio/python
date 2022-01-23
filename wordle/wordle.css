@@ -1,0 +1,29 @@
+body {
+    /*font-family: system-ui;*/
+    background: #000000;
+    color: white;
+    text-align: center;
+}
+.wrong, .nearly, .exact {
+    text-transform: uppercase;
+    font-size: xx-large;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    margin: 2px;
+    border: 0;
+    color: white;
+    display:inline-block;
+}
+
+.wrong {
+    background-color: #1f1f1f;
+}
+
+.nearly {
+    background-color: gold;
+}
+
+.exact {
+    background-color: limegreen;
+}

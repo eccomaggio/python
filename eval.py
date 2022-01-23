@@ -3,6 +3,7 @@ import json
 from collections import OrderedDict
 from dataclasses import dataclass,field
 from typing import List
+from pudb import set_trace; set_trace()
 
 @dataclass(order=True)
 class Arg:
@@ -179,13 +180,31 @@ def resolve(math_dict):
                 curr_op.arg_ids[1] = next_arg.id
                 next_op.arg_ids[0] = curr_op.id
 
+    result_tree = []
+    parsed_ids = []
+    for id in op_ids:
+        if id not in parsed_ids:
+            curr = math_dict[id]
+            result_tree += resolve_arg(math_dict[id]) 
+
+    def resolve_arg(arg,parsed_ids):
+        parsed_ids += arg.id
+        if isinstance(arg,Arg):
+            return arg.value
+        else:
+            return
+        [arg.op,resolve_arg[arg.arg_ids[0]],resolve_arg[arg.arg_ids[1]]] 
+
+    if debug: print (f"\n..... {result_tree=}")
+
     return math_dict
 
-        
+
 
 # math_string = "1+246x3"
 math_input = "1.5 + 24.0 x -3 / 2 - 40 + 2 * 8"
 ALLOWED_OPS = "+-/*x"
+parsed_ids = []
 # op_lookup = {"+" : ["ADD",2], "-" : ["SUB",2], "*" : ["MUL",1], "/" : ["DIV",1]}
 debug = True
 debug1 = True
@@ -201,10 +220,10 @@ print(parsed_dict)
 print()
 for i in parsed_dict:
     print(f"id={i}: {parsed_dict[i]}")
-print(parsed_dict[11].arg_ids)
 quit()
 
-result_array = final_pass(math_array)
+fully_parsed = final_pass(math_array)
 if debug: print(f"Raw input: {math_input}")
-print(result_array)
+print(fully_parsed)
+
 
