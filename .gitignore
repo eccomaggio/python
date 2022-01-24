@@ -2,4 +2,7 @@
 ignore_me/
 flashcards/*.json
 flashcards/exclude_these.txt
+.DS_Store
+*.swp
+.python-version
 
