@@ -23,8 +23,8 @@ function drawWordle() {
     let insertedBoxes = document.getElementById("wordleForm").append(inputBoxes)
 
     window.addEventListener('keydown', keyDownHandler)
-    let testDiv = document.getElementById("test")
-    testDiv.innerHTML = "set by jscript"
+    // let testDiv = document.getElementById("test")
+    // testDiv.innerHTML = "set by jscript"
 }
 
 function incCol() {
@@ -87,26 +87,40 @@ function checkGuess(rowID,guess){
     Array.from(document.getElementById(rowID).childNodes).forEach(e => guessIDs.push(e.id))
     guessIDs.forEach((id,i) => updateWordle(id, i, feedback[i]))
     const total = feedback.reduce((prevVal,currVal) => prevVal + currVal, 0)
-    if (total == 10) alert(`You guessed in ${currRow + 1}.`)
+    const FULLHOUSE = 10
+    if (total == FULLHOUSE){
+         alert(`You guessed in ${currRow + 1}.`)
+    }
+    else if (total < FULLHOUSE && currRow == maxRow - 1) {
+        alert(`Good try! The word was: ${key}.`)
+    }
 }
 
 function keyDownHandler(e) {
     const testDiv = document.getElementById("test")
     switch (e.code.slice(0,3)) {
+        // ## user presses an alphabet key
         case "Key":
             if (!atEOR) document.getElementById(currCell()).innerHTML = e.key
             if (currCol == (maxCol - 1)) atEOR = true
             incCol()
             break
+        // ## user presses backspace
         case "Bac": 
             if (!atEOR) decCol()
             document.getElementById(currCell()).innerHTML = NBSP
             atEOR = false
             break
+        // ## user presses Enter key (i.e. submit guess)
         case "Ent":
             const rowID = `row${currRow}`
             const guess = document.getElementById(rowID).textContent.replace(/\s+/g, '')
-            if (guess.length != 5) {
+            // console.log(`>> guess=${guess}, len=${guess.length}`)
+            if (guess.length == 0) {
+                alert("You need to type a 5-letter word. \n(Or the Enter key was clicked twice by mistake.)")
+                break
+            }
+            else if (guess.length < 5) {
                 alert("It needs to have five letters.")
                 break
             }

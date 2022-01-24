@@ -1,23 +1,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 
 <html>
-<head>
-  <meta name="generator" content=
-  "HTML Tidy for Mac OS X (vers 31 October 2006 - Apple Inc. build 4618), see www.w3.org">
+    <head>
+        <link rel="stylesheet" href="./wordle.css">
+        <script type="text/javascript" src="./wordle.js"></script>
 
-  <link rel="stylesheet" href="./wordle.css">
+        <title>Wordle Clone</title>
+    </head>
 
-  <script type="text/javascript" src="./wordle.js"></script>
+    <body onload="drawWordle()">
+        <p>Just start typing the 5 letters of your first guess.</p>
+        <div id="wordleForm">
+        </div>
 
-  <title>Wordle Clone</title>
-</head>
+        <!-- <div id="test">blah</div> -->
 
-<body onload="drawWordle()">
-  <div id="wordleForm">
-    <!-- <form id="wordleForm" name="wordleForm" action=""/> -->
-  </div>
-
-  <div id="test">blah</div>
-
-</body>
+    </body>
 </html>
