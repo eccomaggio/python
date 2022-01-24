@@ -3,3 +3,4 @@ ignore_me/
 flashcards/*.json
 flashcards/exclude_these.txt
 .python-version 
+.DS_Store
