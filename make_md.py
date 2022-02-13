@@ -11,8 +11,6 @@ in_file = "test.md"
 out_file = "md.html"
 out_text = ""
 EOL = "\n"
-stack = None
-is_codeblock = False
 
 try:
     out_file = sys.argv[1]
@@ -22,30 +20,37 @@ except:
 
 
 def checkList(line):
-    print(f"{line[0]}: list, type={line[0]}: >>{line}")
+    para_type = f"list{line[0]}"
+    return para_type
 
 def checkOList(line):
-    print(f"{line[0]}: ordered list: >>{line}")
+    para_type = "olist"
+    return para_type
 
 def checkHeading(line):
     count = re.compile("#+")
     depth = count.match(line).end()
-    print(f"{line[0]}: heading level {depth}: >>{line}")
+    para_type = f"h{depth}"
+    return para_type
 
 def checkBlockquote(line):
+    para_type = "bquo"
     count = re.compile(">+")
     depth = count.match(line).end()
-    print(f"{line[0]}: blockquote level {depth}: >>{line}")
+    return para_type
 
-def checkCode(line):
-    print(f"{line[0]}: code: >>{line}")
+def checkCode(line,to_close):
+    para_type = "code"
+    return para_type
 
 def checkPara(line):
-    print(f"para: >>{line}")
+    para_type = "para"
+    return para_type
 
 
 if __name__ == "__main__":
     print(f"{out_file}")
+    is_codeblock = False
 
     with open(in_file, 'r') as f:
         for index, line in enumerate(f):
@@ -53,37 +58,32 @@ if __name__ == "__main__":
             indent = len(re.findall(count_whitespace, line))
             line = line.strip() ## Also removes the final newline  
             isBlank = True
-            line_type = ()
+            para_type = ""
+
             if line:
                 isBlank = False
-                # print(f">>>> {line}, [{line[0]}]")
-                # match line[1]:
-                #     case ("+" | "-" | "*"): line_type = ("list", line[1])
-                #     case "#": line_type = checkHeading(line)
-                #     case ">": line_type = checkBlockquote(line)
-                #     case "`": line_type = checkCode(line)
-                #     # case _: line_type = ("para") 
-                #     case _: line_type = checkPara(line)
                 first_char = line[0]
                 if is_codeblock:
                     if line[0:3] == "```":
-                        is_codeblock == False
-                        print("..........codeblock ended")
-                    checkCode(line)
+                        is_codeblock = False
+                        para_type = checkCode(line, False)
+                    else:
+                        para_type = checkCode(line, True)
                 elif line[0:3] == "```":
-                    is_codeblock == True
-                    print("..........in a codeblock...")
-                    checkCode(line)
+                    is_codeblock = True
+                    para_type = checkCode(line, True)
                 elif first_char in ("+", "-", "*"):
-                    checkList(line)
+                    para_type = checkList(line)
                 elif first_char == "#":
-                    checkHeading(line)
+                    para_type = checkHeading(line)
                 elif first_char == ">":
-                    checkBlockquote(line)
+                    para_type = checkBlockquote(line)
                 elif first_char.isnumeric():
-                    checkOList(line)
+                    para_type = checkOList(line)
                 else:
-                    checkPara(line)
+                    para_type = checkPara(line)
+                print(f"{para_type}: [{line[0]}]\t->{line}")
+
             else:
                 line = "&nbsp;"
 
