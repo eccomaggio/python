@@ -1,0 +1,33 @@
+https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+
+
+markdown to html converter [so i can add in custom summary>detail]
+
+trim all right trailing space
+scan line for: indent / blank line / para-level commands (assume <p>  if none)
+
+		
+indent (0 1 2 …)
+blank line
+
+open_para (= default)
+
+stack -> (type, indent, bullet) [u / o, 0 1 2…, +=*] 
+(type also = bold em italic strike cblock bquote)
+(acts as a stack so we can have embedded lists;
+if the stack is empty, there are no open lists)
+
+for bold em italic strike, only add if can find corresponding close on this line
+
+heading (0 1 2 3… 0 = no heading)
+rule
+
+lists:
+if open_list & indent > current: start new list
+else if open_list: close current list, create new list
+
+links:
+(must be on one line)
+capture directly: 
+either < … >
+or ( … )[ … ]
