@@ -11,6 +11,19 @@ in_file = "test.md"
 out_file = "md.html"
 out_text = ""
 EOL = "\n"
+title = "pauly test"
+
+html_head = f"""
+<html>
+<head>
+<title>{title}</title>
+</head>
+<body>
+"""
+
+html_tail = """
+</body>
+"""
 
 try:
     out_file = sys.argv[1]
@@ -19,33 +32,48 @@ except:
 
 
 
-def unorderedList(line,indent):
-    para_type = f"list{line[0]}"
-    return para_type
+def unorderedList(bullet, indent, context):
+    # para_tags = f"list{line[0]}"
+    # para_tags = ("<li>","</li>")
+    if context == "open":
+        para_tags = ("<ul>"+ EOL + "<li>","</li>")
+    elif context == "inside":
+        para_tags = ("<li>","</li>")
+    return para_tags
 
-def orderedList(line,indent):
-    para_type = "olist"
-    return para_type
+def orderedList(indent, context):
+    # para_tags = "olist"
+    # para_tags = ("<li>", "</li>")
+    if context == "open":
+        para_tags = ("<ol>"+ EOL + "<li>","</li>")
+    elif context == "inside":
+        para_tags = ("<li>","</li>")
+    return para_tags
 
 def heading(line):
     count = re.compile("#+")
     depth = count.match(line).end()
-    para_type = f"h{depth}"
-    return para_type
+    para_tags = (f"<h{depth}>", f"</h{depth}>")
+    return para_tags
 
 def blockquote(line):
-    para_type = "bquo"
     count = re.compile(">+")
     depth = count.match(line).end()
-    return para_type
+    para_tags = (depth * "<blockquote>", depth * "</blockquote>")
+    return para_tags
 
-def codeblock(line,to_close):
-    para_type = "code"
-    return para_type
+def codeblock(instructions):
+    if instructions == "open":
+        para_tags = ("<pre><code>", "")
+    elif instructions == "close":
+        para_tags = ("", "</code></pre>")
+    else: 
+        para_tags = ("", "")
+    return para_tags
 
-def paragraph(line, indent):
-    para_type = "para"
-    return para_type
+def paragraph():
+    para_tags = ("<p>","</p>")
+    return para_tags
 
 def inline_tags(line):
     bold1 = re.compile('\*\*(.+?)\*\*')
@@ -69,7 +97,11 @@ def inline_tags(line):
 
 if __name__ == "__main__":
     print(f"{out_file}")
-    is_codeblock = False
+    initial_digit = re.compile(r'\d+\.')
+    initial_gt = re.compile(r'>+')
+    initial_hash = re.compile(r'#+')
+    open_tags = []
+    line_type = ""
 
     with open(in_file, 'r') as f:
         for index, line in enumerate(f):
@@ -77,54 +109,81 @@ if __name__ == "__main__":
             indent = len(re.findall(count_whitespace, line))
             line = line.strip() ## Also removes the final newline  
             isBlank = True
-            para_type = ""
-            initial_digit = re.compile(r'\d+\.')
-            initial_gt = re.compile(r'>+')
-            initial_hash = re.compile(r'#+')
+            para_tags = ("","")
 
             if line:
                 isBlank = False
                 first_char = line[0]
-                if is_codeblock:
+                if "cb" in open_tags:
                     if line[0:3] == "```":
-                        is_codeblock = False
-                        para_type = codeblock(line, False)
+                        open_tags.remove("cb")
+                        para_tags = codeblock("close")
                         line = line[3:]
                     else:
-                        para_type = codeblock(line, True)
+                        line_type = "cb"
+                        para_tags = codeblock("inside")
+
                 elif line[0:3] == "```":
-                    is_codeblock = True
-                    para_type = codeblock(line, True)
+                    line_type = "cb"
+                    open_tags.append("cb")
+                    para_tags = codeblock("open")
                     line = line[3:]
-                elif first_char in ("+", "-", "*"):
-                    para_type = unorderedList(line, indent)
-                    line = line[1:].lstrip()
+
                 elif first_char == "#":
-                    para_type = heading(line)
+                    line_type = "h"
+                    para_tags = heading(line)
                     line = initial_hash.sub("",line,1)
+
                 elif first_char == ">":
-                    para_type = blockquote(line)
+                    line_type = "bq"
+                    para_tags = blockquote(line)
                     line = initial_gt.sub("",line,1)
-                # elif first_char.isnumeric():
+
+                elif first_char in ("+", "-", "*"):
+                    line_type = "ul"
+                    if line_type in open_tags:
+                        context = "inside"
+                    else:
+                        context = "open"
+                        open_tags.append(line_type)
+                    para_tags = unorderedList(first_char, indent, context)
+                    line = line[1:].lstrip()
+
                 elif initial_digit.match(line) is not None:
-                    para_type = orderedList(line, indent)
+                    line_type = "ol"
+                    if line_type in open_tags:
+                        context = "inside"
+                    else:
+                        context = "open"
+                        open_tags.append(line_type)
+                    para_tags = orderedList(indent, context)
                     line = initial_digit.sub("",line,1)
+                    
                 else:
-                    para_type = paragraph(line, indent)
-                try:
-                    print(f"{para_type}: [{line[0]}]\t->{line}")
-                except:
-                    print(f"oops: {line}")
+                    line_type = "p"
+                    para_tags = paragraph()
 
-            else:
-                line = "&nbsp;"
+            print(f"debug: {open_tags=}")
 
-            line = inline_tags(line)
+            if "ul" in open_tags and line_type != "ul":
+                cleanup = "</ul>" + EOL
+                open_tags.remove("ul")
+            elif "ol" in open_tags and line_type != "ol":
+                cleanup = "</ol>" + EOL
+                open_tags.remove("ol")
+            else: cleanup = ""
 
-            tag_open, tag_close = "<p>","</p>"
+            if line:
+                line = inline_tags(line)
+            # else:
+            #     line = "&nbsp;"
+
+            # tag_open, tag_close = "<p>","</p>"
+            tag_open, tag_close = para_tags
             line = tag_open + line + tag_close + EOL
+            line = cleanup + line
 
             out_text += line
     
     with open(out_file, 'w') as f:
-        f.write(out_text)
+        f.write(html_head + out_text + html_tail)
