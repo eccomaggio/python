@@ -3,8 +3,8 @@
 import sys
 import os.path
 import re
+from collections import OrderedDict
 
-count_whitespace = re.compile("\s")
 
 
 
@@ -15,6 +15,7 @@ EOL = "\n"
 title = "pauly test"
 
 html_head = f"""
+<!DOCTYPE html>
 <html>
 <head>
 <title>{title}</title>
@@ -37,15 +38,11 @@ except:
 
 # def unorderedList(bullet="", indent, context):
 def listing(indent, context, bullet = "") :
-    if bullet:
-        list_wrapper = "ul"
-    else:
-        list_wrapper = "ol"
+    list_wrapper = "<ul>" if bullet else "<ol>"
+    tag_open, tag_close = "<li>","</li>"
     if context == "open":
-        para_tags = ("<" + list_wrapper + ">"+ EOL + "<li>","</li>")
-    elif context == "inside":
-        para_tags = ("<li>","</li>")
-    return para_tags
+        tag_open = list_wrapper + EOL + tag_open
+    return (tag_open,tag_close)
 
 def heading(line):
     count = re.compile("#+")
@@ -78,36 +75,37 @@ def details(context, displayDetails):
     return para_tags
 
 def horizontalRule():
-    return ("<hr />", "")
+    return ("<hr>", "")
 
 def paragraph():
     para_tags = ("<p>","</p>")
     return para_tags
 
-def inline_tags(line):
-    # bold1 = re.compile('\*\*(.+?)\*\*')
-    # bold2 = re.compile('__(.+?)__')
-    # italic1 = re.compile('_(.+?)_')
-    # italic2 = re.compile('\*(.+?)\*')
-    # strikeout = re.compile('~~(.*?)~~')
-    # inlineCode = re.compile('`(.*?)`')
-    # links = re.compile('[^!]\[(.*?)\]\s*\((.*?)\)')
-    # refs = re.compile('!\[(.*?)\]\((.*?)\)')
-    # emails = re.compile('&amp;lt;(.*?@.*?)&amp;gt;')
-    # urls = re.compile('&amp;lt;(.*?\..*?)&amp;gt;')
-
-    # line = line.replace("<","&lt;").replace(">", "&gt;").replace("&","&amp;")
-    line = bold1.sub(r'<strong>\1</strong>', line)
-    line = bold2.sub(r'<strong>\1</strong>', line)
-    line = italic1.sub(r'<em>\1</em>', line)
-    line = italic2.sub(r'<em>\1</em>', line)
-    line = strikeout.sub(r'<s>\1</s>', line)
-    line = inlineCode.sub(r'<code>\1</code>', line)
-    line = links.sub(r'<a href="\2">\1</a>', line)
-    line = refs.sub(r'<img src="\2" alt="\1" />', line)
-    line = emails.sub(r'<a href="mailto:\1">\1</a>', line)
-    line = urls.sub(r'<a href="\1">\1</a>', line)
+def inline_markup(r,line):
+    line = line.replace("<","&lt;").replace(">", "&gt;").replace("&","&amp;")
+    for i in r:
+        line = r[i][0].sub(r[i][1],line)
     return line
+
+def subCode(line):
+    inside = p.findall(line)
+    ## Abort if no codeblocks found
+    if not inside:
+        return line
+
+    ## extract the <code> sections and remove the automatic escaping
+    ## reintegrate into the regular markdown text
+    outside = p1.findall(line)
+    final = p2.findall(line)
+    for i, match in enumerate(inside):
+        tmp = match
+        tmp = tmp.replace('&amp;lt;','<').replace('&amp;gt;','>').replace('&amp;','&')
+        inside[i] = tmp
+    out = ""
+    for i,code in enumerate(outside):
+        out += f"{code[0]}{inside[i]}{code[1]}"
+    out += f"{''.join(final)}"
+    return out
 
 
 if __name__ == "__main__":
@@ -130,57 +128,72 @@ if __name__ == "__main__":
             tmp = in_file
         out_file = tmp + ".html"
 
-    
     print(f"Using the markdown in {in_file} to output html as {out_file}")
 
-    bold1 = re.compile('\*\*(.+?)\*\*')
-    bold2 = re.compile('__(.+?)__')
-    italic1 = re.compile('_(.+?)_')
-    italic2 = re.compile('\*(.+?)\*')
-    strikeout = re.compile('~~(.*?)~~')
-    inlineCode = re.compile('`(.*?)`')
-    links = re.compile('[^!]\[(.*?)\]\s*\((.*?)\)')
-    refs = re.compile('!\[(.*?)\]\((.*?)\)')
-    # emails = re.compile('&amp;lt;(.*?@.*?)&amp;gt;')
-    # urls = re.compile('&amp;lt;(.*?\..*?)&amp;gt;')
-    emails = re.compile('<(.*?@.*?)>')
-    urls = re.compile('<(.*?\..*?)>')
+    ## regex to add inline styling
+    r = OrderedDict()
+    r['bold1'] = (re.compile('\*\*(.+?)\*\*'), r'<strong>\1</strong>') 
+    r['bold2'] = (re.compile('__(.+?)__'), r'<strong>\1</strong>') 
+    r['italic1'] = (re.compile('_(.+?)_'), r'<em>\1</em>') 
+    r['italic2'] = (re.compile('\*(.+?)\*'), r'<em>\1</em>') 
+    r['strikeout'] = (re.compile('~~(.*?)~~'), r'<s>\1</s>') 
+    r['inlineCode'] = (re.compile('`(.*?)`'), r'<code>\1</code>') 
+    r['links'] = (re.compile('[^!]\[(.*?)\]\s*\((.*?)\)'), r'<a href="\2">\1</a>') 
+    r['anchor'] = (re.compile('\[\^(.*?)]'), r'<span id="#\1">\1</span>') 
+    r['refs'] = (re.compile('!\[(.*?)\]\((.*?)\)'), r'<img src="\2" alt="\1" />') 
+    r['emails'] = (re.compile('&amp;lt;(.*?@.*?)&amp;gt;'), r'<a href="mailto:\1">\1</a>') 
+    r['urls'] = (re.compile('&amp;lt;(.*?[\.\#].*?)&amp;gt;'), r'<a href="\1">\1</a>') 
+
+    ## regex to remove escaping inside <code> tags
+    p = re.compile(r'(?:<code>)(.*?)(?:</code>)')
+    p1 = re.compile(r'(.*?<code>).*?(</code>.*?)')
+    p2 = re.compile(r'.*</code>(.*?)$')
 
     initial_digit = re.compile(r'\d+\.\s')
     initial_gt = re.compile(r'>+\s')
     initial_hash = re.compile(r'#+\s')
     open_tags = []
     line_type = ""
+    prev_lsp = 0
 
     with open(in_file, 'r') as f:
         for index, line in enumerate(f):
             line = line.rstrip()
-            indent = len(re.findall(count_whitespace, line))
+
+            ## calculate indent relative to prev (i.e -1, 0 or 1)
+            leading_sp = len(re.findall(r'\s', line))
+            tmp = leading_sp - prev_lsp
+            indent = 1 if tmp>0 else -1 if tmp<0 else 0
+            prev_lsp = leading_sp
+
             line = line.strip() ## Also removes the final newline  
             isBlank = True
             para_tags = ("","")
 
             if line:
                 isBlank = False
-                if "cb" in open_tags:
+                # if "cb" in open_tags:
+                if open_tags and open_tags[-1] == "code":
                     if line[0:3] == "```":
-                        open_tags.remove("cb")
+                        # open_tags.remove("cb")
+                        open_tags.pop()
                         para_tags = codeblock("close")
                         line = line[3:]
                     else:
-                        line_type = "cb"
+                        line_type = "code"
                         para_tags = codeblock("inside")
 
                 elif line[0:3] == "```":
-                    line_type = "cb"
+                    line_type = "code"
                     open_tags.append(line_type)
                     para_tags = codeblock("open")
                     line = line[3:]
 
                 elif line[0:3] == "@@@" or line[0:3] == "@+@":
-                    line_type = "dt"
+                    line_type = "details"
                     if line_type in open_tags:
-                        open_tags.remove(line_type)
+                        # open_tags.remove(line_type)
+                        open_tags.pop()
                         para_tags = details("close",False)
                     else:
                         displayOpen = line.find("+") == 1
@@ -199,13 +212,14 @@ if __name__ == "__main__":
                     line = initial_hash.sub("",line,1)
 
                 elif line[0] == ">":
-                    line_type = "bq"
+                    line_type = "blockquote"
                     para_tags = blockquote(line)
                     line = initial_gt.sub("",line,1)
 
                 elif line[:2] in ("+ ", "- ", "* "):
                     line_type = "ul"
-                    if line_type in open_tags:
+                    # if line_type in open_tags:
+                    if open_tags and open_tags[-1] == line_type:
                         context = "inside"
                     else:
                         context = "open"
@@ -215,7 +229,8 @@ if __name__ == "__main__":
 
                 elif initial_digit.match(line) is not None:
                     line_type = "ol"
-                    if line_type in open_tags:
+                    # if line_type in open_tags:
+                    if open_tags and open_tags[-1] == line_type:
                         context = "inside"
                     else:
                         context = "open"
@@ -226,19 +241,50 @@ if __name__ == "__main__":
                 else:
                     line_type = "p"
                     para_tags = paragraph()
-
+                        
             # print(f"debug: {open_tags=}")
 
-            if "ul" in open_tags and line_type != "ul":
-                cleanup = "</ul>" + EOL
-                open_tags.remove("ul")
-            elif "ol" in open_tags and line_type != "ol":
-                cleanup = "</ol>" + EOL
-                open_tags.remove("ol")
+            # if "ul" in open_tags and line_type != "ul":
+
+            ## Assumptions:
+            ## lists could be embedded inside blockquotes & details
+            ## no paragraph-tags can be embedded in a list
+            # cleanup = ""
+            # if open_tags:
+            #     ot = open_tags[-1]
+            #     if ot == "ul" or ot == "ol":
+            #         ## if list embedded in another list
+            #         if line_type == "ul" or line_type == "ol":
+            #             if indent <= 0 and line_type != ot:
+            #                 cleanup = "</ul>" if ot == "ul" else "</ol>"
+            #                 open_tags.pop()
+            #         ## only lists can be embedded inside lists
+            #         else:
+            #             # cleanup = "</ul>" if ot == "ul" else "</ol>"
+            #             while open_tags and (open_tags[-1][1] == "l"):
+            #                 cleanup = cleanup + "</" + open_tags[-1] + ">" 
+            #                 open_tags.pop()
+
+            #             open_tags.pop()
+                        
+
+
+            if open_tags:
+                if open_tags[-1] == "ul" and line_type != "ul":
+                    cleanup = "</ul>" + EOL
+                    # open_tags.remove("ul")
+                    open_tags.pop()
+                # elif "ol" in open_tags and line_type != "ol":
+                elif open_tags[-1] == "ol" and line_type != "ol":
+                    cleanup = "</ol>" + EOL
+                    # open_tags.remove("ol")
+                    open_tags.pop()
             else: cleanup = ""
 
             if line:
-                line = inline_tags(line)
+                line = inline_markup(r,line)
+                if line_type != "cb":
+                    line = subCode(line)
 
             tag_open, tag_close = para_tags
             line = tag_open + line + tag_close + EOL

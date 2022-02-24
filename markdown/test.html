@@ -1,4 +1,5 @@
 
+<!DOCTYPE html>
 <html>
 <head>
 <title>pauly test</title>
@@ -8,31 +9,28 @@
 <body>
 <p>This is some basic, sample markdown.</p>
 
-<h2>Second Heading</h2>
+<h2>Second Heading <span id="#1">1</span></h2>
+
 
 <ul>
 <li>Unordered lists, and:</li>
-</ul>
 <ol>
 <li>One</li>
 <li>Two</li>
-</ol>
 <ul>
 <li>and a quickie unordered list</li>
 <li>again, this time with code: <code><html> var x = blah</code></li>
 </ul>
-<ol>
 <li>Three</li>
 </ol>
-<ul>
-<li>email address: <a href="a href="mailto:paul.at.lttc@gmail.com.tw"">a href="mailto:paul.at.lttc@gmail.com.tw"</a>paul.at.lttc@gmail.com.tw</a></li>
-
+<li>email address: <a href="mailto:paul.at.lttc@gmail.com.tw">paul.at.lttc@gmail.com.tw</a></li>
 </ul>
+
 <blockquote><p>Blockquote "Shall i compare thee to a summer's day? Thou art more blah blah"</p></blockquote>
 
-<p>And <a href="strong>bold</strong>, <em>italics</em>, and even <em>italics and later <strong>bold</strong></em>. Even <s">strong>bold</strong>, <em>italics</em>, and even <em>italics and later <strong>bold</strong></em>. Even <s</a>strikethrough<a href="/s>.<a href="https://markdowntohtml.com"">/s>.<a href="https://markdowntohtml.com"</a>A link</a> to somewhere.</p>
 
-<hr />
+<p>And <strong>bold</strong>, <em>italics</em>, and even <em>italics and later <strong>bold</strong></em>. Even <s>strikethrough</s>.<a href="https://markdowntohtml.com">A link</a> to somewhere.</p>
+
 
 <p>And code highlighting:</p>
 
@@ -44,7 +42,7 @@ return foo + ':' + s;
 }
 </code></pre>
 <p>And now for something completely different:</p>
-<details><summary> This is a summary/detail reveal structure</summary>
+<details><summary> This is a summary/detail reveal structure (<span id="#2">2</span>)</summary>
 <p>Let's see if it works.</p>
 <p>All of this should be hidden.</p>
 </details>
@@ -60,5 +58,7 @@ return foo + ':' + s;
 </ul>
 <p>Then back to paragraphs</p>
 </details>
+
+<p>Why not <a href="#1">#1</a> or<a href="#2">this link</a> link back to this footnote <span id="#1">1</span>:?</p>
 
 </body>

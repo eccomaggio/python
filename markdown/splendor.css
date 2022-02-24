@@ -1,3 +1,4 @@
+/* based on https://github.com/markdowncss/splendor */
 /* @import "furtive-print"; */
 /* @import "furtive-typescale"; */
 /* @import "furtive-responsive-utils"; */
@@ -34,6 +35,11 @@ div img {
   width: 100%;
 }
 
+/* ul,ol,li { */
+/*     margin-left: 50rem; */ 
+/*     padding-left: 90rem; */
+/* } */
+
 blockquote p {
   /* font-size: 1.5rem; */
   font-size: 1rem;
@@ -53,9 +59,12 @@ summary {
     color:#4d7e80;
 }
 
-li {
-  margin-left: 2rem;
-}
+li { margin-left: 5rem; }
+/* li ~ li { margin-left: 10rem; } */
+/* li ~ li ~ li { margin-left: 15rem; } */
+/* li ~ li ~ li ~ li { margin-left: 20rem; } */
+/* li { margin-left: 25rem; } */
+/* li { margin-left: 30rem; } */
 
 /* Counteract the specificity of the gross *:not() chain. */
 h1 {
