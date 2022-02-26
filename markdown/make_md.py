@@ -12,22 +12,13 @@ in_file = "test.md"
 out_file = "md.html"
 out_text = ""
 EOL = "\n"
-title = "pauly test"
+# title = "pauly test"
+# tmp = in_file.rfind(".")
+# title = in_file[:tmp] if tmp >= 0 else "from markdown file"
 
-html_head = f"""
-<!DOCTYPE html>
-<html>
-<head>
-<title>{title}</title>
-<!--<link rel="stylesheet" href="./md.css">-->
-<link rel="stylesheet" href="./splendor.css">
-</head>
-<body>
-"""
+headings = []
+id_count = 0
 
-html_tail = """
-</body>
-"""
 
 try:
     out_file = sys.argv[1]
@@ -35,13 +26,6 @@ except:
     print(f"defaulting to '{out_file}'")
 
 
-
-# def listing(indent, context, bullet = "") :
-#     list_wrapper = "<ul>" if bullet else "<ol>"
-#     tag_open, tag_close = "<li>","</li>"
-#     if context == "open":
-#         tag_open = list_wrapper + EOL + tag_open
-#     return (tag_open,tag_close)
 
 def listing(context,prev, bullet = "") :
     list_wrapper = "<ul>" if bullet else "<ol>"
@@ -56,10 +40,10 @@ def listing(context,prev, bullet = "") :
         tag_open = prev + EOL + list_wrapper + EOL + tag_open
     return (tag_open,tag_close)
 
-def heading(line):
+def heading(line,id):
     count = re.compile("#+")
     depth = count.match(line).end()
-    para_tags = (f"<h{depth}>", f"</h{depth}>")
+    para_tags = (f"<h{depth} id='h_{id}'>", f"</h{depth}>")
     return para_tags
 
 def blockquote(line):
@@ -77,10 +61,10 @@ def codeblock(context):
         para_tags = ("", "")
     return para_tags
 
-def details(context, displayDetails):
+def details(context, displayDetails,id):
     if context == "open":
         tag = "<details open>" if displayDetails else "<details>"
-        tag += "<summary>"
+        tag += f"<summary id='s_{id}'>"
         para_tags = (tag,"</summary>")
     else:
         para_tags = ("","</details>")
@@ -139,6 +123,9 @@ if __name__ == "__main__":
         except:
             tmp = in_file
         out_file = tmp + ".html"
+        
+        tmp = in_file.rfind(".")
+        title = in_file[:tmp] if tmp >= 0 else "from markdown file"
 
     print(f"Using the markdown in {in_file} to output html as {out_file}")
 
@@ -203,12 +190,14 @@ if __name__ == "__main__":
                     line_type = "details"
                     if line_type in open_tags:
                         open_tags.pop()
-                        para_tags = details("close",False)
+                        para_tags = details("close",False,0)
                     else:
+                        id_count += 1
                         displayOpen = line.find("+") == 1
                         open_tags.append(line_type)
-                        para_tags = details("open",displayOpen)
+                        para_tags = details("open",displayOpen,id)
                     line = line[3:]
+                    headings.append((f's_{id_count}', line))
 
                 elif line[:3] == "***" or line[:3] == "---" or line[:3] == "___":
                     line_type = "hr"
@@ -217,8 +206,10 @@ if __name__ == "__main__":
 
                 elif line[0] == "#":
                     line_type = "h"
-                    para_tags = heading(line)
+                    id_count += 1
+                    para_tags = heading(line,id)
                     line = initial_hash.sub("",line,1)
+                    headings.append((f'h_{id_count}',line))
 
                 elif line[0] == ">":
                     line_type = "blockquote"
@@ -286,8 +277,24 @@ if __name__ == "__main__":
 
             out_text += line
     
+            html_head = f"""
+<!DOCTYPE html>
+<html>
+<head>
+<title>{title}</title>
+<!--<link rel="stylesheet" href="./md.css">-->
+<link rel="stylesheet" href="./splendor.css">
+</head>
+<body>
+"""
+
+            html_tail = """
+</body>
+"""
     with open(out_file, 'w') as f:
         f.write(html_head + out_text + html_tail)
+
+    print(headings)
 
 
 # if __name__ == "__main__":
