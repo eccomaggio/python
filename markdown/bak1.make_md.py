@@ -12,22 +12,13 @@ in_file = "test.md"
 out_file = "md.html"
 out_text = ""
 EOL = "\n"
-title = "pauly test"
+# title = "pauly test"
+# tmp = in_file.rfind(".")
+# title = in_file[:tmp] if tmp >= 0 else "from markdown file"
 
-html_head = f"""
-<!DOCTYPE html>
-<html>
-<head>
-<title>{title}</title>
-<!--<link rel="stylesheet" href="./md.css">-->
-<link rel="stylesheet" href="./splendor.css">
-</head>
-<body>
-"""
+headings = []
+id_count = 0
 
-html_tail = """
-</body>
-"""
 
 try:
     out_file = sys.argv[1]
@@ -36,18 +27,23 @@ except:
 
 
 
-# def unorderedList(bullet="", indent, context):
-def listing(indent, context, bullet = "") :
+def listing(context,prev, bullet = "") :
     list_wrapper = "<ul>" if bullet else "<ol>"
+    prev = f'</{prev}>' if prev else ""
     tag_open, tag_close = "<li>","</li>"
-    if context == "open":
+    # print(f"{context=}")
+    if context == "open_new":
         tag_open = list_wrapper + EOL + tag_open
+    elif context == "close_prev":
+        tag_open = prev + EOL + tag_open
+    elif context == "close_prev_open_new":
+        tag_open = prev + EOL + list_wrapper + EOL + tag_open
     return (tag_open,tag_close)
 
-def heading(line):
+def heading(line,id):
     count = re.compile("#+")
     depth = count.match(line).end()
-    para_tags = (f"<h{depth}>", f"</h{depth}>")
+    para_tags = (f"<h{depth} id='h_{id}'>", f"</h{depth}>")
     return para_tags
 
 def blockquote(line):
@@ -65,10 +61,10 @@ def codeblock(context):
         para_tags = ("", "")
     return para_tags
 
-def details(context, displayDetails):
+def details(context, displayDetails,id):
     if context == "open":
         tag = "<details open>" if displayDetails else "<details>"
-        tag += "<summary>"
+        tag += f"<summary id='s_{id}'>"
         para_tags = (tag,"</summary>")
     else:
         para_tags = ("","</details>")
@@ -127,6 +123,9 @@ if __name__ == "__main__":
         except:
             tmp = in_file
         out_file = tmp + ".html"
+        
+        tmp = in_file.rfind(".")
+        title = in_file[:tmp] if tmp >= 0 else "from markdown file"
 
     print(f"Using the markdown in {in_file} to output html as {out_file}")
 
@@ -161,21 +160,19 @@ if __name__ == "__main__":
             line = line.rstrip()
 
             ## calculate indent relative to prev (i.e -1, 0 or 1)
-            leading_sp = len(re.findall(r'\s', line))
+            tmp = re.match(r'\s*', line)
+            leading_sp = len(tmp.group()) if tmp else 0
             tmp = leading_sp - prev_lsp
             indent = 1 if tmp>0 else -1 if tmp<0 else 0
             prev_lsp = leading_sp
 
             line = line.strip() ## Also removes the final newline  
-            isBlank = True
+            line_type = "blank"
             para_tags = ("","")
 
             if line:
-                isBlank = False
-                # if "cb" in open_tags:
                 if open_tags and open_tags[-1] == "code":
                     if line[0:3] == "```":
-                        # open_tags.remove("cb")
                         open_tags.pop()
                         para_tags = codeblock("close")
                         line = line[3:]
@@ -192,14 +189,15 @@ if __name__ == "__main__":
                 elif line[0:3] == "@@@" or line[0:3] == "@+@":
                     line_type = "details"
                     if line_type in open_tags:
-                        # open_tags.remove(line_type)
                         open_tags.pop()
-                        para_tags = details("close",False)
+                        para_tags = details("close",False,0)
                     else:
+                        id_count += 1
                         displayOpen = line.find("+") == 1
                         open_tags.append(line_type)
-                        para_tags = details("open",displayOpen)
+                        para_tags = details("open",displayOpen,id)
                     line = line[3:]
+                    headings.append((f's_{id_count}', line))
 
                 elif line[:3] == "***" or line[:3] == "---" or line[:3] == "___":
                     line_type = "hr"
@@ -208,76 +206,63 @@ if __name__ == "__main__":
 
                 elif line[0] == "#":
                     line_type = "h"
-                    para_tags = heading(line)
+                    id_count += 1
+                    para_tags = heading(line,id)
                     line = initial_hash.sub("",line,1)
+                    headings.append((f'h_{id_count}',line))
 
                 elif line[0] == ">":
                     line_type = "blockquote"
                     para_tags = blockquote(line)
                     line = initial_gt.sub("",line,1)
 
-                elif line[:2] in ("+ ", "- ", "* "):
-                    line_type = "ul"
-                    # if line_type in open_tags:
-                    if open_tags and open_tags[-1] == line_type:
-                        context = "inside"
+                elif line[:2] in ("+ ", "- ", "* ") or initial_digit.match(line) is not None:
+                    line_type = "ol" if line[0].isdigit() else "ul"
+                    prev = ""
+                    # open_tag = open_tags[-1] if open_tags else ""
+                    is_list = (open_tags[-1][1:3] == "l") if open_tags else False
+                    # is_list = (open_tag[1:3] == "l") if open_tags else False
+                    is_ul = (open_tags[-1] == line_type) if is_list else False
+                    if is_list:
+                        if indent == 0:
+                            if is_ul:
+                                context = "inside"
+                            else:
+                                context = "close_prev_open_new"
+                                prev = open_tags.pop() if open_tags else ""
+                                open_tags.append(line_type)
+                        ## any type, revert to higher level so close prev
+                        elif indent == -1:
+                            context = "close_prev"
+                            prev = open_tags.pop()
+                        ## any type, adding a new level
+                        elif indent == 1:
+                            context = "open_new"
+                            open_tags.append(line_type)
                     else:
-                        context = "open"
+                        context = "open_new"
                         open_tags.append(line_type)
-                    para_tags = listing(indent, context, line[0])
-                    line = line[2:].lstrip()
 
-                elif initial_digit.match(line) is not None:
-                    line_type = "ol"
-                    # if line_type in open_tags:
-                    if open_tags and open_tags[-1] == line_type:
-                        context = "inside"
+                    bullet = "" if line_type == "ol" else line[0]
+                    para_tags = listing(context,prev,bullet)
+                    # print(f"\tl.{index + 1}>>{line_type}>>{para_tags}")
+                    if line_type == "ul":
+                        line = line[2:].lstrip()
                     else:
-                        context = "open"
-                        open_tags.append(line_type)
-                    para_tags = listing(indent, context, "")
-                    line = initial_digit.sub("",line,1)
-                    
+                        line = initial_digit.sub("",line,1)
+
                 else:
                     line_type = "p"
                     para_tags = paragraph()
                         
-            # print(f"debug: {open_tags=}")
-
-            # if "ul" in open_tags and line_type != "ul":
-
-            ## Assumptions:
-            ## lists could be embedded inside blockquotes & details
-            ## no paragraph-tags can be embedded in a list
-            # cleanup = ""
-            # if open_tags:
-            #     ot = open_tags[-1]
-            #     if ot == "ul" or ot == "ol":
-            #         ## if list embedded in another list
-            #         if line_type == "ul" or line_type == "ol":
-            #             if indent <= 0 and line_type != ot:
-            #                 cleanup = "</ul>" if ot == "ul" else "</ol>"
-            #                 open_tags.pop()
-            #         ## only lists can be embedded inside lists
-            #         else:
-            #             # cleanup = "</ul>" if ot == "ul" else "</ol>"
-            #             while open_tags and (open_tags[-1][1] == "l"):
-            #                 cleanup = cleanup + "</" + open_tags[-1] + ">" 
-            #                 open_tags.pop()
-
-            #             open_tags.pop()
-                        
-
+            print(f"l.{index + 1:3}: {line_type:12} {indent:2} {open_tags}")
 
             if open_tags:
                 if open_tags[-1] == "ul" and line_type != "ul":
                     cleanup = "</ul>" + EOL
-                    # open_tags.remove("ul")
                     open_tags.pop()
-                # elif "ol" in open_tags and line_type != "ol":
                 elif open_tags[-1] == "ol" and line_type != "ol":
                     cleanup = "</ol>" + EOL
-                    # open_tags.remove("ol")
                     open_tags.pop()
             else: cleanup = ""
 
@@ -292,8 +277,24 @@ if __name__ == "__main__":
 
             out_text += line
     
+            html_head = f"""
+<!DOCTYPE html>
+<html>
+<head>
+<title>{title}</title>
+<!--<link rel="stylesheet" href="./md.css">-->
+<link rel="stylesheet" href="./splendor.css">
+</head>
+<body>
+"""
+
+            html_tail = """
+</body>
+"""
     with open(out_file, 'w') as f:
         f.write(html_head + out_text + html_tail)
+
+    print(headings)
 
 
 # if __name__ == "__main__":

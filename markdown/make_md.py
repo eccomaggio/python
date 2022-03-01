@@ -1,4 +1,31 @@
-#!/usr/bin/python
+# !/usr/bin/python
+
+"""
+Meant to parse markdown but is very limited. Needs re-writing to allow
+for embedding.
+
+'lazy indenting' doesn't work 
+code blocks must be delimited with three backticks on a sep line
+I added in super limited support for details>summary:
+    >-
+
+Final notes to self:
+    start again!
+    look for patterns
+    blanks should be evaluated along with following line
+    indents are significant (2-4 spaces = indent) i some situations
+
+    Build a skeleton version that just outputs e.g.
+    para:	blah…
+    h2:		blah
+    ol-li		blah
+    li		blah (i.e directly after trigger, with/without indent)
+    -p		blah (i.e. indented p after blank)
+
+    matches should be made in a function
+    that way, it can be reapplied for embedding
+
+"""
 
 import sys
 import os.path
@@ -27,58 +54,26 @@ except:
 
 
 
-def listing(context,prev, bullet = "") :
-    list_wrapper = "<ul>" if bullet else "<ol>"
-    prev = f'</{prev}>' if prev else ""
-    tag_open, tag_close = "<li>","</li>"
-    # print(f"{context=}")
-    if context == "open_new":
-        tag_open = list_wrapper + EOL + tag_open
-    elif context == "close_prev":
-        tag_open = prev + EOL + tag_open
-    elif context == "close_prev_open_new":
-        tag_open = prev + EOL + list_wrapper + EOL + tag_open
-    return (tag_open,tag_close)
-
-def heading(line,id):
-    count = re.compile("#+")
-    depth = count.match(line).end()
-    para_tags = (f"<h{depth} id='h_{id}'>", f"</h{depth}>")
-    return para_tags
-
-def blockquote(line):
-    count = re.compile(">+")
-    depth = count.match(line).end()
-    para_tags = (depth * "<blockquote><p>", depth * "</p></blockquote>")
-    return para_tags
-
-def codeblock(context):
-    if context == "open":
-        para_tags = ("<pre><code>", "")
-    elif context == "close":
-        para_tags = ("", "</code></pre>")
-    else: 
-        para_tags = ("", "")
-    return para_tags
-
-def details(context, displayDetails,id):
-    if context == "open":
-        tag = "<details open>" if displayDetails else "<details>"
-        tag += f"<summary id='s_{id}'>"
-        para_tags = (tag,"</summary>")
-    else:
-        para_tags = ("","</details>")
-    return para_tags
-
-def horizontalRule():
-    return ("<hr>", "")
-
-def paragraph():
-    para_tags = ("<p>","</p>")
-    return para_tags
+def is_embedded(taglist,the_list, result=[], count=0):
+    '''Returns list of all matching tags + their pos: [[<tag>,pos],...]'''
+    # print(f"<debug> {count}: {the_list}")
+    if count == 0:
+        result.clear()
+    if not isinstance(taglist, list):
+        taglist = [taglist]
+    if the_list:
+        pos = 0
+        for i, tag in enumerate(the_list[::-1]):
+            for target in taglist:
+                if target == tag:
+                    pos = (len(the_list) - i) - 1
+                    result.insert(0,[tag,pos])
+                    break
+        is_embedded(taglist,the_list[:pos],result,count + 1)
+    return result
 
 def inline_markup(r,line):
-    line = line.replace("<","&lt;").replace(">", "&gt;").replace("&","&amp;")
+    line = " " + line.replace("<","&lt;").replace(">", "&gt;").replace("&","&amp;")
     for i in r:
         line = r[i][0].sub(r[i][1],line)
     return line
@@ -95,13 +90,15 @@ def subCode(line):
     final = p2.findall(line)
     for i, match in enumerate(inside):
         tmp = match
-        tmp = tmp.replace('&amp;lt;','<').replace('&amp;gt;','>').replace('&amp;','&')
+        # tmp = tmp.replace('&amp;lt;','<').replace('&amp;gt;','>').replace('&amp;','&')
+        tmp = tmp.replace('&amp;','&')
         inside[i] = tmp
     out = ""
     for i,code in enumerate(outside):
         out += f"{code[0]}{inside[i]}{code[1]}"
     out += f"{''.join(final)}"
     return out
+
 
 
 if __name__ == "__main__":
@@ -111,8 +108,6 @@ if __name__ == "__main__":
     except:
         print("No filename specificed; I'll look for test.md")
         file_name = "test.md"
-    # in_file = Path(file_name)
-    # if not in_file.is_file():
     if not os.path.isfile(file_name): 
         print("Sorry. No markdown file found.")
         quit()
@@ -129,19 +124,57 @@ if __name__ == "__main__":
 
     print(f"Using the markdown in {in_file} to output html as {out_file}")
 
+    html_head = f"""
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+<title>{title}</title>
+<meta name="color-scheme" content="light dark">
+<!-- <link rel="stylesheet" href="./splendor.css">-->
+<link rel="stylesheet" href="./github-markdown-css/github-markdown.css">
+<style>
+			body {{
+				box-sizing: border-box;
+				min-width: 200px;
+				max-width: 980px;
+				margin: 0 auto;
+				padding: 45px;
+            }}
+
+			@media (prefers-color-scheme: dark) {{
+				body {{
+					background-color: rgb(13,17,23);
+                }}
+            }}
+		</style>
+</head>
+<body>
+<article class="markdown-body">
+"""
+
+
+    html_tail ="""
+</article>
+</body>
+"""
     ## regex to add inline styling
     r = OrderedDict()
     r['bold1'] = (re.compile('\*\*(.+?)\*\*'), r'<strong>\1</strong>') 
     r['bold2'] = (re.compile('__(.+?)__'), r'<strong>\1</strong>') 
     r['italic1'] = (re.compile('_(.+?)_'), r'<em>\1</em>') 
     r['italic2'] = (re.compile('\*(.+?)\*'), r'<em>\1</em>') 
-    r['strikeout'] = (re.compile('~~(.*?)~~'), r'<s>\1</s>') 
-    r['inlineCode'] = (re.compile('`(.*?)`'), r'<code>\1</code>') 
-    r['links'] = (re.compile('[^!]\[(.*?)\]\s*\((.*?)\)'), r'<a href="\2">\1</a>') 
-    r['anchor'] = (re.compile('\[\^(.*?)]'), r'<span id="#\1">\1</span>') 
-    r['refs'] = (re.compile('!\[(.*?)\]\((.*?)\)'), r'<img src="\2" alt="\1" />') 
-    r['emails'] = (re.compile('&amp;lt;(.*?@.*?)&amp;gt;'), r'<a href="mailto:\1">\1</a>') 
+    r['strikeout'] = (re.compile('~~(.+?)~~'), r'<s>\1</s>') 
+    r['inlineCode_dbl'] = (re.compile('``(.+?)``'), r'<code>\1</code>') 
+    r['inlineCode'] = (re.compile('`(.+?)`'), r'<code>\1</code>') 
+    # r['links'] = (re.compile('[^!]\[(.*?)\]\s*\((.*?)\)'), r'<a href="\2">\1</a>') 
+    r['link'] = (re.compile('[^!]\[(.*?)\]\((.+?)\)'), r'<a href="\2">\1</a>') 
+    r['img'] = (re.compile('!\[(.*?)\]\((.+?)\)'), r'<img src="\2" alt="\1" />') 
+    r['anchor'] = (re.compile('\[\^(.+?)]'), r'<span id="#\1">\1</span>') 
+    r['email'] = (re.compile('&amp;lt;(.*?@.*?)&amp;gt;'), r'<a href="mailto:\1">\1</a>') 
     r['urls'] = (re.compile('&amp;lt;(.*?[\.\#].*?)&amp;gt;'), r'<a href="\1">\1</a>') 
+    r['nbsp'] = (re.compile('\s\s\s*$'),r'&nbsp;')
 
     ## regex to remove escaping inside <code> tags
     p = re.compile(r'(?:<code>)(.*?)(?:</code>)')
@@ -149,15 +182,26 @@ if __name__ == "__main__":
     p2 = re.compile(r'.*</code>(.*?)$')
 
     initial_digit = re.compile(r'\d+\.\s')
-    initial_gt = re.compile(r'>+\s')
+    # initial_gt = re.compile(r'>+\s')  ## this misses blank-line >
+    initial_gt = re.compile(r'>\s?')
     initial_hash = re.compile(r'#+\s')
-    open_tags = []
+    h_depth = re.compile("#+")
+    context = []
     line_type = ""
     prev_lsp = 0
+    pre_line = ""
+    post_line =""
+    output = ""
+    was_blank = False
 
     with open(in_file, 'r') as f:
-        for index, line in enumerate(f):
-            line = line.rstrip()
+        for index, raw in enumerate(f):
+            # if index < 172: continue
+            # if index >= 230: break          ## parse up to codeblocks
+            line = raw.rstrip()
+            if not line:
+                was_blank = True
+                continue
 
             ## calculate indent relative to prev (i.e -1, 0 or 1)
             tmp = re.match(r'\s*', line)
@@ -166,133 +210,184 @@ if __name__ == "__main__":
             indent = 1 if tmp>0 else -1 if tmp<0 else 0
             prev_lsp = leading_sp
 
-            line = line.strip() ## Also removes the final newline  
-            line_type = "blank"
-            para_tags = ("","")
+            has_code_indent = re.match(r'( {4}|\t)',line)
 
+            line = line.strip() ## Also removes the final newline  
+
+            line_type = "blank"
+            subtype = ""
+            # output = ""
+            pre_line = ""
+            post_line = ""
             if line:
-                if open_tags and open_tags[-1] == "code":
+            
+                ## codeblocks
+                if context and context[-1] == "codeblock":
                     if line[0:3] == "```":
-                        open_tags.pop()
-                        para_tags = codeblock("close")
+                        subtype = "close"
+                        context.pop()
                         line = line[3:]
+                        pre_line = "</code></pre>"
                     else:
-                        line_type = "code"
-                        para_tags = codeblock("inside")
+                        line_type = "codeblock"
+                        subtype = "cont"
 
                 elif line[0:3] == "```":
-                    line_type = "code"
-                    open_tags.append(line_type)
-                    para_tags = codeblock("open")
+                    line_type = "codeblock"
+                    subtype = "open"
+                    context.append("codeblock")
                     line = line[3:]
+                    pre_line = "<pre><code>"
 
-                elif line[0:3] == "@@@" or line[0:3] == "@+@":
-                    line_type = "details"
-                    if line_type in open_tags:
-                        open_tags.pop()
-                        para_tags = details("close",False,0)
-                    else:
-                        id_count += 1
-                        displayOpen = line.find("+") == 1
-                        open_tags.append(line_type)
-                        para_tags = details("open",displayOpen,id)
-                    line = line[3:]
-                    headings.append((f's_{id_count}', line))
+                ## SINGLE-LINE ELEMENTS
 
+                ## horizontal rule
                 elif line[:3] == "***" or line[:3] == "---" or line[:3] == "___":
                     line_type = "hr"
-                    para_tags = horizontalRule()
                     line = ""
+                    pre_line = "<hr>"
 
+                ## headings
                 elif line[0] == "#":
-                    line_type = "h"
+                    ## actually, this can appear inside p & blockquotes, so...
+                    ## maybe make into regex: ^[\s\*\+-\d\.>]*#
+                    level = h_depth.match(line).end()
+                    line_type = f"h{level}"
                     id_count += 1
-                    para_tags = heading(line,id)
+                    subtype = f"h_{id_count}"
                     line = initial_hash.sub("",line,1)
                     headings.append((f'h_{id_count}',line))
+                    pre_line = f"<{line_type} id='h_{id_count}'>"
+                    post_line = f"</{line_type}>"
 
+                ## MULTI-LINE
+
+                ## details/summary (new)
+                elif line[:2] == ">+" or line[:2] == ">-":
+                    line_type = "details"
+                    status = "show" if line[1] == "+" else "hide"
+                    id_count += 1
+                    subtype = f"open:{status}:s_{id_count}"
+                    context += ("details")
+                    pre_line = f"<details><summary id='s_{id_count}'>"
+                    post_line = f"</summary>"
+
+                
+                ## blockquotes
                 elif line[0] == ">":
-                    line_type = "blockquote"
-                    para_tags = blockquote(line)
+                    ## THIS IS A HACK: need to make this check recursive :(
+                    check_parent = is_embedded("blockquote",context)
+                    if line[1:3].find(">") >= 0:    ## embedded
+                        line_type = "blockquote"
+                        subtype = "embed"
+                        context += ("blockquote","p")
+                        line = line[3:]
+                        pre_line = f"</p><blockquote><p>"
+                    else:
+                        if not context:                 ## must be blockquote
+                            line_type = "blockquote"
+                            subtype = "open"
+                            context += ("blockquote","p")
+                            pre_line = f"<blockquote><p>"
+                        elif context[-1] == "p":        ## blockquote or details
+                            line_type = context[-2]
+                            if line[1:]:                ## blank line = new para
+                                subtype = "cont"
+                            else:
+                                subtype = "newpara"
+                                pre_line = f"</p><p>"
                     line = initial_gt.sub("",line,1)
 
+                ## lists (li): bullets (ul) & ol
                 elif line[:2] in ("+ ", "- ", "* ") or initial_digit.match(line) is not None:
                     line_type = "ol" if line[0].isdigit() else "ul"
                     prev = ""
-                    # open_tag = open_tags[-1] if open_tags else ""
-                    is_list = (open_tags[-1][1:3] == "l") if open_tags else False
-                    # is_list = (open_tag[1:3] == "l") if open_tags else False
-                    is_ul = (open_tags[-1] == line_type) if is_list else False
+                    is_list,is_same_type = False, False
+                    check_parent = is_embedded(["ol","ul"],context)
+                    if check_parent:
+                        is_list = True
+                        prev = check_parent[-1][0]
+                        is_same_type = (line_type == prev)
+                        # is_same_type = (line_type == check_parent[-1][0])
+                    # print(f"l.{index}>>[{len(check_parent)}]:{check_parent=}|{line_type}, {prev=}")
+                    ## Already inside list
+                    ## nesting: text <li><p>; lists: <li><p>...</p><ul>...
+                    # pre_line = "<p class='list'>"
+                    # post_line = "</p>"
                     if is_list:
                         if indent == 0:
-                            if is_ul:
-                                context = "inside"
+                            if is_same_type:
+                                subtype = "cont"
+                                ## no need to update: status quo unchanged
+                                # context += ("li","p")
+                                pre_line = "</p></li><li><p>"
                             else:
-                                context = "close_prev_open_new"
-                                prev = open_tags.pop() if open_tags else ""
-                                open_tags.append(line_type)
+                                subtype = f"close_prev_open_new:{prev}"
+                                pre_line = f"</p></li></{prev}><{line_type}><li><p>"
+                                context = context[:-3]
+                                context += (prev,"li","p")
+                        ## any type, close <p> & add a deeper level
+                        elif indent == 1:
+                            subtype = "open_new_level"
+                            context.pop()
+                            context += (line_type,"li","p")
+                            pre_line = f"</p><{line_type}><li><p>"
                         ## any type, revert to higher level so close prev
                         elif indent == -1:
-                            context = "close_prev"
-                            prev = open_tags.pop()
+                            subtype = f"close_prev:{prev}"
+                            context = context[:-4]
+                            context += ("li","p")
+                            pre_line = f"</p></li></{prev}><li><p>"
                         ## any type, adding a new level
-                        elif indent == 1:
-                            context = "open_new"
-                            open_tags.append(line_type)
+                    ## Outside a list, so start a new one
                     else:
-                        context = "open_new"
-                        open_tags.append(line_type)
+                        subtype = "open_new_list"
+                        context += (line_type,"li","p")
+                        pre_line = f"<{line_type}><li><p>"
 
-                    bullet = "" if line_type == "ol" else line[0]
-                    para_tags = listing(context,prev,bullet)
-                    # print(f"\tl.{index + 1}>>{line_type}>>{para_tags}")
+                    # bullet = "" if line_type == "ol" else line[0]
                     if line_type == "ul":
                         line = line[2:].lstrip()
                     else:
                         line = initial_digit.sub("",line,1)
 
+                ## paragraph p
                 else:
-                    line_type = "p"
-                    para_tags = paragraph()
-                        
-            print(f"l.{index + 1:3}: {line_type:12} {indent:2} {open_tags}")
+                    if context and context[-1] == "p":
+                        check_parent = is_embedded(["ul","ol","blockquote"],context)
+                        if check_parent:
+                            line_type = check_parent[-1][0]
+                        else:
+                            line_type = "p"
+                        subtype = "cont"
+                    else: 
+                        line_type = "p"
+                        subtype = "open"            ## DON'T NEED THESE?
+                        context.append("p")
+                        pre_line = "<p>"
 
-            if open_tags:
-                if open_tags[-1] == "ul" and line_type != "ul":
-                    cleanup = "</ul>" + EOL
-                    open_tags.pop()
-                elif open_tags[-1] == "ol" and line_type != "ol":
-                    cleanup = "</ol>" + EOL
-                    open_tags.pop()
-            else: cleanup = ""
+            # if line_type == "blank":
+            else:
+                if context:
+                    for tag in context[::-1]:
+                       pre_line += f"</{tag}>" 
+                    context.clear()
+                    # print(f"<debug>...{pre_line}")
+
+                        
+            # print(f"l.{index + 1:3}: {indent:2} {line_type:10} {subtype=:10} |{line[:25]}")
+            print(f"l.{index + 1:3}: {indent:2} {line_type:.<15}{subtype:10} {context} | {raw[:30]}")
+            # print(f"\t{pre_line}{line[:50]}{post_line}")
 
             if line:
                 line = inline_markup(r,line)
-                if line_type != "cb":
+                if line_type != "codeblock":
                     line = subCode(line)
 
-            tag_open, tag_close = para_tags
-            line = tag_open + line + tag_close + EOL
-            line = cleanup + line
+            output += pre_line + line + post_line + EOL
 
-            out_text += line
-    
-            html_head = f"""
-<!DOCTYPE html>
-<html>
-<head>
-<title>{title}</title>
-<!--<link rel="stylesheet" href="./md.css">-->
-<link rel="stylesheet" href="./splendor.css">
-</head>
-<body>
-"""
-
-            html_tail = """
-</body>
-"""
     with open(out_file, 'w') as f:
-        f.write(html_head + out_text + html_tail)
+        f.write(html_head + output + html_tail)
 
     print(headings)
 

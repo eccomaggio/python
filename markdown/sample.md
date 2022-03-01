@@ -24,7 +24,7 @@
 **Note:** This document is itself written using Markdown; you
 can [see the source for it by adding '.text' to the URL](/projects/markdown/syntax.text).
 
-Source: https://raw.githubusercontent.com/mxstbr/markdown-test-file/master/TEST.md
+Source: [https://raw.githubusercontent.com/mxstbr/markdown-test-file/master/TEST.md](https://raw.githubusercontent.com/mxstbr/markdown-test-file/master/TEST.md) at [github/mxstbr](https://github.com/mxstbr/markdown-test-file/blob/master/TEST.md)
 ----
 
 ## Overview
