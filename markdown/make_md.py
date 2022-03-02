@@ -99,6 +99,66 @@ def subCode(line):
     out += f"{''.join(final)}"
     return out
 
+def pre_parse(line):
+    global id_count
+    line_type = subtype = ""
+
+    ## codeblocks
+    if line[0:3] == "```":
+        line_type = "codeblock"
+        line = line[3:]
+
+    ## SINGLE-LINE ELEMENTS
+
+    ## horizontal rule
+    elif line[:3] == "***" or line[:3] == "---" or line[:3] == "___":
+        line_type = "hr"
+        line = ""
+
+    ## headings
+    elif line[0] == "#":
+        level = h_depth.match(line).end()
+        line_type = f"h{level}"
+        id_count += 1
+        subtype = f"h_{id_count}"
+        headings.append((f'h_{id_count}',line))
+        line = initial_hash.sub("",line,1)
+
+    ## MULTI-LINE
+
+    ## details/summary (new)
+    elif line[:2] == ">+" or line[:2] == ">-":
+        line_type = "details"
+        status = "show" if line[1] == "+" else "hide"
+        id_count += 1
+        subtype = f"open:{status}:s_{id_count}"
+        line = line[3:]
+    
+    ## blockquotes
+    elif line[0] == ">":
+        line_type = "blockquote"
+        line = line[1:].lstrip()
+        ## NEED TO ADD IN RECURSION HERE?
+
+    ## lists (li): bullets (ul) & ol
+    elif line[:2] in ("+ ", "- ", "* "):
+        line_type = "ul"
+        line = line[1:].lstrip()
+
+    elif initial_digit.match(line):
+        line_type = "ol"
+        line = initial_digit.sub("",line,1)
+
+    ## paragraph p
+    else:
+        line_type = "??"
+    
+    return (line,line_type,subtype)
+
+
+
+
+
 
 
 if __name__ == "__main__":
@@ -198,199 +258,209 @@ if __name__ == "__main__":
         for index, raw in enumerate(f):
             # if index < 172: continue
             # if index >= 230: break          ## parse up to codeblocks
-            line = raw.rstrip()
-            if not line:
+            line = raw = raw.rstrip()
+            if line:
+                ## calculate indent relative to prev (i.e -1, 0 or 1)
+                tmp = re.match(r'\s*', line)
+                leading_sp = len(tmp.group()) if tmp else 0
+                tmp = leading_sp - prev_lsp
+                indent = 1 if tmp>0 else -1 if tmp<0 else 0
+                prev_lsp = leading_sp
+
+                ## md spec: 4 indents/1 tab delimited by blank = codeblock
+                code_indents = len(re.findall(r'\s{4}|\t',line))
+
+                line = line.lstrip()
+
+                pre_line = ""
+                post_line = ""
+                line, line_type, subtype = pre_parse(line)
+                subtype = [subtype,was_blank]
+
+                was_blank = False
+            else:
                 was_blank = True
                 continue
 
-            ## calculate indent relative to prev (i.e -1, 0 or 1)
-            tmp = re.match(r'\s*', line)
-            leading_sp = len(tmp.group()) if tmp else 0
-            tmp = leading_sp - prev_lsp
-            indent = 1 if tmp>0 else -1 if tmp<0 else 0
-            prev_lsp = leading_sp
+            ## put this rule after other paragraph rules as they overlap
+            if code_indents != 0 and line_type == "??" and subtype[1]:
+                line_type = "code"
 
-            has_code_indent = re.match(r'( {4}|\t)',line)
 
-            line = line.strip() ## Also removes the final newline  
-
-            line_type = "blank"
-            subtype = ""
-            # output = ""
-            pre_line = ""
-            post_line = ""
-            if line:
             
-                ## codeblocks
-                if context and context[-1] == "codeblock":
-                    if line[0:3] == "```":
-                        subtype = "close"
-                        context.pop()
-                        line = line[3:]
-                        pre_line = "</code></pre>"
-                    else:
-                        line_type = "codeblock"
-                        subtype = "cont"
+            tmp = f"{line_type}-{subtype[0]} [{subtype[1]}]"
+            print(f'l.{index:4} [{indent:2} {code_indents}] {tmp:20} | "{raw[:50]}"')
 
-                elif line[0:3] == "```":
-                    line_type = "codeblock"
-                    subtype = "open"
-                    context.append("codeblock")
-                    line = line[3:]
-                    pre_line = "<pre><code>"
+            
+                # ## codeblocks
+                # if context and context[-1] == "codeblock":
+                #     if line[0:3] == "```":
+                #         subtype = "close"
+                #         context.pop()
+                #         line = line[3:]
+                #         pre_line = "</code></pre>"
+                #     else:
+                #         line_type = "codeblock"
+                #         subtype = "cont"
 
-                ## SINGLE-LINE ELEMENTS
+                # elif line[0:3] == "```":
+                #     line_type = "codeblock"
+                #     subtype = "open"
+                #     context.append("codeblock")
+                #     line = line[3:]
+                #     pre_line = "<pre><code>"
 
-                ## horizontal rule
-                elif line[:3] == "***" or line[:3] == "---" or line[:3] == "___":
-                    line_type = "hr"
-                    line = ""
-                    pre_line = "<hr>"
+                # ## SINGLE-LINE ELEMENTS
 
-                ## headings
-                elif line[0] == "#":
-                    ## actually, this can appear inside p & blockquotes, so...
-                    ## maybe make into regex: ^[\s\*\+-\d\.>]*#
-                    level = h_depth.match(line).end()
-                    line_type = f"h{level}"
-                    id_count += 1
-                    subtype = f"h_{id_count}"
-                    line = initial_hash.sub("",line,1)
-                    headings.append((f'h_{id_count}',line))
-                    pre_line = f"<{line_type} id='h_{id_count}'>"
-                    post_line = f"</{line_type}>"
+                # ## horizontal rule
+                # elif line[:3] == "***" or line[:3] == "---" or line[:3] == "___":
+                #     line_type = "hr"
+                #     line = ""
+                #     pre_line = "<hr>"
 
-                ## MULTI-LINE
+                # ## headings
+                # elif line[0] == "#":
+                #     ## actually, this can appear inside p & blockquotes, so...
+                #     ## maybe make into regex: ^[\s\*\+-\d\.>]*#
+                #     level = h_depth.match(line).end()
+                #     line_type = f"h{level}"
+                #     id_count += 1
+                #     subtype = f"h_{id_count}"
+                #     line = initial_hash.sub("",line,1)
+                #     headings.append((f'h_{id_count}',line))
+                #     pre_line = f"<{line_type} id='h_{id_count}'>"
+                #     post_line = f"</{line_type}>"
 
-                ## details/summary (new)
-                elif line[:2] == ">+" or line[:2] == ">-":
-                    line_type = "details"
-                    status = "show" if line[1] == "+" else "hide"
-                    id_count += 1
-                    subtype = f"open:{status}:s_{id_count}"
-                    context += ("details")
-                    pre_line = f"<details><summary id='s_{id_count}'>"
-                    post_line = f"</summary>"
+                # ## MULTI-LINE
+
+                # ## details/summary (new)
+                # elif line[:2] == ">+" or line[:2] == ">-":
+                #     line_type = "details"
+                #     status = "show" if line[1] == "+" else "hide"
+                #     id_count += 1
+                #     subtype = f"open:{status}:s_{id_count}"
+                #     context += ("details")
+                #     pre_line = f"<details><summary id='s_{id_count}'>"
+                #     post_line = f"</summary>"
 
                 
-                ## blockquotes
-                elif line[0] == ">":
-                    ## THIS IS A HACK: need to make this check recursive :(
-                    check_parent = is_embedded("blockquote",context)
-                    if line[1:3].find(">") >= 0:    ## embedded
-                        line_type = "blockquote"
-                        subtype = "embed"
-                        context += ("blockquote","p")
-                        line = line[3:]
-                        pre_line = f"</p><blockquote><p>"
-                    else:
-                        if not context:                 ## must be blockquote
-                            line_type = "blockquote"
-                            subtype = "open"
-                            context += ("blockquote","p")
-                            pre_line = f"<blockquote><p>"
-                        elif context[-1] == "p":        ## blockquote or details
-                            line_type = context[-2]
-                            if line[1:]:                ## blank line = new para
-                                subtype = "cont"
-                            else:
-                                subtype = "newpara"
-                                pre_line = f"</p><p>"
-                    line = initial_gt.sub("",line,1)
+                # ## blockquotes
+                # elif line[0] == ">":
+                #     ## THIS IS A HACK: need to make this check recursive :(
+                #     check_parent = is_embedded("blockquote",context)
+                #     if line[1:3].find(">") >= 0:    ## embedded
+                #         line_type = "blockquote"
+                #         subtype = "embed"
+                #         context += ("blockquote","p")
+                #         line = line[3:]
+                #         pre_line = f"</p><blockquote><p>"
+                #     else:
+                #         if not context:                 ## must be blockquote
+                #             line_type = "blockquote"
+                #             subtype = "open"
+                #             context += ("blockquote","p")
+                #             pre_line = f"<blockquote><p>"
+                #         elif context[-1] == "p":        ## blockquote or details
+                #             line_type = context[-2]
+                #             if line[1:]:                ## blank line = new para
+                #                 subtype = "cont"
+                #             else:
+                #                 subtype = "newpara"
+                #                 pre_line = f"</p><p>"
+                #     line = initial_gt.sub("",line,1)
 
-                ## lists (li): bullets (ul) & ol
-                elif line[:2] in ("+ ", "- ", "* ") or initial_digit.match(line) is not None:
-                    line_type = "ol" if line[0].isdigit() else "ul"
-                    prev = ""
-                    is_list,is_same_type = False, False
-                    check_parent = is_embedded(["ol","ul"],context)
-                    if check_parent:
-                        is_list = True
-                        prev = check_parent[-1][0]
-                        is_same_type = (line_type == prev)
-                        # is_same_type = (line_type == check_parent[-1][0])
-                    # print(f"l.{index}>>[{len(check_parent)}]:{check_parent=}|{line_type}, {prev=}")
-                    ## Already inside list
-                    ## nesting: text <li><p>; lists: <li><p>...</p><ul>...
-                    # pre_line = "<p class='list'>"
-                    # post_line = "</p>"
-                    if is_list:
-                        if indent == 0:
-                            if is_same_type:
-                                subtype = "cont"
-                                ## no need to update: status quo unchanged
-                                # context += ("li","p")
-                                pre_line = "</p></li><li><p>"
-                            else:
-                                subtype = f"close_prev_open_new:{prev}"
-                                pre_line = f"</p></li></{prev}><{line_type}><li><p>"
-                                context = context[:-3]
-                                context += (prev,"li","p")
-                        ## any type, close <p> & add a deeper level
-                        elif indent == 1:
-                            subtype = "open_new_level"
-                            context.pop()
-                            context += (line_type,"li","p")
-                            pre_line = f"</p><{line_type}><li><p>"
-                        ## any type, revert to higher level so close prev
-                        elif indent == -1:
-                            subtype = f"close_prev:{prev}"
-                            context = context[:-4]
-                            context += ("li","p")
-                            pre_line = f"</p></li></{prev}><li><p>"
-                        ## any type, adding a new level
-                    ## Outside a list, so start a new one
-                    else:
-                        subtype = "open_new_list"
-                        context += (line_type,"li","p")
-                        pre_line = f"<{line_type}><li><p>"
+                # ## lists (li): bullets (ul) & ol
+                # elif line[:2] in ("+ ", "- ", "* ") or initial_digit.match(line) is not None:
+                #     line_type = "ol" if line[0].isdigit() else "ul"
+                #     prev = ""
+                #     is_list,is_same_type = False, False
+                #     check_parent = is_embedded(["ol","ul"],context)
+                #     if check_parent:
+                #         is_list = True
+                #         prev = check_parent[-1][0]
+                #         is_same_type = (line_type == prev)
+                #         # is_same_type = (line_type == check_parent[-1][0])
+                #     # print(f"l.{index}>>[{len(check_parent)}]:{check_parent=}|{line_type}, {prev=}")
+                #     ## Already inside list
+                #     ## nesting: text <li><p>; lists: <li><p>...</p><ul>...
+                #     # pre_line = "<p class='list'>"
+                #     # post_line = "</p>"
+                #     if is_list:
+                #         if indent == 0:
+                #             if is_same_type:
+                #                 subtype = "cont"
+                #                 ## no need to update: status quo unchanged
+                #                 # context += ("li","p")
+                #                 pre_line = "</p></li><li><p>"
+                #             else:
+                #                 subtype = f"close_prev_open_new:{prev}"
+                #                 pre_line = f"</p></li></{prev}><{line_type}><li><p>"
+                #                 context = context[:-3]
+                #                 context += (prev,"li","p")
+                #         ## any type, close <p> & add a deeper level
+                #         elif indent == 1:
+                #             subtype = "open_new_level"
+                #             context.pop()
+                #             context += (line_type,"li","p")
+                #             pre_line = f"</p><{line_type}><li><p>"
+                #         ## any type, revert to higher level so close prev
+                #         elif indent == -1:
+                #             subtype = f"close_prev:{prev}"
+                #             context = context[:-4]
+                #             context += ("li","p")
+                #             pre_line = f"</p></li></{prev}><li><p>"
+                #         ## any type, adding a new level
+                #     ## Outside a list, so start a new one
+                #     else:
+                #         subtype = "open_new_list"
+                #         context += (line_type,"li","p")
+                #         pre_line = f"<{line_type}><li><p>"
 
-                    # bullet = "" if line_type == "ol" else line[0]
-                    if line_type == "ul":
-                        line = line[2:].lstrip()
-                    else:
-                        line = initial_digit.sub("",line,1)
+                #     # bullet = "" if line_type == "ol" else line[0]
+                #     if line_type == "ul":
+                #         line = line[2:].lstrip()
+                #     else:
+                #         line = initial_digit.sub("",line,1)
 
-                ## paragraph p
-                else:
-                    if context and context[-1] == "p":
-                        check_parent = is_embedded(["ul","ol","blockquote"],context)
-                        if check_parent:
-                            line_type = check_parent[-1][0]
-                        else:
-                            line_type = "p"
-                        subtype = "cont"
-                    else: 
-                        line_type = "p"
-                        subtype = "open"            ## DON'T NEED THESE?
-                        context.append("p")
-                        pre_line = "<p>"
+                # ## paragraph p
+                # else:
+                #     if context and context[-1] == "p":
+                #         check_parent = is_embedded(["ul","ol","blockquote"],context)
+                #         if check_parent:
+                #             line_type = check_parent[-1][0]
+                #         else:
+                #             line_type = "p"
+                #         subtype = "cont"
+                #     else: 
+                #         line_type = "p"
+                #         subtype = "open"            ## DON'T NEED THESE?
+                #         context.append("p")
+                #         pre_line = "<p>"
 
-            # if line_type == "blank":
-            else:
-                if context:
-                    for tag in context[::-1]:
-                       pre_line += f"</{tag}>" 
-                    context.clear()
-                    # print(f"<debug>...{pre_line}")
+            # else:
+            #     line_type = "blank"
+            #     if context:
+            #         for tag in context[::-1]:
+            #            pre_line += f"</{tag}>" 
+            #         context.clear()
+            #         # print(f"<debug>...{pre_line}")
 
                         
             # print(f"l.{index + 1:3}: {indent:2} {line_type:10} {subtype=:10} |{line[:25]}")
-            print(f"l.{index + 1:3}: {indent:2} {line_type:.<15}{subtype:10} {context} | {raw[:30]}")
+            # print(f"l.{index + 1:3}: {indent:2} {line_type:.<15}{subtype:10} {context} | {raw[:30]}")
             # print(f"\t{pre_line}{line[:50]}{post_line}")
 
-            if line:
-                line = inline_markup(r,line)
-                if line_type != "codeblock":
-                    line = subCode(line)
+            # if line:
+            #     line = inline_markup(r,line)
+            #     if line_type != "codeblock":
+            #         line = subCode(line)
 
-            output += pre_line + line + post_line + EOL
+            # output += pre_line + line + post_line + EOL
+            # if was_blank: 
+            #     was_blank = False
 
-    with open(out_file, 'w') as f:
-        f.write(html_head + output + html_tail)
+    # with open(out_file, 'w') as f:
+        # f.write(html_head + output + html_tail)
 
-    print(headings)
+    # print(headings)
 
-
-# if __name__ == "__main__":
-#     make_md(in_file,out_file)
