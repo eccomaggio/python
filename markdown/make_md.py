@@ -103,6 +103,10 @@ def pre_parse(line):
     global id_count
     line_type = subtype = ""
 
+
+    is_indented = bool(re.match(r' {2}|\t',line))
+    line = line.lstrip()
+
     ## codeblocks
     if line[0:3] == "```":
         line_type = "codeblock"
@@ -153,7 +157,7 @@ def pre_parse(line):
     else:
         line_type = "??"
     
-    return (line,line_type,subtype)
+    return (line,line_type,[subtype,is_indented])
 
 
 
@@ -261,21 +265,21 @@ if __name__ == "__main__":
             line = raw = raw.rstrip()
             if line:
                 ## calculate indent relative to prev (i.e -1, 0 or 1)
-                tmp = re.match(r'\s*', line)
-                leading_sp = len(tmp.group()) if tmp else 0
-                tmp = leading_sp - prev_lsp
-                indent = 1 if tmp>0 else -1 if tmp<0 else 0
-                prev_lsp = leading_sp
+                # tmp = re.match(r'\s*', line)
+                # leading_sp = len(tmp.group()) if tmp else 0
+                # tmp = leading_sp - prev_lsp
+                # indent = 1 if tmp>0 else -1 if tmp<0 else 0
+                # prev_lsp = leading_sp
 
-                ## md spec: 4 indents/1 tab delimited by blank = codeblock
-                code_indents = len(re.findall(r'\s{4}|\t',line))
+                # ## md spec: 4 indents/1 tab delimited by blank = codeblock
+                # code_indents = len(re.findall(r'\s{4}|\t',line))
 
-                line = line.lstrip()
+                # line = line.lstrip()
 
                 pre_line = ""
                 post_line = ""
                 line, line_type, subtype = pre_parse(line)
-                subtype = [subtype,was_blank]
+                subtype.append(was_blank)
 
                 was_blank = False
             else:
@@ -283,13 +287,18 @@ if __name__ == "__main__":
                 continue
 
             ## put this rule after other paragraph rules as they overlap
-            if code_indents != 0 and line_type == "??" and subtype[1]:
+            indent = subtype[1]
+            blank = subtype[2]
+            
+            if indent and blank and line_type == "??":
                 line_type = "code"
 
 
             
-            tmp = f"{line_type}-{subtype[0]} [{subtype[1]}]"
-            print(f'l.{index:4} [{indent:2} {code_indents}] {tmp:20} | "{raw[:50]}"')
+            tmp = f"{line_type}-{subtype[0]} [{indent} {blank}]"
+            print(f'l.{index:4} {tmp:20} | "{raw[:50]}"')
+
+            prev_indent = indent
 
             
                 # ## codeblocks
