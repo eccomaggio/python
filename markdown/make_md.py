@@ -153,11 +153,11 @@ def pre_parse(line):
         line_type = "ol"
         line = initial_digit.sub("",line,1)
 
-    ## paragraph p
+    ## no explicit trigger
     else:
         line_type = "??"
     
-    return (line,line_type,[subtype,is_indented])
+    return (line,line_type,subtype,is_indented)
 
 
 
@@ -188,41 +188,6 @@ if __name__ == "__main__":
 
     print(f"Using the markdown in {in_file} to output html as {out_file}")
 
-    html_head = f"""
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
-<title>{title}</title>
-<meta name="color-scheme" content="light dark">
-<!-- <link rel="stylesheet" href="./splendor.css">-->
-<link rel="stylesheet" href="./github-markdown-css/github-markdown.css">
-<style>
-			body {{
-				box-sizing: border-box;
-				min-width: 200px;
-				max-width: 980px;
-				margin: 0 auto;
-				padding: 45px;
-            }}
-
-			@media (prefers-color-scheme: dark) {{
-				body {{
-					background-color: rgb(13,17,23);
-                }}
-            }}
-		</style>
-</head>
-<body>
-<article class="markdown-body">
-"""
-
-
-    html_tail ="""
-</article>
-</body>
-"""
     ## regex to add inline styling
     r = OrderedDict()
     r['bold1'] = (re.compile('\*\*(.+?)\*\*'), r'<strong>\1</strong>') 
@@ -255,48 +220,42 @@ if __name__ == "__main__":
     prev_lsp = 0
     pre_line = ""
     post_line =""
-    output = ""
+    body = ""
     was_blank = False
 
     with open(in_file, 'r') as f:
         for index, raw in enumerate(f):
             # if index < 172: continue
             # if index >= 230: break          ## parse up to codeblocks
-            line = raw = raw.rstrip()
+            line = raw = raw.rstrip()      ## remove trailing space & EOL 
             if line:
-                ## calculate indent relative to prev (i.e -1, 0 or 1)
-                # tmp = re.match(r'\s*', line)
-                # leading_sp = len(tmp.group()) if tmp else 0
-                # tmp = leading_sp - prev_lsp
-                # indent = 1 if tmp>0 else -1 if tmp<0 else 0
-                # prev_lsp = leading_sp
-
-                # ## md spec: 4 indents/1 tab delimited by blank = codeblock
-                # code_indents = len(re.findall(r'\s{4}|\t',line))
-
-                # line = line.lstrip()
-
-                pre_line = ""
-                post_line = ""
-                line, line_type, subtype = pre_parse(line)
-                subtype.append(was_blank)
+                line, line_type, subtype, indent = pre_parse(line)
+                blank = was_blank
 
                 was_blank = False
             else:
                 was_blank = True
                 continue
 
+            if line_type == "codeblock":
+                if blank:
+                    subtype = "start"
+                    context.append("codeblock")
+                else:
+                    subtype = "end"
+                    context.pop()
+            if line_type == "??" and context and context[-1] == "codeblock":
+                line_type = "codeblock"
+                subtype = "cont"
+
             ## put this rule after other paragraph rules as they overlap
-            indent = subtype[1]
-            blank = subtype[2]
-            
             if indent and blank and line_type == "??":
                 line_type = "code"
 
 
             
-            tmp = f"{line_type}-{subtype[0]} [{indent} {blank}]"
-            print(f'l.{index:4} {tmp:20} | "{raw[:50]}"')
+            tmp = f"{line_type}-{subtype} [{indent} {blank}]"
+            print(f'l.{index:4} {tmp:30} | "{raw[:50]}"')
 
             prev_indent = indent
 
@@ -468,8 +427,41 @@ if __name__ == "__main__":
             # if was_blank: 
             #     was_blank = False
 
+    page = f"""
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+<title>{title}</title>
+<meta name="color-scheme" content="light dark">
+<!-- <link rel="stylesheet" href="./splendor.css">-->
+<link rel="stylesheet" href="./github-markdown-css/github-markdown.css">
+<style>
+			body {{
+				box-sizing: border-box;
+				min-width: 200px;
+				max-width: 980px;
+				margin: 0 auto;
+				padding: 45px;
+            }}
+
+			@media (prefers-color-scheme: dark) {{
+				body {{
+					background-color: rgb(13,17,23);
+                }}
+            }}
+		</style>
+</head>
+<body>
+<article class="markdown-body">
+{body}
+</article>
+</body>
+"""
     # with open(out_file, 'w') as f:
         # f.write(html_head + output + html_tail)
+        # f.write(body)
 
     # print(headings)
 
