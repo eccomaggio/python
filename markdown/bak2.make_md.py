@@ -36,10 +36,11 @@ from dataclasses import dataclass
 
 @dataclass
 class Line:
-    text: str
-    level: int
-    type: str
-    subtype: str
+    def __init__(self, text, level, type, subtype):
+        self.text = text
+        self.level = level
+        self.type = type
+        self.subtype = subtype
 
 out_text = ""
 EOL = "\n"
@@ -117,7 +118,8 @@ def init_html_outline():
 {body}
 </article>
 </body>
-""")
+"""
+)
 
 
 def prep_files():
@@ -259,52 +261,49 @@ def parse_triggers(line):
     return (line,line_type,subtype)
 
 
-def parse_two(cl,pl,context_stack):
+def parse_two(line_type,subtype,context_stack):
     context = context_stack[-1].split(":")[0] if context_stack else ""
-    if cl.type == "code":
-        if pl.type == "blank":
-            cl.subtype = "start"
+    if line_type == "code":
+        if prev_was_blank:
+            subtype = "start"
             context_stack.append("code")
         else:
-            cl.subtype = "end"
+            subtype = "end"
             context_stack.pop()
     # elif line_type == "blockquote":
     #     if context == line_type:
     #         if is_indented:
     #             pass
     if context == "code":
-        if cl.type == "??":
-            cl.type = "code"
-            cl.subtype = "cont"
-    # elif context == "blockquote":
-    #     cl.type = "p"
-    # else:
-    #     ## line_type is list
-    #     cl.type == "li"
-    if cl.type == "??" and (pl.type == "??" or pl.type[:4] == "list" or pl.type == "blockquote"):
-        cl.subtype = "cont"
-
-    return(cl.type,cl.subtype,context_stack)
-
-
-def pretty_debug():
-    if cl.type == "blank":
-        print(f"{' '*42}  |")
+        if line_type == "??":
+            line_type = "code"
+            subtype = "cont"
+    elif context == "blockquote":
+        line_type = "p"
     else:
-        tmp = f"{cl.type + '-' + cl.subtype:12}"
-        # tmp2 = f'<{pl.type}, {pl.level}> '
-        tmp2 = f'<{pl.level}, {pl.type}> '
-        if level == 0:
-            print(f'l.{line_no:4} {level}  '
-                    f'{tmp:15} '
-                    f'{tmp2:16}  '
-                    f'| {raw[:30]}')
-        else:
-            print(f'{" "* 4}...{level}  '
-                    f'{tmp:15}{" "*19}'
-                    # f'{tmp:15}{" "*1}'
-                    # f'{tmp2:16}* '
-                    f'|')
+        ## line_type is list
+        line_type == "li"
+
+    return(line_type,subtype,context_stack)
+
+
+def debug():
+    tmp = f"{line_type + '-' + subtype:12}"
+    tmp1 = f"{prev_was_blank}"
+    tmp2 = f"{prev_was_blank}"
+    if level == 0:
+        # print(f'l.{line_no:4}_{level} {tmp:30} | {raw[:50]}')
+        print(f'l.{line_no:4}_{level} '
+                # f'({prev_pass_level}{prev_line_level}) {tmp:15}  '
+                f'({prev_line_level}) {tmp:15}  '
+                f'{tmp1:6} '
+                f' | {raw[:40]}')
+    else:
+        print(f'{" "* 7}{level} '
+                # f'({prev_pass_level}{prev_line_level}) {tmp:15}  '
+                f'({prev_line_level}) {tmp:15}  '
+                f'{tmp2:6} '
+                f' |')
 
 
 
@@ -314,39 +313,43 @@ if __name__ == "__main__":
 
     context_stack = []
     body = ""
-    # prev_pass_level = 0
-    max_level = 0
+    prev_was_blank = is_blank = False
+    prev_line_level = prev_pass_level = 0
     in_para = False
-    cl = Line("",-1,"blank","")
-    pl = Line("",-1,"blank","")
+    curr_line = Line("",-1,"","")
+    prev_line = Line("",-1,"blank","")
 
     with open(in_file, 'r') as f:
         for line_no, raw in enumerate(f):
-            raw = raw.rstrip()      ## remove trailing space & EOL 
+            line = raw = raw.rstrip()      ## remove trailing space & EOL 
+            line_type = "unprocessed"
             level = 0
-            pl.text = ""
-            pl.type = cl.type
-            pl.subtype = cl.subtype
-            pl.level = max_level
-            cl = Line(raw,level,"unprocessed","")
+            # prev_line_level = prev_pass_level = 0
+            # curr_line = Line(raw,level,"","")
             
-            while cl.type in ("unprocessed","blockquote","indent"):
+            while line_type in ("unprocessed","blockquote","indent"):
                 
-                if cl.text:
-                    cl.text, cl.type, cl.subtype = parse_triggers(cl.text)
+                if line:
+                    prev_was_blank = True if is_blank else False
+                    is_blank = False
+                    line, line_type, subtype = parse_triggers(line)
+                    curr_line.line,curr_line.type,curr_line.subtype = line, line_type, subtype 
                     
-                    if cl.type == "indent":
-                        ## contents will be parsed on the next pass
-                        pass
-                    else:
-                        cl.type, cl.subtype,context_stack = parse_two(cl,pl,context_stack)
+                    if line_type != "indent":
+                        line_type, subtype, context_stack = parse_two(line_type,subtype,context_stack)
                 else:
-                    cl.type = "blank"
+                    line_type = "blank"
+                    is_blank = True
+                    print("")
+                    continue
                 
-                pretty_debug()
-
-                ## This pass completed
-                max_level = level
+                ## Update info relevant to whole line
+                if level == 0:
+                    prev_line_level = prev_pass_level
+                prev_pass_level = level
+                debug()
+                # print(f"l.{line_no}\t{curr_line.type}\n\t[{prev_line.type}]")
+                # prev_line = Line("",curr_line.level,curr_line.type,curr_line.subtype)
                 level += 1
 
 
