@@ -9,21 +9,8 @@ code blocks must be delimited with three backticks on a sep line
 I added in super limited support for details>summary:
     >-
 
-Final notes to self:
-    start again!
-    look for patterns
-    blanks should be evaluated along with following line
-    indents are significant (2-4 spaces = indent) i some situations
-
-    Build a skeleton version that just outputs e.g.
-    para:	blah…
-    h2:		blah
-    ol-li		blah
-    li		blah (i.e directly after trigger, with/without indent)
-    -p		blah (i.e. indented p after blank)
-
-    matches should be made in a function
-    that way, it can be reapplied for embedding
+Notes to self:
+    l.79: code2 overgeneralizing :()
 
 """
 
@@ -56,7 +43,8 @@ p2 = re.compile(r'.*</code>(.*?)$')
 initial_digit = re.compile(r'\d+\.\s')
 # initial_gt = re.compile(r'>+\s')  ## this misses blank-line >
 initial_gt = re.compile(r'>\s?')
-initial_hash = re.compile(r'#+\s')
+# initial_hash = re.compile(r'#+\s')
+extract_heading = re.compile(r'^\#+([^\#]+)\#*\s*$')
 h_depth = re.compile("#+")
 
 
@@ -223,8 +211,9 @@ def parse_triggers(line):
             line_type = f"h{level}"
             id_count += 1
             subtype = f"h_{id_count}"
+            # line = initial_hash.sub("",line,1)
+            line = extract_heading.match(line).group(1).strip()
             headings.append((f'h_{id_count}',line))
-            line = initial_hash.sub("",line,1)
 
         ## MULTI-LINE
 
@@ -240,7 +229,6 @@ def parse_triggers(line):
         elif line[0] == ">":
             line_type = "blockquote"
             line = line[1:].lstrip()
-            ## NEED TO ADD IN RECURSION HERE?
 
         ## lists (li): bullets (ul) & ol
         elif line[:2] in ("+ ", "- ", "* "):
@@ -259,14 +247,19 @@ def parse_triggers(line):
     return (line,line_type,subtype)
 
 
-def parse_two(cl,pl,context_stack):
+def parse_openers(cl,pl,context_stack):
     context = context_stack[-1].split(":")[0] if context_stack else ""
 
-    # if context == "code":
-    #     if cl.type == "??":
-    #         cl.type = "code"
-    #         cl.subtype = "cont"
-    if context == "codeblock":
+    # print(f">>>>>>>{cl.type}:{pl.type}, {cl.level}:{pl.level} [{context}]")
+
+    if cl.type == "blank":
+        cl.subtype = pl.type
+        cl.level = pl.level
+        if context == "code2":
+            cl.subtype = "code:end"
+            context_stack.pop()
+
+    elif context == "codeblock":
         if cl.type == "codeblock":
             cl.subtype = "end"
             context_stack.pop()
@@ -274,13 +267,22 @@ def parse_two(cl,pl,context_stack):
             cl.type = "code"
             cl.subtype = "cont"
 
-    if cl.type == "codeblock":
+    # elif cl.type == "??" and pl.type == "blank" and cl.level > pl.level:
+    elif cl.type == "??" and pl.type == "blank" and cl.level > pl.level and pl.subtype not in ("list:ul","list:ol","blockquote"):
+        cl.type = "code2"
+        cl.subtype = "start"
+        context_stack.append("code2")
+    elif cl.type == "??" and context == "code2" and cl.level == pl.level:
+        cl.type = "code2"
+        cl.subtype = "cont"
+    # elif cl.type == "blank" and context == "code":
+    #     cl.type == "codeblock"
+    #     context_stack.pop()
+
+    elif cl.type == "codeblock":
         if pl.type == "blank":
             cl.subtype = "start"
             context_stack.append(cl.type)
-        # else:
-        #     cl.subtype = "end"
-        #     context_stack.pop()
     
     elif cl.type in ("details", "blockquote", "list:ul", "list:ol"):
         context_stack.append(cl.type)
@@ -295,19 +297,25 @@ def parse_two(cl,pl,context_stack):
         cl.type = "p"
         cl.subtype = "start"
         context_stack.append(cl.type)
+        
+    elif cl.type[:4] == "list":
+        if pl.type == "blank":
+            cl.subtype = "start"
+            ## etc.
 
     return(cl.type,cl.subtype,context_stack)
 
 
 def pretty_debug():
     if cl.type == "blank":
-        print(f"{' '*42}  |")
+        # print(f"{' '*42}  |")
+        print(f'{"="*10}BLANK: {cl.subtype + ", " + str(cl.level):27}|')
     else:
         tmp = f"{cl.type + '-' + cl.subtype:12}"
         # tmp2 = f'<{pl.type}, {pl.level}> '
         tmp2 = f'<{pl.level}, {pl.type}> '
         if level == 0:
-            print(f'l.{line_no:4} {level}  '
+            print(f'l.{line_no:4}:{level}  '
                     f'{tmp:15} '
                     f'{tmp2:16}  '
                     f'| {raw[:30]}')
@@ -327,8 +335,6 @@ if __name__ == "__main__":
     context_stack = []
     body = ""
     # prev_pass_level = 0
-    max_level = 0
-    in_para = False
     cl = Line("",-1,"blank","")
     pl = Line("",-1,"blank","")
 
@@ -339,26 +345,28 @@ if __name__ == "__main__":
             pl.text = ""
             pl.type = cl.type
             pl.subtype = cl.subtype
-            pl.level = max_level
+            pl.level = cl.level
             cl = Line(raw,level,"unprocessed","")
             
             while cl.type in ("unprocessed","blockquote","indent"):
-                
                 if cl.text:
                     cl.text, cl.type, cl.subtype = parse_triggers(cl.text)
-                    
-                    if cl.type == "indent":
-                        ## contents will be parsed on the next pass
-                        pass
-                    else:
-                        cl.type, cl.subtype,context_stack = parse_two(cl,pl,context_stack)
+                    cl.level = level
                 else:
                     cl.type = "blank"
-                
+
+                if cl.type == "indent":
+                    ## contents will be parsed on the next pass
+                    pass
+                else:
+                    cl.type, cl.subtype,context_stack = parse_openers(cl,pl,context_stack)
+                    ## normalize both forms of codeblock
+                    # if cl.type == "code2":
+                    #     cl.type = "code"
+
                 pretty_debug()
 
                 ## This pass completed
-                max_level = level
                 level += 1
 
 
