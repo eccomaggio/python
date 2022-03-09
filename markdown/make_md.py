@@ -207,7 +207,7 @@ def parse_triggers(line):
 
         ## codeblocks
         if line[0:3] == "```":
-            line_type = "code"
+            line_type = "codeblock"
             line = line[3:]
 
         ## SINGLE-LINE ELEMENTS
@@ -261,28 +261,40 @@ def parse_triggers(line):
 
 def parse_two(cl,pl,context_stack):
     context = context_stack[-1].split(":")[0] if context_stack else ""
-    if cl.type == "code":
-        if pl.type == "blank":
-            cl.subtype = "start"
-            context_stack.append("code")
-        else:
+
+    # if context == "code":
+    #     if cl.type == "??":
+    #         cl.type = "code"
+    #         cl.subtype = "cont"
+    if context == "codeblock":
+        if cl.type == "codeblock":
             cl.subtype = "end"
             context_stack.pop()
-    # elif line_type == "blockquote":
-    #     if context == line_type:
-    #         if is_indented:
-    #             pass
-    if context == "code":
-        if cl.type == "??":
+        else:
             cl.type = "code"
             cl.subtype = "cont"
-    # elif context == "blockquote":
-    #     cl.type = "p"
-    # else:
-    #     ## line_type is list
-    #     cl.type == "li"
-    if cl.type == "??" and (pl.type == "??" or pl.type[:4] == "list" or pl.type == "blockquote"):
+
+    if cl.type == "codeblock":
+        if pl.type == "blank":
+            cl.subtype = "start"
+            context_stack.append(cl.type)
+        # else:
+        #     cl.subtype = "end"
+        #     context_stack.pop()
+    
+    elif cl.type in ("details", "blockquote", "list:ul", "list:ol"):
+        context_stack.append(cl.type)
+        if cl.type[:4] == "list":
+            context_stack.append("li")
+
+    elif cl.type == "??" and pl.type in ("??","list:ol", "list:ul", "blockquote", "p"):
+        cl.type = "p"
         cl.subtype = "cont"
+
+    elif pl.type == "blank" and cl.type == "??":
+        cl.type = "p"
+        cl.subtype = "start"
+        context_stack.append(cl.type)
 
     return(cl.type,cl.subtype,context_stack)
 
