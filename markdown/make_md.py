@@ -10,7 +10,8 @@ I added in super limited support for details>summary:
     >-
 
 Notes to self:
-    l.79: code2 overgeneralizing :()
+    l.79: code2 overgeneralizing :() -- FIXED
+    multi-line li lists don't parse. Need to look at the context, not the pl :( 
 
 """
 
@@ -27,25 +28,28 @@ class Line:
     level: int
     type: str
     subtype: str
+    parent: str
 
-out_text = ""
-EOL = "\n"
+# out_text = ""
+# EOL = "\n"
 
-headings = []
-id_count = 0
+# headings = []
+# id_count = 0
 
+def init_regex_tools():
+    r1 = OrderedDict()
+    ## regex to remove escaping inside <code> tags
+    r1['p'] = re.compile(r'(?:<code>)(.*?)(?:</code>)')
+    r1['p1'] = re.compile(r'(.*?<code>).*?(</code>.*?)')
+    r1['p2'] = re.compile(r'.*</code>(.*?)$')
 
-## regex to remove escaping inside <code> tags
-p = re.compile(r'(?:<code>)(.*?)(?:</code>)')
-p1 = re.compile(r'(.*?<code>).*?(</code>.*?)')
-p2 = re.compile(r'.*</code>(.*?)$')
-
-initial_digit = re.compile(r'\d+\.\s')
-# initial_gt = re.compile(r'>+\s')  ## this misses blank-line >
-initial_gt = re.compile(r'>\s?')
-# initial_hash = re.compile(r'#+\s')
-extract_heading = re.compile(r'^\#+([^\#]+)\#*\s*$')
-h_depth = re.compile("#+")
+    r1['initial_digit'] = re.compile(r'\d+\.\s')
+    # initial_gt = re.compile(r'>+\s')  ## this misses blank-line >
+    r1['initial_gt'] = re.compile(r'>\s?')
+    # initial_hash = re.compile(r'#+\s')
+    r1['extract_heading'] = re.compile(r'^\#+([^\#]+)\#*\s*$')
+    r1['h_depth'] = re.compile("#+")
+    return r1
 
 
 
@@ -67,7 +71,7 @@ def init_inline_styles():
     r['urls'] = (re.compile('&amp;lt;(.*?[\.\#].*?)&amp;gt;'), r'<a href="\1">\1</a>') 
     r['nbsp'] = (re.compile('\s\s\s*$'),r'&nbsp;')
 
-    return(r)
+    return r
 
 
 
@@ -162,15 +166,15 @@ def inline_markup(r,line):
 
 
 def subCode(line):
-    inside = p.findall(line)
+    inside = r1['p'].findall(line)
     ## Abort if no codeblocks found
     if not inside:
         return line
 
     ## extract the <code> sections and remove the automatic escaping
     ## reintegrate into the regular markdown text
-    outside = p1.findall(line)
-    final = p2.findall(line)
+    outside = r1['p1'].indall(line)
+    final = r1['p2'].findall(line)
     for i, match in enumerate(inside):
         tmp = match
         # tmp = tmp.replace('&amp;lt;','<').replace('&amp;gt;','>').replace('&amp;','&')
@@ -187,7 +191,6 @@ def subCode(line):
 def parse_triggers(line):
     global id_count
     line_type = subtype = ""
-    # is_indented = bool(re.match(r' {2}|\t',line))
     if bool(re.match(r' {2}|\t',line)):
         line_type = "indent"
         line = line.lstrip()
@@ -207,12 +210,12 @@ def parse_triggers(line):
 
         ## headings
         elif line[0] == "#":
-            level = h_depth.match(line).end()
+            level = r1['h_depth'].match(line).end()
             line_type = f"h{level}"
             id_count += 1
             subtype = f"h_{id_count}"
             # line = initial_hash.sub("",line,1)
-            line = extract_heading.match(line).group(1).strip()
+            line = r1['extract_heading'].match(line).group(1).strip()
             headings.append((f'h_{id_count}',line))
 
         ## MULTI-LINE
@@ -235,15 +238,14 @@ def parse_triggers(line):
             line_type = "list:ul"
             line = line[1:].lstrip()
 
-        elif initial_digit.match(line):
+        elif r1['initial_digit'].match(line):
             line_type = "list:ol"
-            line = initial_digit.sub("",line,1)
+            line = r1['initial_digit'].sub("",line,1)
 
         ## no explicit trigger
         else:
             line_type = "??"
     
-    # return (line,line_type,subtype,is_indented)
     return (line,line_type,subtype)
 
 
@@ -267,26 +269,54 @@ def parse_openers(cl,pl,context_stack):
             cl.type = "code"
             cl.subtype = "cont"
 
-    # elif cl.type == "??" and pl.type == "blank" and cl.level > pl.level:
-    elif cl.type == "??" and pl.type == "blank" and cl.level > pl.level and pl.subtype not in ("list:ul","list:ol","blockquote"):
+    elif (cl.type == "??" and pl.type == "blank" 
+            # and cl.level > pl.level 
+            # and cl.parent == "indent"):
+            and cl.parent == "indent"
+            and pl.subtype not in ("list:ul","list:ol","blockquote")):
         cl.type = "code2"
         cl.subtype = "start"
         context_stack.append("code2")
     elif cl.type == "??" and context == "code2" and cl.level == pl.level:
         cl.type = "code2"
         cl.subtype = "cont"
-    # elif cl.type == "blank" and context == "code":
-    #     cl.type == "codeblock"
-    #     context_stack.pop()
 
     elif cl.type == "codeblock":
         if pl.type == "blank":
             cl.subtype = "start"
             context_stack.append(cl.type)
     
-    elif cl.type in ("details", "blockquote", "list:ul", "list:ol"):
-        context_stack.append(cl.type)
-        if cl.type[:4] == "list":
+    elif (cl.type in ("details","blockquote")):
+        if pl.type == cl.type:
+            cl.subtype = "cont"
+        else:
+            cl.subtype = "start"
+            context_stack.append(cl.type)
+            
+    # elif (cl.type[:4] == "list"
+    #         and (pl.type != cl.type 
+    #             or pl.type == cl.type and pl.level < cl.level)):
+    #     context_stack.append(cl.type)
+    #     cl.subtype = "start"
+    #     context_stack.append("li")
+    elif (cl.type[:4] == "list"):
+        both_lists = cl.type[:4] == pl.type[:4]
+        same_type = cl.type == pl.type
+        prev_higher = pl.level > cl.level
+        prev_lower = pl.level < cl.level
+        same_level = pl.level == cl.level
+        if (pl.type[:4] != "list"):
+            cl.subtype = "start"
+        else:
+            if (not same_type or (same_type and prev_lower)):
+                cl.subtype = "start"
+            elif (prev_higher):
+                cl.subtype = "endprev:cont"
+            else:
+                cl.subtype = "cont"
+        
+        if cl.subtype == "start":
+            context_stack.append(cl.type)
             context_stack.append("li")
 
     elif cl.type == "??" and pl.type in ("??","list:ol", "list:ul", "blockquote", "p"):
@@ -308,23 +338,25 @@ def parse_openers(cl,pl,context_stack):
 
 def pretty_debug():
     if cl.type == "blank":
-        # print(f"{' '*42}  |")
-        print(f'{"="*10}BLANK: {cl.subtype + ", " + str(cl.level):27}|')
+        # print(f'{"="*10}BLANK: {cl.subtype + ", " + str(cl.level):32}.')
+        print(f'{"="*10}BLANK'
+                # f'{" "*14 + cl.subtype + ", " + str(cl.level):32}'
+                f'{" (" + cl.subtype + ", " + str(cl.level) + ")":34}'
+                f'.')
     else:
-        tmp = f"{cl.type + '-' + cl.subtype:12}"
-        # tmp2 = f'<{pl.type}, {pl.level}> '
-        tmp2 = f'<{pl.level}, {pl.type}> '
+        tmp = f"{cl.type + '-' + cl.subtype}"
+        tmp2 = f'<{pl.level}, {pl.type}>'
         if level == 0:
             print(f'l.{line_no:4}:{level}  '
-                    f'{tmp:15} '
-                    f'{tmp2:16}  '
+                    f'{tmp:18} '
+                    f'{tmp2:18}  '
                     f'| {raw[:30]}')
         else:
             print(f'{" "* 4}...{level}  '
-                    f'{tmp:15}{" "*19}'
-                    # f'{tmp:15}{" "*1}'
-                    # f'{tmp2:16}* '
-                    f'|')
+                    # f'{tmp:18}{" "*20}'
+                    f'{tmp:18} '
+                    f'{"@" + cl.parent:18}  '
+                    f'||')
 
 
 
@@ -332,11 +364,19 @@ def pretty_debug():
 if __name__ == "__main__":
     in_file, out_file, title = prep_files()
 
+    out_text = ""
+    EOL = "\n"
+    headings = []
+    id_count = 0
+    r = init_inline_styles()
+    r1 = init_regex_tools()
+
+
     context_stack = []
     body = ""
     # prev_pass_level = 0
-    cl = Line("",-1,"blank","")
-    pl = Line("",-1,"blank","")
+    cl = Line("",-1,"blank","","")
+    pl = Line("",-1,"blank","","")
 
     with open(in_file, 'r') as f:
         for line_no, raw in enumerate(f):
@@ -346,12 +386,17 @@ if __name__ == "__main__":
             pl.type = cl.type
             pl.subtype = cl.subtype
             pl.level = cl.level
-            cl = Line(raw,level,"unprocessed","")
+            pl.parent = cl.parent
+            parent = ""
+            cl = Line(raw,level,"unprocessed","",parent)
             
             while cl.type in ("unprocessed","blockquote","indent"):
+                # cl.parent = parent
+                # print(f">>>>>>>>>>>>>>>>>>>{cl.parent}")
                 if cl.text:
                     cl.text, cl.type, cl.subtype = parse_triggers(cl.text)
                     cl.level = level
+                    cl.parent = parent
                 else:
                     cl.type = "blank"
 
@@ -367,6 +412,7 @@ if __name__ == "__main__":
                 pretty_debug()
 
                 ## This pass completed
+                parent = cl.type
                 level += 1
 
 
