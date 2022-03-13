@@ -13,7 +13,8 @@ Notes to self:
     l.79: code2 overgeneralizing :() -- FIXED
     fixed (maybe...) blockquotes and embedding
     multi-line li lists don't parse. Need to look at the context, not the pl :( 
-    l.227 embedded code isn't recognized as there is no standard tab size
+    l.227 embedded code isn't recognized as there is no standard tab size -- FIXED
+    lists with multi-line paras still a problem :(
 
 """
 
@@ -31,6 +32,7 @@ class Line:
     type: str
     subtype: str
     parent: str
+    hint: str
 
 
 def init_regex_tools():
@@ -152,6 +154,17 @@ def is_embedded(taglist,the_list, result=[], count=0):
         is_embedded(taglist,the_list[:pos],result,count + 1)
     return result
 
+def close_tags_to(tag, list):
+    tmp = []
+    try:
+        list.index(tag)
+        for x in list[::-1]:
+            tmp.append(x)
+            if x == tag:
+                break
+    except:
+        pass
+    return tmp
 
 
 def inline_markup(r,line):
@@ -266,6 +279,11 @@ def parse_triggers(line):
 
 
 def parse_openers(cl,pl,cs):
+    if cl.type != "blockquote" and pl.hint:
+        ## shouldn't need this next check: shows summat's  wrong with the stack
+        if context(cs)[:4] == "list":
+            cs.pop()
+        ## add </li></{pl.hint[:2]}> to pre-line html string
 
     if cl.type == "codeblock":
         if context(cs) != "codeblock":
@@ -301,6 +319,10 @@ def parse_openers(cl,pl,cs):
     elif (cl.type in ("details","blockquote")):
         embedding = is_embedded(cl.type,cs)
         embed_level = (len(embedding) - 1)
+        if pl.hint:
+            print(f"@@@@@@@@@@@@@@@@@@@@ DO NOT CLOSE LIST!!!")
+            print(f"{pl.hint}")
+            
         if context(cs) == cl.type:
             if cl.level > embed_level:
                 cl.subtype = "embed:start"
@@ -326,13 +348,16 @@ def parse_openers(cl,pl,cs):
         same_level = pl.level == cl.level
         if (pl.type[:4] != "list"):
             cl.subtype = "start"
+            print(f"++++++++++++++++++++++{is_embedded(cl.type,cs)}")
         else:
             if (not same_type or (same_type and prev_lower)):
                 cl.subtype = "start"
+                cs.append(cl.type)
             elif (prev_higher):
-                cl.subtype = "endprev:cont"
+                cl.subtype = f"li-end:embed-{cl.type[5:]}"
+                cs.append(cl.type)
             else:
-                cl.subtype = "cont"
+                cl.subtype = "li-start"
         
     elif cl.type == "??" and pl.type in ("??","list:ol", "list:ul", "blockquote", "p", "empty"):
         cl.type = "p"
@@ -346,39 +371,41 @@ def parse_openers(cl,pl,cs):
     elif cl.type[:4] == "list":
         if pl.type == "blank":
             cl.subtype = "start"
+            cs.append(cl.type)
             ## etc.
 
     return(cl.type,cl.subtype,cs)
 
 
 def parse_closers(cl,pl,cs):
-    if cl.type == "blank" and context(cs) == "blockquote":
-        cl.subtype = "blockquote:end"
-        cs.pop()
+    if cl.type == "blank":
+        if context(cs) == "blockquote":
+            cl.subtype = "blockquote:end"
+            cs.pop()
+        elif cl.subtype[:4] == "list":
+            cl.hint = f"{cl.subtype[5:]}:close-list-if-no-blockquote"
+
 
     return(cl.type,cl.subtype,cs)
 
 
 def pretty_debug():
     if cl.type == "blank":
-        # print(f'{"="*10}BLANK: {cl.subtype + ", " + str(cl.level):32}.')
         print(f'{"="*10}BLANK'
-                # f'{" "*14 + cl.subtype + ", " + str(cl.level):32}'
-                f'{" (" + cl.subtype + ", " + str(cl.level) + ")":42}'
+                f'{" (" + cl.subtype + ", " + str(cl.level) + ", " + cl.hint + ")":45}'
                 f'.')
     else:
-        tmp = f"{cl.type + '-' + cl.subtype}"
+        tmp = f"{cl.type + '*' + cl.subtype}"
         tmp2 = f'<{pl.level}, {pl.type}> {cl.level == pl.level}'
         if level == 0:
             print(f'l.{line_no:4}:{level}  '
-                    f'{tmp:21} '
+                    f'{tmp:24} '
                     f'{tmp2:18}  '
                     f'[{len(context_stack):3}]'
                     f'| {raw[:30]}')
         else:
             print(f'{" "* 4}...{level}  '
-                    # f'{tmp:18}{" "*20}'
-                    f'{tmp:25} '
+                    f'{tmp:28} '
                     f'{"@" + cl.parent:18}  '
                     f' |')
 
@@ -401,8 +428,8 @@ if __name__ == "__main__":
     context_stack = []
     body = ""
     # prev_pass_level = 0
-    cl = Line("",-1,"blank","","")
-    pl = Line("",-1,"blank","","")
+    cl = Line("",-1,"blank","","","")
+    pl = Line("",-1,"blank","","","")
 
     with open(in_file, 'r') as f:
         for line_no, raw in enumerate(f):
@@ -415,8 +442,9 @@ if __name__ == "__main__":
             pl.subtype = cl.subtype
             pl.level = cl.level
             pl.parent = cl.parent
+            pl.hint = cl.hint
             parent = ""
-            cl = Line(raw,level,"unprocessed","",parent)
+            cl = Line(raw,level,"unprocessed","",parent,"")
             
             while cl.type in ("unprocessed","blockquote","indent"):
                 # cl.parent = parent
