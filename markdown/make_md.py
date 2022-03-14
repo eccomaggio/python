@@ -289,10 +289,10 @@ def parse_openers(cl,pl,cs):
         if context(cs) != "codeblock":
         # if pl.type == "blank":
             cl.subtype = "start"
-            cs.append(cl.type)
+            # cs.append(cl.type)
         else:
             cl.subtype = "end"
-            context_stack.pop()
+            # cs.pop()
     
     elif context(cs) == "codeblock":
             cl.type = "code"
@@ -303,13 +303,13 @@ def parse_openers(cl,pl,cs):
             and pl.subtype not in ("list:ul","list:ol","blockquote")):
         cl.type = "code2"
         cl.subtype = "start"
-        cs.append("code2")
+        # cs.append("code2")
     elif cl.type == "??" and context(cs) == "code2" and cl.level == pl.level:
         cl.type = "code2"
         cl.subtype = "cont"
     elif cl.type == "blank" and context(cs) == "code2":
         cl.subtype = "code:end"
-        cs.pop()
+        # cs.pop()
 
 
     elif cl.type == "blank":
@@ -326,10 +326,10 @@ def parse_openers(cl,pl,cs):
         if context(cs) == cl.type:
             if cl.level > embed_level:
                 cl.subtype = "embed:start"
-                cs.append(cl.type)
+                # cs.append(cl.type)
             elif cl.level < embed_level:
                 cl.subtype = "embed:end"
-                cs.pop()
+                # cs.pop()
             ## This catches 'lazy blockquotes' w/o indented paras
             ## Simply restarts the blockquote so no need to reset stack
             elif pl.type == "blank":
@@ -338,7 +338,7 @@ def parse_openers(cl,pl,cs):
                 cl.subtype = "cont"
         else:
             cl.subtype = "start"
-            cs.append(cl.type)
+            # cs.append(cl.type)
             
     elif (cl.type[:4] == "list"):
         both_lists = cl.type[:4] == pl.type[:4]
@@ -352,10 +352,11 @@ def parse_openers(cl,pl,cs):
         else:
             if (not same_type or (same_type and prev_lower)):
                 cl.subtype = "start"
-                cs.append(cl.type)
+                # cs.append(cl.type)
             elif (prev_higher):
-                cl.subtype = f"li-end:embed-{cl.type[5:]}"
-                cs.append(cl.type)
+                # cl.subtype = f"li-end:embed-{cl.type[5:]}"
+                cl.subtype = f"embed-{cl.type}:start"
+                # cs.append(cl.type)
             else:
                 cl.subtype = "li-start"
         
@@ -363,27 +364,51 @@ def parse_openers(cl,pl,cs):
         cl.type = "p"
         cl.subtype = "cont"
 
-    elif pl.type == "blank" and cl.type == "??":
-        cl.type = "p"
-        cl.subtype = "start"
-        # cs.append(cl.type)
-        
-    elif cl.type[:4] == "list":
-        if pl.type == "blank":
-            cl.subtype = "start"
-            cs.append(cl.type)
-            ## etc.
-
-    return(cl.type,cl.subtype,cs)
-
-
-def parse_closers(cl,pl,cs):
     if cl.type == "blank":
         if context(cs) == "blockquote":
             cl.subtype = "blockquote:end"
             cs.pop()
         elif cl.subtype[:4] == "list":
             cl.hint = f"{cl.subtype[5:]}:close-list-if-no-blockquote"
+        elif cl.type == "??":
+            cl.type = "p"
+            cl.subtype = "start"
+            
+        
+    elif cl.type[:4] == "list":
+        if pl.type == "blank":
+            cl.subtype = "start"
+            # cs.append(cl.type)
+            ## etc.
+
+    return(cl.type,cl.subtype,cs)
+
+
+
+def update_context(cl,pl,cs):
+    if cl.type in ("codeblock", "code2", "details", "blockquote", "list:ul", "list:ol", "p"):
+        ## to catch both ‘start/end’ and ‘embed:start/end"
+        if cl.subtype[-5:] == "start":
+            cs.append(cl.type)
+        elif cl.subtype[-3:] == "end":
+            cs.pop()
+
+    if cl.type == "blank":
+        if cl.subtype == "code:end":
+            cs.pop()
+
+    # return(cl,pl,cs)
+    return(cl.type,cl.subtype,cs)
+
+
+
+# def parse_closers(cl,pl,cs):
+    # if cl.type == "blank":
+    #     if context(cs) == "blockquote":
+    #         cl.subtype = "blockquote:end"
+    #         cs.pop()
+    #     elif cl.subtype[:4] == "list":
+    #         cl.hint = f"{cl.subtype[5:]}:close-list-if-no-blockquote"
 
 
     return(cl.type,cl.subtype,cs)
@@ -472,7 +497,8 @@ if __name__ == "__main__":
                     # if cl.type == "code2":
                     #     cl.type = "code"
 
-                    cl.type,cl.subtype,context_stack = parse_closers(cl,pl,context_stack)
+                    # cl.type,cl.subtype,context_stack = parse_closers(cl,pl,context_stack)
+                    cl.type,cl.subtype,context_stack = update_context(cl,pl,context_stack)
 
                 pretty_debug()
 
