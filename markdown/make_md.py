@@ -10,11 +10,16 @@ I added in super limited support for details>summary:
     >-
 
 Notes to self:
-    l.79: code2 overgeneralizing :() -- FIXED
-    fixed (maybe...) blockquotes and embedding
-    multi-line li lists don't parse. Need to look at the context, not the pl :( 
-    l.227 embedded code isn't recognized as there is no standard tab size -- FIXED
-    lists with multi-line paras still a problem :(
+    + l.79: code2 overgeneralizing :() -- FIXED
+    + fixed (maybe...) blockquotes and embedding
+    + multi-line li lists don't parse. Need to look at the context, not the pl :( 
+    + l.227 embedded code isn't recognized as there is no standard tab size -- FIXED
+    + lists with multi-line paras still a problem -- tentatively fixed
+    + CONTEXT_STACK seems to be behaving
+    - l.218 space before blockquote = problem: for every blank, need to add effect in 'hint'
+    - non-backtick-delimited codeblocks still a pain (incorporate levels)
+    - lists embedded in blockquotes a problem (e.g. l.111)
+    - build code output based on subtypes
 
 """
 
@@ -51,7 +56,6 @@ def init_regex_tools():
     return r1
 
 
-
 def init_inline_styles():
     ## regex to add inline styling
     r = OrderedDict()
@@ -71,7 +75,6 @@ def init_inline_styles():
     r['nbsp'] = (re.compile('\s\s\s*$'),r'&nbsp;')
 
     return r
-
 
 
 def init_html_outline():
@@ -135,7 +138,6 @@ def prep_files():
     return (in_file,out_file,title)
 
 
-
 def is_embedded(taglist,the_list, result=[], count=0):
     '''Returns list of all matching tags + their pos: [[<tag>,pos],...]'''
     # print(f"<debug> {count}: {the_list}")
@@ -153,6 +155,7 @@ def is_embedded(taglist,the_list, result=[], count=0):
                     break
         is_embedded(taglist,the_list[:pos],result,count + 1)
     return result
+
 
 def close_tags_to(tag, list):
     tmp = []
@@ -172,7 +175,6 @@ def inline_markup(r,line):
     for i in r:
         line = r[i][0].sub(r[i][1],line)
     return line
-
 
 
 def subCode(line):
@@ -197,9 +199,10 @@ def subCode(line):
     return out
 
 
-
 def context(context_stack):
     return context_stack[-1].split(":")[0] if context_stack else ""
+
+
 
 
 
@@ -259,7 +262,7 @@ def parse_triggers(line):
         elif line[0] == ">":
             line_type = "blockquote"
             # line = line[1:].lstrip()
-            line = line[1:]
+            line = line[2:]
 
         ## lists (li): bullets (ul) & ol
         elif line[:2] in ("+ ", "- ", "* "):
@@ -279,11 +282,11 @@ def parse_triggers(line):
 
 
 def parse_openers(cl,pl,cs):
-    if cl.type != "blockquote" and pl.hint:
-        ## shouldn't need this next check: shows summat's  wrong with the stack
-        if context(cs)[:4] == "list":
-            cs.pop()
-        ## add </li></{pl.hint[:2]}> to pre-line html string
+    # if cl.type != "blockquote" and pl.hint:
+    #     ## shouldn't need this next check: shows summat's  wrong with the stack
+    #     if context(cs)[:4] == "list":
+    #         cs.pop()
+    #     ## add </li></{pl.hint[:2]}> to pre-line html string
 
     if cl.type == "codeblock":
         if context(cs) != "codeblock":
@@ -323,7 +326,11 @@ def parse_openers(cl,pl,cs):
             print(f"@@@@@@@@@@@@@@@@@@@@ DO NOT CLOSE LIST!!!")
             print(f"{pl.hint}")
             
-        if context(cs) == cl.type:
+        if pl.parent == "blockquote" and (cl.level > pl.level):
+            print(f">>>>>>>> start embedded blockquote???")
+            # cl.subtype = "cont"
+            cl.subtype = "embed:start"
+        elif context(cs) == cl.type:
             if cl.level > embed_level:
                 cl.subtype = "embed:start"
                 # cs.append(cl.type)
@@ -346,23 +353,36 @@ def parse_openers(cl,pl,cs):
         prev_higher = pl.level > cl.level
         prev_lower = pl.level < cl.level
         same_level = pl.level == cl.level
-        if (pl.type[:4] != "list"):
-            cl.subtype = "start"
-            print(f"++++++++++++++++++++++{is_embedded(cl.type,cs)}")
+        # if (pl.type[:4] != "list"):
+        if not both_lists:
+            # print(f">>>>>>>>  embedded list{len(is_embedded(cl.type,cs))}-{pl.type == 'p'}")
+            if pl.type == "p":
+                cl.subtype = "new-li"
+            else:
+                cl.subtype = "1:start"
+            # print(f">>>>>>>> ")
         else:
-            if (not same_type or (same_type and prev_lower)):
-                cl.subtype = "start"
+            # if (not same_type or (same_type and prev_lower)):
+            if prev_lower:
+                cl.subtype = "embed:start"
                 # cs.append(cl.type)
-            elif (prev_higher):
+            elif prev_higher:
                 # cl.subtype = f"li-end:embed-{cl.type[5:]}"
-                cl.subtype = f"embed-{cl.type}:start"
+                cl.subtype = "embed:end"
                 # cs.append(cl.type)
             else:
-                cl.subtype = "li-start"
+                if same_type:
+                    cl.subtype = "new-li"
+                else:
+                    cl.subtype = "2:start"
         
-    elif cl.type == "??" and pl.type in ("??","list:ol", "list:ul", "blockquote", "p", "empty"):
-        cl.type = "p"
-        cl.subtype = "cont"
+    elif cl.type == "??":
+        if pl.type in ("??","list:ol", "list:ul", "blockquote", "p", "empty"):
+            cl.type = "p"
+            cl.subtype = "cont"
+        else:
+            cl.type = "p"
+            cl.subtype = "start"
 
     if cl.type == "blank":
         if context(cs) == "blockquote":
@@ -373,11 +393,13 @@ def parse_openers(cl,pl,cs):
         elif cl.type == "??":
             cl.type = "p"
             cl.subtype = "start"
+        elif cl.subtype == "p":
+            cl.subtype = "end-p"
             
         
-    elif cl.type[:4] == "list":
-        if pl.type == "blank":
-            cl.subtype = "start"
+    # elif cl.type[:4] == "list":
+    #     if pl.type == "blank":
+    #         cl.subtype = "start"
             # cs.append(cl.type)
             ## etc.
 
@@ -386,7 +408,17 @@ def parse_openers(cl,pl,cs):
 
 
 def update_context(cl,pl,cs):
-    if cl.type in ("codeblock", "code2", "details", "blockquote", "list:ul", "list:ol", "p"):
+    if cl.hint and cl.type == "blank" and cl.subtype != "blockquote":
+        ## shouldn't need this next check: shows summat's  wrong with the stack
+        if context(cs)[:4] == "list":
+            cl.subtype += ":end"
+            cl.hint = ""
+            # cs.pop()
+            cs.clear()
+            print(f"popped {cs}")
+        ## add </li></{pl.hint[:2]}> to pre-line html string
+
+    if cl.type in ("codeblock", "code2", "details", "blockquote", "list:ul", "list:ol"):
         ## to catch both ‘start/end’ and ‘embed:start/end"
         if cl.subtype[-5:] == "start":
             cs.append(cl.type)
@@ -396,9 +428,13 @@ def update_context(cl,pl,cs):
     if cl.type == "blank":
         if cl.subtype == "code:end":
             cs.pop()
+        elif cl.type in ("list:ul","list:ol"):
+            cs.pop()
+        elif context(cs)[:4] == "list":
+            cs.pop()
 
     # return(cl,pl,cs)
-    return(cl.type,cl.subtype,cs)
+    return(cl.type,cl.subtype,cl.hint,cs)
 
 
 
@@ -417,22 +453,26 @@ def update_context(cl,pl,cs):
 def pretty_debug():
     if cl.type == "blank":
         print(f'{"="*10}BLANK'
-                f'{" (" + cl.subtype + ", " + str(cl.level) + ", " + cl.hint + ")":45}'
+                f'{" (" + cl.subtype + ", " + str(cl.level) + ", " + cl.hint + ")":55}'
                 f'.')
     else:
+        # tmp = f"{cl.type + '*' + cl.subtype} prnt={cl.parent}"
         tmp = f"{cl.type + '*' + cl.subtype}"
-        tmp2 = f'<{pl.level}, {pl.type}> {cl.level == pl.level}'
+        tmp2 = f'pl={pl.type}_{pl.level}, pt={pl.parent}'
         if level == 0:
             print(f'l.{line_no:4}:{level}  '
-                    f'{tmp:24} '
-                    f'{tmp2:18}  '
-                    f'[{len(context_stack):3}]'
+                    f'{tmp:29} '
+                    # f'{tmp2:24}  '
+                    f'{str(context_stack):24}  '
+                    f'[{len(context_stack):2}]'
                     f'| {raw[:30]}')
         else:
             print(f'{" "* 4}...{level}  '
-                    f'{tmp:28} '
-                    f'{"@" + cl.parent:18}  '
+                    f'{tmp:26} '
+                    # f'{"...prnt=" + cl.parent:30}  '
+                    f'{"":30}  '
                     f' |')
+                    # f' | {cl.text[:30]}')
 
 
 
@@ -492,13 +532,13 @@ if __name__ == "__main__":
                     ## contents will be parsed on the next pass
                     pass
                 else:
+                    pass
                     cl.type, cl.subtype,context_stack = parse_openers(cl,pl,context_stack)
                     ## normalize both forms of codeblock
                     # if cl.type == "code2":
                     #     cl.type = "code"
 
-                    # cl.type,cl.subtype,context_stack = parse_closers(cl,pl,context_stack)
-                    cl.type,cl.subtype,context_stack = update_context(cl,pl,context_stack)
+                    cl.type,cl.subtype,cl.hint,context_stack = update_context(cl,pl,context_stack)
 
                 pretty_debug()
 
