@@ -20,6 +20,7 @@ Notes to self:
     - non-backtick-delimited codeblocks still a pain (incorporate levels)
     - lists embedded in blockquotes a problem (e.g. l.111)
     - build code output based on subtypes
+    - CLOSE LISTS with BLANK
 
 """
 
@@ -78,9 +79,7 @@ def init_inline_styles():
 
 
 def init_html_outline():
-    return( "markdown", 
-    "<p>No content</p>", 
-    f"""
+    html_head = f"""
 <!doctype html>
 <html>
 <head>
@@ -108,11 +107,14 @@ def init_html_outline():
 </head>
 <body>
 <article class="markdown-body">
-{body}
+"""
+
+    html_tail = f"""
 </article>
 </body>
-""")
 
+"""
+    return (html_head,html_tail)
 
 def prep_files():
     try:
@@ -290,12 +292,9 @@ def parse_openers(cl,pl,cs):
 
     if cl.type == "codeblock":
         if context(cs) != "codeblock":
-        # if pl.type == "blank":
             cl.subtype = "start"
-            # cs.append(cl.type)
         else:
             cl.subtype = "end"
-            # cs.pop()
     
     elif context(cs) == "codeblock":
             cl.type = "code"
@@ -306,37 +305,31 @@ def parse_openers(cl,pl,cs):
             and pl.subtype not in ("list:ul","list:ol","blockquote")):
         cl.type = "code2"
         cl.subtype = "start"
-        # cs.append("code2")
     elif cl.type == "??" and context(cs) == "code2" and cl.level == pl.level:
         cl.type = "code2"
         cl.subtype = "cont"
     elif cl.type == "blank" and context(cs) == "code2":
         cl.subtype = "code:end"
-        # cs.pop()
 
 
-    elif cl.type == "blank":
-        cl.subtype = pl.type
-        cl.level = pl.level
+    elif cl.type == "hr" and pl.type == "p":
+        cl.subtype = "end:p"
 
-    elif (cl.type in ("details","blockquote")):
+    elif cl.type in ("details","blockquote"):
         embedding = is_embedded(cl.type,cs)
         embed_level = (len(embedding) - 1)
-        if pl.hint:
-            print(f"@@@@@@@@@@@@@@@@@@@@ DO NOT CLOSE LIST!!!")
-            print(f"{pl.hint}")
+        # if pl.hint:
+            # print(f"@@@@@@@@@@@@@@@@@@@@ DO NOT CLOSE LIST!!!")
+            # print(f"{pl.hint}")
             
         if pl.parent == "blockquote" and (cl.level > pl.level):
-            print(f">>>>>>>> start embedded blockquote???")
-            # cl.subtype = "cont"
+            # print(f">>>>>>>> start embedded blockquote???")
             cl.subtype = "embed:start"
         elif context(cs) == cl.type:
             if cl.level > embed_level:
                 cl.subtype = "embed:start"
-                # cs.append(cl.type)
             elif cl.level < embed_level:
                 cl.subtype = "embed:end"
-                # cs.pop()
             ## This catches 'lazy blockquotes' w/o indented paras
             ## Simply restarts the blockquote so no need to reset stack
             elif pl.type == "blank":
@@ -345,36 +338,32 @@ def parse_openers(cl,pl,cs):
                 cl.subtype = "cont"
         else:
             cl.subtype = "start"
-            # cs.append(cl.type)
             
-    elif (cl.type[:4] == "list"):
+    elif cl.type in ("list:ol", "list:ul"):
         both_lists = cl.type[:4] == pl.type[:4]
         same_type = cl.type == pl.type
         prev_higher = pl.level > cl.level
         prev_lower = pl.level < cl.level
         same_level = pl.level == cl.level
-        # if (pl.type[:4] != "list"):
         if not both_lists:
             # print(f">>>>>>>>  embedded list{len(is_embedded(cl.type,cs))}-{pl.type == 'p'}")
             if pl.type == "p":
-                cl.subtype = "new-li"
+                cl.subtype = "new:li"
             else:
-                cl.subtype = "1:start"
-            # print(f">>>>>>>> ")
+                # cl.subtype = "1:start"
+                cl.subtype = "start"
         else:
             # if (not same_type or (same_type and prev_lower)):
             if prev_lower:
                 cl.subtype = "embed:start"
-                # cs.append(cl.type)
             elif prev_higher:
-                # cl.subtype = f"li-end:embed-{cl.type[5:]}"
                 cl.subtype = "embed:end"
-                # cs.append(cl.type)
             else:
                 if same_type:
-                    cl.subtype = "new-li"
+                    cl.subtype = "new:li"
                 else:
-                    cl.subtype = "2:start"
+                    # cl.subtype = "2:start"
+                    cl.subtype = "start"
         
     elif cl.type == "??":
         if pl.type in ("??","list:ol", "list:ul", "blockquote", "p", "empty"):
@@ -383,18 +372,29 @@ def parse_openers(cl,pl,cs):
         else:
             cl.type = "p"
             cl.subtype = "start"
+        
+    elif cl.type == "empty" and context(cs) == "blockquote":
+        cl.subtype = "end-p:open-p"
 
-    if cl.type == "blank":
+    elif cl.type == "blank":
+        cl.subtype = pl.type
         if context(cs) == "blockquote":
             cl.subtype = "blockquote:end"
             cs.pop()
-        elif cl.subtype[:4] == "list":
-            cl.hint = f"{cl.subtype[5:]}:close-list-if-no-blockquote"
-        elif cl.type == "??":
-            cl.type = "p"
-            cl.subtype = "start"
+        # elif cl.subtype in ("list:ol", "list:ul"):
+        elif (context(cs) in ("list:ol", "list:ul")
+                or cl.subtype in ("list:ol", "list:ul")):
+            cl.subtype = f"{cl.subtype}:end"
+            cl.hint = "ignore_if_blockquote_follows"
+        # elif cl.type == "??":
+        #     cl.type = "p"
+        #     cl.subtype = "start"
         elif cl.subtype == "p":
-            cl.subtype = "end-p"
+            cl.subtype = "end:p"
+        else:
+            cl.subtype = pl.type
+            cl.level = pl.level
+
             
         
     # elif cl.type[:4] == "list":
@@ -408,15 +408,17 @@ def parse_openers(cl,pl,cs):
 
 
 def update_context(cl,pl,cs):
-    if cl.hint and cl.type == "blank" and cl.subtype != "blockquote":
-        ## shouldn't need this next check: shows summat's  wrong with the stack
-        if context(cs)[:4] == "list":
-            cl.subtype += ":end"
-            cl.hint = ""
-            # cs.pop()
-            cs.clear()
-            print(f"popped {cs}")
-        ## add </li></{pl.hint[:2]}> to pre-line html string
+    if cl.hint:
+        if cl.type == "blank" and cl.subtype != "blockquote":
+            ## shouldn't need this next check: shows summat's  wrong with the stack
+            if context(cs)[:4] == "list":
+                # cl.subtype += ":*end"
+                cl.subtype = "all:end"
+                cl.hint = ""
+                # cs.pop()
+                cs.clear()
+                # print(f"popped {cs}")
+            ## add </li></{pl.hint[:2]}> to pre-line html string
 
     if cl.type in ("codeblock", "code2", "details", "blockquote", "list:ul", "list:ol"):
         ## to catch both ‘start/end’ and ‘embed:start/end"
@@ -430,30 +432,106 @@ def update_context(cl,pl,cs):
             cs.pop()
         elif cl.type in ("list:ul","list:ol"):
             cs.pop()
-        elif context(cs)[:4] == "list":
+        elif context(cs) in ("list:ul","list:ol"):
             cs.pop()
+        # if cl.subtype[0] == "_":
+        #     cl.subtype = cl.subtype[1:]
+        # else:
+        #     cl.subtype = ""
 
     # return(cl,pl,cs)
     return(cl.type,cl.subtype,cl.hint,cs)
 
 
 
-# def parse_closers(cl,pl,cs):
-    # if cl.type == "blank":
-    #     if context(cs) == "blockquote":
-    #         cl.subtype = "blockquote:end"
-    #         cs.pop()
-    #     elif cl.subtype[:4] == "list":
-    #         cl.hint = f"{cl.subtype[5:]}:close-list-if-no-blockquote"
+def build_html(cl):
+    head = tail = ""
+    tag = cl.type
+    type = cl.type
+    if type[:4] == "list":
+        type = "list"
+        tag = tag[5:]
+    elif type[0] == "h":
+        type = "heading"
+    elif type[:4] == "code":
+        type = tag = "codeblock"
 
+    match (type,cl.subtype):
+        case ("p","start"):
+            head = "<p>"
+        case ("p", "cont"):
+            pass
+        case("blank", "end:p"):
+            head = "</p>" + EOL
+        case ("empty", "p"):        ## l.114
+            pass
+        case ("empty","end-p:open-p"):
+            head = "</p>" + EOL + "<p>"
 
-    return(cl.type,cl.subtype,cs)
+        case ("heading",_):
+            head = f"<{tag}>"
+            tail = f"</{tag}>"
+
+        case ("hr", "end:p"):
+            head = "</p>" + EOL + "<hr>"
+        case ("hr",_):
+            head = "<hr>"
+        
+        case ("blockquote","start"):
+            head = "<blockquote><p>"
+        case ("blockquote","embed:start"):
+            head = "</p><blockquote><p>"
+        case ("blockquote","cont"):
+            pass
+        case ("blockquote","embed:end") \
+            | ("blockquote","end") \
+            | ("blank", "blockquote:end"):
+            head = "</p></blockquote>"
+        # case ("blockquote",""):
+            
+        case ("codeblock", "start"):
+            head = "<pre><code>"
+        case ("codeblock", "cont"):
+            pass
+        case ("codeblock", "end") | ("blank","code:end"):
+            tail = "</code></pre>"
+
+        case ("list","start"):
+            pass
+        case ("list","embed:start"):
+            pass
+        case ("list","new:li"):
+            pass
+        case ("list","embed:end"):
+            pass
+        case ("list","end"):
+            pass
+        case ("empty", "list"):     ## l.112
+            pass
+        case ("blank","all:end"):
+            pass
+        
+        # case ():
+        # case ():
+        # case ():
+
+        case ("blank",_):
+            pass
+        case _:
+            print(f"Ooooops! This slipped through: ({type,cl.subtype})")
+    
+    return (head,tail)
+    
+
 
 
 def pretty_debug():
     if cl.type == "blank":
-        print(f'{"="*10}BLANK'
-                f'{" (" + cl.subtype + ", " + str(cl.level) + ", " + cl.hint + ")":55}'
+        print(f'{"="*10} BLANK *{cl.subtype}, {cl.level}'
+                f'{str(context_stack):24}  '
+                # f'{" (" + cl.subtype + ", " + str(cl.level) + ", " + cl.hint + ")":55}'
+                # f'{" (" + cl.subtype + ", " + str(cl.level) + ", " + cl.hint + ")":25}'
+                f'{" (" + cl.hint + ")":25}'
                 f'.')
     else:
         # tmp = f"{cl.type + '*' + cl.subtype} prnt={cl.parent}"
@@ -487,6 +565,7 @@ if __name__ == "__main__":
     id_count = 0
     r = init_inline_styles()
     r1 = init_regex_tools()
+    html_head,html_tail = init_html_outline()
 
 
     tab_size = 4
@@ -496,7 +575,9 @@ if __name__ == "__main__":
     cl = Line("",-1,"blank","","","")
     pl = Line("",-1,"blank","","","")
 
-    with open(in_file, 'r') as f:
+    with open(in_file, 'r') as f, \
+            open(out_file,'w') as o:
+        o.write(html_head)
         for line_no, raw in enumerate(f):
             # if line_no < 72 or line_no > 120:
             #     continue
@@ -539,6 +620,10 @@ if __name__ == "__main__":
                     #     cl.type = "code"
 
                     cl.type,cl.subtype,cl.hint,context_stack = update_context(cl,pl,context_stack)
+                    head,tail = build_html(cl)
+                    line = head + inline_markup(r,cl.text) + tail + EOL
+                    # body += (line + EOL)
+                    o.write(f"        {line}")
 
                 pretty_debug()
 
@@ -546,10 +631,13 @@ if __name__ == "__main__":
                 parent = cl.type
                 level += 1
 
+        o.write(html_tail)
+
 
     # with open(out_file, 'w') as f:
         # f.write(html_head + output + html_tail)
         # f.write(body)
 
+    print()
     print(headings)
 
