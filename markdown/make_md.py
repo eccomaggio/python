@@ -160,6 +160,12 @@ def is_embedded(taglist,the_list, result=[], count=0):
 
 
 def close_tags_to(tag, list):
+    ## returns nothing if tag is empty | not in list
+    ## returns all tags (in reverse order)  up to tag (inclusive)
+    ## returns entire list in reverse order if tag == "all"
+    if tag == "all":
+        tag = list[0]
+        print(tag)
     tmp = []
     try:
         list.index(tag)
@@ -444,7 +450,7 @@ def update_context(cl,pl,cs):
 
 
 
-def build_html(cl):
+def build_html(cl,cs):
     head = tail = ""
     tag = cl.type
     type = cl.type
@@ -497,19 +503,23 @@ def build_html(cl):
             tail = "</code></pre>"
 
         case ("list","start"):
-            pass
+            head = f"<{tag}><li><p>"
         case ("list","embed:start"):
-            pass
+            head = f"</p></li><{tag}><li><p>"
         case ("list","new:li"):
-            pass
+            head = "</p></li>" + EOL + "<li><p>"
         case ("list","embed:end"):
-            pass
+            head = f"</p></li></{tag}>" + EOL + f"<li><p>"
         case ("list","end"):
-            pass
+            head = f"</p></li></{tag}>"
         case ("empty", "list"):     ## l.112
             pass
         case ("blank","all:end"):
-            pass
+            if cs:
+                tmp = []
+                for tag in close_tags_to("all",cs):
+                    tmp.append(f"</{tag}>")
+                head = "".join(tmp)
         
         # case ():
         # case ():
@@ -620,7 +630,7 @@ if __name__ == "__main__":
                     #     cl.type = "code"
 
                     cl.type,cl.subtype,cl.hint,context_stack = update_context(cl,pl,context_stack)
-                    head,tail = build_html(cl)
+                    head,tail = build_html(cl,context_stack)
                     line = head + inline_markup(r,cl.text) + tail + EOL
                     # body += (line + EOL)
                     o.write(f"        {line}")

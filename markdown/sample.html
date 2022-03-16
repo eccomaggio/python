@@ -28,25 +28,28 @@
 <article class="markdown-body">
         <h1> Markdown: Syntax</h1>
          
-           <a href="#overview">Overview</a>
-           <a href="#philosophy">Philosophy</a>
-           <a href="#html">Inline HTML</a>
-           <a href="#autoescape">Automatic Escaping for Special Characters</a>
-           <a href="#block">Block Elements</a>
-           <a href="#p">Paragraphs and Line Breaks</a>
-           <a href="#header">Headers</a>
-           <a href="#blockquote">Blockquotes</a>
-           <a href="#list">Lists</a>
-           <a href="#precode">Code Blocks</a>
-           <a href="#hr">Horizontal Rules</a>
-           <a href="#span">Span Elements</a>
-           <a href="#link">Links</a>
-           <a href="#em">Emphasis</a>
-           <a href="#code">Code</a>
-           <a href="#img">Images</a>
-           <a href="#misc">Miscellaneous</a>
-           <a href="#backslash">Backslash Escapes</a>
-           <a href="#autolink">Automatic Links</a>
+        <ul><li><p>   <a href="#overview">Overview</a>
+        </p></li><ul><li><p>   <a href="#philosophy">Philosophy</a>
+        </p></li><li><p>   <a href="#html">Inline HTML</a>
+        </p></li><li><p>   <a href="#autoescape">Automatic Escaping for Special Characters</a>
+        </p></li></ul>
+<li><p>   <a href="#block">Block Elements</a>
+        </p></li><ul><li><p>   <a href="#p">Paragraphs and Line Breaks</a>
+        </p></li><li><p>   <a href="#header">Headers</a>
+        </p></li><li><p>   <a href="#blockquote">Blockquotes</a>
+        </p></li><li><p>   <a href="#list">Lists</a>
+        </p></li><li><p>   <a href="#precode">Code Blocks</a>
+        </p></li><li><p>   <a href="#hr">Horizontal Rules</a>
+        </p></li></ul>
+<li><p>   <a href="#span">Span Elements</a>
+        </p></li><ul><li><p>   <a href="#link">Links</a>
+        </p></li><li><p>   <a href="#em">Emphasis</a>
+        </p></li><li><p>   <a href="#code">Code</a>
+        </p></li><li><p>   <a href="#img">Images</a>
+        </p></li></ul>
+<li><p>   <a href="#misc">Miscellaneous</a>
+        </p></li><ul><li><p>   <a href="#backslash">Backslash Escapes</a>
+        </p></li><li><p>   <a href="#autolink">Automatic Links</a>
          
          
         <p> <strong>Note:</strong> This document is itself written using Markdown; you
@@ -169,9 +172,9 @@
         </p>
 <p> 
          1.   This is the first list item.
-           This is the first list item.
+        <ol><li><p>   This is the first list item.
         <blockquote><p> 2.   This is the second list item.
-           This is the second list item.
+        </p></li><li><p>   This is the second list item.
         </p></blockquote> 
          
         <blockquote><p> Here's some example code:
@@ -196,30 +199,30 @@
          -- as list markers:
         </p>
  
-            Red
-            Green
-            Blue
+        <ul><li><p>    Red
+        </p></li><li><p>    Green
+        </p></li><li><p>    Blue
          
         <p> is equivalent to:
         </p>
  
-            Red
-            Green
-            Blue
+        <ul><li><p>    Red
+        </p></li><li><p>    Green
+        </p></li><li><p>    Blue
          
         <p> and:
         </p>
  
-            Red
-            Green
-            Blue
+        <ul><li><p>    Red
+        </p></li><li><p>    Green
+        </p></li><li><p>    Blue
          
         <p> Ordered lists use numbers followed by periods:
         </p>
  
-          Bird
-          McHale
-          Parish
+        <ol><li><p>  Bird
+        </p></li><li><p>  McHale
+        </p></li><li><p>  Parish
          
         <p> It's important to note that the actual numbers you use to mark the
          list have no effect on the HTML output Markdown produces. The HTML
@@ -229,16 +232,16 @@
         <p> If you instead wrote the list in Markdown like this:
         </p>
  
-          Bird
-          McHale
-          Parish
+        <ol><li><p>  Bird
+        </p></li><li><p>  McHale
+        </p></li><li><p>  Parish
          
         <p> or even:
         </p>
  
-         Bird
-         McHale
-         Parish
+        <ol><li><p> Bird
+        </p></li><li><p> McHale
+        </p></li><li><p> Parish
          
         <p> you'd get the exact same HTML output. The point is, if you want to,
          you can use ordinal numbers in your ordered Markdown lists, so that
@@ -249,20 +252,20 @@
         <p> To make lists look nice, you can wrap items with hanging indents:
         </p>
  
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+        <ul><li><p>    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
          Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi,
          viverra nec, fringilla in, laoreet vitae, risus.
-            Donec sit amet nisl. Aliquam semper ipsum sit amet velit.
+        </p></li><li><p>    Donec sit amet nisl. Aliquam semper ipsum sit amet velit.
          Suspendisse id sem consectetuer libero luctus adipiscing.
         </p>
  
         <p> But if you want to be lazy, you don't have to:
         </p>
  
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+        <ul><li><p>    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
          Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi,
          viverra nec, fringilla in, laoreet vitae, risus.
-            Donec sit amet nisl. Aliquam semper ipsum sit amet velit.
+        </p></li><li><p>    Donec sit amet nisl. Aliquam semper ipsum sit amet velit.
          Suspendisse id sem consectetuer libero luctus adipiscing.
         </p>
  
@@ -271,7 +274,7 @@
          or one tab:
         </p>
  
-          This is a list item with two paragraphs. Lorem ipsum dolor
+        <ol><li><p>  This is a list item with two paragraphs. Lorem ipsum dolor
          sit amet, consectetuer adipiscing elit. Aliquam hendrerit
          mi posuere lectus.
         </p>
@@ -280,26 +283,26 @@
          vitae, risus. Donec sit amet nisl. Aliquam semper ipsum
          sit amet velit.
          </code></pre>
-          Suspendisse id sem consectetuer libero luctus adipiscing.
+        <ol><li><p>  Suspendisse id sem consectetuer libero luctus adipiscing.
          
         <p> It looks nice if you indent every line of the subsequent
          paragraphs, but here again, Markdown will allow you to be
          lazy:
         </p>
  
-            This is a list item with two paragraphs.
+        <ul><li><p>    This is a list item with two paragraphs.
          
         <pre><code> This is the second paragraph in the list item. You're
         <p> only required to indent the first line. Lorem ipsum dolor
          sit amet, consectetuer adipiscing elit.
          </code></pre>
-            Another item in the same list.
+        <ul><li><p>    Another item in the same list.
          
         <p> To put a blockquote within a list item, the blockquote's <code>&amp;gt;</code>
          delimiters need to be indented:
         </p>
  
-            A list item with a blockquote:
+        <ul><li><p>    A list item with a blockquote:
          
         <blockquote><p> This is a blockquote
         <p> This is a blockquote
@@ -309,7 +312,7 @@
         <p> To put a code block within a list item, the code block needs
          to be indented <em>twice</em> -- 8 spaces or two tabs:
         </p></blockquote> 
-            A list item with a code block:
+        <ul><li><p>    A list item with a code block:
          
         <pre><code> &amp;lt;code goes here&amp;gt;
          </code></pre>
