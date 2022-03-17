@@ -637,6 +637,22 @@
   margin-bottom: 16px;
 }
 
+/* added by p.wakelin march 2022 */
+/* .markdown-body li p:first-of-type { */
+.markdown-body li p:nth-child(1) {
+    margin-top: 0;
+    margin-bottom: 0;
+    /* background: red; */
+}
+
+.markdown-body ul + p, 
+.markdown-body ol + p,
+.markdown-body ul + pre, 
+.markdown-body ol + pre {
+    margin-top: 16px;
+    /* background: red; */
+}
+
 .markdown-body blockquote>:first-child {
   margin-top: 0;
 }
