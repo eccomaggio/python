@@ -9,6 +9,11 @@ code blocks must be delimited with three backticks on a sep line
 I added in super limited support for details>summary:
     >-
 
+!!URGENT l.423 solve problem with hint string & context & timing!!!
+Problem is from l.410 to the end:
+    the context is lost before the tags are closed
+    Bad design decision to treat embeddings as sep lines: rethink?? (or check use of .parent)
+
 Notes to self:
     + l.79: code2 overgeneralizing :() -- FIXED
     + fixed (maybe...) blockquotes and embedding
@@ -225,7 +230,12 @@ def context(context_stack):
     return context_stack[-1].split(":")[0] if context_stack else ""
 
 
-
+def debug(level,msg):
+    # if level in ():
+    if level < 0:
+        pass
+    else:
+        print(msg)
 
 
 def parse_triggers(line,in_codeblock):
@@ -402,16 +412,25 @@ def parse_openers(cl,pl,cs):
 
     elif cl.type == "blank":
         cl.subtype = pl.type
-        if context(cs) == "blockquote":
+        # in_context = context(cs) if cs else ""
+        if cs:
+            in_context = context(cs)
+        elif cl.subtype in ("ol","ul"):
+            in_context = cl.subtype
+        else:
+            in_context = ""
+
+        if in_context == "blockquote":
             cl.subtype = "blockquote:end"
             cs.pop()
-        elif (context(cs) in ("ol", "ul")
-                or cl.subtype in ("ol", "ul")):
+        # elif (in_context in ("ol", "ul")
+        #         or cl.subtype in ("ol", "ul")):
+        elif in_context in ("ol","ul"):
             ## This part amended: check no problems rendering 
             # cl.subtype = f"{cl.subtype}:end"
             # cl.subtype = "</p>"
-            cl.hint = "ignore_if_blockquote_follows"
-            # print(f"    >> hint added:{cl.hint}")
+            cl.hint = f"{in_context}:ignore_if_blockquote_follows"
+            debug(1, f"    >> hint added={cl.hint}")
         elif cl.subtype == "p":
             cl.subtype = "end:p"
         else:
@@ -419,16 +438,24 @@ def parse_openers(cl,pl,cs):
             cl.level = pl.level
     
     # if pl.hint and cl.type == "blank":    ## should be pl.type BUT redundant
+    ## HINT changed to closingHTML BUT... problem with context
     if pl.hint:
-        print(f"    @@@@ {pl.type=}, {cl.type=}, {cl.parent=}")
+        # item = pl.hint.split(":")[0]
+        # debug(0,f"    @@@@ {pl.hint}; {pl.type=}, {cl.type=}, {cl.parent=}")
+        pl.hint = ""
+        debug(0,f"    >> hint picked up ({pl.hint})")
         if cl.parent == "indent":
-            print("...close para only")
+            # debug(0,"...close para only")
             cl.subtype = "end:p"
         else:
-            print("...close the whole list")
+            # debug(0,"...close the whole list")
             cl.subtype = "all:end"
 
-    return(cl.type,cl.subtype,cs)
+    ## normalize both forms of codeblock
+    # if cl.type == "code2":
+        # cl.type = "codeblock"
+
+    return(cl.type,cl.subtype,cs,pl.hint)
 
 
 
@@ -436,13 +463,13 @@ def update_context(cl,pl,cs):
     ## shouldn't this be pl.hint?? i.e.
     ## if cl. then defer; if pl.hint then check to see if need to apply
     if cl.subtype == "all:end":
-        print(f"debug: all:end")
+        debug(0,f"debug: all:end, cs: {cs}")
         if context(cs) in ("ol","ul"):
             tmp = ["</p></li>"]
             for tag in close_tags_to("all",cs):
                 tmp.append(f"</{tag}>")
             cl.hint = "".join(tmp)
-            print(f"... closed list!!")
+            debug(0,f"... closed list using HINT ({cl.hint})")
             cs.clear()
 
     elif cl.type in ("codeblock", "code2", "details", "blockquote", "ul", "ol"):
@@ -460,36 +487,35 @@ def update_context(cl,pl,cs):
         elif context(cs) in ("ul","ol"):
             cs.pop()
 
-    return(cl.type,cl.subtype,cl.hint,cs)
+    return(cl.type,cl.subtype,cs,cl.hint)
 
 
 
 def build_html(cl):
     head = tail = ""
     tag = type = cl.type
-    # type = cl.type
-    # if type[:4] == "list":
     if type in ("ul", "ol"):
         type = "list"
-    #     tag = tag[5:]
-    if type[0] == "h":
+    elif type[0] == "h":
         type = "heading"
     elif type[:4] == "code":
         type = tag = "codeblock"
 
     case = (type,cl.subtype)
+    # print(f"............ {case,cl.parent}")
+    # print(f"............ {pl}")
     if type == ("indent"):
         pass
     elif case == ("p","start"):
         head = "<p>"
     elif case == ("p", "cont"):
         pass
-    elif case == ("blank", "end:p") or ("p","end:p"):
-        head = "</p>" + EOL
+    elif case == ("blank", "end:p") or case == ("p","end:p"):
+        head = "</p>" 
     elif case == ("empty", "p"):        ## l.114
         pass
     elif case == ("empty","end-p:open-p"):
-        # head = "</p>" + EOL + "<p>"
+        # head = "</p><p>"
         head = "</p><p>"
 
     elif type == "heading":
@@ -497,7 +523,7 @@ def build_html(cl):
         tail = f"</{tag}>"
 
     elif case == ("hr", "end:p"):
-        head = "</p>" + EOL + "<hr>"
+        head = "</p><hr>"
     elif type == "hr":
         head = "<hr>"
     
@@ -521,20 +547,24 @@ def build_html(cl):
         tail = "</code></pre>"
 
     elif case == ("list","start"):
-        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
         head = f"<{tag}><li><p>"
     elif case == ("list","embed:start"):
         head = f"</p></li><{tag}><li><p>"
     elif case == ("list","new:li"):
-        head = "</p></li>" + EOL + "<li><p>"
+        head = "</p></li><li><p>"
     elif case == ("list","embed:end"):
-        head = f"</p></li></{tag}>" + EOL + f"<li><p>"
+        head = f"</p></li></{tag}><li><p>"
+    # elif case == ("list","end") or case == ("p","all:end"):
     elif case == ("list","end"):
         head = f"</p></li></{tag}>"
+    elif case == ("p","all:end"):
+        # debug(0,f".............{cl.hint}")
+        head = cl.hint
+        cl.hint = ""
     elif case == ("empty", "list"):     ## l.112
         pass
     elif case == ("blank","all:end"):
+        # debug(0,f".............{cl.hint}")
         head = cl.hint
         cl.hint = ""
         # print(f"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ {head}")
@@ -546,7 +576,7 @@ def build_html(cl):
     elif type == "blank":
         pass
     else:
-        print(f"Ooooops! This slipped through: ({type,cl.subtype})")
+        debug(0,f"Ooooops! This slipped through: ({type,cl.subtype})")
     
     return (head,tail)
     
@@ -556,7 +586,7 @@ def build_html(cl):
 def pretty_debug():
     if cl.type == "blank":
         hint = " hint: " + cl.hint if cl.hint else ""
-        print(f'{"="*10} BLANK *{cl.subtype}, {cl.level}'
+        debug(0,f'{"="*10} BLANK *{cl.subtype}, {cl.level}'
                 f'{str(context_stack):24}  '
                 # f'{" (" + cl.subtype + ", " + str(cl.level) + ", " + cl.hint + ")":55}'
                 # f'{" (" + cl.subtype + ", " + str(cl.level) + ", " + cl.hint + ")":25}'
@@ -568,14 +598,14 @@ def pretty_debug():
         tmp = f"{cl.type + '*' + cl.subtype}"
         tmp2 = f'pl={pl.type}_{pl.level}, pt={pl.parent}'
         if level == 0:
-            print(f'l.{line_no:4}:{level}  '
+            debug(0,f'l.{line_no:4}:{level}  '
                     f'{tmp:29} '
                     # f'{tmp2:24}  '
                     f'{str(context_stack):24}  '
                     f'[{len(context_stack):2}]'
                     f'| {raw[:30]}')
         else:
-            print(f'{" "* 4}...{level}  '
+            debug(0,f'{" "* 4}...{level}  '
                     f'{tmp:26} '
                     # f'{"...prnt=" + cl.parent:30}  '
                     f'{"":30}  '
@@ -624,7 +654,6 @@ if __name__ == "__main__":
             cl = Line(raw,level,"unprocessed","",parent,"")
             
             while cl.type in ("unprocessed","blockquote","indent"):
-                # cl.parent = parent
                 if cl.text:
                     cl.text, cl.type, cl.subtype, in_codeblock = parse_triggers(cl.text, in_codeblock)
                     cl.level = level
@@ -642,30 +671,23 @@ if __name__ == "__main__":
                     ## contents will be parsed on the next pass
                     pass
                 else:
-                    pass
-                    cl.type, cl.subtype,context_stack = parse_openers(cl,pl,context_stack)
-                    ## normalize both forms of codeblock
-                    # if cl.type == "code2":
-                        # cl.type = "codeblock"
-
-                    cl.type,cl.subtype,cl.hint,context_stack = update_context(cl,pl,context_stack)
+                    cl.type,cl.subtype,context_stack,pl.hint = parse_openers(cl,pl,context_stack)
+                    cl.type,cl.subtype,context_stack,cl.hint = update_context(cl,pl,context_stack)
+                    debug(0,f"@@{cl.hint}@@")
                     head,tail = build_html(cl)
+
                     ## To prevent blockquote lines being processed twice
-                    in_line = ""
-                    # if cl.type == "codeblock":
-                    # print(f"    >> {cl.type}")
+                    # in_line = ""
                     if cl.type[:4] == "code":
                         in_line = cl.text.replace('<','&lt;').replace('>','&gt;').replace('amp;','')
-                        # in_line = "**" + in_line
                     elif not (cl.type == "blockquote" and cl.level == 0):
                         in_line = inline_markup(r,cl.text)
-                    # in_line = inline_markup(r,cl.text) 
                     line = head + in_line + tail + EOL
-                    # body += (line + EOL)
-                    # o.write(f"        {line}")
+
                     o.write(f"{line}")
 
                 pretty_debug()
+                print(f"{line.strip()}")
 
                 ## This pass completed
                 parent = cl.type
