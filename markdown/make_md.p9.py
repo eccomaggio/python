@@ -335,7 +335,12 @@ def parse_openers(cl,pl,cs):
         #     cl.type = "code"
             # cl.subtype = "cont"
 
-    elif (cl.type == "??" and pl.type == "blank" 
+    ## Need to plumb in this hard reset
+    elif pl.type == "blank" and cl.level == 0:
+        print(f"...RESET {cs=}!!")
+
+    # elif (cl.type == "??" and pl.type == "blank" 
+    if (cl.type == "??" and pl.type == "blank" 
             and cl.parent == "indent"
             and pl.subtype not in ("ul","ol","blockquote")):
         cl.type = "code2"
@@ -430,7 +435,7 @@ def parse_openers(cl,pl,cs):
             # cl.subtype = f"{cl.subtype}:end"
             # cl.subtype = "</p>"
             cl.hint = f"{in_context}:ignore_if_blockquote_follows"
-            debug(1, f"    >> hint added={cl.hint}")
+            # debug(1, f"    >> hint added={cl.hint}")
         elif cl.subtype == "p":
             cl.subtype = "end:p"
         else:
@@ -443,7 +448,7 @@ def parse_openers(cl,pl,cs):
         # item = pl.hint.split(":")[0]
         # debug(0,f"    @@@@ {pl.hint}; {pl.type=}, {cl.type=}, {cl.parent=}")
         pl.hint = ""
-        debug(0,f"    >> hint picked up ({pl.hint})")
+        # debug(0,f"    >> hint picked up ({pl.hint})")
         if cl.parent == "indent":
             # debug(0,"...close para only")
             cl.subtype = "end:p"
@@ -460,8 +465,7 @@ def parse_openers(cl,pl,cs):
 
 
 def update_context(cl,pl,cs):
-    ## shouldn't this be pl.hint?? i.e.
-    ## if cl. then defer; if pl.hint then check to see if need to apply
+    ## pl isn't used here!!!!!
     if cl.subtype == "all:end":
         debug(0,f"debug: all:end, cs: {cs}")
         if context(cs) in ("ol","ul"):
@@ -484,8 +488,9 @@ def update_context(cl,pl,cs):
             cs.pop()
         elif cl.type in ("ul","ol"):
             cs.pop()
-        elif context(cs) in ("ul","ol"):
-            cs.pop()
+        # elif context(cs) in ("ul","ol"):
+        #     cs.pop()
+        #     print("YADA yada")
 
     return(cl.type,cl.subtype,cs,cl.hint)
 
@@ -567,11 +572,6 @@ def build_html(cl):
         # debug(0,f".............{cl.hint}")
         head = cl.hint
         cl.hint = ""
-        # print(f"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ {head}")
-    
-    # case ():
-    # case ():
-    # case ():
 
     elif type == "blank":
         pass
@@ -673,7 +673,7 @@ if __name__ == "__main__":
                 else:
                     cl.type,cl.subtype,context_stack,pl.hint = parse_openers(cl,pl,context_stack)
                     cl.type,cl.subtype,context_stack,cl.hint = update_context(cl,pl,context_stack)
-                    debug(0,f"@@{cl.hint}@@")
+                    # debug(0,f"@@{cl.hint}@@")
                     head,tail = build_html(cl)
 
                     ## To prevent blockquote lines being processed twice
@@ -687,7 +687,7 @@ if __name__ == "__main__":
                     o.write(f"{line}")
 
                 pretty_debug()
-                print(f"{line.strip()}")
+                # print(f"{line.strip()}")
 
                 ## This pass completed
                 parent = cl.type
