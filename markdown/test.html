@@ -1,64 +1,88 @@
 
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-<title>pauly test</title>
-<!--<link rel="stylesheet" href="./md.css">-->
-<link rel="stylesheet" href="./splendor.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+<title>test</title>
+<meta name="color-scheme" content="light dark">
+<!-- <link rel="stylesheet" href="./splendor.css">-->
+<link rel="stylesheet" href="./github-markdown-css/github-markdown.css">
+<style>
+			body {
+				box-sizing: border-box;
+				min-width: 200px;
+				max-width: 980px;
+				margin: 0 auto;
+				padding: 45px;
+            }
+
+			@media (prefers-color-scheme: dark) {
+				body {
+					background-color: rgb(13,17,23);
+                }
+            }
+		</style>
 </head>
 <body>
-<p>This is some basic, sample markdown.</p>
-
-<h2>Second Heading <span id="#1">1</span></h2>
-
-
-<ul>
-<li>Unordered lists, and:</li>
-<ol>
-<li>One</li>
-<li>Two</li>
-<ul>
-<li>and a quickie unordered list</li>
-<li>again, this time with code: <code><html> var x = blah</code></li>
-</ul>
-<li>Three</li>
-</ol>
-<li>email address: <a href="mailto:paul.at.lttc@gmail.com.tw">paul.at.lttc@gmail.com.tw</a></li>
-</ul>
-
-<blockquote><p>Blockquote "Shall i compare thee to a summer's day? Thou art more blah blah"</p></blockquote>
-
-
-<p>And <strong>bold</strong>, <em>italics</em>, and even <em>italics and later <strong>bold</strong></em>. Even <s>strikethrough</s>.<a href="https://markdowntohtml.com">A link</a> to somewhere.</p>
-
-
-<p>And code highlighting:</p>
-
+<article class="markdown-body">
+<p> This is some basic, sample markdown.
+</p>
+ 
+<h2> Second Heading <span id="#1">1</span></h2>
+ 
+ 
+<ul><li><p>  Unordered lists, and:
+  1. One
+  1. Two
+</p></li>
+<li><p>  and a quickie unordered list
+</p></li>
+<li><p>  again, this time with code: <code>&lt;html&gt; var x = blah</code>
+  1. Three
+</p></li>
+<li><p>  email address: <a href="mailto:paul.at.lttc@gmail.com.tw">paul.at.lttc@gmail.com.tw</a>
+</p></li></ul> 
+<blockquote><p>
+<p> Blockquote "Shall i compare thee to a summer's day? Thou art more blah blah"
+</p></blockquote> 
+ 
+<p> And <strong>bold</strong>, <em>italics</em>, and even <em>italics and later <strong>bold</strong></em>. Even <s>strikethrough</s>. <a href="https://markdowntohtml.com">A link</a> to somewhere.
+</p>
+ 
+ 
+<p> And code highlighting:
+</p>
+ 
 <pre><code>js
 var foo = 'bar';
-
+ 
 function baz(s) {
-return foo + ':' + s;
+   return foo + ':' + s;
 }
 </code></pre>
-<p>And now for something completely different:</p>
-<details><summary> This is a summary/detail reveal structure (<span id="#2">2</span>)</summary>
-<p>Let's see if it works.</p>
-<p>All of this should be hidden.</p>
-</details>
-<p>But this should be visible.</p>
-<p>Fingers <s>snapped</s> crossed.</p>
-<details open><summary> This should be an open-by-default details box</summary>
-<p><strong>So this should be lovely and <strong>visible!</strong></strong></p>
-<p>As should this link: <a href="https://www.markdownguide.org/basic-syntax/">https://www.markdownguide.org/basic-syntax/</a></p>
-<ul>
-<li>line one of a list</li>
-<li>line 2</li>
-<li>and line three</li>
-</ul>
-<p>Then back to paragraphs</p>
-</details>
+<p> And now for something completely different:
+ @@@ This is a summary/detail reveal structure (<span id="#2">2</span>)
+ Let's see if it works.
+ All of this should be hidden.
+ @@@
+ But this should be visible.
+ Fingers <s>snapped</s> crossed.
+ @+@ This should be an open-by-default details box
+ <strong>So this should be lovely and <strong>visible!</strong></strong>
+ As should this link: <a href="https://www.markdownguide.org/basic-syntax/">https://www.markdownguide.org/basic-syntax/</a>
+</p></li>
+<li><p>  line one of a list
+</p></li>
+<li><p>  line 2
+</p></li>
+<li><p>  and line three
+ Then back to paragraphs
+ @@@
+</p>
+ 
+<p> Why not <a href="#1">#1</a> or <a href="#2">this link</a> link back to this footnote <span id="#1">1</span>:?
 
-<p>Why not <a href="#1">#1</a> or<a href="#2">this link</a> link back to this footnote <span id="#1">1</span>:?</p>
-
+</article>
 </body>
+

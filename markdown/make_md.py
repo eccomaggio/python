@@ -126,8 +126,8 @@ def init_html_outline():
 def prep_files():
     try:
         file_name = sys.argv[1]
-    except:
-        print("No filename specificed; I'll look for test.md")
+    except IndexError:
+        print("No filename specified; I'll look for test.md")
         file_name = "test.md"
     if not os.path.isfile(file_name): 
         print("Sorry. No markdown file found.")
