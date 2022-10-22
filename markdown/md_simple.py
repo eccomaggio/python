@@ -35,16 +35,22 @@ import os.path
 import re
 from collections import OrderedDict
 from dataclasses import dataclass
-import enum
+import math
+from tokenize import group
 
 
-class Tags(enum.Enum):
-    p = 1
-    ul = 2
-    ol = 3
-    blockquote = 4
-    codeblock = 5
+@dataclass
+class I:
+    NUM = 0
+    INDENT = 1
+    BR = 2
+    STACK = 3
+    BLANK = 4
+    REL = 5
 
+
+G_tab_is_set = False
+G_tab_length = 4
 
 
 @dataclass
@@ -138,7 +144,8 @@ def prep_files():
         file_name = sys.argv[1]
     except IndexError:
         print("No filename specified; I'll look for test.md")
-        file_name = "test.md"
+        # file_name = "test.md"
+        file_name = "github_test.md"
     if not os.path.isfile(file_name): 
         print("Sorry. No markdown file found.")
         quit()
@@ -194,7 +201,8 @@ def close_tags_to(tag, list):
     return tmp
 
 
-def inline_markup(r,line):
+# def inline_markup(r,line):
+def inline_markup(line):
     ## run all inline patterns against the line
     line = " " + line.replace("<","&lt;").replace(">", "&gt;").replace("&","&amp;")
     for i in r:
@@ -202,11 +210,11 @@ def inline_markup(r,line):
     # inside = r1['p'].findall(line)
     # if inside:
     #     line = subCode(line)
-    line = subCode(line)
+    line = sub_code(line)
     return line
 
 
-def subCode(line):
+def sub_code(line):
     inside = r1['p'].findall(line)
     ## Abort if no codeblocks found
     if not inside:
@@ -235,45 +243,105 @@ def context(context_stack):
     return context_stack[-1].split(":")[0] if context_stack else ""
 
 
+def push_context(tag):
+    pass 
+
+def pop_context(tag):
+    pass
 
 
 
+def parse_line_for_triggers(line, prev_was_blank):
+    tmp_stack = ['blank'] if prev_was_blank else []
+    trigger = "dummy"
+    while trigger:
+        line, trigger = get_trigger(line)
+        if trigger:
+            tmp_stack += trigger
+        # else:
+        #     tmp_stack.append("ø")
+    return (line, tmp_stack)
 
 
 
 def get_trigger(line):
+    global G_tab_length
     tmp = re.search(r'```', line)
     if tmp:
-        return ('codeblock', line[3:])
-    tmp = re.search(r'^(#)+\s+', line)
+        return (line[3:], ['cb'])
+    tmp = re.search(r'^(#+)\s+', line)
     if tmp:
-        return (f'h{len(tmp.group(1))}', line[len(tmp.group()):])
-    tmp = re.search(r'^(>)+\s+', line)
+        return (line[len(tmp.group()):], [f'h{len(tmp.group(1))}'])
+    tmp = re.search(r'^(>+)(\s*)', line)
     if tmp:
-        return (f'blockquote({len(tmp.group(1))})', line[len(tmp.group()):])
+        # This accepts >> as two blockquotes (i.e. even if not separated by spaces)
+        blockquote = ["bq"] * len(tmp.group(1))
+        line = line[len(tmp.group()):]
+        return (line, [*blockquote, "tab"]) if len(tmp.group(2)) >= G_tab_length else (line, blockquote)
     tmp = re.search(r'^\d+\.\s+', line)
     if tmp:
-        return (f'ol',line[len(tmp.group()):])
+        return (line[len(tmp.group()):], ['ol'])
     tmp = re.search(r'^[\+\-\*]\s+', line)
     if tmp:
-        return (f'ul', line[2:])
+        return (line[len(tmp.group()):], ['ul'])
     tmp = re.search(r'^\:\s+', line)
     if tmp: 
         # NB. requires the PREVIOUS line to marked up as <dl><dt>
-        return ('definition', line[len(tmp.group()):])
-    return ('',line)
-
-def process(line):
-    return line
+        return (line[len(tmp.group()):], ['df'])
+    return(line, False)
 
 def update_buffer(buffer):
     # buffer[2] = buffer[1]
     # buffer[1] = buffer[0]
     # buffer[0] = ""
-    for i in reversed(range(len(buffer) - 1)):
+    for i in reversed(range(len(buffer[1:]))):
         buffer[i + 1] = buffer[i]
-    buffer[0] = -1
+    # buffer[0] = -1
+    buffer[0] = [[],""]
     return buffer
+
+def calculate_indent(line, prev):
+    line.replace("\t","    ")
+    global G_tab_is_set
+    global G_tab_length
+    tmp = re.search(r'^(\s+?)\S', line)
+    if tmp:
+        if not G_tab_is_set:
+            G_tab_length = len(tmp.group(1))
+            G_tab_is_set = True
+        indent = math.ceil(len(tmp.group(1)) / G_tab_length)
+    else:
+        indent = 0
+    # relative_indent = indent - buffer[1][0][I.INDENT]
+    relative_indent = indent - prev
+    return (indent, relative_indent, line)
+
+def check_for_final_break(line):
+    return bool(re.search(r'\s{2,}$', line))
+
+def process(line):
+    
+    return [line[0],inline_markup(line[1])]
+
+def pretty_print(buffer):
+    if len(buffer[0]):
+        b = buffer[0]
+        if b[0] == -1:
+            print("\t...")
+        else:
+            if b[I.BLANK]:
+                print(".")
+            print(
+            f'{b[I.NUM]:0>4}\t' +
+            f'{b[I.INDENT]:<1} ' +
+            # f'{str(b[I.BR]):<1} ' +
+            f'{str(b[I.STACK]):<25} ' +
+            f'{str(b[I.BLANK]):.1}' +
+            f'{b[I.REL]:<1}' +
+            f'\t{buffer[1]:.50}'
+            )
+    else:
+        print("...")
 
 
 if __name__ == "__main__":
@@ -282,53 +350,55 @@ if __name__ == "__main__":
     # out_text = ""
     # EOL = "\n"
     # tab_is_set = False
+    # tab_length = 4
     # headings = []
     # id_count = 0
-    # r = init_inline_styles()
-    # r1 = init_regex_tools()
+    r = init_inline_styles()
+    r1 = init_regex_tools()
     # html_head,html_tail = init_html_outline()
+    # pretty = '{:<40}{:<50}'
+    pretty = '{:<40}{:.50}'
 
 
     tab_size = 4
-    # context_stack = []
+    context_stack = []
     # body = ""
-    buffer = ["","",""]
+    # buffer = [["",""],["",""],["",""]]
+    buffer = [[[],""],[[],""],[[],""]]
+    prev_was_blank = True # To show beginning of file
+    prev_indent = 0
 
     with open(in_file, 'r') as f:
         for line_no, raw in enumerate(f):
-            buffer = update_buffer(buffer)
-            out_line = ""
-            context_stack = []
-            if re.search(r'^\s*$',raw):
-                # print("\t--blank--")
-                out_line = "\t--blank--"
-                # continue
-            else:
-                tmp = re.search(r'^(\s+?)\S', raw)
-                indent = len(tmp.group(1)) if tmp else 0
-                tmp = re.search(r'\s{2,}$', raw)
-                has_br = bool(re.search(r'\s{2,}$', raw))
-                line = raw.strip()
-                trigger = "dummy"
-                while trigger:
-                    trigger,line = get_trigger(line)
-                    if trigger:
-                        context_stack.append(trigger)
-                    else:
-                        context_stack.append("ø")
-                # print(line_no,'\t',indent,has_br, context_stack, f'|{line}')
-                out_line = f"{line_no}\t{indent} {has_br} {context_stack} |{line}"
-            buffer[0] = process(out_line)
-            if buffer[2]:
-                print(buffer[2])
-            else:
-                print("...")
-        ## To empty (& process) remaining buffer items
+            tmp_start_line = 0
+            tmp_duration = 500
+            tmp_start_line = (tmp_start_line - 2) if tmp_start_line > 0 else -1
+            if tmp_start_line < line_no < (tmp_start_line + tmp_duration):
+                if re.search(r'^\s*$',raw):
+                    prev_was_blank = True
+                    continue
+                else:
+                    buffer = update_buffer(buffer)
+                    out_line = ["",""]
+                    local_stack = []
+                    indent, relative_indent, raw = calculate_indent(raw, prev_indent)
+                    prev_indent = indent
+                    has_final_break = check_for_final_break(raw)
+                    line = raw.strip()
+                    line, local_stack = parse_line_for_triggers(line,prev_was_blank)
+                    local_stack = (["indent"] * indent) + local_stack
+                    # out_line = [[line_no,indent,has_final_break,context_stack], process(line)]
+                    out_line = [[line_no,indent,has_final_break,local_stack,prev_was_blank,relative_indent],line]
+                    prev_was_blank = False
+                    out_line = process(out_line)
+
+                buffer[0] = out_line
+                pretty_print(buffer[-1])
+            ## To empty (& process) remaining buffer items
         for i in range(1,len(buffer)):
             buffer = update_buffer(buffer)
-            out_line = process(buffer[2])
-            print(out_line)
-            
+            pretty_print(buffer[-1])
+                
 
 
 
