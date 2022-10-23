@@ -251,21 +251,31 @@ def pop_context(tag):
 
 
 
-def parse_line_for_triggers(line, prev_was_blank):
-    tmp_stack = ['blank'] if prev_was_blank else []
+def parse_line_for_triggers(line, prev_was_blank, indent):
+    tmp_stack = ['B'] if prev_was_blank else []
     trigger = "dummy"
+    depth = 0
     while trigger:
-        line, trigger = get_trigger(line)
+        # if depth:
+        #     relative_indent = 1
+        line, trigger = get_trigger(line, prev_was_blank, indent + depth)
         if trigger:
+            # if count: 
+            #     tmp_stack += ["TAB"] + trigger
+            # else:
             tmp_stack += trigger
+        depth += 1
         # else:
         #     tmp_stack.append("ø")
     return (line, tmp_stack)
 
 
 
-def get_trigger(line):
+def get_trigger(line, prev_was_blank, indent):
     global G_tab_length
+    # status = ["-", ":", "+","?"][relative_indent + 1]
+    # if prev_was_blank and relative_indent == 0:
+    #     status = "+"
     tmp = re.search(r'```', line)
     if tmp:
         return (line[3:], ['cb'])
@@ -275,30 +285,27 @@ def get_trigger(line):
     tmp = re.search(r'^(>+)(\s*)', line)
     if tmp:
         # This accepts >> as two blockquotes (i.e. even if not separated by spaces)
-        blockquote = ["bq"] * len(tmp.group(1))
+        blockquote = []
+        for i in range(len(tmp.group(1))):
+            blockquote += [f"bq{str(indent + i)}"]
         line = line[len(tmp.group()):]
-        return (line, [*blockquote, "tab"]) if len(tmp.group(2)) >= G_tab_length else (line, blockquote)
+        return (line, [*blockquote, "I"]) if len(tmp.group(2)) >= G_tab_length else (line, blockquote)
     tmp = re.search(r'^\d+\.\s+', line)
     if tmp:
-        return (line[len(tmp.group()):], ['ol'])
+        return (line[len(tmp.group()):], [f"li{indent}.o"])
     tmp = re.search(r'^[\+\-\*]\s+', line)
     if tmp:
-        return (line[len(tmp.group()):], ['ul'])
+        return (line[len(tmp.group()):], [f"li{indent}.u"])
     tmp = re.search(r'^\:\s+', line)
     if tmp: 
         # NB. requires the PREVIOUS line to marked up as <dl><dt>
         return (line[len(tmp.group()):], ['df'])
     return(line, False)
 
-def update_buffer(buffer):
-    # buffer[2] = buffer[1]
-    # buffer[1] = buffer[0]
-    # buffer[0] = ""
-    for i in reversed(range(len(buffer[1:]))):
-        buffer[i + 1] = buffer[i]
-    # buffer[0] = -1
-    buffer[0] = [[],""]
-    return buffer
+def update_buffer(line_buffer):
+    line_buffer = [[[], ""]] + line_buffer
+    line_buffer.pop()
+    return line_buffer
 
 def calculate_indent(line, prev):
     line.replace("\t","    ")
@@ -319,13 +326,15 @@ def calculate_indent(line, prev):
 def check_for_final_break(line):
     return bool(re.search(r'\s{2,}$', line))
 
-def process(line):
-    
+def make_inferences(line):
+    if line == ["I","B"]:
+        pass
+
     return [line[0],inline_markup(line[1])]
 
-def pretty_print(buffer):
-    if len(buffer[0]):
-        b = buffer[0]
+def pretty_print(line_buffer):
+    if len(line_buffer[0]):
+        b = line_buffer[0]
         if b[0] == -1:
             print("\t...")
         else:
@@ -338,7 +347,7 @@ def pretty_print(buffer):
             f'{str(b[I.STACK]):<25} ' +
             f'{str(b[I.BLANK]):.1}' +
             f'{b[I.REL]:<1}' +
-            f'\t{buffer[1]:.50}'
+            f'\t{line_buffer[1]:.50}'
             )
     else:
         print("...")
@@ -364,7 +373,7 @@ if __name__ == "__main__":
     context_stack = []
     # body = ""
     # buffer = [["",""],["",""],["",""]]
-    buffer = [[[],""],[[],""],[[],""]]
+    line_buffer = [[[],""],[[],""],[[],""]]
     prev_was_blank = True # To show beginning of file
     prev_indent = 0
 
@@ -378,26 +387,27 @@ if __name__ == "__main__":
                     prev_was_blank = True
                     continue
                 else:
-                    buffer = update_buffer(buffer)
+                    line_buffer = update_buffer(line_buffer)
                     out_line = ["",""]
                     local_stack = []
                     indent, relative_indent, raw = calculate_indent(raw, prev_indent)
                     prev_indent = indent
                     has_final_break = check_for_final_break(raw)
                     line = raw.strip()
-                    line, local_stack = parse_line_for_triggers(line,prev_was_blank)
-                    local_stack = (["indent"] * indent) + local_stack
+                    # line, local_stack = parse_line_for_triggers(line,prev_was_blank,relative_indent)
+                    line, local_stack = parse_line_for_triggers(line,prev_was_blank,indent)
+                    local_stack = (["I"] * indent) + local_stack
                     # out_line = [[line_no,indent,has_final_break,context_stack], process(line)]
                     out_line = [[line_no,indent,has_final_break,local_stack,prev_was_blank,relative_indent],line]
                     prev_was_blank = False
-                    out_line = process(out_line)
+                    out_line = make_inferences(out_line)
 
-                buffer[0] = out_line
-                pretty_print(buffer[-1])
+                line_buffer[0] = out_line
+                pretty_print(line_buffer[-1])
             ## To empty (& process) remaining buffer items
-        for i in range(1,len(buffer)):
-            buffer = update_buffer(buffer)
-            pretty_print(buffer[-1])
+        for i in range(1,len(line_buffer)):
+            line_buffer = update_buffer(line_buffer)
+            pretty_print(line_buffer[-1])
                 
 
 
