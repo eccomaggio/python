@@ -164,42 +164,91 @@ def prep_files():
     return (in_file,out_file,title)
 
 
-def is_embedded(taglist,the_list, result=[], count=0):
-    '''Returns list of all matching tags + their pos: [[<tag>,pos],...]'''
-    if count == 0:
-        result.clear()
-    if not isinstance(taglist, list):
-        taglist = [taglist]
-    if the_list:
-        pos = 0
-        for i, tag in enumerate(the_list[::-1]):
-            for target in taglist:
-                if target == tag:
-                    pos = (len(the_list) - i) - 1
-                    result.insert(0,[tag,pos])
-                    break
-        is_embedded(taglist,the_list[:pos],result,count + 1)
-    return result
+# def is_embedded(taglist,the_list, result=[], count=0):
+#     '''Returns list of all matching tags + their pos: [[<tag>,pos],...]'''
+#     if count == 0:
+#         result.clear()
+#     if not isinstance(taglist, list):
+#         taglist = [taglist]
+#     if the_list:
+#         pos = 0
+#         for i, tag in enumerate(the_list[::-1]):
+#             for target in taglist:
+#                 if target == tag:
+#                     pos = (len(the_list) - i) - 1
+#                     result.insert(0,[tag,pos])
+#                     break
+#         is_embedded(taglist,the_list[:pos],result,count + 1)
+#     return result
 
 
-def close_tags_to(tag, list):
-    ## returns nothing if tag is empty | not in list
-    ## returns all tags (in reverse order)  up to tag (inclusive)
-    ## returns entire list in reverse order if tag == "all"
-    if tag == "all":
-        tag = list[0]
-        # print(tag)
-    tmp = []
-    try:
-        list.index(tag)
-        for x in list[::-1]:
-            tmp.append(x)
-            if x == tag:
-                break
-    except:
-        pass
-    return tmp
+# def close_tags_to(tag, list):
+#     ## returns nothing if tag is empty | not in list
+#     ## returns all tags (in reverse order)  up to tag (inclusive)
+#     ## returns entire list in reverse order if tag == "all"
+#     if tag == "all":
+#         tag = list[0]
+#         # print(tag)
+#     tmp = []
+#     try:
+#         list.index(tag)
+#         for x in list[::-1]:
+#             tmp.append(x)
+#             if x == tag:
+#                 break
+#     except:
+#         pass
+#     return tmp
 
+
+class Context:
+    def __init__(self, el_list=None):
+        if el_list is None:
+            el_list = []
+        self.context_list = el_list
+
+    def new(self, el_list=None):
+        if el_list is None:
+            self.context_list = []
+        else:
+            el_list = [el_list] if isinstance(el_list, str) else el_list
+            self.context_list = el_list
+        return self.context_list
+
+    def add(self, el_list):
+        el_list = [el_list] if isinstance(el_list, str) else el_list
+        self.context_list += el_list
+        return self.context_list
+
+    def contains(self, el):
+        try:
+            self.result = self.context_list.index(el)
+        except IndexError:
+            self.result = -1
+        #self.result = self.context_list[self.result:] if self.result >= 0 else []
+        return self.result
+
+    def get(self):
+        return self.context_list
+
+    def pop(self, el=None):
+        self.removed = []
+        if el is None:
+            self.removed = self.context_list[-1]
+            self.context_list = self.context_list[:-1]
+        else:
+            el_pos = self.contains(el)
+            if el_pos == -1:
+                self.removed = []
+            else:
+                self.removed = self.context_list[el_pos:]
+                self.context_list = self.context_list[:el_pos]
+        return (self.context_list, self.removed)
+
+    def close(self):
+        self.removed = self.context_list
+        self.context_list = []
+        return self.removed
 
 # def inline_markup(r,line):
 def inline_markup(line):
@@ -239,31 +288,42 @@ def strip_to_pre(line):
     return line.replace('&lt;','<').replace('&gt;','>').replace('&amp;','&')
 
 
-def context(context_stack):
-    return context_stack[-1].split(":")[0] if context_stack else ""
+# def context(context_stack):
+#     return context_stack[-1].split(":")[0] if context_stack else ""
 
 
-def push_context(tag):
-    pass 
+# def push_context(tag):
+#     pass 
 
-def pop_context(tag):
-    pass
+# def pop_context(tag):
+#     pass
 
 
 
 def parse_line_for_triggers(line, prev_was_blank, indent):
-    tmp_stack = ['B'] if prev_was_blank else []
-    trigger = "dummy"
+    # tmp_stack = ['B'] if prev_was_blank else []
+    tmp_stack = []
+    ## Inform both pre- and proceeding lines of blank
+    if prev_was_blank:
+        tmp_stack = ["B"]
+        try:
+            line_buffer[1][0][3] += ["B"]
+        except IndexError:
+            pass
+
+        # line_buffer[2][1] += ["B"]
+
+    trigger = ["dummy"]
     depth = 0
     while trigger:
-        # if depth:
-        #     relative_indent = 1
-        line, trigger = get_trigger(line, prev_was_blank, indent + depth)
+        line, trigger = get_trigger(line, indent + depth)
         if trigger:
-            # if count: 
-            #     tmp_stack += ["TAB"] + trigger
-            # else:
-            tmp_stack += trigger
+            if trigger[0][0] == "!":
+                trigger[0] = trigger[0][1:]
+                tmp_stack += trigger
+                trigger = []
+            else:
+                tmp_stack += trigger
         depth += 1
         # else:
         #     tmp_stack.append("ø")
@@ -271,41 +331,58 @@ def parse_line_for_triggers(line, prev_was_blank, indent):
 
 
 
-def get_trigger(line, prev_was_blank, indent):
+def get_trigger(line, indent):
     global G_tab_length
-    # status = ["-", ":", "+","?"][relative_indent + 1]
-    # if prev_was_blank and relative_indent == 0:
-    #     status = "+"
-    tmp = re.search(r'```', line)
-    if tmp:
-        return (line[3:], ['cb'])
-    tmp = re.search(r'^(#+)\s+', line)
-    if tmp:
-        return (line[len(tmp.group()):], [f'h{len(tmp.group(1))}'])
-    tmp = re.search(r'^(>+)(\s*)', line)
-    if tmp:
+    sep = "."
+    stop_processing = "!"
+    result = None
+
+    # if not line:
+    #     result = (line, False)
+    
+    ## explict codeblocks
+    # elif re.search(r'```', line):
+    if re.search(r'```', line):
+        result = (line[3:], [f"{stop_processing}cb"])
+    
+    ## headings <h1, h2...>
+    elif tmp := re.search(r'^(#+)\s+', line):
+        result = (line[len(tmp.group()):], [f'{stop_processing}h{sep}{len(tmp.group(1))}'])
+    
+    ## blockquotes <blockquote>
+    elif tmp := re.search(r'^(>+)(\s*)', line):
         # This accepts >> as two blockquotes (i.e. even if not separated by spaces)
         blockquote = []
         for i in range(len(tmp.group(1))):
-            blockquote += [f"bq{str(indent + i)}"]
+            blockquote += [f"bq{sep}{str(indent + i)}"]
         line = line[len(tmp.group()):]
-        return (line, [*blockquote, "I"]) if len(tmp.group(2)) >= G_tab_length else (line, blockquote)
-    tmp = re.search(r'^\d+\.\s+', line)
-    if tmp:
-        return (line[len(tmp.group()):], [f"li{indent}.o"])
-    tmp = re.search(r'^[\+\-\*]\s+', line)
-    if tmp:
-        return (line[len(tmp.group()):], [f"li{indent}.u"])
-    tmp = re.search(r'^\:\s+', line)
-    if tmp: 
+        result = (line, [*blockquote, "I"]) if len(tmp.group(2)) >= G_tab_length else (line, blockquote)
+    
+    ## ordered lists <ol><li>
+    elif tmp := re.search(r'^\d+\.\s+', line):
+        result = (line[len(tmp.group()):], [f"li{sep}{indent}{sep}o"])
+    
+    ## unordered lists <ul><li>
+    elif tmp := re.search(r'^[\+\-\*]\s+', line):
+        result = (line[len(tmp.group()):], [f"li{sep}{indent}{sep}u"])
+    
+    ## definition lists
+    elif tmp := re.search(r'^\:\s+', line):
         # NB. requires the PREVIOUS line to marked up as <dl><dt>
-        return (line[len(tmp.group()):], ['df'])
-    return(line, False)
+        result = (line[len(tmp.group()):], ['df'])
+
+    ## line <hr>
+    elif re.search(r'^\s*?--{2,}\s*$', line):
+        result = ("", ["!hr"])
+    
+    else:
+        # result = (line, False)
+        result = (line, [f"{stop_processing}p{sep}{indent}"]) ## runs forever 
+
+    return result
 
 def update_buffer(line_buffer):
-    line_buffer = [[[], ""]] + line_buffer
-    line_buffer.pop()
-    return line_buffer
+    return [[[], ""]] + line_buffer[:-1]
 
 def calculate_indent(line, prev):
     line.replace("\t","    ")
@@ -344,7 +421,7 @@ def pretty_print(line_buffer):
             f'{b[I.NUM]:0>4}\t' +
             f'{b[I.INDENT]:<1} ' +
             # f'{str(b[I.BR]):<1} ' +
-            f'{str(b[I.STACK]):<25} ' +
+            f'{str(b[I.STACK]):<30} ' +
             f'{str(b[I.BLANK]):.1}' +
             f'{b[I.REL]:<1}' +
             f'\t{line_buffer[1]:.50}'
