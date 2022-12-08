@@ -4,7 +4,7 @@
 Meant to parse markdown but is very limited. Needs re-writing to allow
 for embedding.
 
-'lazy indenting' doesn't work
+'lazy indenting' doesn't work 
 code blocks must be delimited with three backticks on a sep line
 I added in super limited support for details>summary:
     >-
@@ -12,7 +12,7 @@ I added in super limited support for details>summary:
 Notes to self:
     + l.79: code2 overgeneralizing :() -- FIXED
     + fixed (maybe...) blockquotes and embedding
-    + multi-line li lists don't parse. Need to look at the context, not the pl :(
+    + multi-line li lists don't parse. Need to look at the context, not the pl :( 
     + l.227 embedded code isn't recognized as there is no standard tab size -- FIXED
     + lists with multi-line paras still a problem -- tentatively fixed
     + CONTEXT_STACK seems to be behaving
@@ -20,7 +20,7 @@ Notes to self:
     - non-backtick-delimited codeblocks still a pain (incorporate levels)
     - lists embedded in blockquotes a problem (e.g. l.111)
     + CLOSE LISTS with BLANK -- FIXED
-    - !! line 196:
+    - !! line 196: 
     if: (this will solve code2 problems)
 line 1 = indent + p (i.e. inside blockquote/list)
 line 2 = blank
@@ -28,9 +28,8 @@ line 3 = indent + p
 > line 3 is a continuation of the blockquote/list NOT a codeblock
 i.e. need to make blank a promise
 
-done: Remove B and I from triggers: they are available as flags
-info: tag statuses: + open, - close, = open + close on same line, . context only: no tag output
-todo: triggers carry  main info (+ - = .) should be on triggers, not context
+TODO:
+make sure context lines up with correct line!!! Impossible to debug at the moment :p
 """
 
 import sys
@@ -44,21 +43,29 @@ from tokenize import group
 
 @dataclass
 class I:
-    NUM = 0     # line number
-    INDENT = 1  # indent count
-    BR = 2      # break @ EOL (not all versions of MD)
-    TRIG = 3   # list of triggers
-    BLANK = 4   # previous line was blank
-    NBLANK = 5  # next line is blank
-    REL = 6     # relative indent (i.e. indent depth)
-    CONTEXT = 7    # context list
-    LINE = 8    # line text
+    NUM = 0
+    INDENT = 1
+    BR = 2
+    STACK = 3
+    BLANK = 4
+    REL = 5
+    TRIG = 6
 
 
 G_tab_is_set = False
 G_tab_length = 4
 G_stop = "!"
 G_sep = "."
+
+# @dataclass
+# class Line:
+#     text: str
+#     level: int
+#     type: str
+#     subtype: str
+#     parent: str
+#     hint: str
+
 
 def init_regex_tools():
     r1 = OrderedDict()
@@ -140,32 +147,6 @@ def init_html_outline():
 """
     return (html_head, html_tail)
 
-def pretty_print(wip_line):
-    if wip_line:
-        b = wip_line
-        if b[0] == -1:
-            print("\t...")
-        else:
-            if b[I.BLANK]:
-                print(".")
-            print(
-                f'{b[I.NUM]:0>4}\t' +
-                f'{b[I.INDENT]:<1} ' +
-                # f'{str(b[I.BR]):<1} ' +
-                f'{str(b[I.TRIG]):<30} ' +
-                f'{str(b[I.BLANK]):.1}' +
-                f'{str(b[I.NBLANK]):.1} ' +
-                f'{b[I.REL]:<1}' +
-                f'\t{b[I.LINE][:30]:<30}  ' +
-                f'{b[I.CONTEXT]}'
-            )
-    else:
-        print("...")
-
-def update_buffer(line_buffer):
-    ## create empty initial and drop final, i.e. [1,2,3] > [0,1,2]
-    return [[]] + line_buffer[:-1]
-
 
 def prep_files():
     try:
@@ -209,18 +190,11 @@ class Context:
         self.__init__(el_list)
 
     def push(self, el_list):
-        """
-        add the string or list to the end
-        return the full new list
-        """
         el_list = [el_list] if isinstance(el_list, str) else el_list
         self.context_list += el_list
         return self.context_list
 
     def match(self, el):
-        """
-        return the first match
-        """
         try:
             self.result = self.context_list.index(el) + 1
         except ValueError:
@@ -229,9 +203,6 @@ class Context:
         return self.result
 
     def match_start(self, match):
-        """
-        return all entries that match the initial letter(s) given
-        """
         return [i for i in self.context_list if i[:len(match)] == match]
 
     def get(self):
@@ -241,10 +212,6 @@ class Context:
         return f'[{" ".join(self.context_list)}]'
 
     def pop(self, el=None):
-        """
-        if nothing specified, drop (and return) the last element
-        else drop (and return) all elements from the one specified to the end
-        """
         self.removed = []
         if el is None:
             self.removed = self.context_list[-1]
@@ -263,24 +230,7 @@ class Context:
         self.context_list = []
         return self.removed
 
-def calculate_indent(line, prev, prev_was_blank):
-    line.replace("\t", "    ")
-    global G_tab_is_set
-    global G_tab_length
-    tmp = re.search(r'^(\s+?)\S', line)
-    if tmp:
-        if not G_tab_is_set:
-            G_tab_length = len(tmp.group(1))
-            G_tab_is_set = True
-        indent = math.ceil(len(tmp.group(1)) / G_tab_length)
-    else:
-        indent = 0
-    relative_indent = 0 if prev_was_blank else (indent - prev)
-    return (indent, relative_indent, line)
-
-
-def check_for_final_break(line):
-    return bool(re.search(r'\s{2,}$', line))
+# def inline_markup(r,line):
 
 
 def inline_markup(line):
@@ -320,13 +270,18 @@ def sub_code(line):
 def strip_to_pre(line):
     return line.replace('&lt;', '<').replace('&gt;', '>').replace('&amp;', '&')
 
+
 def parse_line_for_triggers(line, prev_was_blank, indent):
     global G_stop
     # tmp_stack = ['B'] if prev_was_blank else []
     tmp_stack = []
-    ## add blank to beginning of current trigger list (i.e. prev_was_blank)
-    # if prev_was_blank:
-    #     tmp_stack = ["B"]
+    # Inform both pre- and proceeding lines of blank
+    if prev_was_blank:
+        tmp_stack = ["B"]
+        try:
+            line_buffer[1][0][3] += ["B"]
+        except IndexError:
+            pass
     trigger = ["dummy"]
     depth = 0
     while trigger:
@@ -335,8 +290,8 @@ def parse_line_for_triggers(line, prev_was_blank, indent):
             tmp_stack += trigger[1:] if trigger[0] == G_stop else trigger
             trigger = []
         depth += 1
-    # if indent:
-    #     tmp_stack = (["I"] * indent) + tmp_stack
+    if indent:
+        tmp_stack = (["I"] * indent) + tmp_stack
     return (line, tmp_stack)
 
 
@@ -369,7 +324,7 @@ def get_trigger(line, indent):
             blockquote += [f"bq{G_sep}{str(indent + i)}"]
         if len(tmp.group(2)) >= G_tab_length:
             skip = len(tmp.group())
-            triggers = [*blockquote, ["I"]]
+            triggers = [*blockquote, ["I"]] 
         else:
             triggers = blockquote
 
@@ -377,8 +332,7 @@ def get_trigger(line, indent):
     elif tmp := re.search(r'^(\d+\.|\+|\-|\*)\s+', line):
         list_type = "ol" if "." in tmp.group() else "ul"
         skip = len(tmp.group())
-        # triggers = [f"li{G_sep}{list_type}{G_sep}{indent}", f"p{G_sep}{indent}"]
-        triggers = [f"li{G_sep}{list_type}{G_sep}{indent}"]
+        triggers = [f"li{G_sep}{list_type}{G_sep}{indent}", f"p{G_sep}{indent}"]
 
     # definition lists
     elif tmp := re.search(r'^\:\s+', line):
@@ -393,7 +347,7 @@ def get_trigger(line, indent):
 
     else:
         tmp = "br"
-        # if line.strip() and
+        # if line.strip() and 
         if line.strip() and "h" not in local_context:
             tmp = f"p{G_sep}{indent}"
         triggers = [G_stop, tmp]  # else runs forever
@@ -401,63 +355,74 @@ def get_trigger(line, indent):
 
 
 def build_context(triggers, context):
+    global G_sep
     if triggers:
-        global G_sep
-        for long_el in [trigger for trigger in triggers if trigger not in ["I","B"]]:
-            el = long_el.split(G_sep)
-            if el[0] == "li":
-                if not context.match(long_el):
-                    context.push([f"{el[1]}{G_sep}{el[2]}",f"{el[0]}{G_sep}{el[2]}"])
-            elif el[0] == "p":
-                # if next_is_blank:
-                #     continue
-                # else:
-                    # context.push(f"{long_el}{G_sep}=")
-                context.push(f"{long_el}{G_sep}=")
-            elif el[0][0] == "h":
+        # for el in triggers[::-1]:
+        for full_el in triggers:
+            el = full_el.split(G_sep)
+            if el[0] in ["B","I"]:
                 continue
+            elif el[0] == "li":
+                if not context.match(full_el):
+                    context.push([f"{el[1]}{G_sep}{el[2]}",f"{el[0]}{G_sep}{el[2]}"])
             else:
-                context.pop(long_el) if context.match(long_el) else context.push(long_el)
+                context.pop(full_el) if context.match(full_el) else context.push(full_el)
     return(context)
 
 
-def first_pass(line_no, raw, prev_was_blank, prev_indent):
-    triggers = []
-    context = Context(str(line_no))
-    indent, relative_indent, raw = calculate_indent(raw, prev_indent, prev_was_blank)
-    # prev_indent = indent
-    has_final_break = check_for_final_break(raw)
-    line = raw.strip()
-    line, triggers = parse_line_for_triggers(line, prev_was_blank, indent)
-    context = build_context(triggers, context)
-    return [
-        line_no,
-        indent,
-        has_final_break,
-        triggers,
-        prev_was_blank,
-        False,
-        relative_indent,
-        context.get(),
-        line
-    ]
-
-def update_buffer_0(line_buffer, out_line):
-    line_buffer[0] = out_line
+def update_buffer(line_buffer):
+    return [[[], ""]] + line_buffer[:-1]
 
 
-def update_buffer_1(line_buffer, prev_was_blank):
-    if not line_buffer[1]:
-        return
-    if prev_was_blank:
-        line_buffer[1][I.NBLANK] = True
-    # TODO: update triggers with + - = .
+def calculate_indent(line, prev, prev_was_blank):
+    line.replace("\t", "    ")
+    global G_tab_is_set
+    global G_tab_length
+    tmp = re.search(r'^(\s+?)\S', line)
+    if tmp:
+        if not G_tab_is_set:
+            G_tab_length = len(tmp.group(1))
+            G_tab_is_set = True
+        indent = math.ceil(len(tmp.group(1)) / G_tab_length)
+    else:
+        indent = 0
+    relative_indent = 0 if prev_was_blank else (indent - prev)
+    return (indent, relative_indent, line)
 
-def update_buffer_out(line_buffer):
-    if not line_buffer[2]:
-        return
-    pass
 
+def check_for_final_break(line):
+    return bool(re.search(r'\s{2,}$', line))
+
+
+def make_inferences(line):
+    if line == ["I", "B"]:
+        pass
+
+    return [line[0], inline_markup(line[1])]
+
+
+def pretty_print(line_buffer):
+    if len(line_buffer[0]):
+        b = line_buffer[0]
+        if b[0] == -1:
+            print("\t...")
+        else:
+            if b[I.BLANK]:
+                print(".")
+            print(
+                f'{b[I.NUM]:0>4}\t' +
+                f'{b[I.INDENT]:<1} ' +
+                # f'{str(b[I.BR]):<1} ' +
+                f'{str(b[I.STACK]):<30} ' +
+                f'{str(b[I.BLANK]):.1}' +
+                f'{b[I.REL]:<1}' +
+                # f'\t{line_buffer[1]:.50}'
+                f'\t{line_buffer[1][:30]:<30}  ' +
+                # context.show()
+                f'{b[I.TRIG]}'
+            )
+    else:
+        print("...")
 
 
 if __name__ == "__main__":
@@ -479,28 +444,45 @@ if __name__ == "__main__":
     # context = Context()
     # for parsing purposes, 3 most recent lines kept in memory
     # each line consists of [ [surrounding tags], inner html string ]
-    # line_buffer = [[[], ""], [[], ""], [[], ""]]
-    line_buffer = [[],[],[]]
+    line_buffer = [[[], ""], [[], ""], [[], ""]]
     prev_was_blank = True  # To show beginning of file
     prev_indent = 0
-    tmp_start_line = 121
-    tmp_duration = 229 - tmp_start_line
-    tmp_start_line = (tmp_start_line - 2) if tmp_start_line > 0 else -1
 
     with open(in_file, 'r') as f:
         for line_no, raw in enumerate(f):
+            context = Context(str(line_no))
+            tmp_start_line = 121
+            tmp_duration = 229 - tmp_start_line
+            tmp_start_line = (tmp_start_line - 2) if tmp_start_line > 0 else -1
             if tmp_start_line < line_no < (tmp_start_line + tmp_duration):
                 if re.search(r'^\s*$', raw):
                     prev_was_blank = True
                     continue
                 else:
                     line_buffer = update_buffer(line_buffer)
-                    out_line = first_pass( line_no, raw, prev_was_blank, prev_indent)
-                    update_buffer_0(line_buffer, out_line)
-                    update_buffer_1(line_buffer, prev_was_blank)
-                    update_buffer_out(line_buffer)
+                    out_line = ["", ""]
+                    triggers = []
+                    indent, relative_indent, raw = calculate_indent(
+                        raw, prev_indent,prev_was_blank)
+                    prev_indent = indent
+                    has_final_break = check_for_final_break(raw)
+                    line = raw.strip()
+                    line, triggers = parse_line_for_triggers(line, prev_was_blank, indent)
+                    context = build_context(triggers, context)
+                    out_line = [[
+                                    line_no, 
+                                    indent, 
+                                    has_final_break, 
+                                    triggers,
+                                    prev_was_blank, 
+                                    relative_indent, 
+                                    context.get()], 
+                                    line
+                                ]
                     prev_was_blank = False
-                # line_buffer[0] = out_line
+                    # out_line = make_inferences(out_line)
+
+                line_buffer[0] = out_line
                 pretty_print(line_buffer[-1])
             # To empty (& process) remaining buffer items
         for i in range(1, len(line_buffer)):
