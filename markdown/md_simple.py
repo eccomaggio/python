@@ -10,27 +10,11 @@ I added in super limited support for details>summary:
     >-
 
 Notes to self:
-    + l.79: code2 overgeneralizing :() -- FIXED
-    + fixed (maybe...) blockquotes and embedding
-    + multi-line li lists don't parse. Need to look at the context, not the pl :(
-    + l.227 embedded code isn't recognized as there is no standard tab size -- FIXED
-    + lists with multi-line paras still a problem -- tentatively fixed
-    + CONTEXT_STACK seems to be behaving
-    - l.218 space before blockquote = problem: for every blank, need to add effect in 'hint'
-    - non-backtick-delimited codeblocks still a pain (incorporate levels)
-    - lists embedded in blockquotes a problem (e.g. l.111)
-    + CLOSE LISTS with BLANK -- FIXED
-    - !! line 196:
-    if: (this will solve code2 problems)
-line 1 = indent + p (i.e. inside blockquote/list)
-line 2 = blank
-line 3 = indent + p
-> line 3 is a continuation of the blockquote/list NOT a codeblock
-i.e. need to make blank a promise
 
 done: Remove B and I from triggers: they are available as flags
-info: tag statuses: + open, - close, = open + close on same line, . context only: no tag output
-todo: triggers carry  main info (+ - = .) should be on triggers, not context
+info: tag statuses: + open, - close, % open & close on same line, = context only: no tag output
+done: triggers carry  main info (+ - % =) should be on triggers, not context
+todo: remove context from individual lines. > Rolling context, BUT mirrors line buffer
 """
 
 import sys
@@ -55,10 +39,12 @@ class I:
     LINE = 8    # line text
 
 
-G_tab_is_set = False
-G_tab_length = 4
-G_stop = "!"
-G_sep = "."
+# G_tab_is_set = False
+# G_tab_length = 4
+# G_stop = "!"
+# G_sep = "."
+# G_line_buffer = [[],[],[]]
+# G_context = [[],[],[]]
 
 def init_regex_tools():
     r1 = OrderedDict()
@@ -157,14 +143,22 @@ def pretty_print(wip_line):
                 f'{str(b[I.NBLANK]):.1} ' +
                 f'{b[I.REL]:<1}' +
                 f'\t{b[I.LINE][:30]:<30}  ' +
-                f'{b[I.CONTEXT]}'
+                f'{G_context[-1].get() if G_context[-1] else []}'
+                # f'{b[I.CONTEXT]}'
             )
     else:
         print("...")
 
-def update_buffer(line_buffer):
+# def update_buffer(line_buffer):
+#     ## create empty initial and drop final, i.e. [1,2,3] > [0,1,2]
+#     return [[]] + line_buffer[:-1]
+
+def update_buffer():
     ## create empty initial and drop final, i.e. [1,2,3] > [0,1,2]
-    return [[]] + line_buffer[:-1]
+    global G_line_buffer
+    global G_context
+    G_line_buffer = [[]] + G_line_buffer[:-1]
+    G_context = [[]] + G_context[:1]
 
 
 def prep_files():
@@ -400,36 +394,35 @@ def get_trigger(line, indent):
     return (line[skip:], triggers)
 
 
-def build_context(triggers, context):
-    if triggers:
-        global G_sep
-        for long_el in [trigger for trigger in triggers if trigger not in ["I","B"]]:
-            el = long_el.split(G_sep)
-            if el[0] == "li":
-                if not context.match(long_el):
-                    context.push([f"{el[1]}{G_sep}{el[2]}",f"{el[0]}{G_sep}{el[2]}"])
-            elif el[0] == "p":
-                # if next_is_blank:
-                #     continue
-                # else:
-                    # context.push(f"{long_el}{G_sep}=")
-                context.push(f"{long_el}{G_sep}=")
-            elif el[0][0] == "h":
-                continue
-            else:
-                context.pop(long_el) if context.match(long_el) else context.push(long_el)
-    return(context)
+def build_context():
+    global G_context
+    global G_line_buffer
+    G_context[0] = Context(str(G_line_buffer[0][I.NUM]))
+    # G_context[0] =
+    # if triggers:
+    #     global G_sep
+    #     for long_el in triggers:
+    #         el = long_el.split(G_sep)
+    #         if el[0] == "li":
+    #             if not context.match(long_el):
+    #                 context.push([f"{el[1]}{G_sep}{el[2]}",f"{el[0]}{G_sep}{el[2]}"])
+    #         elif el[0] == "p":
+    #             context.push(f"{long_el}{G_sep}")
+    #         elif el[0][0] == "h":
+    #             continue
+    #         else:
+    #             context.pop(long_el) if context.match(long_el) else context.push(long_el)
+    # return(context)
 
 
 def first_pass(line_no, raw, prev_was_blank, prev_indent):
     triggers = []
-    context = Context(str(line_no))
+    # G_context[0] = Context(str(line_no))
     indent, relative_indent, raw = calculate_indent(raw, prev_indent, prev_was_blank)
-    # prev_indent = indent
     has_final_break = check_for_final_break(raw)
     line = raw.strip()
     line, triggers = parse_line_for_triggers(line, prev_was_blank, indent)
-    context = build_context(triggers, context)
+    # build_context()
     return [
         line_no,
         indent,
@@ -438,23 +431,63 @@ def first_pass(line_no, raw, prev_was_blank, prev_indent):
         prev_was_blank,
         False,
         relative_indent,
-        context.get(),
+        [],
+        # context.get(),
         line
     ]
 
-def update_buffer_0(line_buffer, out_line):
-    line_buffer[0] = out_line
+def update_buffer_0(out_line):
+    global G_line_buffer
+    G_line_buffer[0] = out_line
+    build_context()
 
 
-def update_buffer_1(line_buffer, prev_was_blank):
-    if not line_buffer[1]:
+def update_buffer_1(next_is_blank):
+    global G_line_buffer
+    if not G_line_buffer[1]:
         return
-    if prev_was_blank:
-        line_buffer[1][I.NBLANK] = True
-    # TODO: update triggers with + - = .
+    else:
+        ln = G_line_buffer[1]
+        trig = ln[I.TRIG]
+        # context = Context(ln[I.CONTEXT])
+        if next_is_blank:
+            ln[I.NBLANK] = True
+        prev_was_blank = ln[I.BLANK]
+        for i,el in enumerate(trig):
+            head, *tail = el.split(G_sep)
+            tmp = ""
+            if head == "li":
+                if not next_is_blank and G_line_buffer[0][I.TRIG][0][0] == "p":
+                    # trig[i] += f"{G_sep}<"
+                    tmp = "<"
+                    # context.push(el)
+                    # ln[I.CONTEXT].append(el)
+                ## match all li with immediately preceeding li
+                ## earlier line has been processed, so must remove added elements
+                elif [match for match in G_line_buffer[-1][I.TRIG] if match[:7] == el]:
+                    tmp = "%"
+                    if next_is_blank:
+                        tmp += G_sep + ">"
+                        # context.pop()
+                else:
+                    tmp = "%" + G_sep + "<"
+                    # context.push(el)
+                trig[i] += G_sep + tmp
 
-def update_buffer_out(line_buffer):
-    if not line_buffer[2]:
+            elif head == "p":
+                if prev_was_blank and next_is_blank:
+                    tmp = "%"
+                elif prev_was_blank:
+                    tmp = "<"
+                elif next_is_blank:
+                    tmp = ">"
+                else:
+                    tmp = "="
+                trig[i] += G_sep + tmp
+
+def update_buffer_out():
+    global G_line_buffer
+    if not G_line_buffer[2]:
         return
     pass
 
@@ -462,6 +495,13 @@ def update_buffer_out(line_buffer):
 
 if __name__ == "__main__":
     in_file, out_file, title = prep_files()
+    G_tab_is_set = False
+    G_tab_length = 4
+    G_stop = "!"
+    G_sep = "."
+    G_line_buffer = [[],[],[]]
+    # G_context = [[],[],[]]
+    G_context = [Context(),Context(),Context()]
 
     # out_text = ""
     # EOL = "\n"
@@ -472,7 +512,6 @@ if __name__ == "__main__":
     r = init_inline_styles()
     r1 = init_regex_tools()
     # html_head,html_tail = init_html_outline()
-    # pretty = '{:<40}{:<50}'
     pretty = '{:<40}{:.50}'
 
     tab_size = 4
@@ -480,7 +519,7 @@ if __name__ == "__main__":
     # for parsing purposes, 3 most recent lines kept in memory
     # each line consists of [ [surrounding tags], inner html string ]
     # line_buffer = [[[], ""], [[], ""], [[], ""]]
-    line_buffer = [[],[],[]]
+    # line_buffer = [[],[],[]]
     prev_was_blank = True  # To show beginning of file
     prev_indent = 0
     tmp_start_line = 121
@@ -494,15 +533,14 @@ if __name__ == "__main__":
                     prev_was_blank = True
                     continue
                 else:
-                    line_buffer = update_buffer(line_buffer)
+                    update_buffer()
                     out_line = first_pass( line_no, raw, prev_was_blank, prev_indent)
-                    update_buffer_0(line_buffer, out_line)
-                    update_buffer_1(line_buffer, prev_was_blank)
-                    update_buffer_out(line_buffer)
+                    update_buffer_0(out_line)
+                    update_buffer_1(prev_was_blank)
+                    update_buffer_out()
                     prev_was_blank = False
-                # line_buffer[0] = out_line
-                pretty_print(line_buffer[-1])
+                pretty_print(G_line_buffer[-1])
             # To empty (& process) remaining buffer items
-        for i in range(1, len(line_buffer)):
-            line_buffer = update_buffer(line_buffer)
-            pretty_print(line_buffer[-1])
+        for i in range(1, len(G_line_buffer)):
+            update_buffer()
+            pretty_print(G_line_buffer[-1])
