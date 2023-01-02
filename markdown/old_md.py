@@ -28,16 +28,97 @@ from tokenize import group
 
 @dataclass
 class I:
-    NUM = 0     # line number
-    INDENT = 1  # indent count
-    BR = 2      # break @ EOL (not all versions of MD)
-    TRIG = 3   # list of triggers
-    BLANK = 4   # previous line was blank
-    NBLANK = 5  # next line is blank
-    REL = 6     # relative indent (i.e. indent depth)
-    CONTEXT = 7    # context list
-    LINE = 8    # line text
+    NUM = 0      # line number
+    INDENT = 1   # indent count
+    BR = 2       # break @ EOL (not all versions of MD)
+    TRIGGER = 3  # list of triggers
+    BLANK = 4    # previous line was blank
+    NBLANK = 5   # next line is blank
+    REL = 6      # relative indent (i.e. indent depth)
+    CONTEXT = 7  # context list
+    LINE = 8     # line text
+    WRAPPER = 9  # html wrapper (open,close)
 
+class Context:
+    def __init__(self, el_list=None):
+        if el_list is None:
+            self.context_list = []
+        else:
+            # el_list = [el_list] if not isinstance(el_list, list) else el_list
+            el_list = self.normalize(el_list)
+            self.context_list = el_list
+
+    def __str__(self):
+        # return ",".join([f"{el}" for el in self.context_list])
+        self.stringify()
+
+    def normalize(self,el):
+        return [el] if not isinstance(el, list) else el
+
+    def reset(self, el_list=None):
+        self.__init__(el_list)
+
+    def add_to_end(self, el_list):
+        """
+        add the string or list to the end
+        return the full new list
+        """
+        # el_list = [el_list] if isinstance(el_list, str) else el_list
+        el_list = self.normalize(el_list)
+        self.context_list.extend(el_list)
+        return self.context_list
+
+    def first_match(self, el):
+        """
+        return the first match
+        """
+        try:
+            self.result = self.context_list.index(el) + 1
+        except ValueError:
+            # self.result = -1
+            self.result = 0
+        return self.result
+
+    def partial_match(self, match):
+        """
+        return all entries that match the initial letter(s) given
+        """
+        return [i for i in self.context_list if i[:len(match)] == match]
+
+    def get(self):
+        return self.context_list
+
+    def stringify(self):
+        return ",".join([f"{el}" for el in self.context_list])
+
+    def drop_last(self, el=None):
+        """
+        if nothing specified, drop (and return) the last element
+        else drop (and return) all elements from the one specified to the end
+        """
+        self.removed = []
+        if el is None:
+            self.removed = self.context_list[-1]
+            self.context_list = self.context_list[:-1]
+        else:
+            self.el_pos = self.first_match(el)
+            if not self.el_pos:
+                self.removed = []
+            else:
+                self.removed = self.context_list[self.el_pos - 1:]
+                self.context_list = self.context_list[:self.el_pos - 1]
+        return self.removed
+
+    def empty(self):
+        self.removed = self.context_list
+        self.context_list = []
+        return self.removed
+
+
+# Buffers & Contexts (they are parallel)
+RAW = 0     # latest line; no context added
+WIP = 1     # previous line; context available (can look one line ahead)
+OUT = 2     # full context available (can look 2 lines ahead)
 
 # G_tab_is_set = False
 # G_tab_length = 4
@@ -128,24 +209,24 @@ def init_html_outline():
 
 def pretty_print(wip_line,context):
     if wip_line:
-        b = wip_line
-        if b[0] == -1:
+        if wip_line[0] == -1:
             print("\t...")
         else:
-            if b[I.BLANK]:
+            if wip_line[I.BLANK]:
                 print(".")
             print(
-                f'{b[I.NUM]:0>4}\t' +
-                f'{b[I.INDENT]:<1} ' +
+                f'{wip_line[I.NUM]:0>4}\t' +
+                f'{wip_line[I.INDENT]:<1} ' +
                 # f'{str(b[I.BR]):<1} ' +
-                f'{str(b[I.TRIG]):<30} ' +
-                f'{str(b[I.BLANK]):.1}' +
-                f'{str(b[I.NBLANK]):.1} ' +
-                f'{b[I.REL]:<1}' +
-                f'\t{b[I.LINE][:30]:<30}  ' +
+                f'{str(wip_line[I.TRIGGER]):<30} ' +
+                f'{str(wip_line[I.BLANK]):.1}' +
+                f'{str(wip_line[I.NBLANK]):.1} ' +
+                f'{wip_line[I.REL]:<1}' +
+                f'\t{wip_line[I.LINE][:30]:<30}  ' +
                 # f'{G_contexts[-1].get() if G_contexts[-1] else "empty"}'
                 f'{context.get() if context else "empty"}'
                 # f'{b[I.CONTEXT]}'
+                f'{" " + wip_line[I.WRAPPER] if I.WRAPPER < len(wip_line) else ""}'
             )
     else:
         print("...")
@@ -176,81 +257,6 @@ def prep_files():
 
     return (in_file, out_file, title)
 
-
-class Context:
-    def __init__(self, el_list=None):
-        if el_list is None:
-            self.context_list = []
-        else:
-            # el_list = [el_list] if not isinstance(el_list, list) else el_list
-            el_list = self.normalize(el_list)
-            self.context_list = el_list
-
-    def __str__(self):
-        # return ",".join([f"{el}" for el in self.context_list])
-        self.show()
-
-    def normalize(self,el):
-        return [el] if not isinstance(el, list) else el
-
-    def reset(self, el_list=None):
-        self.__init__(el_list)
-
-    def add_last(self, el_list):
-        """
-        add the string or list to the end
-        return the full new list
-        """
-        # el_list = [el_list] if isinstance(el_list, str) else el_list
-        el_list = self.normalize(el_list)
-        self.context_list.extend(el_list)
-        return self.context_list
-
-    def match(self, el):
-        """
-        return the first match
-        """
-        try:
-            self.result = self.context_list.index(el) + 1
-        except ValueError:
-            # self.result = -1
-            self.result = 0
-        return self.result
-
-    def match_start(self, match):
-        """
-        return all entries that match the initial letter(s) given
-        """
-        return [i for i in self.context_list if i[:len(match)] == match]
-
-    def get(self):
-        return self.context_list
-
-    def show(self):
-        return ",".join([f"{el}" for el in self.context_list])
-
-    def drop_last(self, el=None):
-        """
-        if nothing specified, drop (and return) the last element
-        else drop (and return) all elements from the one specified to the end
-        """
-        self.removed = []
-        if el is None:
-            self.removed = self.context_list[-1]
-            self.context_list = self.context_list[:-1]
-        else:
-            self.el_pos = self.match(el)
-            if not self.el_pos:
-                self.removed = []
-            else:
-                self.removed = self.context_list[self.el_pos - 1:]
-                self.context_list = self.context_list[:self.el_pos - 1]
-        return self.removed
-
-    def clear(self):
-        self.removed = self.context_list
-        self.context_list = []
-        return self.removed
 
 def calculate_indent(line, prev, prev_was_blank):
     line.replace("\t", "    ")
@@ -393,7 +399,7 @@ def build_context(line_no):
     global G_contexts
     global G_line_buffers
     # G_context[0] = Context(str(line_no))
-    G_contexts[0].add_last(line_no)
+    G_contexts[0].add_to_end(line_no)
     # print(">>>>>>>>>",G_contexts[0])
 
 
@@ -404,7 +410,6 @@ def first_pass(line_no, raw, prev_was_blank, prev_indent):
     has_final_break = check_for_final_break(raw)
     line = raw.strip()
     line, triggers = parse_line_for_triggers(line, prev_was_blank, indent)
-    # build_context(line_no)
     return [
         line_no,
         indent,
@@ -415,30 +420,33 @@ def first_pass(line_no, raw, prev_was_blank, prev_indent):
         relative_indent,
         [],
         # context.get(),
-        line
+        line,
+        "nowt yet"
     ]
 
-def cycle_buffer():
+def increment_buffer():
     ## create empty initial and drop final, i.e. [1,2,3] > [0,1,2]
     global G_line_buffers
     global G_contexts
-    G_line_buffers = [[]] + G_line_buffers[:-1]
-    G_contexts = [Context()] + G_contexts[:-1]
+    # G_line_buffers = [[]] + G_line_buffers[:-1]
+    # G_contexts = [Context()] + G_contexts[:-1]
+    G_line_buffers = [[]] + G_line_buffers[:OUT]
+    G_contexts = [Context()] + G_contexts[:OUT]
 
-def update_buffer_0(out_line):
+def update_RAW_buffer(out_line):
     global G_line_buffers
-    G_line_buffers[0] = out_line
-    G_contexts[0].add_last(out_line[I.NUM])
+    G_line_buffers[RAW] = out_line
+    G_contexts[RAW].add_to_end(out_line[I.NUM])
     # build_context(out_line[I.NUM])
 
 
-def update_buffer_1(next_is_blank):
+def update_WIP_buffer(next_is_blank):
     global G_line_buffers
-    if not G_line_buffers[1]:
+    if not G_line_buffers[WIP]:
         return
     else:
-        ln = G_line_buffers[1]
-        trig = ln[I.TRIG]
+        ln = G_line_buffers[WIP]
+        trig = ln[I.TRIGGER]
         # context = Context(ln[I.CONTEXT])
         if next_is_blank:
             ln[I.NBLANK] = True
@@ -447,14 +455,14 @@ def update_buffer_1(next_is_blank):
             head, *tail = el.split(G_sep)
             tmp = ""
             if head == "li":
-                if not next_is_blank and G_line_buffers[0][I.TRIG][0][0] == "p":
+                if not next_is_blank and G_line_buffers[RAW][I.TRIGGER][0][0] == "p":
                     # trig[i] += f"{G_sep}<"
                     tmp = "<"
                     # context.push(el)
                     # ln[I.CONTEXT].append(el)
                 ## match all li with immediately preceeding li
                 ## earlier line has been processed, so must remove added elements
-                elif [match for match in G_line_buffers[-1][I.TRIG] if match[:7] == el]:
+                elif [match for match in G_line_buffers[OUT][I.TRIGGER] if match[:7] == el]:
                     tmp = "%"
                     if next_is_blank:
                         tmp += G_sep + ">"
@@ -475,10 +483,10 @@ def update_buffer_1(next_is_blank):
                     tmp = "="
                 trig[i] += G_sep + tmp
 
-def update_buffer_out():
+def update_OUT_buffer():
     global G_line_buffers
-    if not G_line_buffers[2]:
-        return
+    if G_line_buffers[OUT]:
+        G_line_buffers[OUT][I.WRAPPER] = "</>"
 
 
 
@@ -523,13 +531,13 @@ if __name__ == "__main__":
                 else:
                     out_line = first_pass( line_no, raw, prev_was_blank, prev_indent)
                     # build_context(line_no)
-                    update_buffer_0(out_line)
-                    update_buffer_1(prev_was_blank)
-                    update_buffer_out()
+                    update_RAW_buffer(out_line)
+                    update_WIP_buffer(prev_was_blank)
+                    update_OUT_buffer()
                     prev_was_blank = False
-                    cycle_buffer()
-                pretty_print(G_line_buffers[-1], G_contexts[-1])
+                    increment_buffer()
+                pretty_print(G_line_buffers[OUT], G_contexts[OUT])
             # To empty (& process) remaining buffer items
     for i in range(1, len(G_line_buffers)):
-        cycle_buffer()
-        pretty_print(G_line_buffers[-1], G_contexts[-1])
+        increment_buffer()
+        pretty_print(G_line_buffers[OUT], G_contexts[OUT])
