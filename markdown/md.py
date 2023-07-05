@@ -450,13 +450,14 @@ def increment_buffer():
     doc.buffers = [Line()] + doc.buffers[:g.out]
     doc.contexts = [Context()] + doc.contexts[:g.out]
 
-def update_raw_buffer(out_line):
-    if out_line:
+def add_line_to_buffer(line: Line):
+    if line:
         global g
         global doc
-        # global doc.buffers
-        doc.buffers[g.raw] = out_line
-        doc.contexts[g.raw].add_to_end(out_line.num)
+        # make room for new line
+        increment_buffer()
+        doc.buffers[g.raw] = line
+        doc.contexts[g.raw].add_to_end(line.num)
 
 def update_wip_buffer():
     global g
@@ -511,11 +512,11 @@ def build_html_wrapper(line: Line):
     html_close = f"</{line.num}>"
     return [html_open, html_close]
 
-def process_line(line):
+def process_line(line: Line):
     global g
     global doc
-    increment_buffer()
-    update_raw_buffer(line)
+    # increment_buffer()
+    add_line_to_buffer(line)
     # update_wip_buffer(doc.prev_was_blank)
     update_wip_buffer()
     update_out_buffer()
@@ -551,7 +552,9 @@ if __name__ == "__main__":
                 doc.prev_was_blank = True
                 # continue
             else:
-                process_line(initial_parse( line_no, raw, doc.prev_was_blank, doc.prev_indent))
+                # process_line(initial_parse( line_no, raw, doc.prev_was_blank, doc.prev_indent))
+                line: Line = initial_parse( line_no, raw, doc.prev_was_blank, doc.prev_indent)
+                process_line(line)
     # To empty (& process) remaining buffer items
     for i in range(1, len(doc.buffers)):
         process_line(doc.buffers[g.out])
