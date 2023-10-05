@@ -267,16 +267,12 @@ def recurse_pedigree(cat_id, cats, curr_generation=0, pedigree={}):
     max_generations = 5
     if curr_generation > max_generations:
         return pedigree
-    if curr_generation == 0:
-        pedigree = {0:[cat_id]}
-    else:
-        pedigree = update_dict(curr_generation, cat_id, pedigree)
+    pedigree = update_dict(curr_generation, cat_id, pedigree)
     cat = cats[cat_id]
     for recorded_id, backup_id in [[cat['dam'],-1],[cat['sire'], -2]]:
         ancestor_id = recorded_id if recorded_id else backup_id
         recurse_pedigree(ancestor_id, cats, curr_generation + 1, pedigree)
     return pedigree
-
 
 def build_header(cat_id, cats, sex_lookup):
     print("...header...", cat_id)
@@ -372,75 +368,21 @@ def select_html_template(case, cat, cats, sex_lookup):
 #     # print(html)
 #     return html
 
-# def build_html_pedigree(pedigrees, cats, sex_lookup):
-#     html = ""
-#     for pedigree in pedigrees:
-#         for individual in pedigree:
-#             g_html = ""
-#             for g_id, generation in individual.items():
-#                 # print("g_id=",g_id)
-#                 g_class = "generation" if g_id else "header"
-#                 cat_html = ""
-#                 for cat in generation:
-#                     cat_html += select_html_template(g_id, cat, cats, sex_lookup)
-#                 g_html += f"\t<div id='gen_{g_id}' class='{g_class}'><h2>{g_id}</h2>\n{cat_html}\n\t\n\t</div>\n"
-#             html += f"<div id='cat_{individual.get(0)}' class='pedigree'>{g_html}\n</div>"
-#     # print("\nHTML:")
-#     # print(html)
-#     return html
-def build_htmlOLD(pedigrees, cats, sex_lookup):
+def build_html_pedigree(pedigree, cats, sex_lookup):
     html = ""
-    for pedigree in pedigrees:
+    for individual in pedigree:
         g_html = ""
-        for g_id, generation in pedigree.items():
-            # print("g_id=",g_id)
+        for g_id, generation in individual.items():
+            print("g_id=",g_id)
             g_class = "generation" if g_id else "header"
             cat_html = ""
             for cat in generation:
                 cat_html += select_html_template(g_id, cat, cats, sex_lookup)
             g_html += f"\t<div id='gen_{g_id}' class='{g_class}'><h2>{g_id}</h2>\n{cat_html}\n\t\n\t</div>\n"
-        html += f"<div id='cat_{pedigree.get(0)}' class='pedigree'>{g_html}\n</div>"
+        html += f"<div id='cat_{individual.get(0)}' class='pedigree'>{g_html}\n</div>"
     # print("\nHTML:")
     # print(html)
     return html
-
-
-def build_html(pedigrees, cats, sex_lookup):
-    ## pedigrees = [  [{0: [[1]]},{1: [[6, 5]]},{2: [[14, 13], [8, 7]]}],  [pedigree2 (etc.)]  ]
-    output = ""
-    for pedigree in pedigrees:
-        # print("ped:", pedigree)
-        # for g_id, generation in pedigree.items():
-        for generation in pedigree:
-            print("gen:", generation)
-            for gen, ancestors in generation.items():
-                print("ancestors:", gen, ancestors)
-                for pair in ancestors:
-                    print("pair:",pair)
-                    for cat_id in pair:
-                        print("cat:", cat_id, cats[cat_id]['name'])
-
-
-
-def build_html_pedigree(pedigree, cats, sex_lookup):
-    pass
-
-def build_html_generation(generation, cats, sex_lookup):
-    pass
-
-
-def build_html_ancestor(generation, cats, sex_lookup):
-    pass
-
-
-def build_html_pairs(pair, cats, sex_lookup):
-    pass
-
-
-def build_html_cat(cat, cats, sex_lookup):
-    pass
-
-
 
 def cat_sex_lookup(cats):
     lookup = {}
@@ -455,31 +397,9 @@ def cat_sex_lookup(cats):
     # print(">>>>>>", cats[1])
     return lookup
 
-def reverse_order(pedigrees):
-    print(pedigrees)
-    tmp = []
-    for pedigree in pedigrees:
-        for i in pedigree:
-            # print(">>", i,pedigrees[i])
-            tmp.append({i:pedigree[i][::-1]})
-        print(tmp)
-    # return tmp
-    return pedigrees
-
-def pair_and_reverse(pedigrees):
-    ## This divides ancestors into pairs (sire,dam) & reverses the presentation order
-    ## pedigrees = [  [{0: [1]},{1: [6, 5]},{2: [14, 13, 8, 7]}],  [pedigree2 (etc.)]  ]
-    tmp = [[{k:
-            [v[i:i+2] for i in range(0, len(v), 2)][::-1]
-            for k,v in g.items()}
-        for g in p]
-        for p in pedigrees]
-    return tmp
-
 
 def main():
-    # cats_to_print_by_id = [1]
-    cats_to_print_by_id = [1,2,3,4]
+    cats_to_print_by_id = [1]
     cats = create_pedigree_from_file(retrieve_file_by_suffix())
     id_from_name = {cat['name']: id for id, cat in cats.items()}
     cats = assign_generations(sub_names_to_ids(cats, id_from_name))
@@ -489,23 +409,14 @@ def main():
     # pedigrees_by_name = []
     pedigrees = []
     for id, cat in latest_generation.items():
-        print("recursing for:", id, cat['name'])
         if cats_to_print_by_id and id not in cats_to_print_by_id:
             continue
-        # tmp = recurse_pedigree(id, cats, 0, {0:[id]})
         tmp = recurse_pedigree(id, cats)
         # pedigrees_by_name.append(expand_ids_to_names(tmp, cats))
-        # tmp = reverse_order(tmp)
-        pedigrees.append([tmp])
-    # print("")
-    pprint(pedigrees, depth=4, width=80, compact=True)
-    pedigrees = pair_and_reverse(pedigrees)
-    print("\nFinal pedigrees")
-    pprint(pedigrees, depth=5, width=80, compact=True)
-    # quit()
-    # pprint(pedigrees)
+        pedigrees.append(tmp)
+    pprint(pedigrees)
     # pprint([expand_ids_to_names(cat, cats) for cat in pedigrees])
-    html_body = build_html(pedigrees, cats, sex_lookup)
+    html_body = build_html_pedigree(pedigrees, cats, sex_lookup)
     write_html_pedigree(html_template(html_body,"pedigree.css"))
 
 

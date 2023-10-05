@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.pedigree {
+  display: flex;
+  flex-direction: row;
+}
+
+.generation {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: block;
+}
+
+.pair {
+  border: 1px;
+}
+
+.cat {
+  padding: 3px;
+}
+
+.champion {
+  color: red;
+}
+
+/* .name, .sex {
+  font-size: larger;
+} */
+
+.gccf {
+  font-size: smaller;
+}
+
+.feature {
+  font-size: x-small;
+}

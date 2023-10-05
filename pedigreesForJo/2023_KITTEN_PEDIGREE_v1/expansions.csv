@@ -1,0 +1,135 @@
+TOS n 31,,Brown,,BCR,Tonkinese
+TOS f 31,,Brown,Tortoiseshell,BCR,Tonkinese
+TOS n 21 31,,Brown,Tabby,BCR,Tonkinese
+TOS f 21 31,,Brown,Tortie-Tabby,BCR,Tonkinese
+TOS a 31,,Blue,,BCR,Tonkinese
+TOS g 31,,Blue,Tortoiseshell,BCR,Tonkinese
+TOS a 21 31,,Blue,Tabby,BCR,Tonkinese
+TOS g 21 31,,Blue,Tortie-Tabby,BCR,Tonkinese
+TOS b 31,,Chocolate,,BCR,Tonkinese
+TOS h 31,,Chocolate,Tortoiseshell,BCR,Tonkinese
+TOS b 21 31,,Chocolate,Tabby,BCR,Tonkinese
+TOS h 21 31,,Chocolate,Tortie-Tabby,BCR,Tonkinese
+TOS c 31,,Lilac,,BCR,Tonkinese
+TOS j 31,,Lilac,Tortoiseshell,BCR,Tonkinese
+TOS c 21 31,,Lilac,Tabby,BCR,Tonkinese
+TOS j 21 31,,Lilac,Tortie-Tabby,BCR,Tonkinese
+TOS a 31 121,,Caramel blue based,,BCR,Tonkinese
+TOS g 31 121,,Caramel blue based,Tortoiseshell,BCR,Tonkinese
+TOS a 21 31 121,,Caramel blue based,Tabby,BCR,Tonkinese
+TOS g 21 31 121,,Caramel blue based,Tortie-Tabby,BCR,Tonkinese
+TOS c 31 121,,Caramel lilac based,,BCR,Tonkinese
+TOS j 31 121,,Caramel lilac based,Tortoiseshell,BCR,Tonkinese
+TOS c 21 31 121,,Caramel lilac based,Tabby,BCR,Tonkinese
+TOS j 21 31 121,,Caramel lilac based,Tortie-Tabby,BCR,Tonkinese
+TOS p 31 121,,Caramel fawn based,,BCR,Tonkinese
+TOS r 31 121,,Caramel fawn based,Tortoiseshell,BCR,Tonkinese
+TOS p 21 31 121,,Caramel fawn based,Tabby,BCR,Tonkinese
+TOS r 21 31 121,,Caramel fawn based,Tortie-Tabby,BCR,Tonkinese
+TOS o 31,,Cinnamon,,BCR,Tonkinese
+TOS q 31,,Cinnamon,Tortoiseshell,BCR,Tonkinese
+TOS o 21 31,,Cinnamon,Tabby,BCR,Tonkinese
+TOS q 21 31,,Cinnamon,Tortie-Tabby,BCR,Tonkinese
+TOS p 31,,Fawn,,BCR,Tonkinese
+TOS r 31,,Fawn,Tortoiseshell,BCR,Tonkinese
+TOS p 21 31,,Fawn,Tabby,BCR,Tonkinese
+TOS r 21 31,,Fawn,Tortie-Tabby,BCR,Tonkinese
+TOS d 31,,Red,,BCR,Tonkinese
+TOS d 21 31,,Red,Tabby,BCR,Tonkinese
+TOS e 31,,Cream,,BCR,Tonkinese
+TOS e 21 31,,Cream,Tabby,BCR,Tonkinese
+TOS e 31 121,,Apricot,,BCR,Tonkinese
+TOS e 21 31 121,,Apricot,Tabby,BCR,Tonkinese
+TOS n 32,,Brown,,TCR,Tonkinese
+TOS f 32,,Brown,Tortoiseshell,TCR,Tonkinese
+TOS n 21 32,,Brown,Tabby,TCR,Tonkinese
+TOS f 21 32,,Brown,Tortie-Tabby,TCR,Tonkinese
+TOS a 32,,Blue,,TCR,Tonkinese
+TOS g 32,,Blue,Tortoiseshell,TCR,Tonkinese
+TOS a 21 32,,Blue,Tabby,TCR,Tonkinese
+TOS g 21 32,,Blue,Tortie-Tabby,TCR,Tonkinese
+TOS b 32,,Chocolate,,TCR,Tonkinese
+TOS h 32,,Chocolate,Tortoiseshell,TCR,Tonkinese
+TOS b 21 32,,Chocolate,Tabby,TCR,Tonkinese
+TOS h 21 32,,Chocolate,Tortie-Tabby,TCR,Tonkinese
+TOS c 32,,Lilac,,TCR,Tonkinese
+TOS j 32,,Lilac,Tortoiseshell,TCR,Tonkinese
+TOS c 21 32,,Lilac,Tabby,TCR,Tonkinese
+TOS j 21 32,,Lilac,Tortie-Tabby,TCR,Tonkinese
+TOS a 32 121,,Caramel blue based,,TCR,Tonkinese
+TOS g 32 121,,Caramel blue based,Tortoiseshell,TCR,Tonkinese
+TOS a 21 32 121,,Caramel blue based,Tabby,TCR,Tonkinese
+TOS g 21 32 121,,Caramel blue based,Tortie-Tabby,TCR,Tonkinese
+TOS c 32 121,,Caramel lilac based,,TCR,Tonkinese
+TOS j 32 121,,Caramel lilac based,Tortoiseshell,TCR,Tonkinese
+TOS c 21 32 121,,Caramel lilac based,Tabby,TCR,Tonkinese
+TOS j 21 32 121,,Caramel lilac based,Tortie-Tabby,TCR,Tonkinese
+TOS p 32 121,,Caramel fawn based,,TCR,Tonkinese
+TOS r 32 121,,Caramel fawn based,Tortoiseshell,TCR,Tonkinese
+TOS p 21 32 121,,Caramel fawn based,Tabby,TCR,Tonkinese
+TOS r 21 32 121,,Caramel fawn based,Tortie-Tabby,TCR,Tonkinese
+TOS o 32,,Cinnamon,,TCR,Tonkinese
+TOS q 32,,Cinnamon,Tortoiseshell,TCR,Tonkinese
+TOS o 21 32,,Cinnamon,Tabby,TCR,Tonkinese
+TOS q 21 32,,Cinnamon,Tortie-Tabby,TCR,Tonkinese
+TOS p 32,,Fawn,,TCR,Tonkinese
+TOS r 32,,Fawn,Tortoiseshell,TCR,Tonkinese
+TOS p 21 32,,Fawn,Tabby,TCR,Tonkinese
+TOS r 21 32,,Fawn,Tortie-Tabby,TCR,Tonkinese
+TOS d 32,,Red,,TCR,Tonkinese
+TOS d 21 32,,Red,Tabby,TCR,Tonkinese
+TOS e 32,,Cream,,TCR,Tonkinese
+TOS e 21 32,,Cream,Tabby,TCR,Tonkinese
+TOS e 32 121,,Apricot,,TCR,Tonkinese
+TOS e 21 32 121,,Apricot,Tabby,TCR,Tonkinese
+TOS n 33,,Brown,,CPP,Tonkinese
+TOS f 33,,Brown,Tortoiseshell,CPP,Tonkinese
+TOS n 21 33,,Brown,Tabby,CPP,Tonkinese
+TOS f 21 33,,Brown,Tortie-Tabby,CPP,Tonkinese
+TOS a 33,,Blue,,CPP,Tonkinese
+TOS g 33,,Blue,Tortoiseshell,CPP,Tonkinese
+TOS a 21 33,,Blue,Tabby,CPP,Tonkinese
+TOS g 21 33,,Blue,Tortie-Tabby,CPP,Tonkinese
+TOS b 33,,Chocolate,,CPP,Tonkinese
+TOS h 33,,Chocolate,Tortoiseshell,CPP,Tonkinese
+TOS b 21 33,,Chocolate,Tabby,CPP,Tonkinese
+TOS h 21 33,,Chocolate,Tortie-Tabby,CPP,Tonkinese
+TOS c 33,,Lilac,,CPP,Tonkinese
+TOS j 33,,Lilac,Tortoiseshell,CPP,Tonkinese
+TOS c 21 33,,Lilac,Tabby,CPP,Tonkinese
+TOS j 21 33,,Lilac,Tortie-Tabby,CPP,Tonkinese
+TOS a 33 121,,Caramel blue based,,CPP,Tonkinese
+TOS g 33 121,,Caramel blue based,Tortoiseshell,CPP,Tonkinese
+TOS a 21 33 121,,Caramel blue based,Tabby,CPP,Tonkinese
+TOS g 21 33 121,,Caramel blue based,Tortie-Tabby,CPP,Tonkinese
+TOS c 33 121,,Caramel lilac based,,CPP,Tonkinese
+TOS j 33 121,,Caramel lilac based,Tortoiseshell,CPP,Tonkinese
+TOS c 21 33 121,,Caramel lilac based,Tabby,CPP,Tonkinese
+TOS j 21 33 121,,Caramel lilac based,Tortie-Tabby,CPP,Tonkinese
+TOS p 33 121,,Caramel fawn based,,CPP,Tonkinese
+TOS r 33 121,,Caramel fawn based,Tortoiseshell,CPP,Tonkinese
+TOS p 21 33 121,,Caramel fawn based,Tabby,CPP,Tonkinese
+TOS r 21 33 121,,Caramel fawn based,Tortie-Tabby,CPP,Tonkinese
+TOS o 33,,Cinnamon,,CPP,Tonkinese
+TOS q 33,,Cinnamon,Tortoiseshell,CPP,Tonkinese
+TOS o 21 33,,Cinnamon,Tabby,CPP,Tonkinese
+TOS q 21 33,,Cinnamon,Tortie-Tabby,CPP,Tonkinese
+TOS p 33,,Fawn,,CPP,Tonkinese
+TOS r 33,,Fawn,Tortoiseshell,CPP,Tonkinese
+TOS p 21 33,,Fawn,Tabby,CPP,Tonkinese
+TOS r 21 33,,Fawn,Tortie-Tabby,CPP,Tonkinese
+TOS d 33,,Red,,CPP,Tonkinese
+TOS d 21 33,,Red,Tabby,CPP,Tonkinese
+TOS e 33,,Cream,,CPP,Tonkinese
+TOS e 21 33,,Cream,Tabby,CPP,Tonkinese
+TOS e 33 121,,Apricot,,CPP,Tonkinese
+TOS e 21 33 121,,Apricot,Tabby,CPP,Tonkinese
+BUR c,,Lilac,,,Burmese
+BUR a,,Blue,,,Burmese
+BUR b,,Chocolate,,,Burmese
+BUR h,,Chocolate,Tortoiseshell,,Burmese
+BUR n,,Brown,,,Burmese
+SIA a,,Blue,,Point,Siamese
+SIA b,,Chocolate,,Point,Siamese
+SIA c,,Lilac,,Point,Siamese
+SIA n,,Seal,,Point,Siamese
