@@ -50,6 +50,145 @@ RED = "\u001b[31m"
 #         tmp_decks.update(retrieve_json_file(saved_deck))
 #     return tmp_decks
 
+def make_gems_lookup():
+    return {
+        "TOS n 31": "Brown BCR Tonkinese",
+        "TOS f 31": "Brown Tortoiseshell BCR Tonkinese",
+        "TOS n 21 31": "Brown Tabby BCR Tonkinese",
+        "TOS f 21 31": "Brown Tortie-Tabby BCR Tonkinese",
+        "TOS a 31": "Blue BCR Tonkinese",
+        "TOS g 31": "Blue Tortoiseshell BCR Tonkinese",
+        "TOS a 21 31": "Blue Tabby BCR Tonkinese",
+        "TOS g 21 31": "Blue Tortie-Tabby BCR Tonkinese",
+        "TOS b 31": "Chocolate BCR Tonkinese",
+        "TOS h 31": "Chocolate Tortoiseshell BCR Tonkinese",
+        "TOS b 21 31": "Chocolate Tabby BCR Tonkinese",
+        "TOS h 21 31": "Chocolate Tortie-Tabby BCR Tonkinese",
+        "TOS c 31": "Lilac BCR Tonkinese",
+        "TOS j 31": "Lilac Tortoiseshell BCR Tonkinese",
+        "TOS c 21 31": "Lilac Tabby BCR Tonkinese",
+        "TOS j 21 31": "Lilac Tortie-Tabby BCR Tonkinese",
+        "TOS a 31 121": "Caramel blue based BCR Tonkinese",
+        "TOS g 31 121": "Caramel blue based Tortoiseshell BCR Tonkinese",
+        "TOS a 21 31 121": "Caramel blue based Tabby BCR Tonkinese",
+        "TOS g 21 31 121": "Caramel blue based Tortie-Tabby BCR Tonkinese",
+        "TOS c 31 121": "Caramel lilac based BCR Tonkinese",
+        "TOS j 31 121": "Caramel lilac based Tortoiseshell BCR Tonkinese",
+        "TOS c 21 31 121": "Caramel lilac based Tabby BCR Tonkinese",
+        "TOS j 21 31 121": "Caramel lilac based Tortie-Tabby BCR Tonkinese",
+        "TOS p 31 121": "Caramel fawn based BCR Tonkinese",
+        "TOS r 31 121": "Caramel fawn based Tortoiseshell BCR Tonkinese",
+        "TOS p 21 31 121": "Caramel fawn based Tabby BCR Tonkinese",
+        "TOS r 21 31 121": "Caramel fawn based Tortie-Tabby BCR Tonkinese",
+        "TOS o 31": "Cinnamon BCR Tonkinese",
+        "TOS q 31": "Cinnamon Tortoiseshell BCR Tonkinese",
+        "TOS o 21 31": "Cinnamon Tabby BCR Tonkinese",
+        "TOS q 21 31": "Cinnamon Tortie-Tabby BCR Tonkinese",
+        "TOS p 31": "Fawn BCR Tonkinese",
+        "TOS r 31": "Fawn Tortoiseshell BCR Tonkinese",
+        "TOS p 21 31": "Fawn Tabby BCR Tonkinese",
+        "TOS r 21 31": "Fawn Tortie-Tabby BCR Tonkinese",
+        "TOS d 31": "Red BCR Tonkinese",
+        "TOS d 21 31": "Red Tabby BCR Tonkinese",
+        "TOS e 31": "Cream BCR Tonkinese",
+        "TOS e 21 31": "Cream Tabby BCR Tonkinese",
+        "TOS e 31 121": "Apricot BCR Tonkinese",
+        "TOS e 21 31 121": "Apricot Tabby BCR Tonkinese",
+        "TOS n 32": "Brown TCR Tonkinese",
+        "TOS f 32": "Brown Tortoiseshell TCR Tonkinese",
+        "TOS n 21 32": "Brown Tabby TCR Tonkinese",
+        "TOS f 21 32": "Brown Tortie-Tabby TCR Tonkinese",
+        "TOS a 32": "Blue TCR Tonkinese",
+        "TOS g 32": "Blue Tortoiseshell TCR Tonkinese",
+        "TOS a 21 32": "Blue Tabby TCR Tonkinese",
+        "TOS g 21 32": "Blue Tortie-Tabby TCR Tonkinese",
+        "TOS b 32": "Chocolate TCR Tonkinese",
+        "TOS h 32": "Chocolate Tortoiseshell TCR Tonkinese",
+        "TOS b 21 32": "Chocolate Tabby TCR Tonkinese",
+        "TOS h 21 32": "Chocolate Tortie-Tabby TCR Tonkinese",
+        "TOS c 32": "Lilac TCR Tonkinese",
+        "TOS j 32": "Lilac Tortoiseshell TCR Tonkinese",
+        "TOS c 21 32": "Lilac Tabby TCR Tonkinese",
+        "TOS j 21 32": "Lilac Tortie-Tabby TCR Tonkinese",
+        "TOS a 32 121": "Caramel blue based TCR Tonkinese",
+        "TOS g 32 121": "Caramel blue based Tortoiseshell TCR Tonkinese",
+        "TOS a 21 32 121": "Caramel blue based Tabby TCR Tonkinese",
+        "TOS g 21 32 121": "Caramel blue based Tortie-Tabby TCR Tonkinese",
+        "TOS c 32 121": "Caramel lilac based TCR Tonkinese",
+        "TOS j 32 121": "Caramel lilac based Tortoiseshell TCR Tonkinese",
+        "TOS c 21 32 121": "Caramel lilac based Tabby TCR Tonkinese",
+        "TOS j 21 32 121": "Caramel lilac based Tortie-Tabby TCR Tonkinese",
+        "TOS p 32 121": "Caramel fawn based TCR Tonkinese",
+        "TOS r 32 121": "Caramel fawn based Tortoiseshell TCR Tonkinese",
+        "TOS p 21 32 121": "Caramel fawn based Tabby TCR Tonkinese",
+        "TOS r 21 32 121": "Caramel fawn based Tortie-Tabby TCR Tonkinese",
+        "TOS o 32": "Cinnamon TCR Tonkinese",
+        "TOS q 32": "Cinnamon Tortoiseshell TCR Tonkinese",
+        "TOS o 21 32": "Cinnamon Tabby TCR Tonkinese",
+        "TOS q 21 32": "Cinnamon Tortie-Tabby TCR Tonkinese",
+        "TOS p 32": "Fawn TCR Tonkinese",
+        "TOS r 32": "Fawn Tortoiseshell TCR Tonkinese",
+        "TOS p 21 32": "Fawn Tabby TCR Tonkinese",
+        "TOS r 21 32": "Fawn Tortie-Tabby TCR Tonkinese",
+        "TOS d 32": "Red TCR Tonkinese",
+        "TOS d 21 32": "Red Tabby TCR Tonkinese",
+        "TOS e 32": "Cream TCR Tonkinese",
+        "TOS e 21 32": "Cream Tabby TCR Tonkinese",
+        "TOS e 32 121": "Apricot TCR Tonkinese",
+        "TOS e 21 32 121": "Apricot Tabby TCR Tonkinese",
+        "TOS n 33": "Brown CPP Tonkinese",
+        "TOS f 33": "Brown Tortoiseshell CPP Tonkinese",
+        "TOS n 21 33": "Brown Tabby CPP Tonkinese",
+        "TOS f 21 33": "Brown Tortie-Tabby CPP Tonkinese",
+        "TOS a 33": "Blue CPP Tonkinese",
+        "TOS g 33": "Blue Tortoiseshell CPP Tonkinese",
+        "TOS a 21 33": "Blue Tabby CPP Tonkinese",
+        "TOS g 21 33": "Blue Tortie-Tabby CPP Tonkinese",
+        "TOS b 33": "Chocolate CPP Tonkinese",
+        "TOS h 33": "Chocolate Tortoiseshell CPP Tonkinese",
+        "TOS b 21 33": "Chocolate Tabby CPP Tonkinese",
+        "TOS h 21 33": "Chocolate Tortie-Tabby CPP Tonkinese",
+        "TOS c 33": "Lilac CPP Tonkinese",
+        "TOS j 33": "Lilac Tortoiseshell CPP Tonkinese",
+        "TOS c 21 33": "Lilac Tabby CPP Tonkinese",
+        "TOS j 21 33": "Lilac Tortie-Tabby CPP Tonkinese",
+        "TOS a 33 121": "Caramel blue based CPP Tonkinese",
+        "TOS g 33 121": "Caramel blue based Tortoiseshell CPP Tonkinese",
+        "TOS a 21 33 121": "Caramel blue based Tabby CPP Tonkinese",
+        "TOS g 21 33 121": "Caramel blue based Tortie-Tabby CPP Tonkinese",
+        "TOS c 33 121": "Caramel lilac based CPP Tonkinese",
+        "TOS j 33 121": "Caramel lilac based Tortoiseshell CPP Tonkinese",
+        "TOS c 21 33 121": "Caramel lilac based Tabby CPP Tonkinese",
+        "TOS j 21 33 121": "Caramel lilac based Tortie-Tabby CPP Tonkinese",
+        "TOS p 33 121": "Caramel fawn based CPP Tonkinese",
+        "TOS r 33 121": "Caramel fawn based Tortoiseshell CPP Tonkinese",
+        "TOS p 21 33 121": "Caramel fawn based Tabby CPP Tonkinese",
+        "TOS r 21 33 121": "Caramel fawn based Tortie-Tabby CPP Tonkinese",
+        "TOS o 33": "Cinnamon CPP Tonkinese",
+        "TOS q 33": "Cinnamon Tortoiseshell CPP Tonkinese",
+        "TOS o 21 33": "Cinnamon Tabby CPP Tonkinese",
+        "TOS q 21 33": "Cinnamon Tortie-Tabby CPP Tonkinese",
+        "TOS p 33": "Fawn CPP Tonkinese",
+        "TOS r 33": "Fawn Tortoiseshell CPP Tonkinese",
+        "TOS p 21 33": "Fawn Tabby CPP Tonkinese",
+        "TOS r 21 33": "Fawn Tortie-Tabby CPP Tonkinese",
+        "TOS d 33": "Red CPP Tonkinese",
+        "TOS d 21 33": "Red Tabby CPP Tonkinese",
+        "TOS e 33": "Cream CPP Tonkinese",
+        "TOS e 21 33": "Cream Tabby CPP Tonkinese",
+        "TOS e 33 121": "Apricot CPP Tonkinese",
+        "TOS e 21 33 121": "Apricot Tabby CPP Tonkinese",
+        "BUR c": "Lilac Burmese",
+        "BUR a": "Blue Burmese",
+        "BUR b": "Chocolate Burmese",
+        "BUR h": "Chocolate Tortoiseshell Burmese",
+        "BUR n": "Brown Burmese",
+        "SIA a": "Blue Point Siamese",
+        "SIA b": "Chocolate Point Siamese",
+        "SIA c": "Lilac Point Siamese",
+        "SIA n": "Seal Point Siamese",
+    }
+
 def html_template(body, css_file=""):
     css_link = f"\n<link rel='stylesheet' type='text/css' href='{css_file}'>\n" if css_file else ""
     template = f"""
@@ -243,25 +382,12 @@ def get_latest_generation(cats):
 
 def update_dict(key,val, dict):
     if dict.get(key):
-        dict[key].append(val)
+        # dict[key].append(val)
+        dict[key].insert(0,val)
     else:
         dict.update({key: [val]})
     return dict
 
-
-# def recurse_pedigree(cat_id, cats, curr_generation=0, pedigree={}):
-#     max_generations = 5
-#     if curr_generation > max_generations:
-#         return pedigree
-#     pedigree = update_dict(curr_generation, cat_id, pedigree)
-#     cat = cats[cat_id]
-#     for ancestor_id, dummy_id in [[cat['dam'],-1],[cat['sire'], -2]]:
-#         if ancestor_id:
-#             recurse_pedigree(ancestor_id, cats, curr_generation + 1, pedigree)
-#         elif curr_generation < max_generations:
-#             recurse_pedigree(dummy_id, cats, curr_generation + 1, pedigree)
-#             # update_dict(curr_generation + 1, dummy_id, pedigree)
-#     return pedigree
 
 def recurse_pedigree(cat_id, cats, curr_generation=0, pedigree={}):
     max_generations = 5
@@ -278,70 +404,120 @@ def recurse_pedigree(cat_id, cats, curr_generation=0, pedigree={}):
     return pedigree
 
 
-def build_header(cat_id, cats, sex_lookup):
-    print("...header...", cat_id)
-    return build_generic(cat_id, cats, sex_lookup)
+def build_header(cat_id, cats, sex_lookup, gems_lookup):
+    i = get_display_info(cat_id, cats, sex_lookup, gems_lookup)
+    return f"""
+<table class="header">
+    <tr>
+        <td rowspan="2">
+        <p class="feature">Breeder:</p>
+        <p>LONGNAP</p>
+        <p class="feature">
+        Ms J Sturgess<br>
+        5 Catharine Close Radley ABINGDON<br>
+        OX14 3AR
+        </p>
+        </td>
+        <td>Name: <b>{i["name"]}</b></td>
+    </tr>
+    <tr>
+        <td class="cat-info">
+            <p class="feature"><b>Reg no: </b>{i["regnum"]} {i["gccf"]}<span</p>
+            <p class="feature"><b>Date of birth: </b>{i["cat"]["dob"]}</p>
+            <p class="feature"><b>Microchip: </b></p>
+            <p class="feature"><b>Sex: </b>{i["sex"]}</p>
+            <p class="feature"><b>GEMS: </b>{i["gems"]} {i["catsplain"]}</p>
+            <p class="feature"><b>Status: </b>NonActive</p>
+            <p class="feature bold">Owner: </b></p>
+        </td>
+    </tr>
+</table>
+"""
+    # print("...header...", cat_id)
+    # return build_generic(cat_id, cats, sex_lookup)
 
 
-def build_gen1(cat_id, cats, sex_lookup):
-    return build_generic(cat_id, cats, sex_lookup)
+def build_gen1(cat_id, cats, sex_lookup, gems_lookup):
+    return build_generic(cat_id, cats, sex_lookup, gems_lookup)
 
 
-def build_gen2(cat_id, cats, sex_lookup):
-    return build_generic(cat_id, cats, sex_lookup)
+def build_gen2(cat_id, cats, sex_lookup, gems_lookup):
+    return build_generic(cat_id, cats, sex_lookup, gems_lookup)
 
 
-def build_gen3(cat_id, cats, sex_lookup):
-    return build_generic(cat_id, cats, sex_lookup)
-
-
-def build_gen5(cat_id, cats, sex_lookup):
-    return build_gen4(cat_id, cats, sex_lookup)
-
-
-def build_gen4(cat_id, cats, sex_lookup):
-    # print("gen 4:", cat)
-    cat = cats[cat_id]
-    is_dam = sex_lookup[cat_id] == "f"
-    sex_icon = '\u2642' if is_dam else '\u2640'
-    # sex = "Dam" if is_dam else "Sire"
-    has_awards = cat['cstatus']
-    awards = f"{has_awards} " if has_awards else ""
-    awards_class = " champion" if has_awards else ""
-    # gccf = f" <span class='gccf'>{cat['gccf']}</span>" if cat['gccf'] else ""
-    profile = f"""
-<div class='cat'>
-    <p class="name{awards_class}">{awards}{cat['name']} {sex_icon}</p>
-    <p class="desc">{cat['regnum']} {cat['gems']}</p>
+def build_gen3(cat_id, cats, sex_lookup, gems_lookup):
+    i = get_display_info(cat_id, cats, sex_lookup, gems_lookup)
+    return f"""
+<div class="cat">
+    <p class="name{i["awards_class"]}">{i["awards"]}{i["name"]}</p>
+    <p class="reg"><span class="feature">Reg no: </span>{i["regnum"]}<span</p>
+    <p class="gems"><span class="feature">GEMS: </span>{i["gems"]} {i["gccf"]}</span></p>
+    <p class="expand">{i["catsplain"]}</p>
 </div>
 """
-    return profile
-    # return build_generic(cat, cats, sex_lookup)
 
-def build_generic(cat_id, cats, sex_lookup):
+
+def build_gen4(cat_id, cats, sex_lookup, gems_lookup):
+    i = get_display_info(cat_id, cats, sex_lookup, gems_lookup)
+    return f"""
+<div class='cat'>
+    <p class="name{i["awards_class"]}">{i["awards"]}{i["name"]} {i["sex_icon"]}</p>
+    <p class="desc">{i["regnum"]} {i["gems"]}</p>
+</div>
+"""
+
+
+def build_gen5(cat_id, cats, sex_lookup, gems_lookup):
+    # return build_gen4(cat_id, cats, sex_lookup)
+    i = get_display_info(cat_id, cats, sex_lookup, gems_lookup)
+    return f"""
+<div class='cat'>
+    <p class="name{i["awards_class"]}">{i["awards"]}{i["name"]} {i["sex_icon"]}
+    {i["regnum"]} {i["gems"]}</p>
+</div>
+"""
+
+
+def build_generic(cat_id, cats, sex_lookup, gems_lookup):
+    i = get_display_info(cat_id, cats, sex_lookup, gems_lookup)
+    return f"""
+<div class="cat">
+    <p class="sex">{i["sex"]}</p>
+    <p class="name{i["awards_class"]}">{i["awards"]}{i["name"]}</p>
+    <p class="reg"><span class="feature">Reg no: </span>{i["regnum"]}<span</p>
+    <p class="gems"><span class="feature">GEMS: </span>{i["gems"]} {i["gccf"]}</span></p>
+    <p class="expand">{i["catsplain"]}</p>
+</div>
+"""
+
+
+def get_display_info(cat_id, cats, sex_lookup, gems_lookup):
     cat = cats[cat_id]
     is_dam = sex_lookup[cat_id] == "f"
-    # sex_icon = '\u2642' if is_dam else '\u2640'
     sex = "Dam" if is_dam else "Sire"
     has_awards = cat['cstatus']
-    awards = f"{has_awards} " if has_awards else ""
-    awards_class = " champion" if has_awards else ""
-    gccf = f" <span class='gccf'>{cat['gccf']}</span>" if cat['gccf'] else ""
-    profile = f"""
-<div class="cat">
-    <p class="sex">{sex}</p>
-    <p class="name{awards_class}">{awards}{cat['name']}</p>
-    <p class="reg"><span class="feature">Reg no: </span>{cat['regnum']}<span</p>
-    <p class="gems"><span class="feature">GEMS: </span>{cat['gems']}{gccf}</span></p>
-    <p class="expand">tba</p>
-</div>
-"""
-    return profile
-    # return f"\n\t\t<li>{sex_icon} {cats[cat]['name'].title()}</li>"
+    gccf = cat['gccf']
+    gems = cat['gems']
+    return {
+        "cat": cat,
+        "gccf": gccf,
+        "name": cat['name'],
+        "regnum": cat['regnum'],
+        "gems": gems,
+        "is_dam": is_dam,
+        "sex_icon": '\u2642' if is_dam else '\u2640',
+        # "sex": "Dam" if is_dam else "Sire",
+        "sex": sex,
+        "has_awards": has_awards,
+        "awards": f"{has_awards} " if has_awards else "",
+        "awards_class": " champion" if has_awards else "",
+        "gccf_text": f" <span class='gccf'>{gccf}</span>" if gccf else "",
+        "catsplain": gems_lookup.get(gems, "")
+    }
 
 
-def select_html_template(case, cat, cats, sex_lookup):
-    if case < 0 or case > 4:
+def select_html_template(case, cat, cats, sex_lookup, gems_lookup):
+    if case < 0 or case > 5:
         case = 100
     switch = {
         0: build_header,
@@ -353,96 +529,72 @@ def select_html_template(case, cat, cats, sex_lookup):
         100: build_generic
     }
     func = switch.get(case)
-    return func(cat,cats, sex_lookup)
+    return func(cat,cats, sex_lookup, gems_lookup)
 
 
-# def build_html_pedigree(pedigree, cats, sex_lookup):
-#     html = ""
-#     for individual in pedigree:
-#         g_html = ""
-#         for g_id, generation in individual.items():
-#             print("g_id=",g_id)
-#             g_class = "generation" if g_id else "header"
-#             cat_html = ""
-#             for cat in generation:
-#                 cat_html += select_html_template(g_id, cat, cats, sex_lookup)
-#             g_html += f"\t<div id='gen_{g_id}' class='{g_class}'><h2>{g_id}</h2>\n{cat_html}\n\t\n\t</div>\n"
-#         html += f"<div id='cat_{individual.get(0)}' class='pedigree'>{g_html}\n</div>"
-#     # print("\nHTML:")
-#     # print(html)
-#     return html
-
-# def build_html_pedigree(pedigrees, cats, sex_lookup):
-#     html = ""
-#     for pedigree in pedigrees:
-#         for individual in pedigree:
-#             g_html = ""
-#             for g_id, generation in individual.items():
-#                 # print("g_id=",g_id)
-#                 g_class = "generation" if g_id else "header"
-#                 cat_html = ""
-#                 for cat in generation:
-#                     cat_html += select_html_template(g_id, cat, cats, sex_lookup)
-#                 g_html += f"\t<div id='gen_{g_id}' class='{g_class}'><h2>{g_id}</h2>\n{cat_html}\n\t\n\t</div>\n"
-#             html += f"<div id='cat_{individual.get(0)}' class='pedigree'>{g_html}\n</div>"
-#     # print("\nHTML:")
-#     # print(html)
-#     return html
-def build_htmlOLD(pedigrees, cats, sex_lookup):
-    html = ""
-    for pedigree in pedigrees:
-        g_html = ""
-        for g_id, generation in pedigree.items():
-            # print("g_id=",g_id)
-            g_class = "generation" if g_id else "header"
-            cat_html = ""
-            for cat in generation:
-                cat_html += select_html_template(g_id, cat, cats, sex_lookup)
-            g_html += f"\t<div id='gen_{g_id}' class='{g_class}'><h2>{g_id}</h2>\n{cat_html}\n\t\n\t</div>\n"
-        html += f"<div id='cat_{pedigree.get(0)}' class='pedigree'>{g_html}\n</div>"
-    # print("\nHTML:")
-    # print(html)
-    return html
-
-
-def build_html(pedigrees, cats, sex_lookup):
+def build_html(pedigrees, cats, sex_lookup, gems_lookup):
     ## pedigrees = [  [{0: [[1]]},{1: [[6, 5]]},{2: [[14, 13], [8, 7]]}],  [pedigree2 (etc.)]  ]
-    output = ""
+    pedigree_html = ""
     for pedigree in pedigrees:
-        # print("ped:", pedigree)
-        # for g_id, generation in pedigree.items():
-        for generation in pedigree:
-            print("gen:", generation)
-            for gen, ancestors in generation.items():
-                print("ancestors:", gen, ancestors)
-                for pair in ancestors:
-                    print("pair:",pair)
+        gen_wrapper_html = ""
+        for generation_dict in pedigree:
+            header_html = build_header(generation_dict[0][0][0], cats, sex_lookup, gems_lookup)
+            generation_html = ""
+            for g_id, generation in generation_dict.items():
+                if g_id == 0:
+                    continue
+                pair_html = ""
+                for pair in generation:
+                    cat_html = ""
                     for cat_id in pair:
-                        print("cat:", cat_id, cats[cat_id]['name'])
+                        # print("cat:", cat_id, cats[cat_id]['name'])
+                        cat_html += build_html_cat(g_id, cat_id, cats, sex_lookup, gems_lookup)
+                    pair_html += build_html_pairs(cat_html)
+                generation_html += build_html_generation(g_id, pair_html)
+            gen_wrapper_html = build_html_gen_wrapper(generation_html)
+        pedigree_html += build_html_pedigree(pedigree[0][0][0][0], header_html + gen_wrapper_html, cats)
+    return pedigree_html
 
 
 
-def build_html_pedigree(pedigree, cats, sex_lookup):
-    pass
+def build_html_pedigree(target_id, gen_wrapper_html, cats):
+    tmp = f"""
+<article id='catID:{target_id}' title='{cats[target_id]['name']}'>
+    {gen_wrapper_html}
+</article>
+    """
+    return tmp
 
-def build_html_generation(generation, cats, sex_lookup):
-    pass
-
-
-def build_html_ancestor(generation, cats, sex_lookup):
-    pass
-
-
-def build_html_pairs(pair, cats, sex_lookup):
-    pass
-
-
-def build_html_cat(cat, cats, sex_lookup):
-    pass
+def build_html_gen_wrapper(generation_html):
+    tmp = f"""
+<div class="gen_wrapper">
+    {generation_html}
+</div>
+    """
+    return tmp
 
 
+def build_html_generation(g_id, pair_html):
+    g_class = "generation" if g_id else "header"
+    tmp = f"""
+<div id='gen_{g_id}' class='{g_class}'>
+    {pair_html}
+</div>"""
+    return tmp
 
-def cat_sex_lookup(cats):
+
+def build_html_pairs(cat_html):
+    tmp = f"\n<div class='pair'>{cat_html}</div>\n"
+    return tmp
+
+
+def build_html_cat(g_id, cat_id, cats, sex_lookup, gems_lookup):
+    tmp = select_html_template(g_id, cat_id, cats, sex_lookup, gems_lookup)
+    return tmp
+
+
+
+def make_sex_lookup(cats):
     lookup = {}
     for id, cat in cats.items():
         if cat['dam']:
@@ -476,6 +628,16 @@ def pair_and_reverse(pedigrees):
         for p in pedigrees]
     return tmp
 
+def pair_ancestors(pedigrees):
+    ## This divides ancestors into pairs (sire,dam)
+    ## pedigrees = [  [{0: [1]},{1: [6, 5]},{2: [14, 13, 8, 7]}],  [pedigree2 (etc.)]  ]
+    tmp = [[{k:
+            [v[i:i+2] for i in range(0, len(v), 2)]
+            for k,v in g.items()}
+        for g in p]
+        for p in pedigrees]
+    return tmp
+
 
 def main():
     # cats_to_print_by_id = [1]
@@ -483,7 +645,8 @@ def main():
     cats = create_pedigree_from_file(retrieve_file_by_suffix())
     id_from_name = {cat['name']: id for id, cat in cats.items()}
     cats = assign_generations(sub_names_to_ids(cats, id_from_name))
-    sex_lookup = cat_sex_lookup(cats)
+    sex_lookup = make_sex_lookup(cats)
+    gems_lookup = make_gems_lookup()
     latest_generation = get_latest_generation(cats)
     # cats.update(add_unknown())
     # pedigrees_by_name = []
@@ -494,18 +657,18 @@ def main():
             continue
         # tmp = recurse_pedigree(id, cats, 0, {0:[id]})
         tmp = recurse_pedigree(id, cats)
-        # pedigrees_by_name.append(expand_ids_to_names(tmp, cats))
         # tmp = reverse_order(tmp)
         pedigrees.append([tmp])
     # print("")
     pprint(pedigrees, depth=4, width=80, compact=True)
-    pedigrees = pair_and_reverse(pedigrees)
+    # pedigrees = pair_and_reverse(pedigrees)
+    pedigrees = pair_ancestors(pedigrees)
     print("\nFinal pedigrees")
     pprint(pedigrees, depth=5, width=80, compact=True)
     # quit()
     # pprint(pedigrees)
     # pprint([expand_ids_to_names(cat, cats) for cat in pedigrees])
-    html_body = build_html(pedigrees, cats, sex_lookup)
+    html_body = build_html(pedigrees, cats, sex_lookup, gems_lookup)
     write_html_pedigree(html_template(html_body,"pedigree.css"))
 
 
