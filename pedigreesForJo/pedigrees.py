@@ -3,52 +3,17 @@ Read in a pedigree .csv file and find the latest generation
 Generate pedigree print out in HTML for each cat
 """
 from pprint import pprint
-import random
+# import random
 from dataclasses import dataclass
-import datetime as dt
-import time
+# import datetime as dt
+# import time
 # import dateutil.parser
 from pathlib import Path
-import json
-from json import JSONEncoder
-import string
-import math
+# import json
+# from json import JSONEncoder
+# import string
+# import math
 
-
-
-# OR import colorama for command line colors?
-# class bcolors:
-#     HEADER = '\033[95m'
-#     BLUE = '\033[94m'
-#     OKCYAN = '\033[96m'
-#     OKGREEN = '\033[92m'
-#     WARNING = '\033[93m'
-#     FAIL = '\033[91m'
-#     ENDC = '\033[0m'
-#     BOLD = '\033[1m'
-#     UNDERLINE = '\033[4m'
-
-
-RESET = "\u001b[0m"
-BLUE = "\u001b[34m"
-GREEN = "\u001b[32m"
-RED = "\u001b[31m"
-
-# def save_json_deck(filename, flashcard_deck):
-#     with open(filename,"w") as new_deck:
-#         # saved_deck = json.dump(flashcard_deck, new_deck, cls=DateTimeEncoder)
-#         saved_deck = json.dump(flashcard_deck, new_deck)
-#         print(f"{RED}>> json file ({filename.name}) saved.{RESET}")
-
-# def retrieve_json_file(file):
-#     with open(file,"r") as f:
-#         return json.load(f)
-
-# def retrieve_json_decks(current_dir):
-#     tmp_decks = {}
-#     for saved_deck in current_dir.glob("*.json"):
-#         tmp_decks.update(retrieve_json_file(saved_deck))
-#     return tmp_decks
 
 def make_gems_lookup():
     return {
@@ -189,12 +154,12 @@ def make_gems_lookup():
         "SIA n": "Seal Point Siamese",
     }
 
-def html_template(body, css_file=""):
+def html_template(body, css_file="", title="pedigree"):
     css_link = f"\n<link rel='stylesheet' type='text/css' href='{css_file}'>\n" if css_file else ""
     template = f"""
 <html>
 <head>
-<title>pedigree</title>{css_link}
+<title>{title}</title>{css_link}
 </head>
 <body>
 {body}
@@ -206,8 +171,8 @@ def html_template(body, css_file=""):
 def get_current_directory():
     return Path( __file__ ).parent.absolute()
 
-def write_html_pedigree(html_string):
-    html_file_address = Path(get_current_directory() / "out.html")
+def write_html_pedigree(html_string, filename="out.html"):
+    html_file_address = Path(get_current_directory() / filename)
     with open(html_file_address, "w") as html_file:
         html_file.write(html_string)
 
@@ -352,33 +317,11 @@ def assign_generations (cats_by_id):
 def get_latest_generation(cats):
     ## Logic: cats with ancestors but no heirs must be the latest generation
     latest_generation = {id: cat for id, cat in cats.items() if cat.get('anc') and not cat.get('des')}
-    print(">>> Latest generation=")
-    pprint([f"{cat['name']} ({id})" for id, cat in latest_generation.items()])
-    print("")
+    # print(">>> Latest generation=")
+    # pprint([f"{cat['name']} ({id})" for id, cat in latest_generation.items()])
+    # print("")
     return latest_generation
 
-
-# def recurse_pedigree(cat_id, cats, curr_generation=0, pedigree={}, completed=[]):
-#     pedigree = update_dict(curr_generation, cat_id, pedigree)
-#     completed.append(cat_id)
-#     cat = cats[cat_id]
-#     dam_id = cat['dam']
-#     sire_id = cat['sire']
-#     if dam_id:
-#         if dam_id in completed:
-#             update_dict(curr_generation + 1, dam_id, pedigree)
-#         else:
-#             recurse_pedigree(dam_id, cats, curr_generation + 1, pedigree, completed)
-#     # else:
-#     #     update_dict(curr_generation + 1, -1, pedigree)
-#     if sire_id:
-#         if sire_id in completed:
-#             update_dict(curr_generation + 1, sire_id, pedigree)
-#         else:
-#             recurse_pedigree(sire_id, cats, curr_generation + 1, pedigree, completed)
-#     # else:
-#     #     update_dict(curr_generation + 1, -1, pedigree)
-#     return pedigree
 
 def update_dict(key,val, dict):
     if dict.get(key):
@@ -388,9 +331,11 @@ def update_dict(key,val, dict):
         dict.update({key: [val]})
     return dict
 
+# def build_pedigree(cat_id, cats, max_generations):
 
-def recurse_pedigree(cat_id, cats, curr_generation=0, pedigree={}):
-    max_generations = 5
+
+def recurse_pedigree(cat_id, cats, max_generations, curr_generation=0, pedigree={}):
+    # max_generations = 5
     if curr_generation > max_generations:
         return pedigree
     if curr_generation == 0:
@@ -400,7 +345,7 @@ def recurse_pedigree(cat_id, cats, curr_generation=0, pedigree={}):
     cat = cats[cat_id]
     for recorded_id, backup_id in [[cat['dam'],-1],[cat['sire'], -2]]:
         ancestor_id = recorded_id if recorded_id else backup_id
-        recurse_pedigree(ancestor_id, cats, curr_generation + 1, pedigree)
+        recurse_pedigree(ancestor_id, cats, max_generations, curr_generation + 1, pedigree)
     return pedigree
 
 
@@ -433,8 +378,6 @@ def build_header(cat_id, cats, sex_lookup, gems_lookup):
     </tr>
 </table>
 """
-    # print("...header...", cat_id)
-    # return build_generic(cat_id, cats, sex_lookup)
 
 
 def build_gen1(cat_id, cats, sex_lookup, gems_lookup):
@@ -534,7 +477,7 @@ def select_html_template(case, cat, cats, sex_lookup, gems_lookup):
 
 def build_html(pedigrees, cats, sex_lookup, gems_lookup):
     ## pedigrees = [  [{0: [[1]]},{1: [[6, 5]]},{2: [[14, 13], [8, 7]]}],  [pedigree2 (etc.)]  ]
-    pedigree_html = ""
+    # pedigree_html = ""
     for pedigree in pedigrees:
         gen_wrapper_html = ""
         for generation_dict in pedigree:
@@ -552,8 +495,13 @@ def build_html(pedigrees, cats, sex_lookup, gems_lookup):
                     pair_html += build_html_pairs(cat_html)
                 generation_html += build_html_generation(g_id, pair_html)
             gen_wrapper_html = build_html_gen_wrapper(generation_html)
-        pedigree_html += build_html_pedigree(pedigree[0][0][0][0], header_html + gen_wrapper_html, cats)
-    return pedigree_html
+        target_id = pedigree[0][0][0][0]
+        target_name = cats[target_id]['name']
+        html = html_template(header_html + gen_wrapper_html, "pedigree.css", f"Pedigree for {target_name}")
+        write_html_pedigree(html, f"{target_id}-{target_name.replace(' ', '-')}.html")
+        # pedigree_html += build_html_pedigree(pedigree[0][0][0][0], header_html + gen_wrapper_html, cats)
+    #     pedigree_html += build_html_pedigree(target_id, header_html + gen_wrapper_html, cats)
+    # return pedigree_html
 
 
 
@@ -608,13 +556,13 @@ def make_sex_lookup(cats):
     return lookup
 
 def reverse_order(pedigrees):
-    print(pedigrees)
+    # print(pedigrees)
     tmp = []
     for pedigree in pedigrees:
         for i in pedigree:
             # print(">>", i,pedigrees[i])
             tmp.append({i:pedigree[i][::-1]})
-        print(tmp)
+        # print(tmp)
     # return tmp
     return pedigrees
 
@@ -642,6 +590,7 @@ def pair_ancestors(pedigrees):
 def main():
     # cats_to_print_by_id = [1]
     cats_to_print_by_id = [1,2,3,4]
+    max_generations_depth = 5
     cats = create_pedigree_from_file(retrieve_file_by_suffix())
     id_from_name = {cat['name']: id for id, cat in cats.items()}
     cats = assign_generations(sub_names_to_ids(cats, id_from_name))
@@ -655,22 +604,17 @@ def main():
         print("recursing for:", id, cat['name'])
         if cats_to_print_by_id and id not in cats_to_print_by_id:
             continue
-        # tmp = recurse_pedigree(id, cats, 0, {0:[id]})
-        tmp = recurse_pedigree(id, cats)
-        # tmp = reverse_order(tmp)
+        # tmp = recurse_pedigree(id, cats)
+        tmp = recurse_pedigree(id, cats, max_generations_depth)
         pedigrees.append([tmp])
-    # print("")
-    pprint(pedigrees, depth=4, width=80, compact=True)
+    # pprint(pedigrees, depth=4, width=80, compact=True)
     # pedigrees = pair_and_reverse(pedigrees)
     pedigrees = pair_ancestors(pedigrees)
-    print("\nFinal pedigrees")
-    pprint(pedigrees, depth=5, width=80, compact=True)
-    # quit()
-    # pprint(pedigrees)
-    # pprint([expand_ids_to_names(cat, cats) for cat in pedigrees])
-    html_body = build_html(pedigrees, cats, sex_lookup, gems_lookup)
-    write_html_pedigree(html_template(html_body,"pedigree.css"))
-
+    # print("\nFinal pedigrees")
+    # pprint(pedigrees, depth=5, width=80, compact=True)
+    build_html(pedigrees, cats, sex_lookup, gems_lookup)
+    # html_body = build_html(pedigrees, cats, sex_lookup, gems_lookup)
+    # write_html_pedigree(html_template(html_body,"pedigree.css"))
 
 
 main()
