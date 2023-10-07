@@ -19,6 +19,8 @@ Although it does allow depths greater than 5, there are problems with grid sizin
 from pprint import pprint
 from dataclasses import dataclass
 from pathlib import Path
+import sys
+import getopt
 
 
 def make_gems_lookup():
@@ -850,11 +852,38 @@ def pair_ancestors(pedigrees):
     return tmp
 
 
-def main():
+def parse_cmd_line(argv):
+    ids = ""
     ## Change these three variables according to needs
-    cats_to_print_by_id = [1,2,3,4]
-    max_generations = 5
-    base_font_size = 12
+    id_list = [1,2,3,4]
+    depth = 5
+    basefont = 12
+
+    opts, args = getopt.getopt(argv,"hi:d:s:",["ifile=","ofile="])
+    for opt, arg in opts:
+        if opt in ("-h", "--help"):
+            print ("""You can specify the following variables after pedigrees.py
+    -h / --help     <prints this help message>
+    -i / --ids      <list of cat ids, e.g. 2,27 (comma separated, NO SPACES)>
+    -d / --depth    <depth of generations (4 or 5 is best)>
+    -s / --size     <font size of grid in points (12 is default)>
+""")
+            sys.exit()
+        elif opt in ("-i", "--ids"):
+            ids = arg
+            id_list = [int(id) for id in ids.split(",")]
+        elif opt in ("-d", "--depth"):
+            depth = int(arg)
+        elif opt in ("-s", "--size"):
+            basefont = int(arg)
+    return(id_list, depth, basefont)
+
+
+def main(argv):
+    # cats_to_print_by_id = [1,2,3,4]
+    # max_generations = 5
+    # base_font_size = 12
+    cats_to_print_by_id, max_generations, base_font_size = parse_cmd_line(argv)
 
     cats = create_pedigree_from_file(retrieve_file_by_suffix())
     id_from_name = {cat['name']: id for id, cat in cats.items()}
@@ -878,5 +907,6 @@ def main():
     # build_html(pedigrees, cats, sex_lookup, gems_lookup)
     build_grid(grid_pedigrees, cats, sex_lookup, gems_lookup, max_generations, base_font_size)
 
-
-main()
+if __name__ == "__main__":
+    main(sys.argv[1:])
+# main()
