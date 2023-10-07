@@ -166,161 +166,187 @@ def css_styles_template(max_generations, base_font_size=12):
     return f"""
 <style>
     :root {{
-    --line-weight: 1px;
+        --line-weight: 1px;
     }}
 
     * {{
-    margin: 0;
-    padding: 0;
+        margin: 0;
+        padding: 0;
     }}
 
     body {{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: {base_font_size}pt;
-    padding: 5px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: {base_font_size}pt;
+        padding: 5px;
     }}
 """ + """
 
     .header {
-    margin-bottom: 3px;
-    width: 100%;
-    font-size: 11pt;
+        margin-bottom: 3px;
+        width: 100%;
+        font-size: 11pt;
     }
 
     .banner {
-    font-weight: bold;
-    font-size: larger;
+        font-weight: bold;
+        font-size: larger;
     }
 
     .banner .name {
-    font-weight: normal;
-    font-size: x-large;
+        font-weight: normal;
+        font-size: x-large;
     }
 
     .breeder {
-    font-weight: bold;
-    padding: 5px 0;
+        font-weight: bold;
+        padding: 5px 0;
     }
 
     table, td {
-    border: var(--line-weight) solid black;
-    border-collapse: collapse;
-    padding: 6px;
+        border: var(--line-weight) solid black;
+        border-collapse: collapse;
+        padding: 6px;
     }
 
     .cat-info p {
-    padding-bottom: 3px;
+        padding-bottom: 3px;
     }
 
     .footer {
-    padding-top: 9px;
-    font-size: smaller;
+        padding-top: 9px;
+        font-size: smaller;
     }
 
     .footer p {
-    padding-bottom: 3px;
+        padding-bottom: 3px;
     }
 
     .signature {
-    text-align: right;
+        text-align: right;
     }
 
     .gen_wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
     }
 
     .generation {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
     }
 
     #gen_3, #gen_4, .g3, .g4 {
-    font-size: 0.75em;
+        font-size: 0.75em;
     }
 
-    /*gen_5, .g5 {*/
     #gen_5, .g5, #gen_6, .g6, #gen_7, .g7, #gen_8, .g8, #gen_9, .g9, #gen_10, .g10 {
-    font-size: 0.7em;
+        font-size: 0.7em;
     }
 
     .pair, .header {
-    /* border: 0.5pt solid black; */
-    border: var(--line-weight) solid black;
+        border: var(--line-weight) solid black;
     }
 
     .pair {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
     }
 
     .cat {
-    padding: 3px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+        padding: 3px;
+        flex-grow: 1;
     }
 
-    .cat:first-child {
-    border: none;
+    /*.cat:first-child {
+        border: none;
+    }*/
+
+    .cat, .details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .details {
+        padding-top: 6px;
+    }
+
+    .details p {
+        padding-bottom: 3px;
     }
 
     .champion {
-    color: red;
+        color: red;
     }
 
     .name {
-    font-weight: bold;
+        font-weight: bold;
     }
 
     /*.nameline {
     }*/
 
     .gccf {
-    font-size: smaller;
+        font-size: smaller;
     }
 
     .expand {
-    font-style: italic;
+        font-style: italic;
     }
 
     .feature {
-    font-size: x-small;
-    color: grey;
+        font-size: x-small;
+        color: grey;
     }
 
     td .feature {
-    font-size: smaller;
-    color: black;
+        font-size: smaller;
+        color: black;
     }
 
     .cat-info {
-    column-count: 3;
-    gap: 10px;
+        border: none;
+    }
+
+    #info-table {
+        border: none;
+        width: 100%;
+    }
+
+    #info-table th {
+        text-weight: bold;
+        width: 10%;
+        text-align:right;
+    }
+
+    #info-table td {
+        width: 20%;
+        text-align: left;
+        padding: 3px;
+        border: none;
     }
 
     .g1 .cat, .g2 .cat {
-    padding: 0 9px;
+        padding: 0 9px;
     }
 
     .g1 .cat p {
-    padding-bottom: 10px;
+        padding-bottom: 10px;
     }
 
     .reg, .gems, .expand, .desc, .sex {
-    padding-bottom: 2px;
+        padding-bottom: 2px;
     }
 
     .sex {
-    padding-bottom: 5px;
+        padding-bottom: 5px;
     }
 
     .cat_id, .sex_icon {
-    display: none;
+        display: none;
     }
 
 
@@ -604,7 +630,9 @@ def build_header(cat_id, cats, sex_lookup, gems_lookup):
         <p class="breeder">LONGNAP</p>
         <p class="feature">
         Ms J Sturgess<br>
-        5 Catharine Close Radley ABINGDON<br>
+        5 Catharine Close<br>
+        Radley<br>
+        ABINGDON<br>
         OX14 3AR
         </p>
         </td>
@@ -612,13 +640,32 @@ def build_header(cat_id, cats, sex_lookup, gems_lookup):
     </tr>
     <tr>
         <td class="cat-info">
-            <p class="feature"><b>Reg no: </b>{i["regnum"]} {i["gccf"]}<span</p>
-            <p class="feature"><b>Date of birth: </b>{i["cat"]["dob"]}</p>
-            <p class="feature"><b>Microchip: </b></p>
-            <p class="feature"><b>Sex: </b>{i["sex"]}</p>
-            <p class="feature"><b>GEMS: </b>{i["gems"]} {i["catsplain"]}</p>
-            <p class="feature"><b>Status: </b>NonActive</p>
-            <p class="feature bold">Owner: </b></p>
+            <table id="info-table" class="feature">
+                <tr>
+                    <th>Reg no:</th>
+                    <td>{i["regnum"]} {i["gccf"]}</td>
+                    <th>Date of birth:</th>
+                    <td>{i["cat"]["dob"]}</td>
+                    <th>Microchip:</th>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <th>Sex:</th>
+                    <td>{i["sex"]}</td>
+                    <th rowspan="2">GEMS:</th>
+                    <td>{i["gems"]}</td>
+                    <th>Owner:</th>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <th>Status:</th>
+                    <td>NonActive</td>
+                    <!--<th>&nbsp;</th>-->
+                    <td><i>{i["catsplain"]}</i></td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+        </table>
         </td>
     </tr>
 </table>
@@ -644,9 +691,11 @@ def build_generic(cat_id, cats, sex_lookup, gems_lookup):
         {i['name']}
         {i["curr_id"]}
     </p>
-    <p class="reg"><span class="feature">Reg no: </span>{i["regnum"]}<span</p>
-    <p class="gems"><span class="feature">GEMS: </span>{i["gems"]} {i["gccf"]}</span></p>
-    <p class="expand">{i["catsplain"]}</p>
+    <div class="details">
+        <p class="reg"><span class="feature">Reg no: </span>{i["regnum"]}<span</p>
+        <p class="gems"><span class="feature">GEMS: </span>{i["gems"]} {i["gccf"]}</span></p>
+        <p class="expand">{i["catsplain"]}</p>
+    </div>
 </div>
 """
 
@@ -666,9 +715,11 @@ def build_gen3(cat_id, cats, sex_lookup, gems_lookup):
         {i['name']}
         {i["curr_id"]}
     </p>
-    <p class="reg"><span class="feature">Reg no: </span>{i["regnum"]}<span</p>
-    <p class="gems"><span class="feature">GEMS: </span>{i["gems"]} {i["gccf"]}</span></p>
-    <p class="expand">{i["catsplain"]}</p>
+    <div class="details">
+        <p class="reg"><span class="feature">Reg no: </span>{i["regnum"]}<span</p>
+        <p class="gems"><span class="feature">GEMS: </span>{i["gems"]} {i["gccf"]}</span></p>
+        <p class="expand">{i["catsplain"]}</p>
+    </div>
 </div>
 """
 
@@ -862,11 +913,14 @@ def parse_cmd_line(argv):
     opts, args = getopt.getopt(argv,"hi:d:s:",["ifile=","ofile="])
     for opt, arg in opts:
         if opt in ("-h", "--help"):
-            print ("""You can specify the following variables after pedigrees.py
+            print ("""
+You can specify the following variables after pedigrees.py
     -h / --help     <prints this help message>
     -i / --ids      <list of cat ids, e.g. 2,27 (comma separated, NO SPACES)>
     -d / --depth    <depth of generations (4 or 5 is best)>
     -s / --size     <font size of grid in points (12 is default)>
+
+To print out, use your browser to save or export this file as a pdf.
 """)
             sys.exit()
         elif opt in ("-i", "--ids"):
