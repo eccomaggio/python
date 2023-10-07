@@ -35,7 +35,6 @@ body {
 }
 
 table, td {
-  /* border: 0.5px solid black; */
   border: var(--line-weight) solid black;
   border-collapse: collapse;
   padding: 6px;
@@ -91,12 +90,10 @@ table, td {
 
 .cat {
   padding: 3px;
-  /* border-top: 1px dashed lightgray; */
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
 }
 
 .cat:first-child {
@@ -108,14 +105,11 @@ table, td {
 }
 
 .name {
-  /* font-size: larger; */
   font-weight: bold;
 }
 
-.nameline {
-  /* padding-top: 3px;
-  padding-bottom: 5px; */
-}
+/*.nameline {
+}*/
 
 .gccf {
   font-size: smaller;
@@ -140,17 +134,15 @@ td .feature {
   gap: 10px;
 }
 
-/* .g1 .cat p, .g2 .cat p { */
 .g1 .cat, .g2 .cat {
   padding: 0 9px;
 }
 
 .g1 .cat p {
-  padding-bottom: 16px;
+  padding-bottom: 10px;
 }
 
 .reg, .gems, .expand, .desc, .sex {
-  padding-left: 10px;
   padding-bottom: 2px;
 }
 
@@ -158,6 +150,6 @@ td .feature {
   padding-bottom: 5px;
 }
 
-.cat_id {
+.cat_id, .sex_icon {
   display: none;
 }

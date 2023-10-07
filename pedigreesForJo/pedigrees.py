@@ -1,18 +1,24 @@
 """
-Read in a pedigree .csv file and find the latest generation
-Generate pedigree print out in HTML for each cat
+Read in a pedigree .csv file
+(find the latest generation)
+Generate pedigree print out in HTML for each cat specified
+Stand-alone HTML generated
+
+Requirements:
+    .csv (only one!) in same directory as python file
+    python 3
+
+Variables (in main() ):
+    list of ids of cats to print out
+    depth of generations to include in pedigree
+    base font size of grid
+
+Problems:
+Although it does allow depths greater than 5, there are problems with grid sizing
 """
 from pprint import pprint
-# import random
 from dataclasses import dataclass
-# import datetime as dt
-# import time
-# import dateutil.parser
 from pathlib import Path
-# import json
-# from json import JSONEncoder
-# import string
-# import math
 
 
 def make_gems_lookup():
@@ -154,17 +160,214 @@ def make_gems_lookup():
         "SIA n": "Seal Point Siamese",
     }
 
-# def html_template(body, css_file="", title="pedigree"):
-#     css_link = f"\n<link rel='stylesheet' type='text/css' href='{css_file}'>\n" if css_file else ""
-def html_template(body, css_files=[], title="pedigree"):
-    css_link = ""
-    if css_files:
-        for file in css_files:
-            css_link += f"\n<link rel='stylesheet' type='text/css' href='{file}'>"
+def css_styles_template(max_generations, base_font_size=12):
+    return f"""
+<style>
+    :root {{
+    --line-weight: 1px;
+    }}
+
+    * {{
+    margin: 0;
+    padding: 0;
+    }}
+
+    body {{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: {base_font_size}pt;
+    padding: 5px;
+    }}
+""" + """
+
+    .header {
+    margin-bottom: 3px;
+    width: 100%;
+    font-size: 11pt;
+    }
+
+    .banner {
+    font-weight: bold;
+    font-size: larger;
+    }
+
+    .banner .name {
+    font-weight: normal;
+    font-size: x-large;
+    }
+
+    .breeder {
+    font-weight: bold;
+    padding: 5px 0;
+    }
+
+    table, td {
+    border: var(--line-weight) solid black;
+    border-collapse: collapse;
+    padding: 6px;
+    }
+
+    .cat-info p {
+    padding-bottom: 3px;
+    }
+
+    .footer {
+    padding-top: 9px;
+    font-size: smaller;
+    }
+
+    .footer p {
+    padding-bottom: 3px;
+    }
+
+    .signature {
+    text-align: right;
+    }
+
+    .gen_wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    }
+
+    .generation {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    }
+
+    #gen_3, #gen_4, .g3, .g4 {
+    font-size: 0.75em;
+    }
+
+    /*gen_5, .g5 {*/
+    #gen_5, .g5, #gen_6, .g6, #gen_7, .g7, #gen_8, .g8, #gen_9, .g9, #gen_10, .g10 {
+    font-size: 0.7em;
+    }
+
+    .pair, .header {
+    /* border: 0.5pt solid black; */
+    border: var(--line-weight) solid black;
+    }
+
+    .pair {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    }
+
+    .cat {
+    padding: 3px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    }
+
+    .cat:first-child {
+    border: none;
+    }
+
+    .champion {
+    color: red;
+    }
+
+    .name {
+    font-weight: bold;
+    }
+
+    /*.nameline {
+    }*/
+
+    .gccf {
+    font-size: smaller;
+    }
+
+    .expand {
+    font-style: italic;
+    }
+
+    .feature {
+    font-size: x-small;
+    color: grey;
+    }
+
+    td .feature {
+    font-size: smaller;
+    color: black;
+    }
+
+    .cat-info {
+    column-count: 3;
+    gap: 10px;
+    }
+
+    .g1 .cat, .g2 .cat {
+    padding: 0 9px;
+    }
+
+    .g1 .cat p {
+    padding-bottom: 10px;
+    }
+
+    .reg, .gems, .expand, .desc, .sex {
+    padding-bottom: 2px;
+    }
+
+    .sex {
+    padding-bottom: 5px;
+    }
+
+    .cat_id, .sex_icon {
+    display: none;
+    }
+
+
+""" + css_build_grid(max_generations) + "</style>"
+
+
+def css_build_grid(max_generations=5):
+    rows = 2 ** max_generations
+    css = f"""
+/* FOR CSS GRID */
+
+/*:root {{
+--line-weight: 1px;
+}}*/
+
+#container {{
+    display: grid;
+    grid-template-columns: repeat({max_generations}, auto);
+    grid-template-rows: repeat({rows}, 1fr);
+
+    border: 1px solid black;
+    grid-gap: 1px;
+    background-color: black;
+}}
+
+#container div {{
+    display: flex;
+    align-items: stretch;
+    background-color: white;
+}}
+
+"""
+
+    for i in range(1, max_generations):
+        css += f"""
+.g{i} {{
+    grid-row: span {2 ** (max_generations - i)};
+}}
+
+"""
+    return css
+
+
+def html_template(body, inheader_css, title="pedigree"):
     template = f"""
 <html>
 <head>
-<title>{title}</title>{css_link}
+<title>{title}</title>
+{inheader_css}
 </head>
 <body>
 {body}
@@ -173,8 +376,30 @@ def html_template(body, css_files=[], title="pedigree"):
 """
     return template
 
+
+def html_template_css_link(body, css_files=[], title="pedigree"):
+    ## NO LONGER IN USE: css now in header to make standalone html
+    css_link = ""
+    if css_files:
+        for file in css_files:
+            css_link += f"\n<link rel='stylesheet' type='text/css' href='{file}'>"
+    template = f"""
+<html>
+<head>
+<title>{title}</title>
+{css_link}
+</head>
+<body>
+{body}
+</body>
+</html>
+"""
+    return template
+
+
 def get_current_directory():
     return Path( __file__ ).parent.absolute()
+
 
 def write_html_pedigree(html_string, filename="out.html"):
     html_file_address = Path(get_current_directory() / filename)
@@ -185,13 +410,12 @@ def write_html_pedigree(html_string, filename="out.html"):
 def retrieve_file_by_suffix(suffix="csv"):
     if suffix[0] == ".":
         suffix = suffix[1:]
-    # current_dir = Path( __file__ ).parent.absolute()
     current_dir = get_current_directory()
-    # for full_path in sorted(current_dir.glob("*.csv")):
     for full_path in sorted(current_dir.glob(f"*.{suffix}")):
         file_name = Path(current_dir / full_path.name)
         print(f"\n\nOpening <{file_name.name}> to create pedigree...\n")
         return file_name
+
 
 def add_unknown():
     return {
@@ -226,10 +450,10 @@ def add_unknown():
         "des": 0,}
     }
 
+
 def create_pedigree_from_file(source_file):
     id_count = 1
     loaded_cats = {}
-    # num_of_fields = 8
     num_of_fields = 11
     with source_file.open(mode="r", encoding="utf-8") as f:
         # tmp_deck = {}
@@ -270,17 +494,6 @@ def create_pedigree_from_file(source_file):
     return loaded_cats
 
 
-def print_feline(id, cat):
-    male = '\u2640'
-    female = '\u2642'
-    print(f"[{id}] {cat['name']}: {cat['dob']} {male}: {cat['sire']}, {female}: {cat['dam']}")
-
-
-def print_cats(cats):
-    for id, cat in cats.items():
-        print_feline(id, cat)
-
-
 def sub_names_to_ids(cats, id_from_name):
     tmp_cats = cats.copy()
     for id, cat in tmp_cats.items():
@@ -290,8 +503,6 @@ def sub_names_to_ids(cats, id_from_name):
         dam_id = id_from_name.get(cat['dam'].strip())
         cat['sire'] = sire_id
         cat['dam'] = dam_id
-        # if not (sire_id and dam_id):
-        #     cat['anc'] = 0
     return tmp_cats
 
 
@@ -322,9 +533,6 @@ def assign_generations (cats_by_id):
 def get_latest_generation(cats):
     ## Logic: cats with ancestors but no heirs must be the latest generation
     latest_generation = {id: cat for id, cat in cats.items() if cat.get('anc') and not cat.get('des')}
-    # print(">>> Latest generation=")
-    # pprint([f"{cat['name']} ({id})" for id, cat in latest_generation.items()])
-    # print("")
     return latest_generation
 
 
@@ -336,11 +544,8 @@ def update_dict(key,val, dict):
         dict.update({key: [val]})
     return dict
 
-# def build_pedigree(cat_id, cats, max_generations):
-
 
 def recurse_pedigree(cat_id, cats, max_generations, curr_generation=0, pedigree={}):
-    # max_generations = 5
     if curr_generation > max_generations:
         return pedigree
     if curr_generation == 0:
@@ -355,15 +560,11 @@ def recurse_pedigree(cat_id, cats, max_generations, curr_generation=0, pedigree=
 
 
 def recurse_for_grid(cat_id, cats, max_generations, curr_generation=0, pedigree=None):
-    # max_generations = 5
     if curr_generation > max_generations:
         return pedigree
     if curr_generation == 0:
         pedigree = [[cat_id,curr_generation]]
-    #     # flat.append([cat_id, 0])
-    #     pass
     else:
-        # flat.insert(1, cat_id)
         pedigree.append([cat_id,curr_generation])
     cat = cats[cat_id]
     # for recorded_id, backup_id in [[cat['dam'],-1],[cat['sire'], -2]]:
@@ -372,11 +573,9 @@ def recurse_for_grid(cat_id, cats, max_generations, curr_generation=0, pedigree=
         recurse_for_grid(ancestor_id, cats, max_generations, curr_generation + 1, pedigree)
     return pedigree
 
-def build_grid(flat_pedigrees, cats, sex_lookup, gems_lookup, max_generations_depth):
-    # pprint(flat_pedigrees, depth=5, width=80, compact=True)
-    # pprint(flat_pedigrees)
+def build_grid(flat_pedigrees, cats, sex_lookup, gems_lookup, max_generations, base_font_size):
     for pedigree in flat_pedigrees:
-        print(f"Printing grid for {cats[pedigree[0][0]]['name']} ({pedigree[0][0]})")
+        # print(f"Printing grid for {cats[pedigree[0][0]]['name']} ({pedigree[0][0]})")
         grid_html = ""
         header_html = ""
         target_id = None
@@ -385,16 +584,13 @@ def build_grid(flat_pedigrees, cats, sex_lookup, gems_lookup, max_generations_de
                 target_id = cat_id
                 header_html = build_header(target_id, cats, sex_lookup, gems_lookup)
                 continue
-            # grid_html += f"<div class='g{gen}'>{cats[cat_id]['name']} ({cat_id})</div>\n"
             grid_html += f"<div class='g{g_id}'>{build_html_cat(g_id, cat_id, cats, sex_lookup, gems_lookup)}</div>\n"
         grid_html = f"<div id='container'>\n{grid_html}\n</div>"
 
         target_name = cats[target_id]['name']
-        grid_css_file = f"grid{max_generations_depth}.css"
-        html = html_template(header_html + grid_html + build_footer(), ["pedigree.css", grid_css_file], f"Pedigree for {target_name}")
+        # html = html_template(header_html + grid_html + build_footer(), ["pedigree.css", f"grid{max_generations}.css"], f"Pedigree for {target_name}")
+        html = html_template(header_html + grid_html + build_footer(), css_styles_template(max_generations, base_font_size), f"Pedigree for {target_name}")
         write_html_pedigree(html, f"{target_id}-{target_name.replace(' ', '-')}.html")
-
-
 
 def build_header(cat_id, cats, sex_lookup, gems_lookup):
     i = get_display_info(cat_id, cats, sex_lookup, gems_lookup)
@@ -437,6 +633,20 @@ def build_footer():
 &nbsp;&nbsp; DATE:..................</p>
 """
 
+def build_generic(cat_id, cats, sex_lookup, gems_lookup):
+    i = get_display_info(cat_id, cats, sex_lookup, gems_lookup)
+    return f"""
+<div class="cat">
+    <p class="sex">{i["sex"]}</p>
+    <p class="nameline{i["awards_class"]}">{i["awards"]}
+        {i['name']}
+        {i["curr_id"]}
+    </p>
+    <p class="reg"><span class="feature">Reg no: </span>{i["regnum"]}<span</p>
+    <p class="gems"><span class="feature">GEMS: </span>{i["gems"]} {i["gccf"]}</span></p>
+    <p class="expand">{i["catsplain"]}</p>
+</div>
+"""
 
 def build_gen1(cat_id, cats, sex_lookup, gems_lookup):
     return build_generic(cat_id, cats, sex_lookup, gems_lookup)
@@ -451,8 +661,9 @@ def build_gen3(cat_id, cats, sex_lookup, gems_lookup):
     return f"""
 <div class="cat">
     <p class="nameline{i["awards_class"]}">{i["awards"]}
-    <span class="name">{i["name"]}</span>
-    <span class="cat_id"> ({cat_id})</span></p>
+        {i['name']}
+        {i["curr_id"]}
+    </p>
     <p class="reg"><span class="feature">Reg no: </span>{i["regnum"]}<span</p>
     <p class="gems"><span class="feature">GEMS: </span>{i["gems"]} {i["gccf"]}</span></p>
     <p class="expand">{i["catsplain"]}</p>
@@ -465,8 +676,10 @@ def build_gen4(cat_id, cats, sex_lookup, gems_lookup):
     return f"""
 <div class="cat">
     <p class="nameline{i["awards_class"]}">{i["awards"]}
-        <span class="name">{i["name"]}</span>
-        <span class="cat_id"> ({cat_id}) </span>{i["sex_icon"]}</p>
+        {i['name']}
+        {i["curr_id"]}
+        {i["sex_icon"]}
+    </p>
     <p class="desc">{i["regnum"]} {i["gems"]}</p>
 </div>
 """
@@ -477,24 +690,12 @@ def build_gen5(cat_id, cats, sex_lookup, gems_lookup):
     i = get_display_info(cat_id, cats, sex_lookup, gems_lookup)
     return f"""
 <div class='cat'>
-    <p class="nameline">{i["awards"]}<span class='name{i["awards_class"]}'>{i["name"]}</span>
-    <span class="cat_id"> ({cat_id})<span>{i["sex_icon"]}
-    {i["regnum"]} {i["gems"]}</p>
-</div>
-"""
-
-
-def build_generic(cat_id, cats, sex_lookup, gems_lookup):
-    i = get_display_info(cat_id, cats, sex_lookup, gems_lookup)
-    return f"""
-<div class="cat">
-    <p class="sex">{i["sex"]}</p>
-    <p class="nameline{i["awards_class"]}">{i["awards"]}
-        <span class="name">{i["name"]}</span>
-        <span class="cat_id"> ({cat_id})</span></p>
-    <p class="reg"><span class="feature">Reg no: </span>{i["regnum"]}<span</p>
-    <p class="gems"><span class="feature">GEMS: </span>{i["gems"]} {i["gccf"]}</span></p>
-    <p class="expand">{i["catsplain"]}</p>
+    <p class="nameline">{i["awards"]}
+        {i['name']}
+        {i["curr_id"]}
+        {i["sex_icon"]}
+        {i["regnum"]} {i["gems"]}
+    </p>
 </div>
 """
 
@@ -502,23 +703,27 @@ def build_generic(cat_id, cats, sex_lookup, gems_lookup):
 def get_display_info(cat_id, cats, sex_lookup, gems_lookup):
     cat = cats[cat_id]
     is_dam = sex_lookup[cat_id] == "f"
-    # sex = "Dam" if is_dam else "Sire"
+    sex_icon = "♀" if is_dam else "♂"
     has_awards = cat['cstatus']
+    awards_class = " champion" if has_awards else ""
     gccf = cat['gccf']
     gems = cat['gems']
     return {
         "cat": cat,
         "gccf": gccf,
-        "name": cat['name'],
+        # "name": cat['name'],
+        "name": f"<span class='name{awards_class}' title='id={cat_id}'>{cat['name']}</span>" if cat_id > 0 else f"<i>{cat['name']}</i>",
         "regnum": cat['regnum'],
         "gems": gems,
         "is_dam": is_dam,
-        "sex_icon": '\u2642' if is_dam else '\u2640',
+        "sex_icon": f"<span class='sex_icon'>{sex_icon}</span>",
+        "curr_id": f"<span class='cat_id'>{cat_id}</span>",
+        # "sex_icon": '\u2642' if is_dam else '\u2640',
+        # "sex_icon": '&#2642;' if is_dam else '&#2640;',
         "sex": "Dam" if is_dam else "Sire",
-        # "sex": sex,
         "has_awards": has_awards,
         "awards": f"{has_awards} " if has_awards else "",
-        "awards_class": " champion" if has_awards else "",
+        "awards_class": awards_class,
         "gccf_text": f" <span class='gccf'>{gccf}</span>" if gccf else "",
         "catsplain": gems_lookup.get(gems, "")
     }
@@ -540,69 +745,65 @@ def select_html_template(case, cat, cats, sex_lookup, gems_lookup):
     return func(cat,cats, sex_lookup, gems_lookup)
 
 
-def build_html(pedigrees, cats, sex_lookup, gems_lookup):
-    ## pedigrees = [  [{0: [[1]]},{1: [[6, 5]]},{2: [[14, 13], [8, 7]]}],  [pedigree2 (etc.)]  ]
-    # pedigree_html = ""
-    for pedigree in pedigrees:
-        gen_wrapper_html = ""
-        for generation_dict in pedigree:
-            header_html = build_header(generation_dict[0][0][0], cats, sex_lookup, gems_lookup)
-            generation_html = ""
-            for g_id, generation in generation_dict.items():
-                if g_id == 0:
-                    continue
-                pair_html = ""
-                for pair in generation:
-                    cat_html = ""
-                    for cat_id in pair:
-                        # print("cat:", cat_id, cats[cat_id]['name'])
-                        cat_html += build_html_cat(g_id, cat_id, cats, sex_lookup, gems_lookup)
-                    pair_html += build_html_pairs(cat_html)
-                generation_html += build_html_generation(g_id, pair_html)
-            gen_wrapper_html = build_html_gen_wrapper(generation_html)
-        target_id = pedigree[0][0][0][0]
-        target_name = cats[target_id]['name']
-        html = html_template(header_html + gen_wrapper_html, ["pedigree.css"], f"Pedigree for {target_name}")
-        # write_html_pedigree(html, f"{target_id}-{target_name.replace(' ', '-')}.OLD.html")
-    # return pedigree_html
+# def build_html(pedigrees, cats, sex_lookup, gems_lookup):
+#     ## NO LONGER USED
+#     ## pedigrees = [  [{0: [[1]]},{1: [[6, 5]]},{2: [[14, 13], [8, 7]]}],  [pedigree2 (etc.)]  ]
+#     for pedigree in pedigrees:
+#         gen_wrapper_html = ""
+#         for generation_dict in pedigree:
+#             header_html = build_header(generation_dict[0][0][0], cats, sex_lookup, gems_lookup)
+#             generation_html = ""
+#             for g_id, generation in generation_dict.items():
+#                 if g_id == 0:
+#                     continue
+#                 pair_html = ""
+#                 for pair in generation:
+#                     cat_html = ""
+#                     for cat_id in pair:
+#                         cat_html += build_html_cat(g_id, cat_id, cats, sex_lookup, gems_lookup)
+#                     pair_html += build_html_pairs(cat_html)
+#                 generation_html += build_html_generation(g_id, pair_html)
+#             gen_wrapper_html = build_html_gen_wrapper(generation_html)
+#         target_id = pedigree[0][0][0][0]
+#         target_name = cats[target_id]['name']
+#         html = html_template(header_html + gen_wrapper_html, ["pedigree.css"], f"Pedigree for {target_name}")
+#         # write_html_pedigree(html, f"{target_id}-{target_name.replace(' ', '-')}.OLD.html")
 
 
+# def build_html_pedigree(target_id, gen_wrapper_html, cats):
+#     tmp = f"""
+# <article id='catID:{target_id}' title='{cats[target_id]['name']}'>
+#     {gen_wrapper_html}
+# </article>
+#     """
+#     return tmp
 
-def build_html_pedigree(target_id, gen_wrapper_html, cats):
-    tmp = f"""
-<article id='catID:{target_id}' title='{cats[target_id]['name']}'>
-    {gen_wrapper_html}
-</article>
-    """
-    return tmp
-
-def build_html_gen_wrapper(generation_html):
-    tmp = f"""
-<div class="gen_wrapper">
-    {generation_html}
-</div>
-    """
-    return tmp
-
-
-def build_html_generation(g_id, pair_html):
-    g_class = "generation" if g_id else "header"
-    tmp = f"""
-<div id='gen_{g_id}' class='{g_class}'>
-    {pair_html}
-</div>"""
-    return tmp
+# def build_html_gen_wrapper(generation_html):
+#     tmp = f"""
+# <div class="gen_wrapper">
+#     {generation_html}
+# </div>
+#     """
+#     return tmp
 
 
-def build_html_pairs(cat_html):
-    tmp = f"\n<div class='pair'>{cat_html}</div>\n"
-    return tmp
+# def build_html_generation(g_id, pair_html):
+#     g_class = "generation" if g_id else "header"
+#     tmp = f"""
+# <div id='gen_{g_id}' class='{g_class}'>
+#     {pair_html}
+# </div>"""
+#     return tmp
+
+
+# def build_html_pairs(cat_html):
+#     tmp = f"\n<div class='pair'>{cat_html}</div>\n"
+#     return tmp
 
 
 def build_html_cat(g_id, cat_id, cats, sex_lookup, gems_lookup):
     tmp = select_html_template(g_id, cat_id, cats, sex_lookup, gems_lookup)
     return tmp
-
 
 
 def make_sex_lookup(cats):
@@ -614,12 +815,10 @@ def make_sex_lookup(cats):
             lookup[cat['sire']] = "m"
         if cat['sex']:
             lookup[id] = cat['sex']
-    # pprint(lookup)
-    # print(">>>>>>", cats[1])
     return lookup
 
 def reverse_order(pedigrees):
-    # print(pedigrees)
+    ## NO LONGER USED
     tmp = []
     for pedigree in pedigrees:
         for i in pedigree:
@@ -632,6 +831,7 @@ def reverse_order(pedigrees):
 def pair_and_reverse(pedigrees):
     ## This divides ancestors into pairs (sire,dam) & reverses the presentation order
     ## pedigrees = [  [{0: [1]},{1: [6, 5]},{2: [14, 13, 8, 7]}],  [pedigree2 (etc.)]  ]
+    ## NO LONGER IN USE
     tmp = [[{k:
             [v[i:i+2] for i in range(0, len(v), 2)][::-1]
             for k,v in g.items()}
@@ -651,9 +851,11 @@ def pair_ancestors(pedigrees):
 
 
 def main():
-    # cats_to_print_by_id = [1]
+    ## Change these three variables according to needs
     cats_to_print_by_id = [1,2,3,4]
-    max_generations_depth = 5
+    max_generations = 5
+    base_font_size = 12
+
     cats = create_pedigree_from_file(retrieve_file_by_suffix())
     id_from_name = {cat['name']: id for id, cat in cats.items()}
     cats = assign_generations(sub_names_to_ids(cats, id_from_name))
@@ -665,18 +867,16 @@ def main():
     grid_pedigrees = []
     for cat_id in cats_to_print_by_id:
         cat = cats[cat_id]
-        print("recursing for:", cat_id, cat['name'])
-        tmp = recurse_pedigree(cat_id, cats, max_generations_depth)
+        print(f"Analysing database to create pedigree for: {cat['name']} (id: {cat_id})")
+        tmp = recurse_pedigree(cat_id, cats, max_generations)
         pedigrees.append([tmp])
-        tmp1 = recurse_for_grid(cat_id, cats, max_generations_depth)
+        tmp1 = recurse_for_grid(cat_id, cats, max_generations)
         grid_pedigrees.append(tmp1)
-        # flat_pedigrees.append({cat_id: tmp1})
-    # print("grid version:", grid_pedigrees)
     # pprint(pedigrees, depth=4, width=80, compact=True)
     pedigrees = pair_ancestors(pedigrees)
-    ## Actually, pedigrees is no longer used but its layout is more human reader friends, so I've kept it for ref.
+    ## pedigrees no longer used but more reader-friendly, so kept for ref.
     # build_html(pedigrees, cats, sex_lookup, gems_lookup)
-    build_grid(grid_pedigrees, cats, sex_lookup, gems_lookup, max_generations_depth)
+    build_grid(grid_pedigrees, cats, sex_lookup, gems_lookup, max_generations, base_font_size)
 
 
 main()

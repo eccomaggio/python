@@ -2,7 +2,7 @@
   display: grid;
   /* grid-template-columns: repeat(4, 1fr); */
   grid-template-columns: repeat(4, auto);
-  grid-template-rows: repeat(8, 1fr);
+  grid-template-rows: repeat(16, 1fr);
 
   border: 1px solid black;
   grid-gap: 1px;
