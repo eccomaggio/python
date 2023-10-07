@@ -154,8 +154,13 @@ def make_gems_lookup():
         "SIA n": "Seal Point Siamese",
     }
 
-def html_template(body, css_file="", title="pedigree"):
-    css_link = f"\n<link rel='stylesheet' type='text/css' href='{css_file}'>\n" if css_file else ""
+# def html_template(body, css_file="", title="pedigree"):
+#     css_link = f"\n<link rel='stylesheet' type='text/css' href='{css_file}'>\n" if css_file else ""
+def html_template(body, css_files=[], title="pedigree"):
+    css_link = ""
+    if css_files:
+        for file in css_files:
+            css_link += f"\n<link rel='stylesheet' type='text/css' href='{file}'>"
     template = f"""
 <html>
 <head>
@@ -349,6 +354,48 @@ def recurse_pedigree(cat_id, cats, max_generations, curr_generation=0, pedigree=
     return pedigree
 
 
+def recurse_for_grid(cat_id, cats, max_generations, curr_generation=0, pedigree=None):
+    # max_generations = 5
+    if curr_generation > max_generations:
+        return pedigree
+    if curr_generation == 0:
+        pedigree = [[cat_id,curr_generation]]
+    #     # flat.append([cat_id, 0])
+    #     pass
+    else:
+        # flat.insert(1, cat_id)
+        pedigree.append([cat_id,curr_generation])
+    cat = cats[cat_id]
+    # for recorded_id, backup_id in [[cat['dam'],-1],[cat['sire'], -2]]:
+    for recorded_id, backup_id in [[cat['sire'],-2],[cat['dam'], -1]]:
+        ancestor_id = recorded_id if recorded_id else backup_id
+        recurse_for_grid(ancestor_id, cats, max_generations, curr_generation + 1, pedigree)
+    return pedigree
+
+def build_grid(flat_pedigrees, cats, sex_lookup, gems_lookup, max_generations_depth):
+    # pprint(flat_pedigrees, depth=5, width=80, compact=True)
+    # pprint(flat_pedigrees)
+    for pedigree in flat_pedigrees:
+        print(f"Printing grid for {cats[pedigree[0][0]]['name']} ({pedigree[0][0]})")
+        grid_html = ""
+        header_html = ""
+        target_id = None
+        for cat_id, g_id in pedigree:
+            if g_id == 0:
+                target_id = cat_id
+                header_html = build_header(target_id, cats, sex_lookup, gems_lookup)
+                continue
+            # grid_html += f"<div class='g{gen}'>{cats[cat_id]['name']} ({cat_id})</div>\n"
+            grid_html += f"<div class='g{g_id}'>{build_html_cat(g_id, cat_id, cats, sex_lookup, gems_lookup)}</div>\n"
+        grid_html = f"<div id='container'>\n{grid_html}\n</div>"
+
+        target_name = cats[target_id]['name']
+        grid_css_file = f"grid{max_generations_depth}.css"
+        html = html_template(header_html + grid_html + build_footer(), ["pedigree.css", grid_css_file], f"Pedigree for {target_name}")
+        write_html_pedigree(html, f"{target_id}-{target_name.replace(' ', '-')}.html")
+
+
+
 def build_header(cat_id, cats, sex_lookup, gems_lookup):
     i = get_display_info(cat_id, cats, sex_lookup, gems_lookup)
     return f"""
@@ -356,14 +403,14 @@ def build_header(cat_id, cats, sex_lookup, gems_lookup):
     <tr>
         <td rowspan="2">
         <p class="feature">Breeder:</p>
-        <p>LONGNAP</p>
+        <p class="breeder">LONGNAP</p>
         <p class="feature">
         Ms J Sturgess<br>
         5 Catharine Close Radley ABINGDON<br>
         OX14 3AR
         </p>
         </td>
-        <td>Name: <b>{i["name"]}</b></td>
+        <td class="banner">Name: <span class="name">{i["name"]}</span></td>
     </tr>
     <tr>
         <td class="cat-info">
@@ -377,6 +424,17 @@ def build_header(cat_id, cats, sex_lookup, gems_lookup):
         </td>
     </tr>
 </table>
+
+"""
+
+
+def build_footer():
+    return """
+<div class="footer">
+<p>For cats marked (IMP)* details are as supplied by the governing body of the country of origin.</p>
+<p>I certify that this pedigree is accurate, to the best of my knowledge and belief.</p>
+<p class="signature">SIGNED: ................................................................
+&nbsp;&nbsp; DATE:..................</p>
 """
 
 
@@ -392,7 +450,9 @@ def build_gen3(cat_id, cats, sex_lookup, gems_lookup):
     i = get_display_info(cat_id, cats, sex_lookup, gems_lookup)
     return f"""
 <div class="cat">
-    <p class="name{i["awards_class"]}">{i["awards"]}{i["name"]}</p>
+    <p class="nameline{i["awards_class"]}">{i["awards"]}
+    <span class="name">{i["name"]}</span>
+    <span class="cat_id"> ({cat_id})</span></p>
     <p class="reg"><span class="feature">Reg no: </span>{i["regnum"]}<span</p>
     <p class="gems"><span class="feature">GEMS: </span>{i["gems"]} {i["gccf"]}</span></p>
     <p class="expand">{i["catsplain"]}</p>
@@ -403,8 +463,10 @@ def build_gen3(cat_id, cats, sex_lookup, gems_lookup):
 def build_gen4(cat_id, cats, sex_lookup, gems_lookup):
     i = get_display_info(cat_id, cats, sex_lookup, gems_lookup)
     return f"""
-<div class='cat'>
-    <p class="name{i["awards_class"]}">{i["awards"]}{i["name"]} {i["sex_icon"]}</p>
+<div class="cat">
+    <p class="nameline{i["awards_class"]}">{i["awards"]}
+        <span class="name">{i["name"]}</span>
+        <span class="cat_id"> ({cat_id}) </span>{i["sex_icon"]}</p>
     <p class="desc">{i["regnum"]} {i["gems"]}</p>
 </div>
 """
@@ -415,7 +477,8 @@ def build_gen5(cat_id, cats, sex_lookup, gems_lookup):
     i = get_display_info(cat_id, cats, sex_lookup, gems_lookup)
     return f"""
 <div class='cat'>
-    <p class="name{i["awards_class"]}">{i["awards"]}{i["name"]} {i["sex_icon"]}
+    <p class="nameline">{i["awards"]}<span class='name{i["awards_class"]}'>{i["name"]}</span>
+    <span class="cat_id"> ({cat_id})<span>{i["sex_icon"]}
     {i["regnum"]} {i["gems"]}</p>
 </div>
 """
@@ -426,7 +489,9 @@ def build_generic(cat_id, cats, sex_lookup, gems_lookup):
     return f"""
 <div class="cat">
     <p class="sex">{i["sex"]}</p>
-    <p class="name{i["awards_class"]}">{i["awards"]}{i["name"]}</p>
+    <p class="nameline{i["awards_class"]}">{i["awards"]}
+        <span class="name">{i["name"]}</span>
+        <span class="cat_id"> ({cat_id})</span></p>
     <p class="reg"><span class="feature">Reg no: </span>{i["regnum"]}<span</p>
     <p class="gems"><span class="feature">GEMS: </span>{i["gems"]} {i["gccf"]}</span></p>
     <p class="expand">{i["catsplain"]}</p>
@@ -437,7 +502,7 @@ def build_generic(cat_id, cats, sex_lookup, gems_lookup):
 def get_display_info(cat_id, cats, sex_lookup, gems_lookup):
     cat = cats[cat_id]
     is_dam = sex_lookup[cat_id] == "f"
-    sex = "Dam" if is_dam else "Sire"
+    # sex = "Dam" if is_dam else "Sire"
     has_awards = cat['cstatus']
     gccf = cat['gccf']
     gems = cat['gems']
@@ -449,8 +514,8 @@ def get_display_info(cat_id, cats, sex_lookup, gems_lookup):
         "gems": gems,
         "is_dam": is_dam,
         "sex_icon": '\u2642' if is_dam else '\u2640',
-        # "sex": "Dam" if is_dam else "Sire",
-        "sex": sex,
+        "sex": "Dam" if is_dam else "Sire",
+        # "sex": sex,
         "has_awards": has_awards,
         "awards": f"{has_awards} " if has_awards else "",
         "awards_class": " champion" if has_awards else "",
@@ -497,10 +562,8 @@ def build_html(pedigrees, cats, sex_lookup, gems_lookup):
             gen_wrapper_html = build_html_gen_wrapper(generation_html)
         target_id = pedigree[0][0][0][0]
         target_name = cats[target_id]['name']
-        html = html_template(header_html + gen_wrapper_html, "pedigree.css", f"Pedigree for {target_name}")
-        write_html_pedigree(html, f"{target_id}-{target_name.replace(' ', '-')}.html")
-        # pedigree_html += build_html_pedigree(pedigree[0][0][0][0], header_html + gen_wrapper_html, cats)
-    #     pedigree_html += build_html_pedigree(target_id, header_html + gen_wrapper_html, cats)
+        html = html_template(header_html + gen_wrapper_html, ["pedigree.css"], f"Pedigree for {target_name}")
+        # write_html_pedigree(html, f"{target_id}-{target_name.replace(' ', '-')}.OLD.html")
     # return pedigree_html
 
 
@@ -596,25 +659,24 @@ def main():
     cats = assign_generations(sub_names_to_ids(cats, id_from_name))
     sex_lookup = make_sex_lookup(cats)
     gems_lookup = make_gems_lookup()
-    latest_generation = get_latest_generation(cats)
-    # cats.update(add_unknown())
-    # pedigrees_by_name = []
+    ## latest_generation finds top level cats (i.e. have not yet sired)
+    # latest_generation = get_latest_generation(cats)
     pedigrees = []
-    for id, cat in latest_generation.items():
-        print("recursing for:", id, cat['name'])
-        if cats_to_print_by_id and id not in cats_to_print_by_id:
-            continue
-        # tmp = recurse_pedigree(id, cats)
-        tmp = recurse_pedigree(id, cats, max_generations_depth)
+    grid_pedigrees = []
+    for cat_id in cats_to_print_by_id:
+        cat = cats[cat_id]
+        print("recursing for:", cat_id, cat['name'])
+        tmp = recurse_pedigree(cat_id, cats, max_generations_depth)
         pedigrees.append([tmp])
+        tmp1 = recurse_for_grid(cat_id, cats, max_generations_depth)
+        grid_pedigrees.append(tmp1)
+        # flat_pedigrees.append({cat_id: tmp1})
+    # print("grid version:", grid_pedigrees)
     # pprint(pedigrees, depth=4, width=80, compact=True)
-    # pedigrees = pair_and_reverse(pedigrees)
     pedigrees = pair_ancestors(pedigrees)
-    # print("\nFinal pedigrees")
-    # pprint(pedigrees, depth=5, width=80, compact=True)
-    build_html(pedigrees, cats, sex_lookup, gems_lookup)
-    # html_body = build_html(pedigrees, cats, sex_lookup, gems_lookup)
-    # write_html_pedigree(html_template(html_body,"pedigree.css"))
+    ## Actually, pedigrees is no longer used but its layout is more human reader friends, so I've kept it for ref.
+    # build_html(pedigrees, cats, sex_lookup, gems_lookup)
+    build_grid(grid_pedigrees, cats, sex_lookup, gems_lookup, max_generations_depth)
 
 
 main()

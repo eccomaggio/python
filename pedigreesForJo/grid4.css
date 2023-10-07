@@ -1,0 +1,30 @@
+#container {
+  display: grid;
+  /* grid-template-columns: repeat(4, 1fr); */
+  grid-template-columns: repeat(4, auto);
+  grid-template-rows: repeat(8, 1fr);
+
+  border: 1px solid black;
+  grid-gap: 1px;
+  background-color: black;
+}
+
+#container div {
+  display: flex;
+  align-items: stretch;
+  background-color: white;
+}
+
+.g1 {
+  grid-row: span 8;
+}
+
+.g2 {
+  grid-row: span 4;
+}
+
+.g3 {
+  grid-row: span 2;
+}
+
+.g4 {}

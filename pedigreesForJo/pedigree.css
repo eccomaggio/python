@@ -1,3 +1,7 @@
+:root {
+  --line-weight: 1px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,13 +9,53 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 10pt;
+  font-size: 12pt;
   padding: 5px;
 }
 
 .header {
   margin-bottom: 3px;
   width: 100%;
+  font-size: 11pt;
+}
+
+.banner {
+  font-weight: bold;
+  font-size: larger;
+}
+
+.banner .name {
+  font-weight: normal;
+  font-size: x-large;
+}
+
+.breeder {
+  font-weight: bold;
+  padding: 5px 0;
+}
+
+table, td {
+  /* border: 0.5px solid black; */
+  border: var(--line-weight) solid black;
+  border-collapse: collapse;
+  padding: 6px;
+}
+
+.cat-info p {
+  padding-bottom: 3px;
+}
+
+.footer {
+  padding-top: 9px;
+  font-size: smaller;
+}
+
+.footer p {
+  padding-bottom: 3px;
+}
+
+.signature {
+  text-align: right;
 }
 
 .gen_wrapper {
@@ -26,16 +70,17 @@ body {
   flex-grow: 1;
 }
 
-#gen_3, #gen_4 {
+#gen_3, #gen_4, .g3, .g4 {
   font-size: 0.75em;
 }
 
-#gen_5 {
+#gen_5, .g5 {
   font-size: 0.7em;
 }
 
 .pair, .header {
-  border: 0.5pt solid black;
+  /* border: 0.5pt solid black; */
+  border: var(--line-weight) solid black;
 }
 
 .pair {
@@ -46,7 +91,7 @@ body {
 
 .cat {
   padding: 3px;
-  border-top: 1px dashed lightgray;
+  /* border-top: 1px dashed lightgray; */
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -62,19 +107,57 @@ body {
   color: red;
 }
 
-/* .name, .sex {
-  font-size: larger;
-} */
+.name {
+  /* font-size: larger; */
+  font-weight: bold;
+}
+
+.nameline {
+  /* padding-top: 3px;
+  padding-bottom: 5px; */
+}
 
 .gccf {
   font-size: smaller;
 }
 
+.expand {
+  font-style: italic;
+}
+
 .feature {
   font-size: x-small;
+  color: grey;
+}
+
+td .feature {
+  font-size: smaller;
+  color: black;
 }
 
 .cat-info {
   column-count: 3;
   gap: 10px;
+}
+
+/* .g1 .cat p, .g2 .cat p { */
+.g1 .cat, .g2 .cat {
+  padding: 0 9px;
+}
+
+.g1 .cat p {
+  padding-bottom: 16px;
+}
+
+.reg, .gems, .expand, .desc, .sex {
+  padding-left: 10px;
+  padding-bottom: 2px;
+}
+
+.sex {
+  padding-bottom: 5px;
+}
+
+.cat_id {
+  display: none;
 }

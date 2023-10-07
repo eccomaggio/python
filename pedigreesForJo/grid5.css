@@ -1,0 +1,40 @@
+:root {
+  --line-weight: 1px;
+}
+
+#container {
+  display: grid;
+  /* grid-template-columns: repeat(4, 1fr); */
+  grid-template-columns: repeat(5, auto);
+  grid-template-rows: repeat(32, 1fr);
+
+  /* border: 1px solid black;
+  grid-gap: 1px; */
+  /* border: 0.5px solid black;
+  grid-gap: 0.5px; */
+  border: var(--line-weight) solid black;
+  grid-gap: var(--line-weight);
+  background-color: black;
+}
+
+#container div {
+  display: flex;
+  align-items: stretch;
+  background-color: white;
+}
+
+.g1 {
+  grid-row: span 16;
+}
+
+.g2 {
+  grid-row: span 8;
+}
+
+.g3 {
+  grid-row: span 4;
+}
+
+.g4 {
+  grid-row: span 2;
+}
