@@ -733,7 +733,7 @@ def get_display_info(cat_id, cats, sex_lookup, gems_lookup):
 
 def select_html_template(case, cat, cats, sex_lookup, gems_lookup):
     if case < 0 or case > 5:
-        case = 100
+        case = 5
     switch = {
         0: build_header,
         1: build_gen1,
