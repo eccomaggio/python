@@ -585,18 +585,20 @@ def recurse_and_pair(cat_id, cats, max_generations, curr_generation=0, pedigree=
     return pair_parents(tmp_pedigree)
 
 
-def recurse_for_grid(cat_id, cats, max_generations, curr_generation=0, pedigree=None):
-    if curr_generation > max_generations:
-        return pedigree
-    if curr_generation == 0:
-        pedigree = [[cat_id,curr_generation]]
-    else:
-        pedigree.append([cat_id,curr_generation])
-    cat = cats[cat_id]
-    for recorded_id, backup_id in [[cat['sire'],-2],[cat['dam'], -1]]:
-        ancestor_id = recorded_id if recorded_id else backup_id
-        recurse_for_grid(ancestor_id, cats, max_generations, curr_generation + 1, pedigree)
-    return pedigree
+# def recurse_for_grid(cat_id, cats, max_generations, curr_generation=0, pedigree=None):
+## Produces flat list of pairs [ [id, gen], ...] following same order as 'css grid-auto-flow: row'
+## (But impossible for humans to parse!)
+#     if curr_generation > max_generations:
+#         return pedigree
+#     if curr_generation == 0:
+#         pedigree = [[cat_id,curr_generation]]
+#     else:
+#         pedigree.append([cat_id,curr_generation])
+#     cat = cats[cat_id]
+#     for recorded_id, backup_id in [[cat['sire'],-2],[cat['dam'], -1]]:
+#         ancestor_id = recorded_id if recorded_id else backup_id
+#         recurse_for_grid(ancestor_id, cats, max_generations, curr_generation + 1, pedigree)
+#     return pedigree
 
 
 def build_grid(pedigrees):
@@ -897,7 +899,7 @@ class Pedigree:
         self.depth = settings["depth"]
         self.font_size = settings["font_size"]
         self.by_gen = recurse_and_pair(self.id, self.db.cats, self.depth)
-        self.flat = recurse_for_grid(self.id, self.db.cats, self.depth)
+        # self.flat = recurse_for_grid(self.id, self.db.cats, self.depth)
 
 
 def main(argv):

@@ -1,0 +1,1867 @@
+
+#
+#
+#
+#1
+mē
+quid
+me, myself
+what
+nihil
+nōn
+nothing
+not
+saepe
+sī
+often
+if
+amō, amāre, amāvī, amātum
+amābō tē
+to love, like
+please
+cōgitō, cōgitāre, cōgitāvī, cōgitātum
+dḗbeō, dēbḗre, dḗbuī, dḗbitum
+to think, ponder, consider, plan
+to owe; ought, must, should
+dō, dare, dedī, datum
+errō, errāre, errāvī, errātum
+to give, offer
+to wander; err, go astray; make a mistake, be mistaken
+laudō, laudāre, laudāvī, laudātum
+moneō, monēre, monuī, monitum
+to praise
+to remind, advise, warn
+salveō, salvēre
+salvē, salvēte
+to be well, be in good health
+hello, greetings
+servō, servāre, servāvī, servātum
+cōnservō, cōnservāre, cōnservāvī, cōnservātum
+to preserve, save, keep, guard
+to preserve, conserve, maintain
+terreō, terrēre, terruī, territum
+valeō, valēre, valuī, valitūrum
+to frighten, terrify
+to be strong, have power; be well
+valē, valēte
+videō, vidēre, vīdī, vīsum
+good-bye, farewell
+to see; observe, understand
+vocō, vocāre, vocāvī, vocātum
+dummy
+to call, summon
+dummy
+#
+#
+#
+#2
+fāma, fāmae (f)
+fōrma, fōrmae (f)
+rumor, report; fame, reputation
+form, shape; beauty
+fortūna, fortūnae (f)
+īra, īrae (f)
+fortune, luck
+ire, anger
+nauta, nautae (m)
+patria, patriae (f)
+sailor
+fatherland, native land, (one's) country
+pecūnia, pecūniae (f)
+philosophia, philosophiae (f)
+money
+philosophy
+poena, poenae (f)
+poenās dare
+penalty, punishment
+to pay the penalty
+poēta, poētae (m)
+porta, portae (f)
+poet
+gate, entrance
+puella, puellae (f)
+rosa, rosae (f)
+girl
+rose
+sententia, sententiae (f)
+vīta, vītae (f)
+feeling, thought, opinion, vote, sentence
+life; mode of life
+antīqua, antīquae
+magna, magnae
+ancient, old-time
+large, great; important
+mea, meae
+multa, multae
+my
+much, many
+tua, tuae
+et
+your (sing.)
+and; even
+et . . . et
+sed
+both . . . and
+but
+Ō
+sine (+abl.)
+o!, oh!
+without
+#
+#
+#
+#3
+ager, agrī (m)
+agricola, agricolae (m)
+field, farm
+farmer
+amīca, amīcae (f)
+amīcus, amīcī (m)
+friend (female)
+friend (male)
+fēmina, fēminae (f)
+fīlia, fīliae (f)
+woman
+daughter
+fīlius, fīliī (m)
+numerus, numerī (m)
+son
+number
+populus, populī (m)
+puer, puerī (m)
+the people, a people, a nation
+boy; boys, children (pl.)
+sapientia, sapientiae (f)
+vir, virī (m)
+wisdom
+man, hero
+avārus (m), avāra (f)
+paucī (m), paucae (f)
+greedy, avaricious
+few, a few
+Rōmānus (m), Rōmāna (f)
+dē (+abl.)
+Roman
+down from, from; concerning, about
+in (+abl.)
+hodiē
+in, on
+today
+semper
+habeō, habēre, habuī, habitum
+always
+to have, hold, possess; consider, regard
+satiō, satiāre, satiāvī, satiātum
+dummy
+to satisfy, sate
+dummmy
+#
+#
+#
+#4
+bāsium, bāsiī (n)
+bellum, bellī (n)
+kiss
+war
+cōnsilium, cōnsiliī (n)
+cūra, cūrae (f)
+plan, purpose, counsel, advice, judgment, wisdom
+care, attention, caution, anxiety
+dōnum, dōnī (n)
+exitium, exitiī (n)
+gift, present
+destruction, ruin
+magister, magistrī (m)
+magistra, magistrae (f)
+schoolmaster, teacher, master
+schoolmistress, teacher, mistress
+mora, morae (f)
+nihil
+delay
+nothing
+oculus, oculī (m)
+officium, officiī (n)
+eye
+duty, service
+ōtium, ōtiī (n)
+perīculum, perīculī (n)
+leisure, peace
+danger, risk
+remedium, remediī (n)
+bellus, bella, bellum
+cure, remedy
+pretty, handsome, charming
+bonus, bona, bonum
+hūmānus, hūmāna, hūmānum
+good, kind
+pertaining to man, human; humane, kind; refined, cultivated
+malus, mala, malum
+parvus, parva, parvum
+bad, wicked, evil
+small, little
+stultus, stulta, stultum
+stultus, stultī (m)
+foolish
+a fool
+vērus, vēra, vērum
+iuvō, iuvāre, iūvī, iūtum
+true, real, proper
+to help, aid, assist; please
+adiuvō, adiuvāre, adiūvī, adiūtum
+sum, esse, fuī, futūrum
+to help, aid, assist; to please
+to be, exist
+#
+#
+#
+#5
+adulēscentia, adulēscentiae (f)
+animus, animī (m)
+youth, young manhood; youthfulness
+soul, spirit, mind
+animī, animōrum (m)
+caelum, caelī (n)
+high spirits, pride, courage
+sky, heaven
+culpa, culpae (f)
+glōria, glōriae (f)
+fault, blame
+glory, fame
+verbum, verbī (n)
+tē
+word
+you, yourself (sing.)
+līber, lībera, līberum
+noster, nostra, nostrum
+free
+our, ours
+pulcher, pulchra, pulchrum
+sānus, sāna, sānum
+beautiful, handsome; fine
+sound, healthy, sane
+igitur
+-ne
+therefore, consequently
+interrogative suffix attached to the first word of a sentence, typically the verb or another word on which the question hinges, to introduce a question whose answer is uncertain
+propter (+acc.)
+crās
+on account of, because of
+tomorrow
+héri
+quandō
+yesterday
+when
+sī quandō
+satis
+if ever
+enough, sufficient (-ly)
+tum
+cēnō, cēnāre, cēnāvī, cēnātum
+then, at that time; thereupon, in the next place
+to dine
+culpō, culpāre, culpāvī, culpātum
+remaneō, remanēre, remānsī, remānsum
+to blame, censure
+to remain, stay, stay behind, abide, continue
+maneō, manēre, mānsī, mānsum
+superō, superāre, superāvī, superātum
+to remain, stay, stay behind, abide, continue
+to be above, have the upper hand, surpass; overcome, conquer
+#
+#
+#
+#6
+dea, deae (f)
+deus, deī (m)
+goddess
+god
+discipula, discipulae (f)
+discipulus, discipulī (m)
+learner, pupil, student
+learner, pupil, student
+īnsidiae, īnsidiārum (f)
+liber, librī (m)
+ambush, plot, treachery
+book
+tyrannus, tyrannī (m)
+vitium, vitiī (n)
+absolute ruler, tyrant
+fault, crime, vice
+Graecus, Graeca, Graecum
+Graecus, Graecī (m)
+Greek
+Greek
+perpetuus, perpetua, perpetuum
+plēnus, plēna, plēnum
+perpetual, lasting, uninterrupted, continuous
+full, abundant, generous
+salvus, salva, salvum
+secundus, secunda, secundum
+safe, sound
+second; favorable
+vester, vestra, vestrum
+-que
+your (pl.)
+and (enclitic conjunction; appended to the second of two words to be joined)
+ubi
+ibi
+where, when
+there
+nunc
+quārē
+now, at present
+because of which thing (lit.); therefore, wherefore, why
+possum, posse, potuī
+tolerō, tolerāre, tolerāvī, tolerātum
+to be able, can, could, have power
+to bear, endure
+#
+#
+#
+#7
+amor, amōris (m)
+carmen, carminis (n)
+love
+song, poem
+cīvitās, cīvitātis (f)
+corpus, corporis (n)
+state, citizenship
+body
+homō, hominis (m)
+labor, labōris (m)
+human being, man
+labor, work, toil; a work, production
+littera, litterae (f)
+litterae, litterārum (f)
+a letter of the alphabet
+a letter (epistle), literature
+mōs, mōris (m)
+mōrēs, mōrum (m)
+habit, custom, manner
+habits, morals, character
+nōmen, nōminis (n)
+pāx, pācis (f)
+name
+peace
+rēgīna, rēgīnae (f)
+rēx, rēgis (m)
+queen
+king
+tempus, temporis (n)
+terra, terrae (f)
+time; occasion, opportunity
+earth, ground, land, country
+uxor, uxōris (f)
+virgō, virginis (f)
+wife
+maiden, virgin
+virtūs, virtūtis (f)
+novus, nova, novum
+manliness, courage; excellence, character, worth, virtue
+new; strange
+post (+acc.)
+sub (+abl. w/ verbs of rest or +acc. w/ verbs of motion)
+after, behind
+under, up under, close to, down to/into, to/at the foot of
+audeō, audēre, ausus sum
+necō, necāre, necāvī, necātum
+to dare
+to murder, kill
+#
+#
+#
+#8
+cicero
+cōpia, cōpiae (f)
+(Marcus Tullius) Cicero
+abundance, supply
+cōpiae, cōpiārum (f)
+frāter, frātris (m)
+supplies, troops, forces
+brother
+laus, laudis (f)
+lībertās, lībertātis (f)
+praise, glory, fame
+liberty
+ratiō, ratiōnis (f)
+scrīptor, scrīptōris (m)
+reckoning, account; reason, judgment, consideration; system; manner, method
+writer, author
+soror, sorōris (f)
+victōria, victōriae (f)
+sister
+victory
+dum
+ad (+acc.)
+while, as long as, at the same time that; until (+subjunctive)
+to, up to, near to
+ex , ē (abl.+)
+numquam
+out of, from, from within; by reason of, on account of; of (following cardinal numerals)
+never
+tamen
+agō, agere, ēgī, āctum
+nevertheless, still
+to drive, lead, do, act; pass, spend (life or time)
+grātiās agere
+dēmōnstrō, dēmōnstrāre, dēmōnstrāvī, dēmōnstrātum
+to thank someone; to give thanks to
+to point out, show, demonstrate
+discō, discere, didicī
+doceō, docēre, docuī, doctum
+to learn
+to teach
+dūcō, dūcere, dūxī, ductum
+gerō, gerere, gessī, gestum
+to lead; consider, regard; prolong
+to carry; carry on, manage, conduct, wage, accomplish, perform
+scrībō, scrībere, scrīpsī, scrīptum
+trahō, trahere, trāxī, tractum
+to write, compose
+to draw, drag; derive, acquire
+vincō, vincere, vīcī, victum
+dummy
+to conquer, overcome
+dummy
+#
+#
+#
+#9
+locus, locī (m)
+loca, locōrum (n)
+place; passage in literature
+places, region
+locī, locōrum (m)
+morbus, morbī (m)
+passages in literature
+disease, sickness
+studium, studiī (n)
+hic, haec, hoc
+eagerness, zeal, pursuit, study
+this; the latter; he, she, it, they
+ille, illa, illud
+íste, ísta, ístud
+that; the former; the famous; he, she, it, they
+that of yours, that; such (as you have, as you speak of); sometimes with contemptuous force, e.g., that despicable, that wretched
+alius, alia, aliud
+aliī . . . aliī
+other, another
+some . . . others
+alter, altera, alterum
+neuter, neutra, neutrum
+the other (of two), second
+not either, neither
+nūllus, nūlla, nūllum
+sōlus, sōla, sōlum
+not any, no, none
+alone, only, the only
+nōn sōlum . . . sed etiam
+tōtus, tōta, tōtum
+not only . . . but also
+whole, entire
+ūllus, ūlla, ūllum
+ūnus, ūna, ūnum
+any
+one, single, alone
+uter, utra, utrum
+enim
+either, which (of two)
+for, in fact, truly
+in (+acc.)
+nímis, nímium
+into, toward; against
+too, too much, excessively; (in a positive sense, esp. with adjectives and adverbs) exceedingly, very
+#
+#
+#
+#10
+amīcitia, amīcitiae (f)
+cupiditās, cupiditātis (f)
+friendship
+desire, longing, passion; cupidity, avarice
+hōra, hōrae (f)
+nātūra, nātūrae (f)
+hour, time
+nature
+senectūs, senectūtis (f)
+timor, timōris (m)
+old age
+fear
+vēritās, vēritātis (f)
+via, viae (f)
+truth
+way, road, street
+voluptās, voluptātis (f)
+beātus, beāta, beātum
+pleasure
+happy, fortunate, blessed
+quoniam
+cum (+abl.)
+since, inasmuch as
+with
+audiō, audīre, audīvī, audītum
+capiō, capere, cēpī, captum
+to hear, listen to
+to take, capture, seize, get
+dīcō, dīcere, dīxī, dictum
+faciō, facere, fēcī, factum
+to say, tell, speak; name, call
+to make, do, accomplish
+fugiō, fugere, fūgī, fugitūrum
+veniō, venīre, vēnī, ventum
+to flee, hurry away; escape; go into exile; avoid, shun
+to come
+inveniō, invenīre, invēnī, inventum
+vīvō, vīvere, vīxī, vīctum
+to come upon, find
+to live
+#
+#
+#
+#11
+caput, capitis (n)
+cōnsul, cōnsulis (m)
+head; leader; beginning; life;heading; chapter
+consul
+nēmō, nūllīus, nēminī, nēminem, nūllō, nūllā (m or f)
+ego, meī
+no one, nobody
+I
+tū, tuī
+is, ea, id
+you (sing.)
+this, that; he, she, it
+īdem, eadem, idem
+amīcus, amīca, amīcum
+the same
+friendly
+cārus, cāra, cārum
+quod
+dear
+because
+neque, nec
+neque . . . neque, nec . . . nec
+and not, nor
+neither . . . nor
+autem
+bene
+however; moreover
+well, satisfactorily, quite
+etiam
+intellegō, intellegere, intellēxī, intellēctum
+even
+to understand
+mittō, mittere, mīsī, missum
+sentiō, sentīre, sēnsī, sēnsum
+to send, let go
+to feel, perceive, think, experience
+#
+#
+#
+#12
+adulēscēns, adulēscentis (m or f)
+annus, annī (m)
+young man, young woman
+year
+Asia, Asiae (f)
+Caesar, Caesaris (m)
+Asia
+Caesar
+māter, mātris (f)
+medicus, medicī (m)
+mother
+doctor, physician (male)
+medica, medicae (f)
+pater, patris (m)
+doctor, physician (female)
+father
+patientia, patientiae (f)
+prīncipium, prīncipiī (n)
+suffering; patience, endurance
+beginning
+acerbus, acerba, acerbum
+prō (+abl.)
+harsh, bitter, grievous
+in front of, before, on behalf of, for the sake of, in return for, instead of, for, as
+diū
+nūper
+long, for a long time
+recently
+āmíttō, āmíttere, āmīsī, āmíssum
+cadō, cadere, cecidī, cāsūrum
+to send away; lose, let go
+to fall
+creō, creāre, creāvī, creātum
+dummy
+to create
+dummy
+#
+#
+#
+#13
+dīvitiae, dīvitiārum (f. pl.)
+factum, factī (n)
+riches, wealth
+deed, act, achievement
+signum, signī (n)
+ipse, ipsa, ipsum
+sign, signal, indication; seal
+myself, yourself, himself, herself, itself, themselves, the very, the actual
+quisque, quidque, cuiusque, cuique
+suī
+each one, each person, each thing
+himself, herself, itself, themselves
+doctus, docta, doctum
+fortūnātus, fortūnāta, fortūnātum
+taught, learned, skilled
+lucky, fortunate, happy
+suus, sua, suum
+nam
+his own, her own, its own, their own
+for
+ante (+acc.)
+per (+acc.)
+before (in place or time), in front of; before, previously (adv.)
+through; by (with reflexive pronoun); thoroughly, very (as a prefix)
+ṓlim
+alō, alere, aluī, altum
+once (upon a time), long ago, formerly; some day, in the future
+to nourish, support, sustain, increase; cherish
+dīligō, dīligere, dīlēxī, dīlēctum
+iungō, iungere, iūnxī, iūnctum
+to esteem, love
+to join
+stō, stāre, stetī, statum
+dummy
+to stand, stand still, stand firm
+dummmy
+#
+#
+#
+#14
+animal, animālis (n)
+aqua, aquae (f)
+a living creature, animal
+water
+ars, artis (f)
+auris, auris (f)
+art, skill
+ear
+cīvis, cīvis (m or f)
+iūs, iūris (n)
+citizen
+right, justice, law
+mare, maris (n)
+mors, mortis (f)
+sea
+death
+nūbēs, nūbis (f)
+ōs, ōris (n)
+cloud
+mouth, face
+pars, partis (f)
+Rōma, Rōmae (f)
+part, share; direction
+Rome
+turba, turbae (f)
+urbs, urbis (f)
+uproar, disturbance, mob, crowd, multitude
+city
+vīs, vīs (f)
+vīrēs, vīrium (f. pl.)
+force, power, violence
+strength
+ab, ā (+abl.)
+trāns (+acc.)
+away from, from; by
+across
+appellō, appellāre, appellāvī, appellātum
+currō, currere, cucurrī, cursum
+to speak to, address (as), call, name
+to run, rush, move quickly
+mūtō, mūtāre, mūtāvī, mūtātum
+teneō, tenēre, tenuī, tentum
+to change, alter; exchange
+to hold, keep, possess; restrain
+vītō, vītāre, vītāvī, vītātum
+dummy
+to avoid, shun
+dummy
+#
+#
+#
+#15
+animal, animālis (n)
+aqua, aquae (f)
+a living creature, animal
+water
+ars, artis (f)
+auris, auris (f)
+art, skill
+ear
+cīvis, cīvis (m or f)
+iūs, iūris (n)
+citizen
+right, justice, law
+mare, maris (n)
+mors, mortis (f)
+sea
+death
+nūbēs, nūbis (f)
+ōs, ōris (n)
+cloud
+mouth, face
+pars, partis (f)
+Rōma, Rōmae (f)
+part, share; direction
+Rome
+turba, turbae (f)
+urbs, urbis (f)
+uproar, disturbance, mob, crowd, multitude
+city
+vīs, vīs (f)
+vīrēs, vīrium (f. pl.)
+force, power, violence
+strength
+ab, ā (+abl.)
+trāns (+acc.)
+away from, from; by
+across
+appellō, appellāre, appellāvī, appellātum
+currō, currere, cucurrī, cursum
+to speak to, address (as), call, name
+to run, rush, move quickly
+mūtō, mūtāre, mūtāvī, mūtātum
+teneō, tenēre, tenuī, tentum
+to change, alter; exchange
+to hold, keep, possess; restrain
+vītō, vītāre, vītāvī, vītātum
+dummy
+to avoid, shun
+dummy
+#
+#
+#
+#16
+aetās, aetātis (f)
+audītor, audītōris (m)
+period of life, life, age, an age, time
+hearer, listener, member of an audience
+clēmentia, clēmentiae (f)
+mēns, mentis (f)
+mildness, gentleness, mercy
+mind, thought, intention
+satura, saturae (f)
+ācer, ācris, ācre
+satire
+sharp, keen, eager; severe, fierce
+brevis, breve
+celer, celeris, celere
+short, small, brief
+swift, quick, rapid
+difficilis, difficile
+dulcis, dulce
+hard, difficult, troublesome
+sweet; pleasant, agreeable
+facilis, facile
+fortis, forte
+easy; agreeable
+strong, brave
+ingēns, gen. ingentis
+iūcundus, iūcunda, iūcundum
+huge
+ 	pleasant, delightful, agreeable, pleasing
+longus, longa, longum
+omnis, omne
+long
+ 	every, all
+potēns, potentis
+senex, senis
+able, powerful, mighty, strong
+ 	old, aged (adj.) or old man (noun)
+quam
+regō, regere, rēxī, rēctum
+how
+to rule, guide, direct
+#
+#
+#
+#17
+libellus, libellī (m)
+quī, quae, quod
+little book
+who, which, what, that
+caecus, caeca, caecum
+levis, leve
+blind
+light; easy; slight, trivial
+aut
+aut . . . aut
+or
+either . . . or
+cito
+quoque
+quickly
+also, too
+admittō, admittere, admīsī, admissum
+coepī, coepisse, coeptum
+to admit, receive, let in
+began
+cupiō, cupere, cupīvī, cupītum
+dēleō, dēlēre, dēlēvī, dēlētum
+to desire, wish, long for
+to destroy, wipe out, erase
+dēsīderō, dēsīderāre, dēsīderāvī, dēsīderātum
+incipiō, incipere, incēpī, inceptum
+to desire, long for, miss
+to begin
+nāvigō, nāvigāre, nāvigāvī, nāvigātum
+neglegō, neglegere, neglēxī, neglēctum
+to sail, navigate
+to neglect, disregard
+recitō, recitāre, recitāvī, recitātum
+dummy
+to read aloud, recite
+dummy
+#
+#
+#
+#18
+flūmen, flūminis (n)
+genus, generis (n)
+river
+origin; kind, type, sort, class
+hostis, hostis (m)
+hostēs, hostium (m)
+an enemy (of the state)
+the enemy
+lūdus, lūdī (m)
+probitās, probitātis (f)
+game, sport; school
+uprightness, honesty
+scientia, scientiae (f)
+clārus, clāra, clārum
+knowledge
+clear, bright; renowned, famous, illustrious
+mortālis, mortāle
+cūr
+mortal
+why
+deinde
+fluō, fluere, flūxī, flūxum
+thereupon, next, then
+to flow
+legō, legere, lēgī, lēctum
+misceō, miscēre, miscuī, mixtum
+to pick out, choose; read
+to mix, stir up, disturb
+moveō, movēre, mōvī, mōtum
+videor, vidērī, vīsus sum
+to move; arouse, affect
+to be seen, seem, appear
+#
+#
+#
+#19
+argūmentum, argūmentī (n)
+auctor, auctōris (m)
+proof, evidence, argument
+increaser; author, originator
+beneficium, beneficiī (n)
+familia, familiae (f)
+benefit, kindness; favor
+household, family
+Graecia, Graeciae (f)
+iūdex, iūdicis (m)
+Greece
+judge, juror
+iūdicium, iūdiciī (n)
+scelus, sceleris (n)
+judgment, decision, opinion; trial
+evil deed, crime, sin, wickedness
+quis? quid?
+quī?, quae?, quod?
+who? whose? whom? what? which?
+what? which? what kind of?; (sometimes with exclamatory force) what (a)! what sort of!
+certus, certa, certum
+gravis, grave
+definite, sure, certain, reliable
+heavy, weighty; serious, important; severe, grievous
+immortālis, immortāle
+at
+not subject to death, immortal
+but; but, mind you; but, you say
+nisi
+contrā (+acc.)
+if . . . not, unless; except
+against
+iam
+dēlectō, dēlectāre, dēlectāvī, dēlectātum
+now, already, soon
+to delight, charm, please
+līberō, līberāre, līberāvī, līberātum
+parō, parāre, parāvī, parātum
+to free, liberate
+to prepare, provide; get, obtain
+#
+#
+#
+#20
+coniūrātī, coniūrātōrum (m. pl.)
+cornū, cornūs (n)
+conspirators
+horn
+frūctus, frūctūs (m)
+genū, genūs (n)
+fruit; profit, benefit, enjoyment
+knee
+manus, manūs (f)
+metus, metūs (m)
+hand; handwriting; band
+fear, dread, anxiety
+mōns, montis (m)
+senātus, senātūs (m)
+mountain
+senate
+sēnsus, sēnsūs (m)
+servitūs, servitūtis (f)
+feeling, sense
+servitude, slavery
+spīritus, spīritūs (m)
+versus, versūs (m)
+breath, breathing; spirit, soul
+line of verse
+commūnis, commūne
+dexter, dextra, dextrum
+common, general, of / for the community
+right, right-hand
+sinister, sinistra, sinistrum
+careō, carēre, caruī, caritūrum
+left, left-hand; harmful, ill-omened
+to be without, be deprived of, want, lack; be free from
+dēfendō, dēfendere, dēfendī, dēfēnsum
+discēdō, discēdere, discessī, discessum
+to ward off; defend, protect
+to go away, depart
+ōdī, ōdisse, ōsūrum
+prohibeō, prohibēre, prohibuī, prohibitum
+to hate
+to keep (back), prevent, hinder, restrain, prohibit
+prōnūntiō, prōnūntiāre, prōnūntiāvī, prōnūntiātum
+dummy
+to proclaim, announce; declaim; pronounce
+dummy
+casa, casae (f)
+causa, causae (f)
+house, cottage, hut
+cause, reason; case, situation
+causā
+fenestra, fenestrae (f)
+for the sake of, on account of
+window
+fīnis, fīnis (m)
+fīnēs, fīnium (m)
+end, limit, boundary; purpose
+boundaries, territory
+gēns, gentis (f)
+mundus, mundī (m)
+clan, race, nation, people
+world, universe
+nāvis, nāvis (f)
+salūs, salūtis (f)
+ship, boat
+health, safety; greeting
+Trōia, Trōiae (f)
+vīcīnus, vīcīnī (m)
+Troy
+neighbor (male)
+vīcīna, vīcīnae (f)
+vulgus, vulgī (n)
+neighbor (female)
+the common people, mob, rabble
+asper, aspera, asperum
+átque, ac
+rough, harsh
+and also, and even, and in fact
+iterum
+contineō, continēre, continuī, contentum
+again, a second time
+to hold together, contain, keep, enclose, restrain
+iubeō, iubēre, iussī, iussum
+labōrō, labōrāre, labōrāvī, labōrātum
+to bid, order, command
+to labor; be in distress
+rapiō, rapere, rapuī, raptum
+relinquō, relinquere, relīquī, relictum
+to seize, snatch, carry away
+to leave behind, leave, abandon, desert
+sciō, scīre, scīvī, scītum
+tangō, tangere, tetigī, tāctum
+to know
+to touch
+#
+#
+#
+#22
+diēs, diēī (m)
+ferrum, ferrī (n)
+day
+iron; sword
+fidēs, fideī (f)
+ignis, ignis (m)
+faith, trust, trustworthiness, fidelity; promise, guarantee, protection
+fire
+modus, modī (m)
+rēs, reī (f)
+measure, bound, limit; manner, method, mode, way
+thing, matter, property, business, affair
+rēs pūblica, reī pūblicae (f)
+spēs, speī (f)
+state, commonwealth, republic
+hope
+aequus, aequa, aequum
+fēlīx, gen. fēlīcis
+level, even; calm; equal, just; favorable
+lucky, fortunate, happy
+incertus, incerta, incertum
+Latīnus, Latīna, Latīnum
+uncertain, unsure, doubtful
+Latin
+medius, media, medium
+quondam
+middle; the middle of
+formerly, once
+ultrā (adv. and prep. +acc.)
+prōtinus
+on the other side, beyond
+immediately
+cernō, cernere, crēvī, crētum
+ēripiō, ēripere, ēripuī, ēreptum
+to distinguish, discern, perceive
+to snatch away, take away; rescue
+inquit
+tollō, tollere, sustulī, sublātum
+he says or said
+to raise, lift up; take away, remove, destroy
+#
+#
+#
+#23
+arx, arcis (f)
+dux, ducis (m)
+citadel, stronghold
+leader, guide; commander, general
+equus, equī (m)
+hasta, hastae (f)
+horse
+spear
+īnsula, īnsulae (f)
+lītus, lītoris (n)
+island
+shore, coast
+mīles, mīlitis (m)
+ōrātor, ōrātōris (m)
+soldier
+orator, speaker
+sacerdōs, sacerdōtis (m)
+aliquis, aliquid
+priest
+someone, somebody, something
+quisquis, quidquid
+magnanimus, magnanima, magnanimum
+whoever, whatever
+great-hearted, brave, magnanimous
+umquam
+ēducō, ēducāre, ēducāvī, ēducātum
+ever, at any time
+to bring up, educate
+gaudeō, gaudēre, gāvīsus sum
+ostendō, ostendere, ostendī, ostentum
+to be glad, rejoice
+to exhibit, show, display
+petō, petere, petīvī, petītum
+premō, premere, pressī, pressum
+to seek, aim at, beg, beseech
+to press; press hard, pursue
+opprimō, opprimere, oppressī, oppressum
+vertō, vertere, vertī, versum
+to suppress, overwhelm, overpower, check
+to turn; change
+āvértō, āvértere, āvértī, āversum
+revertō, revertere, revertī, reversum
+to turn away, avert
+to turn back
+#
+#
+#
+#24
+Carthāgō, Carthāginis (f)
+fābula, fābulae (f)
+Carthage
+story, tale; play
+imperātor, imperātōris (m)
+imperium, imperiī (n)
+general, commander-in-chief, emperor
+power to command, supreme power, authority, command, control
+perfugium, perfugiī (n)
+servus, servī (m)
+refuge, shelter
+slave (male)
+serva, servae (f)
+sōlācium, sōlāciī (n)
+slave (female)
+comfort, relief
+vulnus, vulneris (n)
+re- , red-
+wound
+again, back
+ut
+posteā
+as, just as, when
+afterwards
+accipiō, accipere, accēpī, acceptum
+excipiō, excipere, excēpī, exceptum
+to take (to one's self), receive, accept
+to take out, except; take, receive, capture
+recipiō, recipere, recēpī, receptum
+pellō, pellere, pepulī, pulsum
+to take back, regain; admit, receive
+to strike, push; drive out, banish
+expellō, expellere, expulī, expulsum
+nārrō, nārrāre, nārrāvī, nārrātum
+to drive out, expel, banish
+to tell, report, narrate
+quaerō, quaerere, quaesīvī, quaesītum
+rīdeō, rīdēre, rīsī, rīsum
+to seek, look for, strive for; ask, inquire, inquire into
+to laugh, laugh at
+#
+#
+#
+#25
+lingua, linguae (f)
+ferōx, gen. ferōcis
+tongue; language
+fierce, savage
+fidēlis, fidēle
+geminus, gemina, geminum
+faithful, loyal
+twin
+sápiēns, sapiéntis (m/f)
+ultimus, ultima, ultimum
+a wise man/woman, philosopher
+farthest, extreme; last, final
+dehinc
+hīc
+then, next
+here
+āit, āiunt
+crēdō, crēdere, crēdidī, crēditum
+he says, they say, assert
+to believe, trust
+iaceō, iacēre, iacuī
+negō, negāre, negāvī, negātum
+to lie; lie prostrate; lie dead
+to deny, say that . . . not
+nésciō, nescīre, nescīvī, nescītum
+nūntiō, nūntiāre, nūntiāvī, nūntiātum
+not to know, be ignorant
+to announce, report, relate
+patefaciō, patefacere, patefēcī, patefactum
+putō, putāre, putāvī, putātum
+to make open, open; disclose, expose
+to reckon, suppose, judge, think, imagine
+spērō, spērāre, spērāvī, spērātum
+suscipiō, suscipere, suscēpī, susceptum
+to hope for, hope
+to undertake
+#
+#
+#
+#26
+cēna, cēnae (f)
+forum, forī (n)
+dinner
+marketplace, forum
+lēx, lēgis (f)
+līmen, līminis (n)
+law, statute
+threshold
+lūx, lūcis (f)
+mēnsa, mēnsae (f)
+light
+table; dining; dish, course
+mēnsa secunda (f)
+nox, noctis (f)
+dessert
+night
+somnus, somnī (m)
+quīdam, quaedam, quiddam
+sleep
+a certain one or thing, someone, something
+quīdam, quaedam, quoddam
+pudīcus, pudīca, pudīcum
+a certain, some
+modest, chaste
+superbus, superba, superbum
+trīstis, trīste
+arrogant, overbearing, haughty, proud
+sad, sorrowful; joyless, grim, severe
+turpis, turpe
+urbānus, urbāna, urbānum
+ugly; shameful, base, disgraceful
+of the city, urban; urbane, elegant
+prae (+abl.)
+quam
+in front of, before
+than (after comparatives) or as . . . as possible (with superlatives)
+tantum
+invītō, invītāre, invītāvī, invītātum
+only
+to entertain, invite, summon
+#
+#
+#
+#27
+dēlectātiō, dēlectātiōnis (f)
+nepōs, nepōtis (m)
+delight, pleasure, enjoyment
+grandson, descendant
+sōl, sōlis (m)
+dīligēns, gen. dīligentis
+sun
+diligent, careful
+dissimilis, dissimile
+gracilis, gracile
+unlike, different
+slender, thin
+humilis, humile
+maior, maius
+lowly, humble
+greater; older
+maiōrēs, maiōrum (m. pl.)
+prīmus, prīma, prīmum
+ancestors
+first, foremost, chief, principal
+quot
+similis, simile (+ gen. or dat.)
+how many, as many as
+similar (to), like, resembling
+superus, supera, superum
+superī, superōrum (m. pl.)
+above, upper
+the gods
+ūtilis, ūtile
+pōnō, pōnere, posuī, positum
+useful, advantageous
+to put, place, set
+probō, probāre, probāvī, probātum
+dummy
+approve, recommend; test
+dummy
+#
+#
+#
+#28
+arma, armōrum (n. pl.)
+cursus, cursūs (m)
+arms, weapons
+running, race; course
+lūna, lūnae (f)
+occāsiō, occāsiōnis (f)
+moon
+occasion, opportunity
+parēns, parentis (m or f)
+stēlla, stēllae (f)
+parent
+star, planet
+vesper, vesperis or vesperī (m)
+mortuus, mortua, mortuum
+evening; evening star
+dead
+prīnceps, gen. prīncipis
+prīnceps, prīncipis (m or f)
+chief, foremost
+leader, emperor
+ut
+nē
+(+ subj.) in order that, so that, that, in order to, so as to, to; or (+ indic.) as, when
+not; in order that . . . not, that . . . not, in order not to
+cēdō, cēdere, cessī, cessum
+dēdicō, dēdicāre, dēdicāvī, dēdicātum
+to go, withdraw; yield to, grant, submit
+to dedicate
+egeō, egēre, eguī (+ abl. or gen.)
+expleō, explēre, explēvī, explētum
+to need, lack, want
+to fill, fill up, complete
+praestō, praestāre, praestitī, praestitum
+taceō, tacēre, tacuī, tacitum
+to excel; exhibit, show, offer, supply, furnish
+to be silent, leave unmentioned
+#
+#
+#
+#29
+fātum, fātī (n)
+ingenium, ingeniī (n)
+fate; death
+nature, innate talent
+moenia, moenium (n. pl.)
+nāta, nātae (f)
+walls of a city
+daughter
+ōsculum, ōsculī (n)
+sīdus, sīderis (n)
+kiss
+constellation, star
+dignus, digna, dignum (+abl.)
+dūrus, dūra, dūrum
+worthy, worthy of
+hard, harsh, rough, stern, unfeeling, hardy, difficult
+tantus, tanta, tantum
+dēnique
+so large, so great, of such a size
+at last, finally, lastly
+ita
+quidem
+so, thus
+indeed, certainly, at least, even
+nē . . . quidem
+sīc
+not . . . even
+so, thus
+tam
+tamquam
+so, to such a degree
+as it were, as if, so to speak
+tam . . . quam
+vērō
+so . . . as
+in truth, indeed, to be sure, however
+condō, condere, condidī, conditum
+contendō, contendere, contendī, contentum
+to put together or into, store; found, establish
+to strive, struggle, contend; hasten
+molliō, mollīre, mollīvī, mollītum
+pugnō, pugnāre, pugnāvī, pugnātum
+to soften; make calm or less hostile
+to fight
+respondeō, respondēre, respondī, respōnsum
+surgō, surgere, surrēxī, surrēctum
+to answer
+to get up, arise
+#
+#
+#
+#30
+honor, honōris (m)
+cēterī, cēterae, cētera
+honor, esteem; public office
+the remaining, the rest, the other, all the others
+quantus, quanta, quantum
+tantus . . . quantus
+how large, how great, how much
+just as much (many) . . . as
+rīdiculus, rīdicula, rīdiculum
+vīvus, vīva, vīvum
+laughable, ridiculous
+alive, living
+fūrtim
+mox
+stealthily, secretly
+soon
+prīmō
+repente
+at first, at the beginning
+suddenly
+unde
+utrum . . . an
+whence, from what or which place, from which, from whom
+whether . . . or
+bibō, bibere, bibī
+nṓscō, nṓscere, nṓvī, nṓtum
+to drink
+to become acquainted with, learn, recognize; know (in perfect tenses)
+comprehendō, comprehendere, comprehendī, comprehēnsum
+cōnsūmō, cōnsūmere, cōnsūmpsī, cōnsūmptum
+to grasp, seize, arrest; comprehend, understand
+to consume, use up
+dubitō, dubitāre, dubitāvī, dubitātum
+expōnō, expōnere, exposuī, expositum
+to doubt, hesitate
+to set forth, explain, expose
+minuō, minuere, minuī, minūtum
+rogō, rogāre, rogāvī, rogātum
+to lessen, diminish
+to ask
+cognosco
+dummy
+to become acquainted with, learn, recognize; in perf. tenses, know
+dummy
+#
+#
+#
+#31
+as, assis (m)
+auxilium, auxiliī (n)
+an as (a small copper coin)
+aid, help
+digitus, digitī (m)
+elephantus, elephantī (m and f)
+finger, toe
+elephant
+exsilium, exsiliī (n)
+invidia, invidiae (f)
+exile, banishment
+envy, jealousy, hatred
+rūmor, rūmōris (m)
+vīnum, vīnī (n)
+rumor, gossip
+wine
+mediocris, mediocre
+cum
+ordinary, moderate, mediocre
+(+subj.) when, since, although; (+indic.) when
+apud (+acc.)
+semel
+among, in the presence of, at the house of
+a single time, once, once and for all, simultaneously
+úsque
+doleō, dolēre, doluī, dolitūrum
+all the way, up (to), even (to), continuously, always
+to grieve, suffer; hurt, give pain
+dormiō, dormīre, dormīvī, dormītum
+ferō, ferre, tulī, lātum
+to sleep
+to bear, carry, bring; suffer, endure, tolerate; say, report
+adferō, adferre, attulī, allātum
+cōnferō, cōnferre, contulī, collātum
+to bring to
+to bring together, compare; confer, bestow
+sē cōnférre
+offerō, offerre, obtulī, oblātum
+to go
+to offer
+referō, referre, rettulī, relātum
+invideō, invidēre, invīdī, invīsum
+to carry back, bring back; repeat, answer, report
+to be envious; (+dat.) to look at with envy, envy, be jealous of
+occidō, occidere, occidī, occāsum
+dummy
+to fall down; die; set
+dummy
+#
+#
+#
+#32
+custōdia, custōdiae (f)
+exercitus, exercitūs (m)
+protection, custody; guards (pl.)
+army
+paupertās, paupertātis (f)
+dīves, gen. dīvitis or dītis
+poverty, humble circumstances
+rich, wealthy
+pār, gen. paris (+dat.)
+pauper, gen. pauperis
+equal, like
+of small means, poor
+dummodo (+subj.)
+mālō, mālle, māluī
+provided that, so long as
+to want (something) more, instead; prefer
+nōlō, nōlle, nōluī
+pateō, patēre, patuī
+to not . . . wish, be unwilling
+to be open, lie open; be accessible; be evident
+praebeō, praebēre, praebuī, praebitum
+prōmittō, prōmittere, prōmīsī, prōmissum
+to offer, provide
+to send forth; promise
+volō, velle, voluī
+dummy
+to wish, want, be willing, will
+dummy
+#
+#
+#
+#33
+initium, initiī (n)
+ops, opis (f)
+beginning, commencement
+help, aid
+opēs, opum (f. pl.)
+philosophus, philosophī (m)
+power, resources, wealth
+philosopher (male)
+philosopha, philosophae (f)
+plēbs, plēbis (f)
+philosopher (female)
+the common people, populace, plebeians
+sāl, salis (m)
+speculum, speculī (n)
+salt; wit
+mirror
+quis, quid (after sī, nisi, nē, num)
+candidus, candida, candidum
+anyone, anything, someone, something
+shining, bright, white; beautiful
+merus, mera, merum
+suāvis, suāve
+pure, undiluted
+sweet
+-ve
+heu
+or
+ah!, alas!
+subitō
+recūsō, recūsāre, recūsāvī, recūsātum
+suddenly
+to refuse
+trādō, trādere, trādidī, trāditum
+dummy
+to give over, surrender; hand down, transmit, teach
+dummy
+#
+#
+#
+#34
+ánima, ánimae (f)
+remissiō, remissiōnis (f)
+air (breathed by an animal), breath; soul, spirit
+letting go, release; relaxation
+vōx, vōcis (f)
+adversus, adversa, adversum
+voice, word
+opposite, adverse
+tālis, tāle
+vae (often + dat.or acc.)
+such, of such a sort
+alas, woe to
+arbitror, arbitrārī, arbitrātus sum
+cōnor, cōnārī, cōnātus sum
+to judge, think
+to try, attempt
+crēscō, crēscere, crēvī, crētum
+ēgredior, ēgredī, ēgressus sum
+to increase
+to go out
+fateor, fatērī, fassus sum
+hortor, hortārī, hortātus sum
+to confess, admit
+to encourage, urge
+loquor, loquī, locūtus sum
+mōlior, mōlīrī, mōlītus sum
+to say, speak, tell
+to work at, build, undertake, plan
+morior, morī, mortuus sum, (fut. act. partic.) moritūrus
+nāscor, nāscī, nātus sum
+to die
+to be born; spring forth, arrive
+patior, patī, passus sum
+proficīscor, proficīscī, profectus sum
+to suffer, endure; permit
+to set out, start
+rūsticor, rūsticārī, rūsticātus sum
+sedeō, sedēre, sēdī, sessum
+to live in the country
+to sit
+sequor, sequī, secūtus sum
+spectō, spectāre, spectāvī, spectātum
+to follow
+to look at, see
+ūtor, ūtī, ūsus sum (+abl.)
+dummy
+to use; enjoy, experience
+dummy
+#
+#
+#
+#35
+aestās, aestātis (f)
+iānua, iānuae (f)
+summer
+door
+pectus, pectoris (n)
+praemium, praemiī (n)
+breast, heart
+reward, prize
+īrātus, īrāta, īrātum
+antepōnō, antepōnere, anteposuī, antepositum
+angry
+to put before, prefer
+foveō, fovēre, fōvī, fōtum
+ignōscō, ignōscere, ignōvī, ignōtum (+dat.)
+to comfort, nurture, cherish
+to grant pardon to, forgive
+imperō, imperāre, imperāvī, imperātum (+dat.)
+mīror, mīrārī, mīrātus sum
+to give orders to, command
+to marvel at, admire, wonder
+noceō, nocēre, nocuī, nocitum (+dat.)
+nūbō, nūbere, nūpsī, nūptum (+dat.)
+to do harm to, harm, injure
+to cover, veil or to be married to, marry (+dat.)
+parcō, parcere, pepercī, parsūrum (+dat.)
+pāreō, pārēre, pāruī (+dat.)
+to be lenient to, spare
+to be obedient to, obey
+persuādeō, persuādēre, persuāsī, persuāsum (+dat.)
+placeō, placēre, placuī, placitum (+dat.)
+succeed in urging, persuade, convince
+to be pleasing to, please
+sapiō, sapere, sapīvī
+serviō, servīre, servīvī, servītum (+dat.)
+to have good taste; have good sense, be wise
+to be a slave to, serve
+studeō, studēre, studuī (+dat.)
+subrīdeō, subrīdēre, subrīsī, subrīsum
+to direct one's zeal to, be eager for, study
+to smile (down) upon
+#
+#
+#
+#36
+cupīdō, cupīdinis (f)
+lēctor, lēctōris (m)
+desire, compassion
+reader (male)
+lēctrīx, lēctrīcis (f)
+vinculum, vinculī (n)
+reader (female)
+bond, chain, fetter
+cōtīdiē
+fortasse
+daily, every day
+perhaps
+accēdō, accēdere, accessī, accessum
+carpō, carpere, carpsī, carptum
+to come (to), approach
+to harvest, pluck; seize
+cōgō, cōgere, coēgī, coāctum
+contemnō, contemnere, contempsī, contemptum
+to drive or bring together, force, compel
+to despise, scorn
+contundō, contundere, contudī, contūsum
+cūrō, cūrāre, cūrāvī, cūrātum
+to beat, crush, bruise, destroy
+to care for, attend to; heal, cure; take care
+dēcernō, dēcernere, dēcrēvī, dēcrētum
+exigō, exigere, exēgī, exāctum
+to decide, settle, decree
+to drive out, force out, exact; drive through, complete, perfect
+fīō, fierī, factus sum
+oblectō, oblectāre, oblectāvī, oblectātum
+to occur, happen; become; be made, be done
+to please, amuse, delight; pass time pleasantly
+ōrō, ōrāre, ōrāvī, ōrātum
+recreō, recreāre, recreāvī, recreātum
+to speak, plead; beg, beseech, entreat, pray
+to restore, revive; refresh, cheer
+requīrō, requīrere, requīsīvī, requīsītum
+serēnō, serēnāre, serēnāvī, serēnātum
+to seek, ask for; miss, need, require
+to make clear, brighten; cheer up, soothe
+#
+#
+#
+#37
+Athēnae, Athēnārum (f. pl.)
+domus, domūs, domī (f)
+athens
+house, home
+domī (f)
+domum (f)
+at home
+(to) home
+domō (f)
+humus, humī (f)
+from home
+ground, earth; soil
+iter, itineris (n)
+rūs, rūris (n)
+journey; route, road
+the country, countryside
+Syrācūsae, Syrācūsārum (f. pl.)
+absēns, gen. absentis
+Syracuse
+absent, away
+grātus, grāta, grātum
+idōneus, idōnea, idōneum
+pleasing, agreeable; grateful
+suitable, fit, appropriate
+immōtus, immōta, immōtum
+forīs
+unmoved; unchanged; unrelenting
+out of doors, outside
+eō, īre, iī, itum
+abeō, abīre, abiī, abitum
+to go
+to go away, depart, leave
+adeō, adīre, adiī, aditum
+exeō, exīre, exiī, exitum
+to go to, approach
+to go out, exit
+íneō, inīre, íniī, initum
+obeō, obīre, obiī, obitum
+to enter into, begin
+to go up against, meet; die
+pereō, perīre, periī, peritum
+redeō, redīre, rediī, reditum
+to pass away, be destroyed, perish
+to go back, return
+interficiō, interficere, interfēcī, interfectum
+lícet, licḗre, lícuit
+to kill, murder
+it is permitted (for someone to do something), one may
+peregrīnor, peregrīnārī, peregrīnātus sum
+requiēscō, requiēscere, requiēvī, requiētum
+to travel abroad, wander
+to rest
+soleō, solēre, solitus sum
+dummy
+to be accustomed
+dummy
+#
+#
+#
+#38
+arbor, arboris (f)
+dignitās, dignitātis (f)
+tree
+merit, prestige, dignity
+dolor, dolōris (m)
+odium, odiī (n)
+pain, grief
+hatred
+opus, operis (n)
+ōrātiō, ōrātiōnis (f)
+a work, task; deed, accomplishment
+speech
+pēs, pedis (m)
+sator, satōris (m)
+lower leg, foot
+sower, planter; begetter, father; founder
+fīrmus, fīrma, fīrmum
+īnfīrmus, īnfīrma, īnfīrmum
+firm, strong; reliable
+not strong, weak, feeble
+mīrābilis, mīrābile
+prīstinus, prīstina, prīstinum
+amazing, wondrous, remarkable
+ancient; former, previous
+sublīmis, sublīme
+etsī
+elevated, lofty; heroic, noble
+even if, although
+ergā (+acc.)
+libenter
+toward
+with pleasure, gladly
+impediō, impedīre, impedīvī, impedītum
+metuō, metuere, metuī
+to impede, hinder, prevent
+to fear, dread; (+dat.) be afraid for
+queror, querī, questus sum
+recognōscō, recognōscere, recognōvī, recognitum
+to complain, lament
+to recognize, recollect
+suspendō, suspendere, suspendī, suspēnsum
+vēndō, vēndere, vēndidī, vēnditum
+to hang up, suspend; interrupt
+to sell
+#
+#
+#
+#39
+aedificium, aedificiī (n)
+iniūria, iniūriae (f)
+building, structure
+injustice, injury, wrong
+mulier, mulieris (f)
+trānsitus, trānsitūs (m)
+woman
+passing over, transit; transition
+ventus, ventī (m)
+cupidus, cupida, cupidum
+wind
+desirous, eager, fond; or desirous of, eager for (+gen.)
+līberālis, līberāle
+necesse
+of, relating to a free person; worthy of a free man, decent, liberal; generous
+necessary, inevitable
+vetus, gen. veteris,
+quasi
+old
+as if, as it were
+ambulō, ambulāre, ambulāvī, ambulātum
+experior, experīrī, expertus sum
+to walk
+to try, test;, experience
+lībō, lībāre, lībāvī, lībātum
+opórtet, oportḗre, opórtuit (+infin.)
+to pour a libation of, on; pour ritually; sip; touch gently
+it is proper, right, necessary
+oppugnō, oppugnāre, oppugnāvī, oppugnātum
+ōrnō, ōrnāre, ōrnāvī, ōrnātum
+to fight against, attack, assault, assail
+to equip, furnish, adorn
+pernoctō, pernoctāre, pernoctāvī, pernoctātum
+trānseō, trānsīre, trānsiī, trānsitum
+to spend or occupy the night
+to go across, cross; pass over, ignore
+#
+#
+#
+#40
+aes, aeris (n)
+dominus, dominī (m)
+bronze
+master (of a household), lord
+domina, dominae (f)
+lacrima, lacrimae (f)
+mistress, lady
+tear
+mēta, mētae (f)
+monumentum, monumentī (n)
+turning point, goal; limit, boundary
+monument
+nāsus, nāsī (m)
+saxum, saxī (n)
+nose
+rock, stone
+vultus, vultūs (m)
+iūstus, iūsta, iūstum
+countenance, face
+just, right
+tot
+praeter (+acc.)
+so many, as many; tot...quot - as many...as
+besides, except; beyond, past
+nōnne
+num
+introduces questions expecting the answer "yes"
+1. introduces direct questions which expect the answer "no" 2. introduces indirect question and means whether
+omnīnō
+postrēmum
+wholly, entirely, altogether; (with negatives) at all
+after all, finally; for the last time
+quīn
+explicō, explicāre, explicāvī, explicātum
+indeed, in fact, furthermore
+to unfold; explain; spread out, deploy
+fatīgō, fatīgāre, fatīgāvī, fatīgātum
+for, fārī, fātus sum
+to weary, tire out
+to speak (prophetically), talk, foretell
+opīnor, opīnārī, opīnātus sum
+reperiō, reperīre, repperī, repertum
+to suppose
+to find, discover, learn; get
+vereor, verērī, veritus sum
+
+dummy
+to show reverence for, respect; be afraid of, fear
+dummy
+
