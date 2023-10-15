@@ -361,7 +361,7 @@ def main(argv):
         for n, id in enumerate(matches):
             entry = db[id]
             # print(f"\t{col.fg.blue}{n + 1}. {col.fg.pink}{entry[1]} {col.reset}<{entry[2]}> {col.fg.darkgrey}from unit {col.fg.lightblue}{entry[3]}{col.reset}")
-            print(f"\t{n + 1}. {entry[1]} <{entry[2]}> from unit {entry[3]}")
+            print(f"\t{n + 1}. {entry[LATIN_DISPLAY]} <{entry[ENGLISH]}> from unit {entry[CHAPTER]}")
 
 
 
