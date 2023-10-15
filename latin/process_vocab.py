@@ -154,8 +154,9 @@ def read_in_data(source_file):
             if len(curr_line.strip()) == 0:
                 continue
             #     print("Field missing at line:",line)
-            # elif curr_line[0] == "#":
-            #     print("comment at line:", line)
+            elif curr_line[0] == "*":
+                print("comment at line:", line)
+                continue
             else:
                 # curr_line = curr_line.strip()
                 # curr_line = curr_line.replace("\n", " ")
@@ -191,6 +192,7 @@ def associate_lines_correctly(lines):
     for line in lines:
         if line[0] == "#":
             unit_num = line[7:]
+            # print(".........", unit_num)
         else:
             lemma1, lemma2, gloss1, gloss2 = line.split("@")
             to_add = [[lemma1, gloss1, unit_num], [lemma2, gloss2, unit_num]]
