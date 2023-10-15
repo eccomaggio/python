@@ -88,7 +88,8 @@ def read_json(filename="latin.json"):
 #     def __init__(self):
 #         self.lemmas = create_list_from_file(retrieve_file_by_suffix())
 
-
+def build_match_list(term, language, db):
+    return [id for id,entry in db.items() if re.search(term, entry[language])]
 
 def main():
     db = read_json()
@@ -97,26 +98,29 @@ def main():
     ENGLISH = 2
     CHAPTER = 3
     while True:
-        print("\nquid vultis quaerere? (:q - quit, :e - English)")
+        print(f"\n\n{col.fg.lightred}quid vultis quaerere?{col.fg.green} (:q - quit, :e - English){col.reset}")
         search_for = input()
         language = LATIN_PLAIN
-        if search_for.startswith(":q"):
+        display_search = LATIN_DISPLAY
+        display_result = ENGLISH
+
+        if search_for.startswith(":q") or search_for.startswith("qq"):
             break
-        elif search_for.startswith(":e"):
+        elif search_for.startswith(":e") or search_for.startswith("e:"):
             language = ENGLISH
+            display_search, display_result = display_result, display_search
             search_for = search_for[2:].strip()
         matches = []
-        term = f"^{search_for.lower()}.*"
-        print(">>>>", term)
-        matches = [id for id,entry in db.items() if re.search(term, entry[language])]
+        term = f"^{search_for.lower()}"
+        matches = build_match_list(term, language, db)
         if not matches:
-            term = f"{search_for.lower()}.*"
-            matches = [id for id,entry in db.items() if re.search(term, entry[language])]
+            term = f"{search_for.lower()}"
+            matches = build_match_list(term, language, db)
+        # print(">>>>", term, language)
 
         for n, id in enumerate(matches):
             entry = db[id]
-            # print(f"\t{col.fg.blue}{n + 1}. {col.fg.pink}{entry[1]} {col.reset}<{entry[2]}> {col.fg.darkgrey}from unit {col.fg.lightblue}{entry[3]}{col.reset}")
-            print(f"\t{n + 1}. {entry[LATIN_DISPLAY]} <{entry[ENGLISH]}> from unit {entry[CHAPTER]}")
+            print(f"\t{col.fg.blue}{n + 1}. {col.fg.pink}{entry[display_search]} {col.reset}{col.bold}{entry[display_result]} {col.fg.darkgrey}from chapter {col.fg.lightblue}{entry[CHAPTER]}{col.reset}")
 
 
 
