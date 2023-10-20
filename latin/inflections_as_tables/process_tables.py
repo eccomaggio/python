@@ -1,9 +1,17 @@
 """
-    go through .txt
-    identify unit numbers (#)
-    add as prefix to all relevant lines
-    group & associate correctly
-    deal with macrons (i.e. create lookup without them; use ":" internally? strip out if ignoring macros; replace with macros for display?)
+Make csv files into json structures for print out by "tabulate"
+csv files based on wikipedia tables:
+https://en.wikipedia.org/wiki/Latin_declension
+https://en.wikipedia.org/wiki/Latin_conjugation
+https://en.wikipedia.org/wiki/Latin_numerals
+
+N.B. most tables are coded by rows (i.e. [[row1], [row2], etc.])
+However, many of the verb conjugations are coded by columns.
+These are identified by a @ at the end of each column.
+They are converted into row-based structures.
+All text NOT belonging to a table col/row is prefixed with *
+The beginning of a new table is marked by &x:y:z -- This MUST
+contain two colons (as part of an as-yet only half completed classification scheme)
 
 """
 from pprint import pprint
