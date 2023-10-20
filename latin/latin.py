@@ -92,7 +92,7 @@ def build_match_list(term, language, db):
     return [id for id,entry in db.items() if re.search(term, entry[language])]
 
 def main():
-    db = read_json()
+    db = read_json("wheelock_vocab.json")
     LATIN_PLAIN = 0
     LATIN_DISPLAY = 1
     ENGLISH = 2

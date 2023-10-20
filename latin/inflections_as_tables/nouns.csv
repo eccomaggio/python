@@ -1,0 +1,272 @@
+## noun : declension : paradigm / eg / subtype / irregular
+## split on colon
+# p = paradigm
+# e = exemplar
+# s = subtype (e.g. s=cons stems)
+# i = irregular
+
+&n:1:p
+*First declension paradigm (a stems)
+%	Singular	Plural
+Nominative	-a	-ae
+Accusative	-am	-ās
+Genitive	-ae	-ārum
+Dative	-ae	-īs
+Ablative	-ā	-īs
+Locative	Gen.	Dat.
+
+
+&n:1:e
+*mensa, mensae table (f.)
+*poēta, poētae poet (m.)
+%	Singular	Plural	Singular	Plural
+Nominative	mensa	mensae	poēta	poētae
+Accusative	mensam	mensās	poētam	poētās
+Genitive	mensae	mensārum	poētae	poētārum
+Dative	mensae	mensīs	poētae	poētīs
+Ablative	mensae	mensā	poētae	poētā
+
+&n:2:p
+*Second declension paradigm
+%	Singular	Plural	Singular	Plural
+%	Masculine	Neuter	Masculine	Neuter
+Nominative	-us	-um	-ī	-a
+Vocative	-e	-um	-ī	-a
+Accusative	-um	-um	-ōs	-ōs
+Genitive	-ī	i:	-ōrum -o:rum
+Dative	-ō	-o:	-i:s	-īs
+Ablative	-ō	-o:	-i:s	-īs
+Locative	Gen.	-Gen.	Dat.	Dat.
+
+&n:2:e=m
+*Masculine
+*dominus, dominī master m.
+%	Singular	Plural
+Nominative	dominus	dominī
+Vocative	domine	domini:
+Accusative	dominum	dominōs
+Genitive	dominī	dominōrum
+Dative	dominō	dominīs
+Ablative	dominō	dominīs
+
+&n:2:e=n
+*Neuter
+*bellum, bellī war n.
+%	Singular	Plural
+Nominative	bellum	bella
+Accusative	bellum	bella
+Genitive	bellī	bellōrum
+Locative	bellī	bellīs
+Dative	bellō	belli:s
+Ablative	bellō	belli:s
+
+&n:2:s=ius/ium nouns
+*Second-declension -ius and -ium nouns
+*fīlius, filiī son m.
+*auxilium, auxiliī aid, help n.
+%	Singular	Plural	Singular	Plural
+Nominative	fīlius	fīliī	auxilium	auxilia
+Vocative	fīlī	fīliī	auxilium	auxilia
+Accusative	fīlium	fīliōsī	auxilium	auxilia
+Genitive	fīliī	fīliōrum	auxiliī	auxiliōrum
+Dative	fīliō	fīliīs	auxiliō	auxiliīs
+Ablative	fīliō	fīliīs	auxiliō	auxiliīs
+
+&n:2:s=r nouns
+*Second-declension -r nouns
+*puer, puerī boy m.
+*ager, agrī field m.
+*vir, virī man m.
+%	Singular	Plural	Singular	Plural	Singular	Plural
+Nominative	puer	puerī	ager	agrī	vir	virī
+Accusative	puerum	puerōs	agrum	agrōs	virum	virōs
+Genitive	puerī	puerōrum	agrī	agrōrum	virī	virōrum (virum)
+Dative	puerō	puerīs	agrō	agrīs	virō	virīs
+Ablative	puerō	puerīs	agrō	agrīs	virō	virīs
+
+&n:2:i
+*Irregular nouns: deus
+*deus, deī god m.
+%	Singular	Plural
+Nominative	deus	deī diī dī
+Accusative	deum	deōs
+Genitive	deī	deōrum deum
+Dative	deō	deīs diīs dīs
+Dative	deō	deīs diīs dīs
+
+&n:3:p
+*Third declension paradigm (consonant stems)
+*Masculine & feminine	Neuter
+%	Singular	Plural	Singular	Plural
+Nominative	(-s)	-ēs	—[i]	-a
+Accusative	-em	-ēs	—[i]	-a
+Genitive	-is	-um	-is	-um
+Dative	-ī	-ibus	-ī	-ibus
+Ablative	-e	-ibus	-e	-ibus
+Locative	Dat./Abl.	Dat.	Dat./Abl.	Dat.
+
+&n:3:e
+*dux, ducis leader m.
+*virtūs, virtūtis virtue f.
+*nōmen, nōminis name n.
+%	Singular	Plural	Singular	Plural	Singular	Plural
+Nominative	dux	ducēs	virtūs	virtūtēs	nōmen	nōmina
+Accusative	ducem	ducēs	virtūtem	virtūtēs	nōmen	nōmina
+Genitive	ducis	ducum	virtūtis	virtūtum	nōminis	nōminum
+Dative	ducī	ducibus	virtūtī	virtūtibus	nōminī	nōminibus
+Ablative	duce	ducibus	virtūte	virtūtibus	nōmine	nōminibus
+
+&n:3:s=i stems
+*Third declension paradigm (i-stem nouns)
+*Masculine & Feminine	Neuter
+%	Singular	Plural	Singular	Plural
+Nominative	—	-ēs	—	-ia
+Accusative	-em -im	-ēs -īs	-e:s	-ia
+Genitive	-is	-ium	-is	-ium
+Dative	-ī	-ibus	-ī	-ibus
+Ablative	-e -i:	-ibus	-ī	-ibus
+Locative	Dat./Abl.	Dat.	Dat./Abl.	Dat.
+
+&n:3:s=mixed nouns
+*Third declension paradigm (mixed nouns)
+*Masculine & Feminine	Neuter
+%	Singular	Plural	Singular	Plural
+Nominative	—	-ēs	—	-a
+Accusative	-em	-ēs -īs	--	-a
+Genitive	-is	-ium	-is	-ium
+Dative	-ī	-ibus	-ī	-ibus
+Ablative	-e	-ibus	-e	-ibus
+Locative	Dat./Abl.	Dat.	Dat./Abl.	Dat.
+
+&n:3:s=special rules
+* Parisyllabic rule,	Double consonant rule,	Special neuter ending
+*turris, turris tower f. (pure)
+*pars, partis part, piece f. (mixed)
+*animal, animālis animal, living being n. (pure)
+%	Singular	Plural	Singular	Plural	Singular	Plural
+Nominative	turris	turrēs	pars	partēs	animal	animālia
+Accusative	turrem	turre:s	partem	parte:s	animal	anima:lia
+%	turrim	turri:s	%	parti:s	animal	anima:lia
+Genitive	turris	turrium	partis	partium	animālis	animālium
+Dative	turrī	turribus	partī	partibus	animālī	animālibus
+Ablative	turre	turribus	parte	partibus	animālī	animālibus
+%	turrī	%	(parti:)	%	%	%
+
+&n:3:i
+*Irregular nouns
+*vīs, vīs force, power f.
+*sūs, suis swine, pig, hog m.f.
+*bōs, bovis ox, bullock m.f.
+*Iuppiter, Iovis Jupiter m.
+%	Singular	Plural	Singular	Plural	Singular	Plural	Singular
+Nominative	vīs	vīrēs	sūs	suēs	bōs[i]	bovēs	Iuppiter
+%	%	%	%	%	%	%	%
+Accusative	vim	vīrēs	suem	sues	bovem	bove:s	Iovem
+%	vim	vīrīs	suem	sues	bovem	bove:s	Iovem
+Genitive	vīs[ii]	vīrium	suis	suum	bovis	boum	Iovis
+%	%	%	%	%	bovum	%	%
+Dative	vī[ii]	vīribus	suī	suibus	bovī	bōbus	Iovī
+%	%	%	%	sūbus	%	būbus[i]	%	%
+Ablative	vī[ii]	vīribus	sue	suibus	bove	bōbus	Iove
+%	%	%	%	sūbus	%	būbus[i]	%
+
+&n:4:p
+*Fourth declension (u stems)
+*Fourth declension paradigm
+*-us ending nouns
+*-ū ending nouns
+%	Singular	Plural	Singular	Plural
+Nominative	-us	-ūs	-ū	-ua
+Accusative	-um	-ūs	-ū	-ua
+Genitive	-ūs	-uum	-ūs	-uum
+Dative	-uī	-ibus	-ū	-ibus
+%	%	-ubus[i]	%	%
+Ablative	-u:	-ibus	-ū	-ibus
+%	%	-ubus[i]	%	%
+Locative	-ī	Dat.	-ī	Dat.
+
+&n:4:e
+*portus, portūs port m.
+*genū, genūs knee n.
+%	Singular	Plural	Singular	Plural
+Nominative	portus	portūs	genū	genua
+Accusative	portum	portūs	genū	genua
+Genitive	portūs	portuum	genūs	genuum
+Dative	portuī	portibus	genū	genibus
+Ablative	portu:	portibus	genū	genibus
+
+&n:4:i
+*Irregular nouns: domus f.
+*All possible declensions (especially literature)
+%	Singular	Plural
+Nominative	domus	domūs
+Accusative	domum	domūs
+%	%	domōs
+Genitive	domūs	domuum
+%	domi:	domo:rum
+Dative	domuī	domibus
+%	domū	%
+%	domō	%
+Ablative	domū	domibus
+%	domō	%
+Locative	domī	domibus
+
+&n:4:i
+*Most common paradigm
+%	Singular	Plural
+Nominative	domus	domūs
+Accusative	domum	domōs
+Genitive	domūs	domuum
+Dative	domuī	domibus
+Ablative	domō	domibus
+Locative	domī	domibus
+
+&n:5:p
+**Fifth declension (e stems)
+*Fifth declension paradigm
+*-iēs ending nouns
+*-ēs ending nouns
+%	Singular	Plural	Singular	Plural
+Nominative	-iēs	-iēs	-ēs	-ēs
+Accusative	-iem	-ie:s	-em	-e:s
+Genitive	-iēī	-iērum	-eī	-ērum
+Dative	-iēī	-iēbus	-eī	-ēbus
+Ablative	-iē	-ie:bus	-ē	-e:bus
+Locative	Abl.	Abl.	Abl.	Abl.
+
+&n:5:e
+*diēs, diēī day m., f.
+*rēs, reī thing f.
+%	Singular	Plural	Singular	Plural
+Nominative	diēs	diēs	rēs	rēs
+Accusative	diem	die:s	rem	re:s
+Genitive	diēī	diērum	reī	rērum
+Dative	die:	diēbus	re:	rēbus
+Ablative	die:	diēbus	re:	rēbus
+
+&n::s=heterogeneous nouns
+*Heterogeneous nouns (vary in gender)
+Singular	Plural
+balneum n.	('bath')	balneae f. or balnea n. ('bathhouse')
+epulum n.	('feast, banquet')	epulae f. ('feast, banquet')
+frēnum n.	('bridle, curb')	frēnī m. bridle, curb
+iocus m.	('joke, jest')	ioca n. or ioci m. ('jokes, fun')
+locus m.	('place, location')	loca n. ('region'); locī m. ('places in books, arguments')
+rāstrum n.	('hoe, rake')	rāstrī m. ('hoes, rakes')
+
+&n::s=plurals with alternative meanings
+*Plurals with alternative meanings
+Singular	Plural
+aedēs, aedis f. ('building, temple')	aedēs, aedium ('rooms, house')
+auxilium, auxiliī n. ('help, aid')	auxilia, auxiliōrum ('auxiliary troops')
+carcer, carceris m. ('prison, cell')	carcerēs, carcerum ('starting traps')
+castrum, castrī n. ('fort, castle, fortress')	castra, castrōrum ('military camp, encampment')
+cōpia, copiae f. ('plenty, much, abundance')	cōpiae, copiārum ('troops')
+fortūna, fortūnae f. ('luck, chance')	fortūnae, fortūnārum ('wealth, fortune')
+grātia, grātiae f. ('charm, favor')	grātiae, grātiārum ('thanks')
+impedīmentum, impedīmentī m. ('impediment, hindrance')	impedīmenta, impedīmentōrum ('baggage, baggage train')
+littera, litterae f. ('letter [alphabet]')	litterae, litterārum ('letter [message], epistle, scholarship, literature')
+mōs, mōris m. ('habit, inclination')	mōrēs, mōrum m. ('morals, character')
+opera, operae f. ('trouble, pains')	operae, operārum m. ('workmen')
+*Ops, Opis f.[goddess] ('help')	opēs, opium ('resources, wealth')
+pars, partis f. ('part, piece')	partēs, partium ('office, function')

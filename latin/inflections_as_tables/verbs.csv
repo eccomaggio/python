@@ -1,0 +1,1747 @@
+## v : active/passive: indicative/subjunctive : type : paradigm / exemplar / irregular
+# v: a/p : i/s : finite / infinitive / participle /
+
+# type = pres stem / perfect stem / + =conjugation
+
+# p(res) / k (perfect) /
+
+
+
+
+
+&v:a_i_p=1:e
+
+*First conjugation
+*Active Indicative
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I love
+amō
+amās
+amat
+amāmus
+amātis
+amant
+@
+Future
+I was loving
+amābō
+amābis
+amābit
+amābimus
+amābitis
+amābunt
+@
+Imperfect
+I was loving
+amābam
+amābās
+amābat
+amābāmus
+amābātis
+amābant
+@
+
+&v:a_s_p=1:e
+
+*first conjugation
+*Active Subjunctive
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I may love
+amem
+amēs
+amet
+amēmus
+amētis
+ament
+@
+Imperfect
+I might love
+amārem
+amārēs
+amāret
+amārēmus
+amārētis
+amārent
+@
+
+&v:p_i_p=1:e
+
+*first conjugation
+*Passive Indicative
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I am loved
+amor
+amāris
+amātur
+amāmur
+amāminī
+amantur
+@
+Future
+I will be loved
+amābor
+amāberis/e*
+amābitur
+amābimur
+amābiminī
+amābuntur
+@
+Imperfect
+I was being loved
+amābar
+amābāris/e*
+amābātur
+amābāmur
+amābāminī
+amābantur
+@
+
+&v:p_s_p=1:e
+
+*first conjugation
+*Passive Subjunctive
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I may be loved
+amer
+amēris/e*
+amētur
+amēmur
+amēminī
+amentur
+@
+Imperfect
+I might be loved
+amārer
+amārēris/e*
+amārētur
+amārēmur
+amārēminī
+amārentur
+@
+
+&v:a_i_k=1:e
+
+*Perfect Tenses
+*First conjugation
+*Active Indicative
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Perfect
+I have loved
+amāvī
+amāvistī
+amāvit
+amāvimus
+amāvistis
+amāvērunt/-ēre*
+@
+Future perfect
+I will have loved
+amāverō
+amāverīs/is
+amāverit
+amāverīmus/-imus
+amāverītis/-itis
+amāverint
+@
+Pluperfect
+I had loved
+amāveram
+amāverās
+amāverat
+amāverāmus
+amāverātis
+amāverant
+@
+
+&v:a_s_k=1:e
+
+*Perfect Tenses
+*First conjugation
+*Active Subjunctive
+Perfect
+I loved
+amāverim
+amāverīs
+amāverit
+amāverīmus
+amāverītis
+amāverint
+@
+Pluperfect
+I had loved
+amā(vi)ssem*
+amāvissēs
+amāvisset
+amāvissēmus
+amāvissētis
+amāvissent
+@
+
+&v:p_i_k=1:e
+
+*Perfect Tenses
+*First conjugation
+*Passive Indicative
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+perfect
+I was loved
+amātus sum
+amātus es
+amātus est
+amātī sumus
+amātī estis
+amātī sunt
+@
+Future perfect
+I will have been loved
+amātus erō
+amātus eris
+amātus erit
+amātī erimus
+amātī eritis
+amātī erunt
+@
+Pluperfect
+I had been loved
+amātus eram
+amātus erās
+amātus erat
+amātī erāmus
+amātī erātis
+amātī erant
+@
+
+&v:p_s_k=1:e
+
+*Perfect Tenses
+*First conjugation
+*Passive Subjunctive
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Perfect
+I was loved
+amātus sim
+amātus sīs
+amātus sit
+amātī sīmus
+amātī sītis
+amātī sint
+@
+Pluperfect
+I had been loved
+amātus essem
+amātus essēs
+amātus esset
+amātī essēmus
+amātī essētis
+amātī essent
+@
+
+&v:a_i_p=2:e
+
+*Second conjugation
+*Active Indicative
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I see
+videō
+vidēs
+videt
+vidēmus
+vidētis
+vident
+@
+Future
+I was seeing
+vidēbō
+vidēbis
+vidēbit
+vidēbimus
+vidēbitis
+vidēbunt
+@
+Imperfect
+I was seeing
+vidēbam
+vidēbās
+vidēbat
+vidēbāmus
+vidēbātis
+vidēbant
+@
+
+&v:a_s_p=2:e
+
+*Second conjugation
+*Active Subjunctive
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I may see
+videam
+videās
+videat
+videāmus
+videātis
+videant
+@
+Imperfect
+I might see
+vidērem
+vidērēs
+vidēret
+vidērēmus
+vidērētis
+vidērent
+@
+
+
+&v:p_i_p=2:e
+
+*Second conjugation
+*Passive Indicative
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I am seen
+videor
+vidēris
+vidētur
+vidēmur
+vidēminī
+videntur
+@
+Future
+I will be seen
+vidēbor
+vidēberis/e
+vidēbitur
+vidēbimur
+vidēbiminī
+vidēbuntur
+@
+Imperfect
+I was being seen
+vidēbar
+vidēbāris/e
+vidēbātur
+vidēbāmur
+vidēbāminī
+vidēbantur
+@
+
+&v:p_s_p=2:e
+
+*Second conjugation
+*Passive Subjunctive
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I may be seen
+videar
+videāris/e
+videātur
+videāmur
+videāminī
+videantur
+@
+Imperfect
+I might be seen
+vidērer
+vidērēris/e
+vidērētur
+vidērēmur
+vidērēminī
+vidērentur
+@
+
+
+&v:a_i_p=3:e
+
+*third conjugation
+*Active Indicative
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I lead
+dūcō
+dūcis
+dūcit
+dūcimus
+dūcitis
+dūcunt
+@
+Future
+I will lead
+dūcam
+dūcēs
+dūcet
+dūcēmus
+dūcētis
+dūcent
+@
+Imperfect
+I was leading
+dūcēbam
+dūcēbās
+dūcēbat
+dūcēbāmus
+dūcēbātis
+dūcēbant
+@
+
+
+&v:a_s_p=3:e
+
+*Third conjugation
+*Active Subjunctive
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I may lead
+dūcam
+dūcās
+dūcat
+dūcāmus
+dūcātis
+dūcant
+@
+Imperfect
+I might lead
+dūcerem
+dūcerēs
+dūceret
+dūcerēmus
+dūcerētis
+dūcerent
+@
+
+&v:p_i_p=3:e
+
+*Third conjugation
+*Passive Indicative
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I am led
+dūcor
+dūceris
+dūcitur
+dūcimur
+dūciminī
+dūcuntur
+@
+Future
+I will be led
+dūcar
+dūcēris/re
+dūcētur
+dūcēmur
+dūcēminī
+dūcentur
+@
+Imperfect
+I was being led
+dūcēbar
+dūcēbāris/re
+dūcēbātur
+dūcēbāmur
+dūcēbāminī
+dūcēbantur
+@
+
+
+&v:p_s_p=3:e
+
+*Third conjugation
+*Passive Subjunctive
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I may be led
+dūcar
+dūcāris/re
+dūcātur
+dūcāmur
+dūcāminī
+dūcantur
+@
+Imperfect
+I might be led
+dūcerer
+dūcerēris/re
+dūcerētur
+dūcerēmur
+dūcerēminī
+dūcerentur
+@
+
+
+
+&v:a_i_p=3-io:e
+
+*Third conjugation
+*Active Indicative
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I capture
+capiō
+capis
+capit
+capimus
+capitis
+capiunt
+@
+Future
+I will capture
+capiam
+capiēs
+capiet
+capiēmus
+capiētis
+capient
+@
+Imperfect
+I was capturing
+capiēbam
+capiēbās
+capiēbat
+capiēbāmus
+capiēbātis
+capiēbant
+@
+
+&v:a_s_p=3-io:e
+
+*Third conjugation
+*Active Subjunctive
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I may capture
+capiam
+capiās
+capiat
+capiāmus
+capiātis
+capiant
+@
+Imperfect
+I might capture
+caperem
+caperēs
+caperet
+caperēmus
+caperētis
+caperent
+@
+
+&v:p_i_p=3-io:e
+
+*Third -io conjugation
+*Passive Indicative
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I am captured
+capior
+caperis
+capitur
+capimur
+capiminī
+capiuntur
+@
+Future
+I will be captured
+capiar
+capiēris/re
+capiētur
+capiēmur
+capiēminī
+capientur
+@
+Imperfect
+I was being captured
+capiēbar
+capiēbāris/re
+capiēbātur
+capiēbāmur
+capiēbāminī
+capiēbantur
+@
+
+&v:p_s_p=3-io:e
+
+*Third -io conjugation
+*Passive Subjunctive
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I may be captured
+capiar
+capiāris/re
+capiātur
+capiāmur
+capiāminī
+capiantur
+@
+Imperfect
+I might be captured
+caperer
+caperēris/re
+caperētur
+caperēmur
+caperēminī
+caperentur
+@
+
+
+&v:a_i_p=4:e
+
+*Fourth conjugation
+*Active Indicative
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I hear
+audiō
+audīs
+audit
+audīmus
+audītis
+audiunt
+@
+Future
+I will hear
+audiam
+audiēs
+audiet
+audiēmus
+audiētis
+audient
+@
+Imperfect
+I was hearing
+audiēbam
+audiēbās
+audiēbat
+audiēbāmus
+audiēbātis
+audiēbant
+@
+
+
+&v:a_s_p=4:e
+
+*Fourth conjugation
+*Active Subjunctive
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+@
+Present
+I may hear
+they
+audiam
+audiās
+audiat
+audiāmus
+audiātis
+audiant
+@
+Imperfect
+I might hear
+audīrem
+audīrēs
+audīret
+audīrēmus
+audīrētis
+audīrent
+@
+
+&v:p_i_p=4:e
+
+*Fourth conjugation
+*Passive Indicative
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I am heard
+audior
+audīris
+audītur
+audīmur
+audīminī
+audiuntur
+@
+Future
+I will be heard
+audiar
+audiēris/re
+audiētur
+audiēmur
+audiēminī
+audientur
+@
+Present
+I may be heard
+audiēbar
+audiēbāris/re
+audiēbātur
+audiēbāmur
+audiēbāminī
+audiēbantur
+@
+
+&v:p_s_p=4:e
+
+*Fourth conjugation
+*Passive Subjunctive
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I may be heard
+audiar
+audiāris/re
+audiātur
+audiāmur
+audiāminī
+audiantur
+@
+Imperfect
+I might be heard
+audīrer
+audīrēris/re
+audīrētur
+audīrēmur
+audīrēminī
+audīrentur
+@
+
+
+&v:a_i_i=sum:e
+
+*Irregular verb: sum - to be
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I am
+sum
+es
+est
+sumus
+estis
+sunt
+@
+Future
+I will be
+erō
+eris
+erit
+erimus
+eritis
+erunt
+@
+Imperfect
+I was
+eram
+erās
+erat
+erāmus
+erātis
+erant
+@
+
+&v:a_s_i=sum:e
+
+*Irregular verb: sum - to be
+*Active Subjunctive
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I may be
+sim
+sīs
+sit
+sīmus
+sītis
+sint
+@
+Imperfect
+I might be
+essem
+essēs
+esset
+essēmus
+essētis
+essent
+@
+
+
+&v:a_i_i=possum:e
+
+*Irregular verb: possum (pot + esse)- to be able to
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I can
+possum
+potes
+potest
+possumus
+potestis
+possunt
+@
+Future
+I will be able to
+poterō
+poteris
+poterit
+poterimus
+poteritis
+poterunt
+@
+Imperfect
+I was able to / could
+poteram
+poterās
+poterat
+poterāmus
+poterātis
+poterant
+@
+
+&v:a_s_p=1:e
+
+*Irregular verb: possum (pot + esse) to be able to / can
+*Active Subjunctive
+Present
+I can / am able to
+possim
+possīs
+possit
+possīmus
+possītis
+possint
+@
+Imperfect
+I could / was able to
+possem
+possēs
+posset
+possēmus
+possētis
+possent
+@
+
+
+&v:a_i_i=volo:e
+
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I want
+volō
+vīs
+vult
+volumus
+vultis
+volunt
+@
+Future
+I will want
+volam
+volēs
+volet
+volēmus
+volētis
+volent
+@
+Imperfect
+I was wanting
+volēbam
+volēbās
+volēbat
+volēbāmus
+volēbātis
+volēbant
+@
+
+&v:a_s_i=volo:e
+
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I may want
+velim
+velīs
+velit
+velīmus
+velītis
+velint
+@
+Imperfect
+I might want
+vellem
+vellēs
+vellet
+vellēmus
+vellētis
+vellent
+@
+
+
+&v:a_i_i=nolo:e
+
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I am unwilling
+nōlō
+nōn vīs
+nōn vult
+nōlumus
+nōn vultis
+nōlunt
+@
+Future
+I will be unwilling
+nōlam
+nōlēs
+nōlet
+nōlēmus
+nōlētis
+nōlent
+@
+Imperfect
+I was unwilling
+nōlēbam
+nōlēbās
+nōlēbat
+nōlēbāmus
+nōlēbātis
+nōlēbant
+@
+
+&v:a_s_i=nolo:e
+
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I may be unwilling
+nōlim
+nōlīs
+nōlit
+nōlīmus
+nōlītis
+nōlint
+@
+Imperfect
+I might be unwilling
+nōllem
+nōllēs
+nōllet
+nōllēmus
+nōllētis
+nōllent
+@
+
+&v:a_i_i=malo:e
+
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I prefer
+mālō
+māvīs
+māvult
+mālumus
+māvultis
+mālunt
+@
+Future
+I will prefer
+mālam
+mālēs
+mālet
+mālēmus
+mālētis
+mālent
+@
+Imperfect
+I was unwilling
+mālēbam
+mālēbās
+mālēbat
+mālēbāmus
+mālēbātis
+mālēbant
+@
+
+&v:a_s_i=malo:e
+
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I may prefer
+mālim
+mālīs
+mālit
+mālīmus
+mālītis
+mālint
+@
+Imperfect
+I might prefer
+māllem
+māllēs
+māllet
+māllēmus
+māllētis
+māllent
+@
+
+
+&v:a_i_i=eo:e
+
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I go
+eō
+īs
+it
+īmus
+ītis
+eunt
+@
+Future
+I will go
+ībō
+ībis
+ībit
+ībimus
+ībitis
+ībunt
+@
+Imperfect
+I was going
+ībam
+ībās
+ībat
+ībāmus
+ībātis
+ībant
+@
+
+&v:a_i_i=eo:e
+
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I may go
+eam
+eās
+eat
+eāmus
+eātis
+eant
+@
+Imperfect
+I might go
+īrem
+īrēs
+īret
+īrēmus
+īrētis
+īrent
+@
+
+
+&v:a_i_i=fero:e
+
+*The verb ferō, ferre, tulī, lātum "to bring, to bear, to carry" is 3rd conjugation, but irregular in that the vowel following the root fer- is sometimes omitted. The perfect tense tulī and supine stem lātum are also irregularly formed.
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I carry
+ferō
+fers
+fert
+ferimus
+fertis
+ferunt
+@
+Future
+I will carry
+feram
+ferēs
+feret
+ferēmus
+ferētis
+ferent
+@
+Imperfect
+I was carrying
+ferēbam
+ferēbās
+ferēbat
+ferēbāmus
+ferēbātis
+ferēbant
+@
+
+&v:a_i_i=fero:e
+
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I may carry
+feram
+ferās
+ferat
+ferāmus
+ferātis
+ferant
+@
+Imperfect
+I might carry
+ferrem
+ferrēs
+ferret
+ferrēmus
+ferrētis
+ferrent
+@
+
+
+&v:p_i_i=fero:e
+
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I am brought
+feror
+ferris
+fertur
+ferimur
+feriminī
+feruntur
+@
+Future
+I will be brought
+ferar
+ferēris/re
+ferētur
+ferēmur
+ferēminī
+ferentur
+@
+Imperfect
+I was being brought
+ferēbar
+ferēbāris/re
+ferēbātur
+ferēbāmur
+ferēbāminī
+ferēbantur
+@
+
+
+&v:p_s_i=fero:e
+
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I am being carried
+ferar
+ferāris/re
+ferātur
+ferāmur
+ferāminī
+ferantur
+@
+Imperfect
+I was being carried
+ferrer
+ferrēris/re
+ferrētur
+ferrēmur
+ferrēminī
+ferrentur
+@
+
+
+&v:a_i_i=fio:e
+
+*Irregular Verb: fiō
+*The irregular verb fīō, fierī, factus sum "to become, to happen, to be done, to be made" as well as being a verb in its own right serves as the passive of faciō, facere, fēcī, factum "to do, to make". The perfect tenses are identical with the perfect passive tenses of faciō.
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I become
+fīō
+fīs
+fit
+(fīmus)
+(fītis)
+fīunt
+@
+Future
+I will become
+fīam
+fīēs
+fīet
+fīēmus
+fīētis
+fīent
+@
+Imperfect
+I was becoming
+fīēbam
+fīēbās
+fīēbat
+fīēbāmus
+fīēbātis
+fīēbant
+@
+
+&v:a_i_i=fio:e
+*Irregular Verb: fiō
+*Subjunctive
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I may become
+fīam
+fīās
+fīat
+fīāmus
+fīātis
+fīant
+@
+Imperfect
+I might become
+fierem
+fierēs
+fieret
+fierēmus
+fierētis
+fierent
+@
+
+
+
+
+&v:a_i_i=edo:e
+
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I eat
+edō
+edis, ēs
+edit, ēst
+edimus
+editis, ēstis
+edunt
+@
+Future
+I will eat
+edam
+edēs
+edet
+edēmus
+edētis
+edent
+@
+Imperfect
+I was eating
+edēbam
+edēbās
+edēbat
+edēbāmus
+edēbātis
+edēbant
+@
+
+&v:a_i_i=edo:e
+
+*Irregular Verb: edo
+*Subjunctive
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
+Present
+I may eat
+edam
+edās
+edat
+edāmus
+edātis
+edant
+@
+Imperfect
+I might eat
+ederem, ēssem
+ederēs, ēssēs
+ederet, ēsset
+ederēmus, ēssēmus
+ederētis, ēssētis
+ederent, ēssent
+@
+
+&v:part:e
+*Participles
+%	laudāre	terrēre	petere	capere	audīre
+Present active	laudāns, -antis	terrēns, -entis	petēns, -entis	capiēns, -entis	audiēns, -entis
+Perfect passive	laudātus, -a, -um	territus, -a, -um	petītus, -a, -um	captus, -a, -um	audītus, -a, -um
+Future active	laudātūrus, -a, -um	territūrus, -a, -um	petītūrus, -a, -um	captūrus, -a, -um	audītūrus, -a, -um
+Gerundive	laudandus, -a, -um	terrendus, -a, -um	petendus, -a, -um	capiendus, -a, -um	audiēndus, -a, -um
+
+
+&v:infin:e
+*Infinitives (with masculine endings used for participles)
+%	laudāre	terrēre	petere	capere	audīre
+Present active	laudāre	terrēre	petere	capere	audīre
+Present passive	laudārī	terrērī	petī	capī	audīrī
+Perfect active	laudāvisse	terruisse	petīvisse	cēpisse	audīvisse
+Perfect passive	laudātus esse	territus esse	petītus esse	captus esse	audītus esse
+Future active	laudātūrus esse	territūrus esse	petītūrus esse	captūrus esse	audītūrus esse
+Future passive	laudātum īrī	territum īrī	petītum īrī	captum īrī	audītum īrī
+Potential	laudātūrus fuisse	territūrus fuisse	petītūrus fuisse	captūrus fuisse	audītūrus fuisse
+
+
+
+&v:supine:e
+*Supine
+%	laudāre	terrēre	petere	capere	audīre
+Accusative	laudātum	territum	petītum	captum	audītum
+Ablative	laudātū	territū	petītū	captū	audītū
+
+
+
+&v:gerund:e
+*Gerund
+*The gerund is formed similarly to the present active participle. However, the -ns becomes an -ndus, and the preceding ā or ē is shortened. Gerunds are neuter nouns of the second declension, but the nominative case is not present. The gerund is a noun, meaning "the act of doing (the verb)", and forms a suppletive paradigm to the infinitive, which cannot be declined. For example, the genitive form laudandī can mean "of praising", the dative form laudandō can mean "for praising", the accusative form laudandum can mean "praising", and the ablative form laudandō can mean "by praising", "in respect to praising", etc.
+*One common use of the gerund is with the preposition ad to indicate purpose. For example, paratus ad oppugnandum could be translated as "ready to attack". However the gerund was avoided when an object was introduced, and a passive construction with the gerundive was preferred. For example, for "ready to attack the enemy" the construction paratus ad hostes oppugnandos is preferred over paratus ad hostes oppugnandum.
+
+%	laudāre	terrēre	petere	capere	audīre
+Accusative	laudandum	terrendum	petendum	capiendum	audiendum
+Genitive	laudandī	terrendī	petendī	capiendī	audiendī
+Dative	laudandō	terrendō	petendō	capiendō	audiendō
+Ablative	laudandō	terrendō	petendō	capiendō	audiendō
+
+
+
+&v:gerundive:e
+*Gerundive
+*The gerundive has a form similar to that of the gerund, but it is a first and second declension adjective, and functions as a future passive participle. It means "(which is) to be ...ed". Often, the gerundive is used with part of the verb esse, to show obligation.
+laudāre	terrēre	petere	capere	audīre
+laudandus, -a, -um	terrendus, -a, -um	petendus, -a, -um	capiendus, -a, -um	audiendus, -a, -um
+
+
+
+&v:a_periphrastic:e
+*Active periphrastic
+*The first periphrastic conjugation uses the future participle. It is combined with the forms of esse. It is translated as "I am going to praise," "I was going to praise", etc.
+
+%	Conjugation	Translation
+Pres. ind.	laudātūrus sum	I am going to praise
+Imp. ind.	laudātūrus eram	I was going to praise
+Fut. ind.	laudātūrus erō	I will be going to praise
+Perf. ind.	laudātūrus fuī	I have been going to praise
+Plup. ind.	laudātūrus fueram	I had been going to praise
+Fut. perf. ind.	laudātūrus fuerō	I will have been going to praise
+Pres. subj.	laudātūrus sim	I may be going to praise
+Imp. subj.	laudātūrus essem	I should be going to praise
+Perf. subj.	laudātūrus fuerim	I may have been going to praise
+Plup. subj.	laudātūrus fuissem	I should have been going to praise
+
+
+
+&v:p_periphrastic:e
+&v:gerund:e
+*Passive periphrastic
+*The second periphrastic conjugation uses the gerundive. It is combined with the forms of esse and expresses necessity. It is translated as "I am needing to be praised", "I was needing to be praised", etc., or as "I have to (must) be praised", "I had to be praised," etc.
+
+Tense + mood	Conjugation	Translation
+Pres. ind.	laudandus sum	I am needing to be praised
+Imp. ind.	laudandus eram	I was needing to be praised
+Fut. ind.	laudandus erō	I will be needing to be praised
+Perf. ind.	laudandus fuī	I was needing to be praised
+Plup. ind.	laudandus fueram	I had been needing to be praised
+Fut. perf. ind.	laudandus fuerō	I will have been needing to be praised
+Pres. subj.	laudandus sim	I may be needing to be praised
+Imp. subj.	laudandus essem	I should be needing to be praised
+Perf. subj.	laudandus fuerim	I may have been needing to be praised
+Plup. subj.	laudandus fuissem	I should have been needing to be praised
+Pres. inf.	laudandus esse	To be needing to be praised
+Perf. inf.	laudandus fuisse	To have been needing to be praised
+
+
+
+
+
+&v:i=aio:e
+*Conjugation of aiō
+%	Indicative present	%	Indicative imperfect	%	Subjunctive present	%	Imperative present
+%	Singular	Plural	Singular	Plural	Singular	Plural	Singular
+First person	aiō	—	aiēbam	aiēbāmus	—	—	—
+Second person	ais	--	aiēbās	aiēbātis	aiās	--	ai
+Third person	ait	aiunt	aiēbat	aiēbant	aiat	aiant	—
+*Present Active Participle: – aiēns, aientis
+
+
+&v:i=inquam:e
+*Conjugation of inquam
+%	Pres indic	%	Fut indic	Perf indic	Imperf indic
+%	Singular	Plural	Singular	Singular	Singular
+First person	inquam	inquimus	—	inquiī	—
+Second person	inquis	inquitis	inquiēs	inquistī	—
+Third person	inquit	inquiunt	inquiet	inquit	inquiēbat
+
+
+
+&v:i=for:e
+*Conjugation of for
+%	Present indic	%	Future indic	Perfect indic	Pluperfect indic	Present imper	%
+%	Singular	Plural	Singular	Singular	Singular	Singular	Plural
+First person	for	—	fābor	fātus sum	fātus eram	—	—
+Second person	—	—	—	— 	—	—	fāre	fāminī
+Third person	fātur	fantur	fābitur	—	—
+
+&v:i=for:e
+* For: Parts
+Part	Form
+Present Active Participle	fāns, fantis
+Present Active Infinitive	fārī (variant: fārier)
+Supine	(acc.) fātum, (abl.) fātū
+Gerund	(gen.) fandī, (dat. and abl.) fandō, no accusative
+Gerundive	fandus, –a, –um
+
+
+&v:impersonal:e
+*Impersonal verbs
+*Impersonal verbs are those lacking a person. In English impersonal verbs are usually used with the neuter pronoun "it" (as in "It seems," or "it is raining"). Latin uses the third person singular. These verbs lack a fourth principal part. A few examples are:
+Pres	Infin	Pres Perf	Meaning
+pluit	pluere	plūvit/pluit	to rain (it rains)
+ningit	ningere	ninxit	to snow (it snows)
+oportet	oportēre	oportuit	to be proper (it is proper, one should/ought to)
+licet	licēre	licuit	to be permitted [to] (it is allowed [to])
+
+&v:i=futureActivePart:e
+*Irregular future active participles
+*The future active participle is normally formed by removing the –um from the supine, and adding a –ūrus. However, some deviations occur.
+Pres active infin	Supine Fut active part	Meaning
+iuvāre	iūtum	iuvātūrus	going to help
+lavāre/lavere	lavātum (but PPP lautus)	lavātūrus	going to wash
+parere	partum	paritūrus	going to produce
+ruere	rutum	ruitūrus	going to fall
+secāre	sectum	secātūrus	going to cut
+fruī	frūctum/fruitum	fruitūrus	going to enjoy
+nāscī	nātum	nātūrus/nascitūrus	going to be born
+morī	mortuum	moritūrus	going to die
+orīrī	ortum	oritūrus	going to rise

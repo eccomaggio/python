@@ -1,0 +1,256 @@
+## noun : declension : paradigm / eg / subtype / irregular
+## split on colon
+# p = paradigm
+# e = exemplar
+# s = subtype (e.g. s=cons stems)
+# i = irregular
+
+
+
+&p:per:1
+*Personal pronouns
+
+*First person
+*ego, nōs - I / we
+%	Singular	Plural
+Nominative	ego (egō)	nōs
+Accusative	mē	nōs
+Genitive	meī	nostrī
+Partitive	—	nostrum
+Dative	mihi (mihī)	nōbīs
+Ablative	mē	nōbīs
+
+&p:per:2
+*Second person
+*tū, vōs - you
+%	Singular	Plural
+Nominative	tū	vōs
+Accusative	tē	vōs
+Genitive	tuī	vestrī
+Partitive	—	vestrum
+Dative	tibi (tibī)	vōbīs
+Ablative	tē	vōbīs
+
+&p:per:3
+*Third person reflexive
+*sē - him/her/it/oneself / themselves
+%	Sing. & Pl.
+Nominative	--
+Accusative	sē (sēsē)
+Genitives	suī
+Dative	sibi (sibī)
+Ablative	sē (sēsē)
+
+&p:poss=1s:
+*Possessive pronouns' declensions
+*meus, mea, meum - my, mine
+%	Singular	%	%	Plural	%	%
+%	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
+Nominative	meus	mea	meum	meī	meae	mea
+Vocative	mī	mea	meum	meī	meae	mea
+Accusative	meum	meam	meum	meōs	meās	mea
+Genitive	meī	meae	meī	meōrum	meārum	meōrum
+Dative	meō	meae	meō	meīs	meīs	meīs
+Ablative	meā	meae	meō	meīs	meīs	meīs
+
+&p:poss=2s:
+*tuus, tua, tuum - your, yours (for singular possessor)
+%	Singular	%	%	Plural	%	%
+%	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
+Nominative	tuus	tua	tuum	tuī	tuae	tua
+Accusative	tuum	tuam	tuum	tuōs	tuās	tua
+Genitive	tuī	tuae	tuī	tuōrum	tuārum	tuōrum
+Dative	tuō	tuae	tuō	tuīs	tuīs	tuīs
+Ablative	tuā	tuae	tuō	tuīs	tuīs	tuīs
+
+&p:poss=reflexive:
+*suus, sua, suum - his, her, its, theirs (reflexive)
+%	Singular	%	%	Plural	%	%
+%	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
+Nominative	suus	sua	suum	suī	suae	sua
+Accusative	suum	suam	suum	suōs	suās	sua
+Genitive	suī	suae	suī	suōrum	suārum	suōrum
+Dative	suō	suae	suō	suīs	suīs	suīs
+Ablative	suā	suae	suō	suīs	suīs	suīs
+
+&p:poss:3p
+*noster, nostra, nostrum - our, ours
+%	Singular	%	%	Plural	%	%
+%	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
+Nominative	noster	nostra	nostrum	nostrī	nostrae	nostra
+Accusative	nostrum	nostram	nostrum	nostrōs	nostrās	nostra
+Genitive	nostrī	nostrae	nostrī	nostrōrum	nostrārum	nostrōrum
+Dative	nostrō	nostrae	nostrō	nostrīs	nostrīs	nostrīs
+Ablative	nostrā	nostrae	nostrō	nostrīs	nostrīs	nostrīs
+
+&p:poss:2p
+*vester - your, yours (for plural possessor)
+%	Singular	%	%	Plural	%	%
+%	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
+Nominative	vester	vestra	vestrum	vestrī	vestrae	vestra
+Accusative	vestrum	vestram	vestrum	vestrōs	vestrās	vestra
+Genitive	vestrī	vestrae	vestrī	vestrōrum	vestrārum	vestrōrum
+Dative	vestrō	vestrae	vestrō	vestrīs	vestrīs	vestrīs
+Ablative	vestrā	vestrae	vestrō	vestrīs	vestrīs	vestrīs
+
+&p:poss:2p
+*voster - your, yours (for plural possessor) ARCHAIC
+%	Singular	%	%	Plural	%	%
+%	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
+Nominative	voster	vostra	vostrum	vostrī	vostrae	vostra
+Accusative	vostrum	vostram	vostrum	vostrōs	vostrās	vostra
+Genitive	vostrī	vostrae	vostrī	vostrōrum	vostrārum	vostrōrum
+Dative	vostrō	vostrae	vostrō	vostrīs	vostrīs	vostrīs
+Ablative	vostrā	vostrae	vostrō	vostrīs	vostrīs	vostrīs
+
+&p:dem:3
+*Demonstrative pronouns and adjectives
+* is, ea, id - he, she, it
+%	Singular	%	%	Plural	%	%
+%	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
+Nominative	is	ea	id	eī (iī)	eae	ea
+Accusative	eum	eam	id	eōs	eās	ea
+Genitive	eius	eius	eius	eōrum	eārum	eōrum
+Dative	eī	eī	eī	īs (iīs)	īs (iīs)	īs (iīs)
+Ablative	eō	eā	eō	īs (iīs)	īs (iīs)	īs (iīs)
+
+&p:i=idem:
+*Declension of īdem
+*īdem, eadem, idem - the same, same as
+%	Singular	%	%	Plural	%	%
+%	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
+Nominative	īdem	eadem	idem	eīdem	eaedem	eadem
+%	%	%	%	īdem	%	%
+%	%	%	%	iīdem	%	%
+Accusative	eundem	eandem	idem	eōsdem	eāsdem	eadem
+Genitive	eiusdeme	eiusdeme	eiusdem	eōrundem	eārundem	eōrundem
+Dative	eīdem	eīdem	eīdem	eīsdem	eīsdem	eīsdem
+%	%	%	%	īsdem	īsdem	īsdem
+%	%	%	%	iīsdem	iīsdem	iīsdem
+Ablative	eōdem	eādem	eōdem	eīsdem	eīsdem	eīsdem
+%	%	%	%	īsdem	īsdem	īsdem
+%	%	%	%	iīsdem	iīsdem	iīsdem
+
+&p:dem:
+*Other demonstrative pronouns
+*hic, haec, hoc - this, this one (proximal)
+%	Singular	%	%	Plural	%	%
+%	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
+Nominative	hic	haec	hoc	hī	hae	haec
+Accusative	hunc	hanc	hoc	hōs	hās	haec
+Genitive	huius	huius	huius	hōrum	hārum	hōrum
+Dative	huic	huic	huic	hīs	hīs	hīs
+Ablative	hōc	hāc	hōc	hīs	hīs	hīs
+
+&p:dem:
+*Other demonstrative pronouns
+*ille, illa, illud - that, that one (distal)
+%	Singular	%	%	Plural	%	%
+%	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
+Nominative	ille	illa	illud	illī	illae	illa
+Accusative	illum	illam	illud	illōs	illās	illa
+Genitive	illīus	illīus	illīus	illōrum	illārum	illōrum
+Dative	illī	illī	illī	illīs	illīs	illīs
+Ablative	illō	illā	illō	illīs	illīs	illīs
+
+&p:dem:
+*Other demonstrative pronouns
+*iste, ista, istud - that of yours (medial)
+%	Singular	%	%	Plural	%	%
+%	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
+Nominative	iste	ista	istud	istī	istae	ista
+Accusative	istum	istam	istud	istōs	istās	ista
+Genitive	istīus	istīus	istīus	istōrum	istārum	istōrum
+Dative	istī	istī	istī	istīs	istīs	istīs
+Ablative	istō	istā	istō	istīs	istīs	istīs
+
+&p:intensive:
+*Intensive pronoun
+*ipse, ipsa, ipsum - himself, herself, itself
+%	Singular	%	%	Plural	%	%
+%	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
+Nominative	ipse	ipsa	ipsum	ipsi	ipsae	ipsa
+Accusative	ipsum	ipsam	ipsum	ipsōs	ipsās	ipsa
+Genitive	ipsīus	ipsīus	ipsīus	ipsōrum	ipsārum	ipsōrum
+Dative	ipsī	ipsī	ipsī	ipsīs	ipsīs	ipsīs
+Ablative	ipsō	ipsā	ipsō	ipsīs	ipsīs	ipsīs
+
+&p:int:
+*Interrogative pronouns
+*Singular
+*quis? quid? - who?, what?
+%	Masc./Fem.	Neuter
+Nominative	quis?	quid?
+Accusative	quem?	quid?
+Genitive	cuius?	cuius?
+Dative	cui?	cui?
+Ablative	quō?	quō?
+
+&p:rel:
+*Relative pronouns
+*quī, quae, quod - who, which, that
+%	Singular	%	%	Plural	%	%
+%	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
+Nominative	quī	quae	quod	quī	quae	quae
+Accusative	quem	quam	quod quōs	quās quae
+Genitive	cuius	cuius	cuius	quōrum	quārum	quōrum
+Dative	cui	cui	cui	quibus	quibus	quibus
+Ablative	quō	quā	quō	quibus	quibus	quibus
+
+
+&p:uter:e
+%	Singular		Plural
+%	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
+Nominative	uter	utra	utrum	utrī	utrae	utra
+Accusative	utrum	utram	utrum	utrōs	utrās	utra
+Genitive	utrīus	utrīus	utrīus	utrōrum	utrārum	utrōrum
+Dative	utrī	utrī	utrī	utrīs	utrīs	utrīs
+Ablative	utrō	utrā	utrō	utrīs	utrīs	utrīs
+
+&p:neuter:e
+%	Singular		Plural
+%	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
+Nominative	neuter	neutra	neutrum	neutrī	neutrae	neutra
+Accusative	neutrum	neutram	neutrum	neutrōs	neutrās	neutra
+Genitive	neutrīus	neutrīus	neutrīus	neutrōrum	neutrārum	neutrōrum
+Dative	neutrī	neutrī	neutrī	neutrīs	neutrīs	neutrīs
+Ablative	neutrō	neutrā	neutrō	neutrīs	neutrīs	neutrīs
+
+&p:solus:e
+%	Singular		Plural
+%	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
+Nominative	sōlus	sōla	sōlum	sōlī	sōlae	sōla
+Vocative	sōle	sōla	sōlum	sōlī	sōlae	sōla
+Accusative	sōlum	sōlam	sōlum	sōlōs	sōlās	sōla
+Genitive	sōlīus	sōlīus	sōlīus	sōlōrum	sōlārum	sōlōrum
+Dative	sōlī	sōlī	sōlī	sōlīs	sōlīs	sōlīs
+Ablative	sōlō	sōlā	sōlō	sōlīs	sōlīs	sōlīs
+
+&p:alius:e
+%	Singular		Plural
+%	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
+Nominative	alius	alia	aliud	aliī	aliae	alia
+Vocative	alie	alia	aliud	aliī	aliae	alia
+Accusative	alium	aliam	aliud	aliōs	aliās	alia
+Genitive	alterīus	alterīus	alterīus	aliōrum	aliārum	aliōrum
+Dative	aliī	aliī	aliī	aliīs	aliīs	aliīs
+Ablative	aliō	aliā	aliō	aliīs	aliīs	aliīs
+
+&p:totus:e
+%	Singular		Plural
+%	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
+Nominative	tōtus	tōta	tōtum	tōtī	tōtae	tōta
+Vocative	tōte	tōta	tōtum	tōtī	tōtae	tōta
+Accusative	tōtum	tōtam	tōtum	tōtōs	tōtās	tōta
+Genitive	tōtīus	tōtīus	tōtīus	tōtōrum	tōtārum	tōtōrum
+Dative	tōtī	tōtī	tōtī	tōtīs	tōtīs	tōtīs
+Ablative	tōtō	tōtā	tōtō	tōtīs	tōtīs	tōtīs
+
+&p:alter:e
+%	Singular		Plural
+%	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
+Nominative	alter	altera	alterum	alterī	alterae	altera
+Accusative	alterum	alteram	alterum	alterōs	alterās	altera
+Genitive	alterīus	alterīus	alterīus	alterōrum	alterārum	alterōrum
+Dative	alterī	alterī	alterī	alterīs	alterīs	alterīs
+Ablative	alterō	alterā	alterō	alterīs	alterīs	alterīs
