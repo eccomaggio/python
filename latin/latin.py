@@ -146,59 +146,72 @@ def build_match_list(term, language, db):
 
 
 def main():
-    db = read_json("wheelock_vocab.json")
-    table_entries = read_json("table_entries.json")
-    # db.update(table_entries)
-    db = {**db, **table_entries}
-    tables = read_json("tables.json")
     LATIN_PLAIN = 0
     LATIN_DISPLAY = 1
     ENGLISH = 2
     CHAPTER = 3
-    previous_choices = []
+    green = col.fg.green
+    pink = col.fg.pink
+    blue = col.fg.blue
+    lblue = col.fg.lightblue
+    dgrey = col.fg.darkgrey
+    bold = col.bold
+    x = col.reset
+
+    db = read_json("wheelock_vocab.json")
+    table_entries = read_json("table_entries.json")
+    db = {**db, **table_entries}
+    tables = read_json("tables.json")
+    prev_results = []
     while True:
         matches = []
-        menu_choices = ""
-        choices_with_table = [x for x in previous_choices if x.startswith("t")]
-        if len(choices_with_table):
-            # menu_choices = f", :r[epeat], or "
-            # options = len(previous_choices) - len(choices_with_table) + 1
-            # print(">>",options)
-            # if options == 1:
-            #     menu_choices += f"{len(previous_choices)}"
-            # else:
-            #     menu_choices += f"{len(previous_choices) - len(choices_with_table) + 1} to {len(previous_choices)}."
-            menu_choices = f", :r[epeat], or {len(previous_choices) - len(choices_with_table) + 1} to {len(previous_choices)}."
-        print(f"\n\n{col.fg.lightred}quid est quaerendum?{col.fg.green} (:q[uit], :e[nglish]{menu_choices}){col.reset}")
+        error_msg = ""
+        menu = f"\n\n{col.fg.lightred}quid est quaerendum? {green}({x}:q{green}[uit], {x}:e{green}[nglish]"
+        # range = ""
+        have_tables = len(prev_results) - len([x for x in prev_results if x.startswith("t")]) + 1
+        end_range = len(prev_results)
+        if have_tables <= end_range:
+            menu = f"{menu}, {x}:r{green}[epeat], or "
+            if have_tables == end_range:
+                choices = f"{x}{end_range}{green}"
+            else:
+                choices = f"{x}{have_tables}{green} to {x}{end_range}{green}"
+            menu = f"{menu}{choices}"
+        print(f"{menu}){x}")
+        # print(matches,prev_results)
         search_for = input().strip()
         language = LATIN_PLAIN
         display_search = LATIN_DISPLAY
         display_result = ENGLISH
 
         if not search_for:
+            # error_msg = "Quid facis?? Please input a latin word."
             print("Quid facis?? Please input a latin word.")
-        if search_for.isnumeric() and previous_choices:
-            chosen_result = int(search_for) - 1
-            # print("debug choice", previous_choices, int(search_for), previous_choices[chosen_result])
-            if chosen_result >=0 and chosen_result < len(previous_choices):
-                table_id = previous_choices[chosen_result]
-                # chosen_table = tables[table_id]
-                chosen_table = tables.get(table_id)
-                if chosen_table:
-                    draw_table(table_id, chosen_table)
-                    continue
-                else:
-                    print("Sorry. No table associated with this entry.")
-            print("Enter an ID from the previous search or a new term.")
-        elif search_for.startswith(":q") or search_for.startswith("qq"):
-            break
-        elif search_for.startswith(":r"):
-            matches = previous_choices
-
-        elif search_for.startswith(":e") or search_for.startswith("e:"):
-            language = ENGLISH
-            display_search, display_result = display_result, display_search
-            search_for = search_for[2:].strip()
+            continue
+        if search_for.isnumeric():
+            if prev_results:
+                id_in_prev = int(search_for) - 1
+                if id_in_prev >= 0 and id_in_prev < end_range:
+                    table_id = prev_results[id_in_prev]
+                    table = tables.get(table_id)
+                    if table:
+                        draw_table(table_id, table)
+                        continue
+                error_msg = f"{green}Enter {choices} or a new term."
+            else:
+                error_msg = "Enter a word to search for."
+            print(error_msg)
+            continue
+        else:
+            prefix = search_for[:2]
+            if prefix in [":q", "q:", "qq"]:
+                break
+            elif prefix in [":r", "r:", "rr"]:
+                matches = prev_results
+            elif prefix in [":e", "e:", "ee"]:
+                language = ENGLISH
+                display_search, display_result = display_result, display_search
+                search_for = search_for[2:].strip()
 
         if not matches:
             matches = build_match_list(search_for, language, db)
@@ -206,13 +219,15 @@ def main():
             for n, id in enumerate(matches):
                 entry = db[id]
                 if len(matches) == 1 and entry[CHAPTER] == "table":
-                    # draw_table(id, entry)
                     draw_table(id, tables[id])
                 else:
-                    print(f"\t{col.fg.blue}{n + 1}. {col.fg.pink}{entry[display_search]} {col.reset}{col.bold}{entry[display_result]} {col.fg.darkgrey}from chapter {col.fg.lightblue}{entry[CHAPTER]}{col.reset}")
-            previous_choices = matches
+                    print(f"\t{blue}{n + 1}. {pink}{entry[display_search]} {x}{bold}{entry[display_result]} {dgrey}from chapter {lblue}{entry[CHAPTER]}{x}")
+            prev_results = matches
         else:
-            print(f"No matches for <{search_for}>")
+            if not error_msg:
+                error_msg = f"No matches for <{search_for}>"
+        if error_msg:
+            print(error_msg)
 
 
 
