@@ -16,9 +16,10 @@ Ablative	-ā	-īs
 Locative	Gen.	Dat.
 
 
-&n:1:e
-*mensa, mensae table (f.)
-*poēta, poētae poet (m.)
+&n:1:e=mensa poeta
+*First declension nouns: masculine and feminine
+*mensa, mensae table f.
+*poēta, poētae poet m.
 %	Singular	Plural	Singular	Plural
 Nominative	mensa	mensae	poēta	poētae
 Accusative	mensam	mensās	poētam	poētās
@@ -38,9 +39,8 @@ Dative	-ō	-o:	-i:s	-īs
 Ablative	-ō	-o:	-i:s	-īs
 Locative	Gen.	-Gen.	Dat.	Dat.
 
-&n:2:e=m
-*Masculine
-*dominus, dominī master m.
+&n:2:e=dominus
+*Second declension Masculine nouns
 %	Singular	Plural
 Nominative	dominus	dominī
 Vocative	domine	domini:
@@ -49,9 +49,8 @@ Genitive	dominī	dominōrum
 Dative	dominō	dominīs
 Ablative	dominō	dominīs
 
-&n:2:e=n
-*Neuter
-*bellum, bellī war n.
+&n:2:e=bellum
+*Second-declension Neuter nouns
 %	Singular	Plural
 Nominative	bellum	bella
 Accusative	bellum	bella
@@ -60,7 +59,7 @@ Locative	bellī	bellīs
 Dative	bellō	belli:s
 Ablative	bellō	belli:s
 
-&n:2:s=ius/ium nouns
+&n:2:e=filius auxilium
 *Second-declension -ius and -ium nouns
 *fīlius, filiī son m.
 *auxilium, auxiliī aid, help n.
@@ -72,7 +71,7 @@ Genitive	fīliī	fīliōrum	auxiliī	auxiliōrum
 Dative	fīliō	fīliīs	auxiliō	auxiliīs
 Ablative	fīliō	fīliīs	auxiliō	auxiliīs
 
-&n:2:s=r nouns
+&n:2:e=puer ager vir
 *Second-declension -r nouns
 *puer, puerī boy m.
 *ager, agrī field m.
@@ -84,7 +83,7 @@ Genitive	puerī	puerōrum	agrī	agrōrum	virī	virōrum (virum)
 Dative	puerō	puerīs	agrō	agrīs	virō	virīs
 Ablative	puerō	puerīs	agrō	agrīs	virō	virīs
 
-&n:2:i
+&n:2:i=deus
 *Irregular nouns: deus
 *deus, deī god m.
 %	Singular	Plural
@@ -105,7 +104,8 @@ Dative	-ī	-ibus	-ī	-ibus
 Ablative	-e	-ibus	-e	-ibus
 Locative	Dat./Abl.	Dat.	Dat./Abl.	Dat.
 
-&n:3:e
+&n:3:e=dux virtus nomen
+Third-declension nouns
 *dux, ducis leader m.
 *virtūs, virtūtis virtue f.
 *nōmen, nōminis name n.
@@ -116,7 +116,7 @@ Genitive	ducis	ducum	virtūtis	virtūtum	nōminis	nōminum
 Dative	ducī	ducibus	virtūtī	virtūtibus	nōminī	nōminibus
 Ablative	duce	ducibus	virtūte	virtūtibus	nōmine	nōminibus
 
-&n:3:s=i stems
+&n:3:p
 *Third declension paradigm (i-stem nouns)
 *Masculine & Feminine	Neuter
 %	Singular	Plural	Singular	Plural
@@ -127,7 +127,7 @@ Dative	-ī	-ibus	-ī	-ibus
 Ablative	-e -i:	-ibus	-ī	-ibus
 Locative	Dat./Abl.	Dat.	Dat./Abl.	Dat.
 
-&n:3:s=mixed nouns
+&n:3:p
 *Third declension paradigm (mixed nouns)
 *Masculine & Feminine	Neuter
 %	Singular	Plural	Singular	Plural
@@ -138,8 +138,8 @@ Dative	-ī	-ibus	-ī	-ibus
 Ablative	-e	-ibus	-e	-ibus
 Locative	Dat./Abl.	Dat.	Dat./Abl.	Dat.
 
-&n:3:s=special rules
-* Parisyllabic rule,	Double consonant rule,	Special neuter ending
+&n:3:e=turris pars animal
+*Third-declension special rules: Parisyllabic rule,	Double consonant rule,	Special neuter ending
 *turris, turris tower f. (pure)
 *pars, partis part, piece f. (mixed)
 *animal, animālis animal, living being n. (pure)
@@ -152,8 +152,8 @@ Dative	turrī	turribus	partī	partibus	animālī	animālibus
 Ablative	turre	turribus	parte	partibus	animālī	animālibus
 %	turrī	%	(parti:)	%	%	%
 
-&n:3:i
-*Irregular nouns
+&n:3:i=vis sus bos Iuppiter
+*Third-declension Irregular nouns
 *vīs, vīs force, power f.
 *sūs, suis swine, pig, hog m.f.
 *bōs, bovis ox, bullock m.f.
@@ -171,8 +171,7 @@ Ablative	vī[ii]	vīribus	sue	suibus	bove	bōbus	Iove
 %	%	%	%	sūbus	%	būbus[i]	%
 
 &n:4:p
-*Fourth declension (u stems)
-*Fourth declension paradigm
+*Fourth-declension (u stems) paradigm
 *-us ending nouns
 *-ū ending nouns
 %	Singular	Plural	Singular	Plural
@@ -185,7 +184,8 @@ Ablative	-u:	-ibus	-ū	-ibus
 %	%	-ubus[i]	%	%
 Locative	-ī	Dat.	-ī	Dat.
 
-&n:4:e
+&n:4:e=portus genu
+*Fourth-declension nouns
 *portus, portūs port m.
 *genū, genūs knee n.
 %	Singular	Plural	Singular	Plural
@@ -195,35 +195,35 @@ Genitive	portūs	portuum	genūs	genuum
 Dative	portuī	portibus	genū	genibus
 Ablative	portu:	portibus	genū	genibus
 
-&n:4:i
+&n:4:i=domus
 *Irregular nouns: domus f.
 *All possible declensions (especially literature)
-%	Singular	Plural
-Nominative	domus	domūs
-Accusative	domum	domūs
-%	%	domōs
-Genitive	domūs	domuum
+%  All possible  %  Most Common  %
+%	Singular	Plural	Singular	Plural
+Nominative	domus	domūs	domus	domūs
+Accusative	domum	domūs	domum	domōs
+%	%	domōs  %  %
+Genitive	domūs	domuum	domūs	domuum
 %	domi:	domo:rum
-Dative	domuī	domibus
-%	domū	%
-%	domō	%
-Ablative	domū	domibus
-%	domō	%
-Locative	domī	domibus
+Dative	domuī	domibus	domuī	domibus
+%	domū	%  %  %
+%	domō	%  %  %
+Ablative	domū	domibus	domō	domibus
+%	domō	%  %  %
+Locative	domī	domibus	domī	domibus
 
-&n:4:i
-*Most common paradigm
-%	Singular	Plural
-Nominative	domus	domūs
-Accusative	domum	domōs
-Genitive	domūs	domuum
-Dative	domuī	domibus
-Ablative	domō	domibus
-Locative	domī	domibus
+#&n:4:i=
+#*Most common paradigm
+#%	Singular	Plural
+#Nominative	domus	domūs
+#Accusative	domum	domōs
+#Genitive	domūs	domuum
+#Dative	domuī	domibus
+#Ablative	domō	domibus
+#Locative	domī	domibus
 
 &n:5:p
-**Fifth declension (e stems)
-*Fifth declension paradigm
+**Fifth declension noun (e stems) paradigm
 *-iēs ending nouns
 *-ēs ending nouns
 %	Singular	Plural	Singular	Plural
@@ -234,7 +234,8 @@ Dative	-iēī	-iēbus	-eī	-ēbus
 Ablative	-iē	-ie:bus	-ē	-e:bus
 Locative	Abl.	Abl.	Abl.	Abl.
 
-&n:5:e
+&n:5:e=dies
+*Fifth declension noun (dies)
 *diēs, diēī day m., f.
 *rēs, reī thing f.
 %	Singular	Plural	Singular	Plural
@@ -244,7 +245,7 @@ Genitive	diēī	diērum	reī	rērum
 Dative	die:	diēbus	re:	rēbus
 Ablative	die:	diēbus	re:	rēbus
 
-&n::s=heterogeneous nouns
+&n::e=balneum epulum frenum iocus rastrum
 *Heterogeneous nouns (vary in gender)
 Singular	Plural
 balneum n.	('bath')	balneae f. or balnea n. ('bathhouse')
@@ -254,8 +255,8 @@ iocus m.	('joke, jest')	ioca n. or ioci m. ('jokes, fun')
 locus m.	('place, location')	loca n. ('region'); locī m. ('places in books, arguments')
 rāstrum n.	('hoe, rake')	rāstrī m. ('hoes, rakes')
 
-&n::s=plurals with alternative meanings
-*Plurals with alternative meanings
+&n::e=aedes auxilium carcer castrum copia fortuna gratia impedimentum
+*Plural nouns with alternative meanings
 Singular	Plural
 aedēs, aedis f. ('building, temple')	aedēs, aedium ('rooms, house')
 auxilium, auxiliī n. ('help, aid')	auxilia, auxiliōrum ('auxiliary troops')

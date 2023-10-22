@@ -8,7 +8,7 @@
 ## adj = a: declension (1, 2, 3, 1&2) : paradigm / eg / subtype / irregular
 
 
-&b:1&2:e
+&b:1&2:e=clarus validus infirmus solidus integer liber
 *Adverbs from first- and second-declension adjectives
 Adjective	Adverb
 clārus, clāra, clārum ('clear, famous')	clārē ('clearly, famously')
@@ -18,15 +18,15 @@ solidus, solida, solidum ('complete, firm')	solidē ('completely, firmly')
 integer, integra, integrum ('whole, fresh')	integrē ('wholly, freshly')
 līber, lībera, līberum ('free')	līberē ('freely')
 
-&b:3:e
-*Adverbs from third declension adjective
+&b:3:e=prudens audax virilis salubris
+*Adverbs from third declension adjectives
 Adjective	Adverb
 prūdēns, prūdēns (prūdentis) ('prudent')	prūdenter ('prudently')
 audāx, audāx (audācis) ('bold')	audācter ('boldly')
 virīlis, virīle ('courageous, spirited')	virīliter ('courageously, spiritedly')
 salūbris, salūbre ('wholesome')	salūbriter ('wholesomely')
 
-&b:comp&supp:e
+&b:comp&supp:e=clare solide idonee prudenter salubriter
 *Comparative and superlative of adverbs
 Positive	Comparative	Superlative
 clārē ('clearly, famously')	clārius	clārissimē
@@ -35,7 +35,7 @@ idōneē ('suitably, properly')	magis idōneē	maximē idōneē
 prudenter ('prudently')	prudentius	prudentissimē
 salūbriter ('wholesomely')	salūbrius	salūbrissimē
 
-&b:comp&supp:i
+&b:comp&supp:i=bene male magnopere multum parvum nequiter saepe mature prope nuper potis prius secus
 *Irregular adverbs with peculiar comparative and superlative forms.
 Positive	Comparative	Superlative
 bene ('well')	melius ('better')	optimē ('best')

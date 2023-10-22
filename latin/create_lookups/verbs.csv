@@ -9,10 +9,8 @@
 
 
 
-&v:a_i_p=1:e
-
-*First conjugation
-*Active Indicative
+&v:a_i_p=1:e=amo
+*First conjugation active indicative verb
 %
 %
 I
@@ -50,10 +48,8 @@ amābātis
 amābant
 @
 
-&v:a_s_p=1:e
-
-*first conjugation
-*Active Subjunctive
+&v:a_s_p=1:e=amo
+*first conjugation active subjunctive verb
 %
 %
 I
@@ -82,10 +78,8 @@ amārētis
 amārent
 @
 
-&v:p_i_p=1:e
-
-*first conjugation
-*Passive Indicative
+&v:p_i_p=1:e=amo
+*first conjugation passive indicative verb
 %
 %
 I
@@ -123,10 +117,8 @@ amābāminī
 amābantur
 @
 
-&v:p_s_p=1:e
-
-*first conjugation
-*Passive Subjunctive
+&v:p_s_p=1:e=amo
+*First conjugation passive subjunctive verb
 %
 %
 I
@@ -155,11 +147,8 @@ amārēminī
 amārentur
 @
 
-&v:a_i_k=1:e
-
-*Perfect Tenses
-*First conjugation
-*Active Indicative
+&v:a_i_k=1:e=amo
+*Perfect tenses: first conjugation active indicative verb
 %
 %
 I
@@ -197,11 +186,8 @@ amāverātis
 amāverant
 @
 
-&v:a_s_k=1:e
-
-*Perfect Tenses
-*First conjugation
-*Active Subjunctive
+&v:a_s_k=1:e=amo
+*Perfect tenses: first conjugation active subjunctive
 Perfect
 I loved
 amāverim
@@ -221,11 +207,8 @@ amāvissētis
 amāvissent
 @
 
-&v:p_i_k=1:e
-
-*Perfect Tenses
-*First conjugation
-*Passive Indicative
+&v:p_i_k=1:e=amo
+*Perfect tenses: first conjugation passive indicative
 %
 %
 I
@@ -263,8 +246,7 @@ amātī erātis
 amātī erant
 @
 
-&v:p_s_k=1:e
-
+&v:p_s_k=1:e=amo
 *Perfect Tenses
 *First conjugation
 *Passive Subjunctive
@@ -296,10 +278,8 @@ amātī essētis
 amātī essent
 @
 
-&v:a_i_p=2:e
-
-*Second conjugation
-*Active Indicative
+&v:a_i_p=2:e=video
+*Second conjugation active indicative verb
 %
 %
 I
@@ -337,10 +317,8 @@ vidēbātis
 vidēbant
 @
 
-&v:a_s_p=2:e
-
-*Second conjugation
-*Active Subjunctive
+&v:a_s_p=2:e=video
+*Second conjugation active subjunctive verb
 %
 %
 I
@@ -370,10 +348,8 @@ vidērent
 @
 
 
-&v:p_i_p=2:e
-
-*Second conjugation
-*Passive Indicative
+&v:p_i_p=2:e=video
+*Second conjugation passive indicative verb
 %
 %
 I
@@ -411,10 +387,8 @@ vidēbāminī
 vidēbantur
 @
 
-&v:p_s_p=2:e
-
-*Second conjugation
-*Passive Subjunctive
+&v:p_s_p=2:e=video
+*Second conjugation passive subjunctive verb
 %
 %
 I
@@ -444,10 +418,8 @@ vidērentur
 @
 
 
-&v:a_i_p=3:e
-
-*third conjugation
-*Active Indicative
+&v:a_i_p=3:e=duco
+*Third conjugation active indicative verb
 %
 %
 I
@@ -486,10 +458,8 @@ dūcēbant
 @
 
 
-&v:a_s_p=3:e
-
-*Third conjugation
-*Active Subjunctive
+&v:a_s_p=3:e=duco
+*Third conjugation active subjunctive verb
 %
 %
 I
@@ -518,10 +488,8 @@ dūcerētis
 dūcerent
 @
 
-&v:p_i_p=3:e
-
-*Third conjugation
-*Passive Indicative
+&v:p_i_p=3:e=duco
+*Third conjugation passive indicative verb
 %
 %
 I
@@ -560,10 +528,8 @@ dūcēbantur
 @
 
 
-&v:p_s_p=3:e
-
-*Third conjugation
-*Passive Subjunctive
+&v:p_s_p=3:e=duco
+*Third conjugation passive subjunctive verb
 %
 %
 I
@@ -594,10 +560,8 @@ dūcerentur
 
 
 
-&v:a_i_p=3-io:e
-
-*Third conjugation
-*Active Indicative
+&v:a_i_p=3-io:e=capio
+*Third conjugation active indicative verb
 %
 %
 I
@@ -635,10 +599,8 @@ capiēbātis
 capiēbant
 @
 
-&v:a_s_p=3-io:e
-
-*Third conjugation
-*Active Subjunctive
+&v:a_s_p=3-io:e=capio
+*Third conjugation active subjunctive verb
 %
 %
 I
@@ -667,10 +629,8 @@ caperētis
 caperent
 @
 
-&v:p_i_p=3-io:e
-
-*Third -io conjugation
-*Passive Indicative
+&v:p_i_p=3-io:e=capio
+*Third -io conjugation passive indicative verb
 %
 %
 I
@@ -708,10 +668,8 @@ capiēbāminī
 capiēbantur
 @
 
-&v:p_s_p=3-io:e
-
-*Third -io conjugation
-*Passive Subjunctive
+&v:p_s_p=3-io:e=capio
+*Third -io conjugation passive subjunctive verb
 %
 %
 I
@@ -741,10 +699,8 @@ caperentur
 @
 
 
-&v:a_i_p=4:e
-
-*Fourth conjugation
-*Active Indicative
+&v:a_i_p=4:e=audio
+*Fourth conjugation active indicative verb
 %
 %
 I
@@ -783,10 +739,8 @@ audiēbant
 @
 
 
-&v:a_s_p=4:e
-
-*Fourth conjugation
-*Active Subjunctive
+&v:a_s_p=4:e=audio
+*Fourth conjugation active subjunctive verb
 %
 %
 I
@@ -815,10 +769,8 @@ audīrētis
 audīrent
 @
 
-&v:p_i_p=4:e
-
-*Fourth conjugation
-*Passive Indicative
+&v:p_i_p=4:e=audio
+*Fourth conjugation passive indicative verb
 %
 %
 I
@@ -856,10 +808,8 @@ audiēbāminī
 audiēbantur
 @
 
-&v:p_s_p=4:e
-
-*Fourth conjugation
-*Passive Subjunctive
+&v:p_s_p=4:e=audio
+*Fourth conjugation passive subjunctive verb
 %
 %
 I
@@ -889,9 +839,8 @@ audīrentur
 @
 
 
-&v:a_i_i=sum:e
-
-*Irregular verb: sum - to be
+&v:a_i:i=sum
+*Irregular verb indicative: sum - to be
 %
 %
 I
@@ -929,10 +878,8 @@ erātis
 erant
 @
 
-&v:a_s_i=sum:e
-
-*Irregular verb: sum - to be
-*Active Subjunctive
+&v:a_s:i=sum
+*Irregular verb subjunctive: sum - to be
 %
 %
 I
@@ -962,9 +909,8 @@ essent
 @
 
 
-&v:a_i_i=possum:e
-
-*Irregular verb: possum (pot + esse)- to be able to
+&v:a_i:i=possum
+*Irregular verb indicative: possum (pot + esse)- to be able to
 %
 %
 I
@@ -1002,10 +948,8 @@ poterātis
 poterant
 @
 
-&v:a_s_p=1:e
-
-*Irregular verb: possum (pot + esse) to be able to / can
-*Active Subjunctive
+&v:a_s:i=possum
+*Irregular verb subjunctive: possum (pot + esse) to be able to / can
 Present
 I can / am able to
 possim
@@ -1026,8 +970,8 @@ possent
 @
 
 
-&v:a_i_i=volo:e
-
+&v:a_i:i=volo
+*Irregular verb indicative: volo (want)
 %
 %
 I
@@ -1065,8 +1009,8 @@ volēbātis
 volēbant
 @
 
-&v:a_s_i=volo:e
-
+&v:a_s:i=volo
+*Irregular verb subjunctive: volo (want)
 %
 %
 I
@@ -1096,8 +1040,8 @@ vellent
 @
 
 
-&v:a_i_i=nolo:e
-
+&v:a_i:i=nolo
+*Irregular verb indicative: nolo (be unwilling)
 %
 %
 I
@@ -1135,8 +1079,8 @@ nōlēbātis
 nōlēbant
 @
 
-&v:a_s_i=nolo:e
-
+&v:a_s:i=nolo
+*Irregular verb subjunctive: nolo (be unwilling)
 %
 %
 I
@@ -1165,8 +1109,8 @@ nōllētis
 nōllent
 @
 
-&v:a_i_i=malo:e
-
+&v:a_i:i=malo
+*Irregular verb indicative: malo (prefer)
 %
 %
 I
@@ -1204,8 +1148,8 @@ mālēbātis
 mālēbant
 @
 
-&v:a_s_i=malo:e
-
+&v:a_s:i=malo
+*Irregular verb subjunctive: malo (prefer)
 %
 %
 I
@@ -1235,8 +1179,8 @@ māllent
 @
 
 
-&v:a_i_i=eo:e
-
+&v:a_i:i=eo
+*Irregular verb indicative: eo (go)
 %
 %
 I
@@ -1274,8 +1218,8 @@ I was going
 ībant
 @
 
-&v:a_i_i=eo:e
-
+&v:a_i:i=eo
+*Irregular verb subjunctive: eo (go)
 %
 %
 I
@@ -1305,8 +1249,8 @@ I might go
 @
 
 
-&v:a_i_i=fero:e
-
+&v:a_i:i=fero
+*Irregular verb active indicative: fero (bring, bear, carry)
 *The verb ferō, ferre, tulī, lātum "to bring, to bear, to carry" is 3rd conjugation, but irregular in that the vowel following the root fer- is sometimes omitted. The perfect tense tulī and supine stem lātum are also irregularly formed.
 %
 %
@@ -1345,8 +1289,8 @@ ferēbātis
 ferēbant
 @
 
-&v:a_i_i=fero:e
-
+&v:a_i:i=fero
+*Irregular verb active subjunctive: fero (bring, bear, carry)
 %
 %
 I
@@ -1376,8 +1320,8 @@ ferrent
 @
 
 
-&v:p_i_i=fero:e
-
+&v:p_i:i=fero
+*Irregular verb passive indicative: fero (bring, bear, carry)
 %
 %
 I
@@ -1416,8 +1360,8 @@ ferēbantur
 @
 
 
-&v:p_s_i=fero:e
-
+&v:p_s:i=fero
+*Irregular verb passive subjunctive: fero (bring, bear, carry)
 %
 %
 I
@@ -1447,9 +1391,8 @@ ferrentur
 @
 
 
-&v:a_i_i=fio:e
-
-*Irregular Verb: fiō
+&v:a_i:i=fio
+*Irregular verb indicative active: fiō
 *The irregular verb fīō, fierī, factus sum "to become, to happen, to be done, to be made" as well as being a verb in its own right serves as the passive of faciō, facere, fēcī, factum "to do, to make". The perfect tenses are identical with the perfect passive tenses of faciō.
 %
 %
@@ -1488,8 +1431,8 @@ fīēbātis
 fīēbant
 @
 
-&v:a_i_i=fio:e
-*Irregular Verb: fiō
+&v:a_s:i=fio
+*Irregular verb active subjunctive: fiō
 *Subjunctive
 %
 %
@@ -1519,11 +1462,8 @@ fierētis
 fierent
 @
 
-
-
-
-&v:a_i_i=edo:e
-
+&v:a_i:i=edo
+*Irregular verb indicative: edo (eat)
 %
 %
 I
@@ -1561,9 +1501,8 @@ edēbātis
 edēbant
 @
 
-&v:a_i_i=edo:e
-
-*Irregular Verb: edo
+&v:a_i:i=edo
+*Irregular Verb subjunctive: edo (eat)
 *Subjunctive
 %
 %
@@ -1593,8 +1532,8 @@ ederētis, ēssētis
 ederent, ēssent
 @
 
-&v:part:e
-*Participles
+&v:part:e=laudo terreo peto capio audio
+*Participle of regular verbs
 %	laudāre	terrēre	petere	capere	audīre
 Present active	laudāns, -antis	terrēns, -entis	petēns, -entis	capiēns, -entis	audiēns, -entis
 Perfect passive	laudātus, -a, -um	territus, -a, -um	petītus, -a, -um	captus, -a, -um	audītus, -a, -um
@@ -1602,8 +1541,8 @@ Future active	laudātūrus, -a, -um	territūrus, -a, -um	petītūrus, -a, -um	ca
 Gerundive	laudandus, -a, -um	terrendus, -a, -um	petendus, -a, -um	capiendus, -a, -um	audiēndus, -a, -um
 
 
-&v:infin:e
-*Infinitives (with masculine endings used for participles)
+&v:infin:e=laudo terreo peto capio audio
+*Infinitive of regular verbs (with masculine endings used for participles)
 %	laudāre	terrēre	petere	capere	audīre
 Present active	laudāre	terrēre	petere	capere	audīre
 Present passive	laudārī	terrērī	petī	capī	audīrī
@@ -1615,16 +1554,16 @@ Potential	laudātūrus fuisse	territūrus fuisse	petītūrus fuisse	captūrus fu
 
 
 
-&v:supine:e
-*Supine
+&v:supine:e=laudo terreo peto capio audio
+*Supine of regular verbs
 %	laudāre	terrēre	petere	capere	audīre
 Accusative	laudātum	territum	petītum	captum	audītum
 Ablative	laudātū	territū	petītū	captū	audītū
 
 
 
-&v:gerund:e
-*Gerund
+&v:gerund:e=laudo terreo peto capio audio
+*Gerund of regular verbs
 *The gerund is formed similarly to the present active participle. However, the -ns becomes an -ndus, and the preceding ā or ē is shortened. Gerunds are neuter nouns of the second declension, but the nominative case is not present. The gerund is a noun, meaning "the act of doing (the verb)", and forms a suppletive paradigm to the infinitive, which cannot be declined. For example, the genitive form laudandī can mean "of praising", the dative form laudandō can mean "for praising", the accusative form laudandum can mean "praising", and the ablative form laudandō can mean "by praising", "in respect to praising", etc.
 *One common use of the gerund is with the preposition ad to indicate purpose. For example, paratus ad oppugnandum could be translated as "ready to attack". However the gerund was avoided when an object was introduced, and a passive construction with the gerundive was preferred. For example, for "ready to attack the enemy" the construction paratus ad hostes oppugnandos is preferred over paratus ad hostes oppugnandum.
 
@@ -1636,16 +1575,16 @@ Ablative	laudandō	terrendō	petendō	capiendō	audiendō
 
 
 
-&v:gerundive:e
-*Gerundive
+&v:gerundive:e=laudo terreo peto capio audio
+*Gerundive of regular verbs
 *The gerundive has a form similar to that of the gerund, but it is a first and second declension adjective, and functions as a future passive participle. It means "(which is) to be ...ed". Often, the gerundive is used with part of the verb esse, to show obligation.
 laudāre	terrēre	petere	capere	audīre
 laudandus, -a, -um	terrendus, -a, -um	petendus, -a, -um	capiendus, -a, -um	audiendus, -a, -um
 
 
 
-&v:a_periphrastic:e
-*Active periphrastic
+&v:a_periphrastic:e=laudo
+*Active periphrastic tenses
 *The first periphrastic conjugation uses the future participle. It is combined with the forms of esse. It is translated as "I am going to praise," "I was going to praise", etc.
 
 %	Conjugation	Translation
@@ -1662,9 +1601,8 @@ Plup. subj.	laudātūrus fuissem	I should have been going to praise
 
 
 
-&v:p_periphrastic:e
-&v:gerund:e
-*Passive periphrastic
+&v:p_periphrastic:e=laudo
+*Passive periphrastic tenses
 *The second periphrastic conjugation uses the gerundive. It is combined with the forms of esse and expresses necessity. It is translated as "I am needing to be praised", "I was needing to be praised", etc., or as "I have to (must) be praised", "I had to be praised," etc.
 
 Tense + mood	Conjugation	Translation
@@ -1685,8 +1623,8 @@ Perf. inf.	laudandus fuisse	To have been needing to be praised
 
 
 
-&v:i=aio:e
-*Conjugation of aiō
+&v:d:i=aio
+*Conjugation of defective verb aiō
 %	Indicative present	%	Indicative imperfect	%	Subjunctive present	%	Imperative present
 %	Singular	Plural	Singular	Plural	Singular	Plural	Singular
 First person	aiō	—	aiēbam	aiēbāmus	—	—	—
@@ -1695,8 +1633,8 @@ Third person	ait	aiunt	aiēbat	aiēbant	aiat	aiant	—
 *Present Active Participle: – aiēns, aientis
 
 
-&v:i=inquam:e
-*Conjugation of inquam
+&v:d:i=inquam
+*Conjugation of defective verb inquam
 %	Pres indic	%	Fut indic	Perf indic	Imperf indic
 %	Singular	Plural	Singular	Singular	Singular
 First person	inquam	inquimus	—	inquiī	—
@@ -1705,16 +1643,16 @@ Third person	inquit	inquiunt	inquiet	inquit	inquiēbat
 
 
 
-&v:i=for:e
-*Conjugation of for
+&v:d:i=for
+*Conjugation of defective verb for
 %	Present indic	%	Future indic	Perfect indic	Pluperfect indic	Present imper	%
 %	Singular	Plural	Singular	Singular	Singular	Singular	Plural
 First person	for	—	fābor	fātus sum	fātus eram	—	—
 Second person	—	—	—	— 	—	—	fāre	fāminī
 Third person	fātur	fantur	fābitur	—	—
 
-&v:i=for:e
-* For: Parts
+&v:d:i=for
+*Parts of defective verb for
 Part	Form
 Present Active Participle	fāns, fantis
 Present Active Infinitive	fārī (variant: fārier)
@@ -1723,7 +1661,7 @@ Gerund	(gen.) fandī, (dat. and abl.) fandō, no accusative
 Gerundive	fandus, –a, –um
 
 
-&v:impersonal:e
+&v:impersonal:e=pluit ningit oportet licet
 *Impersonal verbs
 *Impersonal verbs are those lacking a person. In English impersonal verbs are usually used with the neuter pronoun "it" (as in "It seems," or "it is raining"). Latin uses the third person singular. These verbs lack a fourth principal part. A few examples are:
 Pres	Infin	Pres Perf	Meaning
@@ -1732,7 +1670,7 @@ ningit	ningere	ninxit	to snow (it snows)
 oportet	oportēre	oportuit	to be proper (it is proper, one should/ought to)
 licet	licēre	licuit	to be permitted [to] (it is allowed [to])
 
-&v:i=futureActivePart:e
+&v:part:i=iuvo lavo paro rueo seco fruor nascor moror orior
 *Irregular future active participles
 *The future active participle is normally formed by removing the –um from the supine, and adding a –ūrus. However, some deviations occur.
 Pres active infin	Supine Fut active part	Meaning

@@ -12,8 +12,7 @@ from pathlib import Path
 import sys
 import getopt
 import json
-
-
+import csv
 
 
 def get_current_directory():
@@ -21,9 +20,30 @@ def get_current_directory():
 
 
 def write_json_file(lines, filename="latin.json"):
-    json_file_address = Path(get_current_directory() / filename)
-    with open(json_file_address, "w") as f:
+    file_address = Path(get_current_directory() / filename)
+    with open(file_address, "w") as f:
         json.dump(lines,f)
+
+def read_csv_file(filename):
+    tmp = []
+    file_address = Path(get_current_directory() / filename)
+    print(f"\n\nOpening <{file_address.name}> to create pedigree...\n")
+    with open(file_address, "r") as f:
+        csv_reader = csv.reader(f, delimiter='\t')
+        for row in csv_reader:
+            # print("csv:",row)
+            tmp.append(row)
+    return tmp
+
+
+
+def write_csv_file(data, filename):
+    file_address = Path(get_current_directory() / filename)
+    with open(file_address, "w") as f:
+        # csv_writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        csv_writer = csv.writer(f, delimiter="\t")
+        csv_writer.writerows(data)
+
 
 
 def retrieve_file_by_suffix(suffix="csv"):
@@ -31,114 +51,43 @@ def retrieve_file_by_suffix(suffix="csv"):
         suffix = suffix[1:]
     current_dir = get_current_directory()
     for full_path in sorted(current_dir.glob(f"*.{suffix}")):
-        file_name = Path(current_dir / full_path.name)
-        print(f"\n\nOpening <{file_name.name}> to create pedigree...\n")
-        return file_name
+        file_address = Path(current_dir / full_path.name)
+        print(f"\n\nOpening <{file_address.name}> to create pedigree...\n")
+        return file_address
 
 
-# def create_db_from_file(source_file):
-#     raw_cats = create_pedigree_from_file(source_file)
-#     id_from_name = {cat['name']: id for id, cat in raw_cats.items()}
-#     return(sub_names_to_ids(raw_cats, id_from_name), id_from_name)
+# def parse_cmd_line(argv):
+#     ids = ""
+#     ## Change these three variables according to needs
+#     id_list = [1,2,3,4]
+#     depth = 5
+#     basefont = 12
 
-# def create_list_from_file(source_file):
-#     id_count = 1
-#     loaded_cats = {}
-#     num_of_fields = 11
-#     with source_file.open(mode="r", encoding="utf-8") as f:
-#         # tmp_deck = {}
-#         for line, curr_line in enumerate(f):
-#             if len(curr_line.strip()) == 0:
-#                 print("Field missing at line:",line)
-#             elif curr_line[0] == "#":
-#                 print("comment at line:", line)
-#             else:
-#                 # entry = curr_line.split(",")
-#                 entry = [field.strip() for field in curr_line.split(",")]
-#                 if entry[0].lower() == "name":
-#                     continue
-#                 if len(entry) == num_of_fields:
-#                     # loaded_cats.append({
-#                     cat = {
-#                         id_count : {
-#                         "name": entry[0],
-#                         "gems": entry[1],
-#                         "sex": entry[2],
-#                         "gccf": entry[3],
-#                         "regnum": entry[4],
-#                         "dob": entry[5],
-#                         "cstatus": entry[6],
-#                         "sire": entry[7],
-#                         "dam": entry[8],
-#                         "breeder": entry[9],
-#                         "owner": entry[10],
-#                         }}
-#                         # })
-#                     loaded_cats.update(cat)
-#                     id_count += 1
-#                 else:
-#                     print("Field missing at line:",line)
-#     loaded_cats.update(add_unknown())
-#     return loaded_cats
+#     opts, _ = getopt.getopt(argv,"hi:d:s:",["help","ids=", "depth=", "size="])
+#     for opt, arg in opts:
+#         if opt in ("-h", "--help"):
+#             print ("""
+# You can specify the following variables after pedigrees.py
+#     -h / --help=    <prints this help message>
+#     -i / --ids=     <comma-separated list of cat ids (NO SPACES)>
+#                         e.g. -i 2,27 OR --ids=2,27
+#     -d / --depth=   <depth of generations (4 or 5 is best)>
+#                         e.g -d 5 OR --depth=5
+#     -s / --size=    <font size of grid in points (12 is default)>
+#                         e.g. -s 11 OR --size=11
 
-
-# def update_dict(key,val, dict):
-#     if dict.get(key):
-#         # dict[key].append(val)
-#         dict[key].insert(0,val)
-#     else:
-#         dict.update({key: [val]})
-#     return dict
-
-
-# def select_html_template(case, cat_id, pedigree, info):
-#     if case < 0 or case > 5:
-#         case = 5
-#     switch = {
-#         0: build_header,
-#         1: build_gen1,
-#         2: build_gen2,
-#         3: build_gen3,
-#         4: build_gen4,
-#         5: build_gen5,
-#         100: build_generic
-#     }
-#     func = switch.get(case)
-#     return func(cat_id, pedigree, info)
-
-
-def parse_cmd_line(argv):
-    ids = ""
-    ## Change these three variables according to needs
-    id_list = [1,2,3,4]
-    depth = 5
-    basefont = 12
-
-    opts, _ = getopt.getopt(argv,"hi:d:s:",["help","ids=", "depth=", "size="])
-    for opt, arg in opts:
-        if opt in ("-h", "--help"):
-            print ("""
-You can specify the following variables after pedigrees.py
-    -h / --help=    <prints this help message>
-    -i / --ids=     <comma-separated list of cat ids (NO SPACES)>
-                        e.g. -i 2,27 OR --ids=2,27
-    -d / --depth=   <depth of generations (4 or 5 is best)>
-                        e.g -d 5 OR --depth=5
-    -s / --size=    <font size of grid in points (12 is default)>
-                        e.g. -s 11 OR --size=11
-
-To print out, use your browser to save or export this file as a pdf.
-N.B. There must be ONE .csv file (cat database) in the same folder as this script.
-""")
-            sys.exit()
-        elif opt in ("-i", "--ids"):
-            ids = arg
-            id_list = [int(id) for id in ids.split(",")]
-        elif opt in ("-d", "--depth"):
-            depth = int(arg)
-        elif opt in ("-s", "--size"):
-            basefont = int(arg)
-    return(id_list, basefont, depth)
+# To print out, use your browser to save or export this file as a pdf.
+# N.B. There must be ONE .csv file (cat database) in the same folder as this script.
+# """)
+#             sys.exit()
+#         elif opt in ("-i", "--ids"):
+#             ids = arg
+#             id_list = [int(id) for id in ids.split(",")]
+#         elif opt in ("-d", "--depth"):
+#             depth = int(arg)
+#         elif opt in ("-s", "--size"):
+#             basefont = int(arg)
+#     return(id_list, basefont, depth)
 
 
 # class Db:
@@ -297,13 +246,31 @@ def convert_to_dict(lines):
     return {line[0] : [line[1], line[2], line[3], line[4]] for line in lines}
 
 
-def main(argv):
-    # settings = dict(zip(("to_print", "font_size", "depth"), parse_cmd_line(argv)))
-    # db = Db()
-    lines = read_in_data(retrieve_file_by_suffix("txt"))
-    lines = group_lines(lines)
-    lines = associate_lines_correctly(lines)
-    lines = remove_dummies(lines)
+# def main(argv):
+def main():
+    """
+    Assumes
+        EITHER
+    ONE .txt file in the messy order created by
+    cutting and pasting from the wheelock website
+        OR
+    'wheelock_vocab.csv in this format:
+    accented latin, english gloss, chapter no => 'mē', 'me, myself', '1'
+
+    """
+    base_name = "vocab"
+    csv_file = f"{base_name}.csv"
+    # json_file = f"{base_name}.json"
+    out_file = "wheelock_vocab.json"
+    if Path(get_current_directory() / csv_file).exists():
+        lines = read_csv_file(csv_file)
+    else:
+        lines = read_in_data(retrieve_file_by_suffix("txt"))
+        lines = group_lines(lines)
+        lines = associate_lines_correctly(lines)
+        lines = remove_dummies(lines)
+        write_csv_file(lines, csv_file)
+    # print(lines)
     lines = add_ids(lines)
     lines = remove_stress_markers(lines)
     # lines = macrons_to_colons(lines)
@@ -311,13 +278,14 @@ def main(argv):
     # print(lines)
     # write_json_file({"data": lines})
     db = convert_to_dict(lines)
-    write_json_file(db)
-    pprint(db)
+    write_json_file(db, out_file)
+    # pprint(db)
     # print(add_macrons(db[42]))
 
 
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    # main(sys.argv[1:])
+    main()
 

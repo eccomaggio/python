@@ -21,8 +21,8 @@ import sys
 import getopt
 import json
 import re
+import string
 from tabulate import tabulate, SEPARATING_LINE
-
 tabulate.PRESERVE_WHITESPACE = True
 
 
@@ -54,10 +54,12 @@ def retrieve_file_by_name(filename):
     return file
 
 
+# def read_in_data(source_file, id_count, featured_words=[]):
 def read_in_data(source_file, id_count):
     with source_file.open(mode="r", encoding="utf-8") as f:
         tables = []
         table = {}
+        title_found = False
         # id_count = 0
         for line_num, curr_line in enumerate(f):
             # if line_num >= 52:
@@ -75,6 +77,13 @@ def read_in_data(source_file, id_count):
                 if table:
                     tables.append(table.copy())
                 word_class, subtype, table_type = curr_line[1:].strip().split(":")
+                vocab = parse_table_type(table_type)
+                table_type = table_type.split("=")[0]
+                title_found = False
+                # details = parse_table_type(table_type)
+                # if details:
+                #     # featured_words.extend(details)
+                #     featured_words.append([id_count, details])
 
                 table = {
                     "id": id_count,
@@ -82,16 +91,20 @@ def read_in_data(source_file, id_count):
                     "word_class": word_class,
                     "subtype": subtype,
                     "table_type": table_type,
-                    "titles": [],
+                    "vocab": vocab,
+                    "title": "",
+                    "notes": [],
                     "cols": 0,
                     "data": []
                 }
                 id_count += 1
-            # elif skip_table:
-            #     continue
             elif curr_line.startswith("*"):
-                table["titles"].append(curr_line[1:])
-
+                text = curr_line[1:].strip()
+                if title_found:
+                    table["notes"].append(text)
+                else:
+                    table["title"] = text
+                    title_found = True
             else:
                 curr_line = curr_line.replace("  ", "\t")
                 curr_line = add_macrons(curr_line)
@@ -99,7 +112,38 @@ def read_in_data(source_file, id_count):
                 table_row = [" " if el == "%" else el for el in table_row]
                 table["data"].append(table_row)
         tables = convert_by_col_to_by_row(tables)
+        # return (tables, id_count, featured_words)
         return (tables, id_count)
+
+def parse_table_type(table_type):
+    tmp = table_type.split("=")
+    # details = None
+    details = []
+    if len(tmp) > 1:
+        details = tmp[1].split(" ")
+    return details
+
+def compile_featured_words(all_tables):
+    tmp = []
+    for table in all_tables:
+        if table["vocab"]:
+            tmp.append([table["id"], table["vocab"]])
+        # details = parse_table_type(table["table_type"])
+        # if details:
+        #     tmp.append([table["id"], details])
+    return tmp
+
+def compile_tables_for_vocab_list(all_tables):
+    tmp = {}
+    for table in all_tables:
+        latin_entry = " ".join(table["vocab"])
+        english_entry = table["title"].lower()
+        # english_entry = [char for char in english_entry if char not in string.punctuation]
+        # english_entry = " ".join([word for word in english_entry if word not in ["and", "for", "of","with"]])
+        tmp[f"t{table['id']}"] = [latin_entry, latin_entry, english_entry, "table"]
+        # for word in table["vocab"]:
+        #     tmp[f"t{table['id']}"] = [word, word, table["title"], "table"]
+    return tmp
 
 def convert_by_col_to_by_row(tables):
     """
@@ -212,7 +256,8 @@ def draw_table(table):
     of undifferentiated rows
     """
     print(f"\nid: {table['id']}")
-    for title in table["titles"]:
+    print(table["title"])
+    for title in table["notes"]:
         print(title)
     # print(tabulate(table["data"], headers="firstrow", tablefmt="fancy_outline", colalign=("right",)))
     print(tabulate(table["data"], headers="firstrow", tablefmt="fancy_outline"))
@@ -232,7 +277,8 @@ def draw_labelled_table(table, order="uk"):
         "us": ["number", "gender", "nom", "gen", "par", "dat", "acc", "abl", "voc", "misc"],
     }
     print(f"\nid: {table['id']}")
-    for title in table["titles"]:
+    print(table["title"])
+    for title in table["notes"]:
         print(title)
     tmp = []
     for key in ordering[order]:
@@ -294,13 +340,23 @@ def main():
     id_count = 0
     all_tables = []
     for file_name in files:
+        # tables, id_count, featured_words = read_in_data(retrieve_file_by_name(f"{file_name}.csv"),id_count, featured_words)
         tables, id_count = read_in_data(retrieve_file_by_name(f"{file_name}.csv"),id_count)
-        write_json_file(tables, f"{file_name}.json")
+        # write_json_file(tables, f"{file_name}.json")
         for table in tables:
             all_tables.append(table)
     # pprint(all_tables)
+    write_json_file(all_tables, "tables.json")
     for table in all_tables:
         draw_table(table)
+    featured_words = compile_featured_words(all_tables)
+    write_json_file(featured_words, "table_links.json")
+    # print("featured words:", featured_words)
+
+    entries = compile_tables_for_vocab_list(all_tables)
+    write_json_file(entries, "table_entries.json")
+    # print("featured words:", entries)
+
 
     # for table in tables_labelled:
     #     draw_labelled_table(table)
