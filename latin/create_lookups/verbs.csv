@@ -11,6 +11,7 @@
 
 &v:a_i_p=1:e=amo
 *First conjugation active indicative verb
+*In early Latin (Plautus), the 3rd singular endings -at and -et were pronounced -āt and -ēt with a long vowel.
 %
 %
 I
@@ -80,6 +81,7 @@ amārent
 
 &v:p_i_p=1:e=amo
 *first conjugation passive indicative verb
+*The 2nd person singular passive amāberis, amābāris, amēris, amārēris can be shortened to amābere, amābāre, amēre, amārēre. -re was the regular form in early Latin and (except in the present indicative) in Cicero; -ris was preferred later.
 %
 %
 I
@@ -149,6 +151,8 @@ amārentur
 
 &v:a_i_k=1:e=amo
 *Perfect tenses: first conjugation active indicative verb
+*In poetry (and also sometimes in prose, e.g. Livy), the 3rd person plural of the perfect indicative is often amāvēre instead of amāvērunt. Occasionally the form amāverunt is also found.
+*The -v- of the perfect active tenses sometimes drops out, especially in the pluperfect subjunctive: amāssem for amāvissem. Forms such as amārat and amāstī are also found.
 %
 %
 I
@@ -188,6 +192,15 @@ amāverant
 
 &v:a_s_k=1:e=amo
 *Perfect tenses: first conjugation active subjunctive
+%
+%
+I
+you sg.
+he, she, it
+we
+you pl.
+they
+@
 Perfect
 I loved
 amāverim
@@ -280,6 +293,8 @@ amātī essent
 
 &v:a_i_p=2:e=video
 *Second conjugation active indicative verb
+*The second conjugation is characterized by the vowel ē, and can be recognized by the -eō ending of the first person present indicative and the -ēre ending of the present active infinitive form.
+*In verbs with perfect in -vī, syncopated (i.e. abbreviated) forms are common, such as dēlēram, dēlēssem, dēlēstī for dēlēveram, dēlēvissem, dēlēvistī.
 %
 %
 I
@@ -420,6 +435,9 @@ vidērentur
 
 &v:a_i_p=3:e=duco
 *Third conjugation active indicative verb
+*The third conjugation has a variable short stem vowel, which may be e, i, or u in different environments. Verbs of this conjugation end in -ere in the present active infinitive. Deponent verbs have the infinitive -ī.
+*The future tense in the 3rd and 4th conjugation (-am, -ēs, -et etc.) differs from that in the 1st and 2nd conjugation (-bō, -bis, -bit etc.).
+*Four 3rd conjugation verbs usually have no ending in the imperative singular: dūc! "lead!", dīc! "say!", fer! "bring!", fac! "do!".
 %
 %
 I
@@ -562,6 +580,7 @@ dūcerentur
 
 &v:a_i_p=3-io:e=capio
 *Third conjugation active indicative verb
+*Intermediate between the third and fourth conjugation are the third-conjugation verbs with suffix –iō. These resemble the fourth conjugation in some forms.
 %
 %
 I
@@ -701,6 +720,8 @@ caperentur
 
 &v:a_i_p=4:e=audio
 *Fourth conjugation active indicative verb
+*The fourth conjugation is characterized by the vowel ī and can be recognized by the -īre ending of the present active infinitive. Deponent verbs have the infinitive -īrī.
+*In the perfect tenses, shortened forms without -v- are common, for example, audīstī, audiērunt, audierat, audīsset for audīvistī, audīvērunt, audīverat, audīvisset. Cicero, however, prefers the full forms audīvī, audīvit to audiī, audiit.
 %
 %
 I
@@ -880,6 +901,8 @@ erant
 
 &v:a_s:i=sum
 *Irregular verb subjunctive: sum - to be
+*In early Latin (e.g. Plautus), siem, siēs, siēt can be found for the present subjunctive sim, sīs, sit. In poetry the subjunctive fuam, fuās, fuat also sometimes occurs.
+*An alternative imperfect subjunctive is sometimes made using forem, forēs, foret etc.
 %
 %
 I
@@ -1394,6 +1417,7 @@ ferrentur
 &v:a_i:i=fio
 *Irregular verb indicative active: fiō
 *The irregular verb fīō, fierī, factus sum "to become, to happen, to be done, to be made" as well as being a verb in its own right serves as the passive of faciō, facere, fēcī, factum "to do, to make". The perfect tenses are identical with the perfect passive tenses of faciō.
+*The 1st and 2nd plural forms are almost never found.
 %
 %
 I

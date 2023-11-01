@@ -1,10 +1,23 @@
 """
-    go through .txt
-    identify unit numbers (#)
-    add as prefix to all relevant lines
-    group & associate correctly
-    deal with macrons (i.e. create lookup without them; use ":" internally? strip out if ignoring macros; replace with macros for display?)
+todo:
+make a class Result:
+.search_term
+.matches
+.prev_matches
+.language .search_lang .result_lang
+.matched_tables
+.prev_matched_tables
+.error_msg
 
+and
+
+class Db:
+.vocab
+.tables
+
+and
+
+add in row dividers where necessary
 """
 from pprint import pprint
 from dataclasses import dataclass
@@ -162,20 +175,21 @@ def main():
     table_entries = read_json("table_entries.json")
     db = {**db, **table_entries}
     tables = read_json("tables.json")
+
     prev_results = []
     while True:
-        matches = []
-        error_msg = ""
         menu = f"\n\n{col.fg.lightred}quid est quaerendum? {green}({x}:q{green}[uit], {x}:e{green}[nglish]"
         # range = ""
-        have_tables = len(prev_results) - len([x for x in prev_results if x.startswith("t")]) + 1
+        # have_tables = len(prev_results) - len([x for x in prev_results if x.startswith("t")]) + 1
+        prev_result_tables = [x for x in prev_results if x.startswith("t")]
+        had_tables = len(prev_results) - len(prev_result_tables) + 1
         end_range = len(prev_results)
-        if have_tables <= end_range:
+        if had_tables <= end_range:
             menu = f"{menu}, {x}:r{green}[epeat], or "
-            if have_tables == end_range:
+            if had_tables == end_range:
                 choices = f"{x}{end_range}{green}"
             else:
-                choices = f"{x}{have_tables}{green} to {x}{end_range}{green}"
+                choices = f"{x}{had_tables}{green} to {x}{end_range}{green}"
             menu = f"{menu}{choices}"
         print(f"{menu}){x}")
         # print(matches,prev_results)
@@ -184,6 +198,8 @@ def main():
         display_search = LATIN_DISPLAY
         display_result = ENGLISH
 
+        matches = []
+        error_msg = ""
         if not search_for:
             # error_msg = "Quid facis?? Please input a latin word."
             print("Quid facis?? Please input a latin word.")
@@ -216,9 +232,12 @@ def main():
         if not matches:
             matches = build_match_list(search_for, language, db)
         if matches:
+            result_tables = [x for x in matches if x.startswith("t")]
+            # print("debug:", result_tables, len(result_tables), result_tables[0])
             for n, id in enumerate(matches):
                 entry = db[id]
-                if len(matches) == 1 and entry[CHAPTER] == "table":
+                # if len(matches) == 1 and entry[CHAPTER] == "table":
+                if len(result_tables) == 1 and id == result_tables[0]:
                     draw_table(id, tables[id])
                 else:
                     print(f"\t{blue}{n + 1}. {pink}{entry[display_search]} {x}{bold}{entry[display_result]} {dgrey}from chapter {lblue}{entry[CHAPTER]}{x}")
