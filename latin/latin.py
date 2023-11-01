@@ -1,22 +1,4 @@
 """
-todo:
-make a class Result:
-.search_term
-.matches
-.prev_matches
-.language .search_lang .result_lang
-.matched_tables
-.prev_matched_tables
-.error_msg
-
-and
-
-class Db:
-.vocab
-.tables
-
-and
-
 add in row dividers where necessary
 """
 from pprint import pprint
@@ -43,22 +25,21 @@ class col:
     strikethrough = '\033[09m'
     invisible = '\033[08m'
 
-    class fg:
-            black = '\033[30m'
-            red = '\033[31m'
-            green = '\033[32m'
-            orange = '\033[33m'
-            blue = '\033[34m'
-            purple = '\033[35m'
-            cyan = '\033[36m'
-            lightgrey = '\033[37m'
-            darkgrey = '\033[90m'
-            lightred = '\033[91m'
-            lightgreen = '\033[92m'
-            yellow = '\033[93m'
-            lightblue = '\033[94m'
-            pink = '\033[95m'
-            lightcyan = '\033[96m'
+    black = '\033[30m'
+    red = '\033[31m'
+    green = '\033[32m'
+    orange = '\033[33m'
+    blue = '\033[34m'
+    purple = '\033[35m'
+    cyan = '\033[36m'
+    lightgrey = '\033[37m'
+    darkgrey = '\033[90m'
+    lightred = '\033[91m'
+    lightgreen = '\033[92m'
+    yellow = '\033[93m'
+    lightblue = '\033[94m'
+    pink = '\033[95m'
+    lightcyan = '\033[96m'
 
     class bg:
         black = '\033[40m'
@@ -71,6 +52,72 @@ class col:
         lightgrey = '\033[47m'
 
 
+
+class Result:
+    def __init__(self):
+        self.term = ""
+        self.error = ""
+        # self.action = ""
+        self.matches = []
+        self.tables = []
+        self.language = 0
+        self.prev = self.Prev()
+
+    def __repr__(self) -> str:
+        return f"m:{self.matches}, {self.tables}\npm:{self.prev.matches}, {self.prev.tables}"
+
+    class Prev():
+        def __init__(self):
+            self.matches = []
+            self.tables = []
+
+    def update(self, latest_matches):
+        self.prev.matches = self.matches
+        self.prev.tables = self.tables
+        self.matches = latest_matches
+        if latest_matches:
+            self.tables = self.get_tables_only(latest_matches)
+        else:
+            # self.error = f"{col.red}No matches found for <{col.reset}{self.term}{col.red}>.{col.reset}"
+            self.error = f"No matches found for <*<*{self.term}*>*>.{col.reset}"
+            self.tables = []
+        return self
+
+    def show_error(self, err=col.red, hi=col.reset):
+        # msg = self.error
+        msg = self.error.replace("*<*", hi).replace("*>*", err)
+        print(err + msg + hi)
+
+    def set_language(self, lang_code="la"):
+        if lang_code.startswith("la"):
+            self.language = 0
+        else:
+            self.language = 2
+        return self
+
+    def get_language(self):
+        if self.language == 0:
+            return "la"
+        else:
+            return "en"
+
+    # def count_tables(self, o):
+    #     return len(o.matches) - len(o.tables) + 1
+
+    def get_tables_only(self, matches):
+        return [x for x in matches if x.startswith("t")]
+
+
+
+
+class Db:
+    def __init__(self, vocab, tables) -> None:
+        self.vocab = vocab
+        self.tables = tables
+
+
+
+
 def get_current_directory():
     return Path( __file__ ).parent.absolute()
 
@@ -81,39 +128,28 @@ def read_json(filename="latin.json"):
         return json.load(f)
 
 
-# def select_html_template(case, cat_id, pedigree, info):
-#     if case < 0 or case > 5:
-#         case = 5
-#     switch = {
-#         0: build_header,
-#         1: build_gen1,
-#         2: build_gen2,
-#         3: build_gen3,
-#         4: build_gen4,
-#         5: build_gen5,
-#         100: build_generic
-#     }
-#     func = switch.get(case)
-#     return func(cat_id, pedigree, info)
+def draw_table_title(title):
+    if title:
+        print(f"§ {col.bold}{col.orange}{title}{col.reset}")
 
 
+def draw_table_notes(notes):
+    for note in notes:
+        print(f"{col.lightblue}{note}{col.reset}")
 
-
-# class Db:
-#     def __init__(self):
-#         self.lemmas = create_list_from_file(retrieve_file_by_suffix())
 
 def draw_table(id, table):
     """
     In a standard table, the ["data"] consists of a list
     of undifferentiated rows
     """
+    draw_table_title(table.get('title'))
+    draw_table_notes(table.get('notes'))
     # print(f"\nid: {id}", table)
-    print(table.get("title"))
-    for note in table["notes"]:
-        print(note)
     # print(tabulate(table["data"], headers="firstrow", tablefmt="fancy_outline", colalign=("right",)))
     print(tabulate(table["data"], headers="firstrow", tablefmt="fancy_outline"))
+    # print(tabulate(table["data"], headers="firstrow", tablefmt="fancy_grid"))
+
 
 def draw_labelled_table(id, table, order="uk"):
     """
@@ -130,9 +166,8 @@ def draw_labelled_table(id, table, order="uk"):
         "us": ["number", "gender", "nom", "gen", "par", "dat", "acc", "abl", "voc", "misc"],
     }
     # print(f"\nid: {id}")
-    print(table["title"])
-    for title in table["notes"]:
-        print(title)
+    draw_table_title(table.get('title'))
+    draw_table_notes(table.get('notes'))
     tmp = []
     for key in ordering[order]:
         row = table["data"].get(key)
@@ -141,112 +176,145 @@ def draw_labelled_table(id, table, order="uk"):
                 # if key == "nom":
                 #     tmp.append(SEPARATING_LINE)
                 tmp.append(entry)
-    print(tabulate(tmp, headers="firstrow", tablefmt="fancy_outline", colalign=("right",)))
+    # print(tabulate(tmp, headers="firstrow", tablefmt="fancy_outline", colalign=("right",)))
+    print(tabulate(tmp, headers="firstrow", tablefmt="fancy_grid", colalign=("right",)))
+
+
+def print_entry(entry, result, num):
+    lemma = result.language
+    gloss = 0 if lemma else 2
+    num_prefix = ""
+    if num >= 0:
+        num_prefix = f"{col.blue}{num + 1}. "
+    print(f"\t{num_prefix}{col.pink}{entry[lemma]} {col.reset}{col.bold}{entry[gloss]} {col.darkgrey}from chapter {col.lightblue}{entry[3]}{col.reset}")
 
 
 def search_db(term, language, db):
-    return [id for id,entry in db.items() if re.search(term, entry[language])]
+    return [id for id,entry in db.vocab.items() if re.search(term, entry[language])]
 
-def build_match_list(term, language, db):
-    term = term.lower()
-    search = f"\b{term}"
-    matches = search_db(search, language, db)
+
+def build_match_list(result, db):
+    term = result.term
+    prefix = term[:2]
+    if prefix == "e:":
+        result.set_language("en")
+        term = term[2:]
+    else:
+        result.set_language("la")
+    search_string = f"\b{term}"
+    matches = search_db(search_string, result.language, db)
     if not matches:
-        search = f"{term}"
-        matches = search_db(search, language, db)
+        search_string = f"{term}"
+        matches = search_db(search_string, result.language, db)
     return matches
+
+
+def display_menu(result):
+    base_menu = f"\n\n{col.purple}quid est quaerendum? {col.green}(*<*:q*>*[uit], *<*:e*>*[nglish]"
+    extended_menu = ")"
+    menu_choices = ""
+    # print("debug:",result.prev.matches, result.prev.tables)
+    if len(result.prev.matches):
+        extended_menu = ", *<*:r*>*[epeat]"
+        if len(result.prev.tables) > 1:
+            # print(f"menu: {result.prev.matches},{result.prev.tables}")
+            start_index = len(result.prev.matches) - len(result.prev.tables)
+            end_index = len(result.prev.matches) - 1
+            extended_menu += ", or "
+            menu_choices = f"*<*{start_index + 1}"
+            if start_index < end_index:
+                menu_choices += f"*>* to *<*{end_index + 1}"
+        extended_menu = f"{extended_menu}{menu_choices}*>*)"
+    msg = f"{base_menu}{extended_menu}*<*".replace("*<*", col.reset).replace("*>*", col.green)
+    print(msg)
+    return menu_choices
+
+
+def check_input(result, menu_choices):
+    result.error = ""
+    action = ""
+    if not result.term:
+        result.error = "Quid facis?? Please input a latin word."
+        action = "continue"
+    elif result.term.isnumeric():
+        if result.prev.matches:
+            id_in_prev = int(result.term) - 1
+            if 0 <= id_in_prev < len(result.prev.matches) and result.prev.matches[id_in_prev].startswith("t"):
+                table_id = result.prev.matches[id_in_prev]
+                action = f"display:{table_id}"
+            else:
+                result.error = f"Enter *<*{menu_choices}*>* or a new term."
+                action = "continue"
+        else:
+            result.error = "Enter a word to search for."
+            action = "continue"
+    else:
+        result.term = result.term.lower()
+        prefix = result.term[:2]
+        if prefix in [":q", "q:", "qq"]:
+            action = "quit"
+        elif prefix in [":r", "r:", "rr"]:
+            action = "repeat"
+        elif prefix in [":e", "e:", "ee"]:
+            suffix = result.term[2:]
+            if suffix:
+                result.term = "e:" + suffix
+                action = "search"
+            else:
+                result.error = "Add an English term to search for."
+                action = "continue"
+        else:
+            action = "search"
+    return action
+
+
+def display_results(result, db):
+    if result.matches:
+        # result_tables = [x for x in result.matches if x.startswith("t")]
+        for num, id in enumerate(result.matches):
+            entry = db.vocab[id]
+            # if len(result_tables) == 1 and id == result_tables[0]:
+            if len(result.tables) == 1 and id == result.tables[0]:
+                draw_table(id, db.tables[id])
+            else:
+                print_entry(entry, result, num)
+    else:
+        result.show_error()
 
 
 
 def main():
-    LATIN_PLAIN = 0
-    LATIN_DISPLAY = 1
-    ENGLISH = 2
-    CHAPTER = 3
-    green = col.fg.green
-    pink = col.fg.pink
-    blue = col.fg.blue
-    lblue = col.fg.lightblue
-    dgrey = col.fg.darkgrey
-    bold = col.bold
-    x = col.reset
-
-    db = read_json("wheelock_vocab.json")
-    table_entries = read_json("table_entries.json")
-    db = {**db, **table_entries}
-    tables = read_json("tables.json")
-
-    prev_results = []
+    db = Db(
+        {
+            **read_json("wheelock_vocab.json"),
+            **read_json("table_entries.json")
+        },
+            read_json("tables.json"))
+    result = Result()
     while True:
-        menu = f"\n\n{col.fg.lightred}quid est quaerendum? {green}({x}:q{green}[uit], {x}:e{green}[nglish]"
-        # range = ""
-        # have_tables = len(prev_results) - len([x for x in prev_results if x.startswith("t")]) + 1
-        prev_result_tables = [x for x in prev_results if x.startswith("t")]
-        had_tables = len(prev_results) - len(prev_result_tables) + 1
-        end_range = len(prev_results)
-        if had_tables <= end_range:
-            menu = f"{menu}, {x}:r{green}[epeat], or "
-            if had_tables == end_range:
-                choices = f"{x}{end_range}{green}"
-            else:
-                choices = f"{x}{had_tables}{green} to {x}{end_range}{green}"
-            menu = f"{menu}{choices}"
-        print(f"{menu}){x}")
-        # print(matches,prev_results)
-        search_for = input().strip()
-        language = LATIN_PLAIN
-        display_search = LATIN_DISPLAY
-        display_result = ENGLISH
+        menu_choices = display_menu(result)
+        result.term = input().strip()
+        match check_input(result,menu_choices):
+            case "quit":
+                quit()
+            case "continue":
+                # print(result.error)
+                result.show_error()
+            case str() as action if action.startswith("display"):
+                table_id = action.split(":")[1]
+                draw_table(table_id, db.tables[table_id])
+            case "repeat":
+                result.update(result.prev.matches)
+                display_results(result, db)
+                result.update([])
+            case "search":
+                matches = build_match_list(result, db)
+                result.update(matches)
+                display_results(result,db)
+                result.update([])
+            case _:
+                print("Houston, we have a problem...")
 
-        matches = []
-        error_msg = ""
-        if not search_for:
-            # error_msg = "Quid facis?? Please input a latin word."
-            print("Quid facis?? Please input a latin word.")
-            continue
-        if search_for.isnumeric():
-            if prev_results:
-                id_in_prev = int(search_for) - 1
-                if id_in_prev >= 0 and id_in_prev < end_range:
-                    table_id = prev_results[id_in_prev]
-                    table = tables.get(table_id)
-                    if table:
-                        draw_table(table_id, table)
-                        continue
-                error_msg = f"{green}Enter {choices} or a new term."
-            else:
-                error_msg = "Enter a word to search for."
-            print(error_msg)
-            continue
-        else:
-            prefix = search_for[:2]
-            if prefix in [":q", "q:", "qq"]:
-                break
-            elif prefix in [":r", "r:", "rr"]:
-                matches = prev_results
-            elif prefix in [":e", "e:", "ee"]:
-                language = ENGLISH
-                display_search, display_result = display_result, display_search
-                search_for = search_for[2:].strip()
-
-        if not matches:
-            matches = build_match_list(search_for, language, db)
-        if matches:
-            result_tables = [x for x in matches if x.startswith("t")]
-            # print("debug:", result_tables, len(result_tables), result_tables[0])
-            for n, id in enumerate(matches):
-                entry = db[id]
-                # if len(matches) == 1 and entry[CHAPTER] == "table":
-                if len(result_tables) == 1 and id == result_tables[0]:
-                    draw_table(id, tables[id])
-                else:
-                    print(f"\t{blue}{n + 1}. {pink}{entry[display_search]} {x}{bold}{entry[display_result]} {dgrey}from chapter {lblue}{entry[CHAPTER]}{x}")
-            prev_results = matches
-        else:
-            if not error_msg:
-                error_msg = f"No matches for <{search_for}>"
-        if error_msg:
-            print(error_msg)
 
 
 
