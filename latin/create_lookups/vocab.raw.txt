@@ -691,50 +691,34 @@ dummy
 #
 #
 #15
-animal, animālis (n)
-aqua, aquae (f)
-a living creature, animal
-water
-ars, artis (f)
-auris, auris (f)
-art, skill
-ear
-cīvis, cīvis (m or f)
-iūs, iūris (n)
-citizen
-right, justice, law
-mare, maris (n)
-mors, mortis (f)
-sea
-death
-nūbēs, nūbis (f)
-ōs, ōris (n)
-cloud
-mouth, face
-pars, partis (f)
-Rōma, Rōmae (f)
-part, share; direction
-Rome
-turba, turbae (f)
-urbs, urbis (f)
-uproar, disturbance, mob, crowd, multitude
-city
-vīs, vīs (f)
-vīrēs, vīrium (f. pl.)
-force, power, violence
-strength
-ab, ā (+abl.)
-trāns (+acc.)
-away from, from; by
-across
-appellō, appellāre, appellāvī, appellātum
-currō, currere, cucurrī, cursum
-to speak to, address (as), call, name
-to run, rush, move quickly
-mūtō, mūtāre, mūtāvī, mūtātum
-vītō, vītāre, vītāvī, vītātum
-to change, alter; exchange
-to avoid, shun
+Italia, Italiae (f)
+memoria, memoriae (f)
+Italy
+memory, recollection
+tempestās, tempestātis (f)
+centum
+period of time, season; weather, storm
+a hundred
+mīlle
+mīlia, mīlium (n. pl.)
+thousand
+thousands
+miser, misera, miserum
+inter (+acc.)
+wretched, miserable, unfortunate
+between, among
+itaque
+committō, committere, commīsī, commissum
+and so, therefore
+to entrust, commit
+exspectō, exspectāre, exspectāvī, exspectātum
+iaciō, iacere, iēcī, iactum
+to look for, expect, await
+to throw, hurl
+tímeō, timḗre, tímuī
+dummy
+to fear, be afraid (of)
+dummy
 #
 #
 #

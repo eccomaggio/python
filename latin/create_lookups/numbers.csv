@@ -8,81 +8,149 @@
 ## adj = a: declension (1, 2, 3, 1&2) : paradigm / eg / subtype / irregular
 
 &d:card:all
-*Cardinal numbers
-num	n'l	Latin	num	n'l	Latin	num	n'l	Latin	num	n'l	Latin
-1	I	ūnus, ūna, ūnum	11	XI	ūndecim	21	XXI	vīgintī et ūnus	101	CI	centum et ūnus
-2	II	duo, duae, duo	12	XII	duodecim	22	XXII	vīgintī et duo	200	CC	ducentī, ducentae, ducenta
-3	III	trēs, tria	13	XIII	tredecim	30	XXX	trīgintā	300	CCC	trecentī, trecentae, trecenta
-4	IV	quattuor	14	XIV	quattuordecim	40	XL	quadrāgintā	400	CD	quadringentī, quadringentae, quadringenta
-5	V	quīnque	15	XV	quīndecim	50	L	quīnquāgintā	500	D	quīngentī, quīngentae, quīngenta
-6	VI	sex	16	XVI	sēdecim	60	LX	sexāgintā	600	DC	sescentī, sescentae, sescenta
-7	VII	septem	17	XVII	septendecim	70	LXX	septuāgintā	700	DCC	septingentī, septingentae, septingenta
-8	VIII	octō	18	XVIII	duodēvīgintī	80	LXXX	octōgintā	800	DCCC	octingentī, octingentae, octingenta
-9	IX	novem	19	XIX	ūndēvīgintī	90	XC	nōnāgintā	900	CM	nōngentī, nōngentae, nōngenta
-10	X	decem	20	XX	vīgintī	100	C	centum	1000	M	mīlle
+*Cardinal numbers 1-20
+num	n'l	Latin	num	n'l	Latin
+1	I	ūnus, ūna, ūnum	11	XI	ūndecim
+2	II	duo, duae, duo	12	XII	duodecim
+3	III	trēs, tria	13	XIII	tredecim
+4	IV	quattuor	14	XIV	quattuordecim
+5	V	quīnque	15	XV	quīndecim
+6	VI	sex	16	XVI	sēdecim
+7	VII	septem	17	XVII	septendecim
+8	VIII	octō	18	XVIII	duodēvīgintī
+9	IX	novem	19	XIX	ūndēvīgintī
+10	X	decem	20	XX	vīgintī
 
+&d:card:all
+*Cardinal numbers 21-1000
+num	n'l	Latin	num	n'l	Latin
+21	XXI	vīgintī et ūnus	101	CI	centum et ūnus
+22	XXII	vīgintī et duo	200	CC	ducentī, ducentae, ducenta
+30	XXX	trīgintā	300	CCC	trecentī, trecentae, trecenta
+40	XL	quadrāgintā	400	CD	quadringentī, quadringentae, quadringenta
+50	L	quīnquāgintā	500	D	quīngentī, quīngentae, quīngenta
+60	LX	sexāgintā	600	DC	sescentī, sescentae, sescenta
+70	LXX	septuāgintā	700	DCC	septingentī, septingentae, septingenta
+80	LXXX	octōgintā	800	DCCC	octingentī, octingentae, octingenta
+90	XC	nōnāgintā	900	CM	nōngentī, nōngentae, nōngenta
+100	C	centum	1000	M	mīlle
 
 &d:ordinal:all
-*Ordinal numbers
-num	n'l	Latin	num	n'l	Latin	num	n'l	Latin	num	n'l	Latin
-1	I	prīmus	11	XI	ūndecimus	21	XXI	vīcēsimus prīmus	101	CI	centēsimus prīmus
-2	II	secundus	12	XII	duodecimus	22	XXII	vīcēsimus secundus	200	CC	ducentēsimus
-3	III	tertius	13	XIII	tertius decimus	30	XXX	trīcēsimus	300	CCC	trecentēsimus
-4	IV	quārtus	14	XIV	quārtus decimus	40	XL	quadrāgēsimus	400	CD	quadringentēsimus
-5	V	quīntus	15	XV	quīntus decimus	50	L	quīnquāgēsimus	500	D	quīngentēsimus
-6	VI	sextus	16	XVI	sextus decimus	60	LX	sexāgēsimus	600	DC	sescentēsimus
-7	VII	septimus	17	XVII	septimus decimus	70	LXX	septuāgēsimus	700	DCC	septingentēsimus
-8	VIII	octāvus	18	XVIII	duodēvīcēsimus	80	LXXX	octōgēsimus	800	DCCC	octingentēsimus
-9	IX	nōnus	19	XIX	ūndēvīcēsimus	90	XC	nōnāgēsimus	900	CM	nōngentēsimus
-10	X	decimus	20	XX	vīcēsimus	100	C	centēsimus	1000	M	mīllēsimus
+*Ordinal numbers 1-20
+num	n'l	Latin	num	n'l	Latin
+1	I	prīmus	11	XI	ūndecimus
+2	II	secundus	12	XII	duodecimus
+3	III	tertius	13	XIII	tertius decimus
+4	IV	quārtus	14	XIV	quārtus decimus
+5	V	quīntus	15	XV	quīntus decimus
+6	VI	sextus	16	XVI	sextus decimus
+7	VII	septimus	17	XVII	septimus decimus
+8	VIII	octāvus	18	XVIII	duodēvīcēsimus
+9	IX	nōnus	19	XIX	ūndēvīcēsimus
+10	X	decimus	20	XX	vīcēsimus
+
+&d:ordinal:all
+*Ordinal numbers 21-1000
+num	n'l	Latin	num	n'l	Latin
+21	XXI	vīcēsimus prīmus	101	CI	centēsimus prīmus
+22	XXII	vīcēsimus secundus	200	CC	ducentēsimus
+30	XXX	trīcēsimus	300	CCC	trecentēsimus
+40	XL	quadrāgēsimus	400	CD	quadringentēsimus
+50	L	quīnquāgēsimus	500	D	quīngentēsimus
+60	LX	sexāgēsimus	600	DC	sescentēsimus
+70	LXX	septuāgēsimus	700	DCC	septingentēsimus
+80	LXXX	octōgēsimus	800	DCCC	octingentēsimus
+90	XC	nōnāgēsimus	900	CM	nōngentēsimus
+100	C	centēsimus	1000	M	mīllēsimus
 
 &d:distrib:all
-*Distributive numbers
+*Distributive numbers 1-20
 *Another set of n'l adjectives, similar to the above but differing in the adjectives for 1, 3, and 4, were the distributive n'ls: singulī, bīnī, ternī, quaternī, quīnī, sēnī, and so on. The meaning of these is 'one each', 'two each' (or 'in pairs') and so on.
+num	n'l	Latin	num	n'l	Latin
+1	I	singulī	11	XI	ūndēnī
+2	II	bīnī	12	XII	duodēnī
+3	III	ternī	13	XIII	ternī
+4	IV	quaternī	14	XIV	quaternī dēnī
+5	V	quīnī	15	XV	quīnī dēnī
+6	VI	sēnī	16	XVI	sēnī dēnī
+7	VII	septēnī	17	XVII	septēnī dēnī
+8	VIII	octōnī	18	XVIII	duodēvīcēnī
+9	IX	novēnī	19	XIX	ūndēvīcēnī
+10	X	dēnī	20	XX	vīcēnī
 
-num	n'l	Latin	num	n'l	Latin	num	n'l	Latin	num	n'l	Latin
-1	I	singulī	11	XI	ūndēnī	21	XXI	vīcēnī singulī	101	CI	centēnī singulī
-2	II	bīnī	12	XII	duodēnī	22	XXII	vīcēnī bīnī	200	CC	ducēnī
-3	III	ternī	13	XIII	ternī dēnī	30	XXX	trīcēnī	300	CCC	trecēnī
-4	IV	quaternī	14	XIV	quaternī dēnī	40	XL	quādrāgēnī	400	CD	quadringēnī
-5	V	quīnī	15	XV	quīnī dēnī	50	L	quīnquāgēnī	500	D	quīngēnī
-6	VI	sēnī	16	XVI	sēnī dēnī	60	LX	sexāgēnī	600	DC	sescēnī
-7	VII	septēnī	17	XVII	septēnī dēnī	70	LXX	septuāgēnī	700	DCC	septingēnī
-8	VIII	octōnī	18	XVIII	duodēvīcēnī	80	LXXX	octōgēnī	800	DCCC	octingēnī
-9	IX	novēnī	19	XIX	ūndēvīcēnī	90	XC	nōnāgēnī	900	CM	nōngēnī
-10	X	dēnī	20	XX	vīcēnī	100	C	centēnī	1000	M	mīllēnī
+&d:distrib:all
+*Distributive numbers 21-1000
+num	n'l	Latin	num	n'l	Latin
+21	XXI	vīcēnī singulī	101	CI	centēnī singulī
+22	XXII	vīcēnī bīnī	200	CC	ducēnī
+30	XXX	trīcēnī	300	CCC	trecēnī
+40	XL	quādrāgēnī	400	CD	quadringēnī
+50	L	quīnquāgēnī	500	D	quīngēnī
+60	LX	sexāgēnī	600	DC	sescēnī
+70	LXX	septuāgēnī	700	DCC	septingēnī
+80	LXXX	octōgēnī	800	DCCC	octingēnī
+90	XC	nōnāgēnī	900	CM	nōngēnī
+100	C	centēnī	1000	M	mīllēnī
 
 &d:adv:all
-*Adverbial numbers
+*Adverbial numbers 1-20
 *Adverbial numerals are (as the name states) indeclinable adverbs, but because all of the other numeral constructions are adjectives, they are listed here with them. Adverbial numerals give how many times a thing happened. semel 'once', bis 'twice', ter 'thrice, three times', quater 'four times', and so on.
 num	n'l	Latin	num	n'l	Latin	num	n'l	Latin	num	n'l	Latin
-1	I	semel	11	XI	ūndeciēns	21	XXI	vīciēns semel	101	CI	centiēns semel
-2	II	bis	12	XII	duodeciēns	22	XXII	vīciēns bis	200	CC	ducentiēns
-3	III	ter	13	XIII	trēdeciēns	30	XXX	trīciēns	300	CCC	trecentiēns
-4	IV	quater	14	XIV	quattuordeciēns	40	XL	quadrāgiēns	400	CD	quadringentiēns
-5	V	quinquiēns	15	XV	quīndeciēns	50	L	quīnquāgiēns	500	D	quīngentiēns
-6	VI	sexiēns	16	XVI	sēdeciēns	60	LX	sexāgiēns	600	DC	sescentiēns
-7	VII	septiēns	17	XVII	septendeciēns	70	LXX	septuāgiēns	700	DCC	septingentiēns
-8	VIII	octiēns	18	XVIII	duodēvīciēns	80	LXXX	octōgiēns	800	DCCC	octingentiēns
-9	IX	noviēns	19	XIX	ūndēvīciēns	90	XC	nōnāgiēns	900	Cↀ	nōngentiēns
-10	X	deciēns	20	XX	vīciēns	100	C	centiēns	1000	ↀ	mīlliēns
+1	I	semel	11	XI	ūndeciēns
+2	II	bis	12	XII	duodeciēns
+3	III	ter	13	XIII	trēdeciēns
+4	IV	quater	14	XIV	quattuordeciēns
+5	V	quinquiēns	15	XV	quīndeciēns
+6	VI	sexiēns	16	XVI	sēdeciēns
+7	VII	septiēns	17	XVII	septendeciēns
+8	VIII	octiēns	18	XVIII	duodēvīciēns
+9	IX	noviēns	19	XIX	ūndēvīciēns
+10	X	deciēns	20	XX	vīciēns
 *The suffix -iēns may also be spelled -iēs: quinquiēs, sexiēs, etc. E.g. equidem deciēs dīxī (Plautus) 'indeed I've said it ten times already'
 
+&d:adv:all
+*Adverbial numbers 21-1000
+num	n'l	Latin	num	n'l	Latin
+21	XXI	vīciēns semel	101	CI	centiēns semel
+22	XXII	vīciēns bis	200	CC	ducentiēns
+30	XXX	trīciēns	300	CCC	trecentiēns
+40	XL	quadrāgiēns	400	CD	quadringentiēns
+50	L	quīnquāgiēns	500	D	quīngentiēns
+60	LX	sexāgiēns	600	DC	sescentiēns
+70	LXX	septuāgiēns	700	DCC	septingentiēns
+80	LXXX	octōgiēns	800	DCCC	octingentiēns
+90	XC	nōnāgiēns	900	Cↀ	nōngentiēns
+100	C	centiēns	1000	ↀ	mīlliēns
+
 &d:prop:all
-*Proportional numbers
+*Proportional numbers 1-20
 *Proportional numerals are declinable adjectives. simplus 'simple', duplus 'twice as great', triplus 'thrice as great', quadruplus 'four times as great', and so on.
-num	n'l	Latin	num	n'l	Latin	num	n'l	Latin	num	n'l	Latin
-1	I	simplus	11	XI	ūndecuplus	21	XXI	vīgentuplus simplus	101	CI	centuplus simplus
-2	II	duplus	12	XII	duodecuplus	22	XXII	vīgentuplus duplus	200	CC	ducentuplus
-3	III	triplus	13	XIII	trēdecuplus	30	XXX	trīgintuplus	300	CCC	trecentuplus
-4	IV	quadruplus	14	XIV	quattuordecuplus	40	XL	quadrāgintuplus	400	CD	quadringentuplus
-5	V	quīncuplus	15	XV	quīndecuplus	50	L	quīnquāgintuplus	500	D	quīngentuplus
-6	VI	sextuplus	16	XVI	sēdecuplus	60	LX	sexāgintuplus	600	DC	sescentuplus
-7	VII	septuplus	17	XVII	septendecuplus	70	LXX	septuāgintuplus	700	DCC	septingentuplus
-8	VIII	octuplus	18	XVIII	duodēvīgentuplus	80	LXXX	octōgintuplus	800	DCCC	octingentuplus
-9	IX	nōnuplus	19	XIX	ūndēvīgentuplus	90	XC	nōnāgintuplus	900	Cↀ	nōngentuplus
-10	X	decuplus	20	XX	vīgentuplus	100	C	centuplus	1000	ↀ	mīlliplus
+num	n'l	Latin	num	n'l	Latin
+1	I	simplus	11	XI	ūndecuplus
+2	II	duplus	12	XII	duodecuplus
+3	III	triplus	13	XIII	trēdecuplus
+4	IV	quadruplus	14	XIV	quattuordecuplus
+5	V	quīncuplus	15	XV	quīndecuplus
+6	VI	sextuplus	16	XVI	sēdecuplus
+7	VII	septuplus	17	XVII	septendecuplus
+8	VIII	octuplus	18	XVIII	duodēvīgentuplus
+9	IX	nōnuplus	19	XIX	ūndēvīgentuplus
+10	X	decuplus	20	XX	vīgentuplus
 *These are often used as nouns: simplum 'the simple sum', duplum 'double the amount of money' and so on. E.g. duplam pecūniam in thēsaurōs repōnī (Livy) 'double the amount of money to be replaced in the treasuries'
+
+&d:prop:all
+*Proportional numbers 21-1000
+num	n'l	Latin	num	n'l	Latin
+21	XXI	vīgentuplus simplus	101	CI	centuplus simplus
+22	XXII	vīgentuplus duplus	200	CC	ducentuplus
+30	XXX	trīgintuplus	300	CCC	trecentuplus
+40	XL	quadrāgintuplus	400	CD	quadringentuplus
+50	L	quīnquāgintuplus	500	D	quīngentuplus
+60	LX	sexāgintuplus	600	DC	sescentuplus
+70	LXX	septuāgintuplus	700	DCC	septingentuplus
+80	LXXX	octōgintuplus	800	DCCC	octingentuplus
+90	XC	nōnāgintuplus	900	Cↀ	nōngentuplus
+100	C	centuplus	1000	ↀ	mīlliplus
 
 &d:card:e=unus
 *Cardinal numerals: unus one

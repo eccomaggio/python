@@ -50,7 +50,7 @@ Dative	dominō	dominīs
 Ablative	dominō	dominīs
 
 &n:2:e=bellum
-*Second-declension Neuter nouns
+*Second declension Neuter nouns
 %	Singular	Plural
 Nominative	bellum	bella
 Accusative	bellum	bella
@@ -60,7 +60,7 @@ Dative	bellō	belli:s
 Ablative	bellō	belli:s
 
 &n:2:e=filius auxilium
-*Second-declension -ius and -ium nouns
+*Second declension -ius and -ium nouns
 *fīlius, filiī son m.
 *auxilium, auxiliī aid, help n.
 %	Singular	Plural	Singular	Plural
@@ -72,7 +72,7 @@ Dative	fīliō	fīliīs	auxiliō	auxiliīs
 Ablative	fīliō	fīliīs	auxiliō	auxiliīs
 
 &n:2:e=puer ager vir
-*Second-declension -r nouns
+*Second declension -r nouns
 *puer, puerī boy m.
 *ager, agrī field m.
 *vir, virī man m.
@@ -105,7 +105,7 @@ Ablative	-e	-ibus	-e	-ibus
 Locative	Dat./Abl.	Dat.	Dat./Abl.	Dat.
 
 &n:3:e=dux virtus nomen
-Third-declension nouns
+Third declension nouns
 *dux, ducis leader m.
 *virtūs, virtūtis virtue f.
 *nōmen, nōminis name n.
@@ -139,7 +139,7 @@ Ablative	-e	-ibus	-e	-ibus
 Locative	Dat./Abl.	Dat.	Dat./Abl.	Dat.
 
 &n:3:e=turris pars animal
-*Third-declension special rules: Parisyllabic rule,	Double consonant rule,	Special neuter ending
+*Third declension special rules: Parisyllabic rule,	Double consonant rule,	Special neuter ending
 *turris, turris tower f. (pure)
 *pars, partis part, piece f. (mixed)
 *animal, animālis animal, living being n. (pure)
@@ -153,7 +153,7 @@ Ablative	turre	turribus	parte	partibus	animālī	animālibus
 %	turrī	%	(parti:)	%	%	%
 
 &n:3:i=vis sus bos Iuppiter
-*Third-declension Irregular nouns
+*Third declension Irregular nouns
 *vīs, vīs force, power f.
 *sūs, suis swine, pig, hog m.f.
 *bōs, bovis ox, bullock m.f.
@@ -171,7 +171,7 @@ Ablative	vī[ii]	vīribus	sue	suibus	bove	bōbus	Iove
 %	%	%	%	sūbus	%	būbus[i]	%
 
 &n:4:p
-*Fourth-declension (u stems) paradigm
+*Fourth declension (u stems) paradigm
 *-us ending nouns
 *-ū ending nouns
 %	Singular	Plural	Singular	Plural
@@ -185,7 +185,7 @@ Ablative	-u:	-ibus	-ū	-ibus
 Locative	-ī	Dat.	-ī	Dat.
 
 &n:4:e=portus genu
-*Fourth-declension nouns
+*Fourth declension nouns
 *portus, portūs port m.
 *genū, genūs knee n.
 %	Singular	Plural	Singular	Plural
@@ -223,7 +223,7 @@ Locative	domī	domibus	domī	domibus
 #Locative	domī	domibus
 
 &n:5:p
-**Fifth declension noun (e stems) paradigm
+*Fifth declension noun (e stems) paradigm
 *-iēs ending nouns
 *-ēs ending nouns
 %	Singular	Plural	Singular	Plural
@@ -269,5 +269,5 @@ impedīmentum, impedīmentī m. ('impediment, hindrance')	impedīmenta, impedīm
 littera, litterae f. ('letter [alphabet]')	litterae, litterārum ('letter [message], epistle, scholarship, literature')
 mōs, mōris m. ('habit, inclination')	mōrēs, mōrum m. ('morals, character')
 opera, operae f. ('trouble, pains')	operae, operārum m. ('workmen')
-*Ops, Opis f.[goddess] ('help')	opēs, opium ('resources, wealth')
+[Ops, Opis f.[goddess] ('help')]	opēs, opium ('resources, wealth')
 pars, partis f. ('part, piece')	partēs, partium ('office, function')

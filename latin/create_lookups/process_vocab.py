@@ -135,6 +135,17 @@ def group_lines(lines, max_group_index=3):
     return tmp_lines
 
 def associate_lines_correctly(lines):
+    """
+    The Wheelock website codes vocab like this:
+    lemma 1
+    lemma 2
+    gloss 1
+    gloss 2
+
+    This function unscrambles and creates two consecutive entries:
+    lemma 1, gloss 1
+    lemma 2, gloss 2
+    """
     tmp_lines = []
     to_add = []
     unit_num = 0

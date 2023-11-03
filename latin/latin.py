@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 add in row dividers where necessary
 """
@@ -78,13 +79,11 @@ class Result:
         if latest_matches:
             self.tables = self.get_tables_only(latest_matches)
         else:
-            # self.error = f"{col.red}No matches found for <{col.reset}{self.term}{col.red}>.{col.reset}"
             self.error = f"No matches found for <*<*{self.term}*>*>.{col.reset}"
             self.tables = []
         return self
 
     def show_error(self, err=col.red, hi=col.reset):
-        # msg = self.error
         msg = self.error.replace("*<*", hi).replace("*>*", err)
         print(err + msg + hi)
 
@@ -111,9 +110,11 @@ class Result:
 
 
 class Db:
-    def __init__(self, vocab, tables) -> None:
+    def __init__(self, vocab, tables, label_lookup={}, lang="uk") -> None:
         self.vocab = vocab
         self.tables = tables
+        self.label_lookup = label_lookup
+        self.lang = lang
 
 
 
@@ -128,6 +129,7 @@ def read_json(filename="latin.json"):
         return json.load(f)
 
 
+
 def draw_table_title(title):
     if title:
         print(f"§ {col.bold}{col.orange}{title}{col.reset}")
@@ -137,30 +139,57 @@ def draw_table_notes(notes):
     for note in notes:
         print(f"{col.lightblue}{note}{col.reset}")
 
-
-def draw_table(id, table):
+def draw_table(id, db):
     """
     In a standard table, the ["data"] consists of a list
     of undifferentiated rows
+
+    but if the second row contains "nom / acc. dat" then convert it
+    into a dictionary with the cases as keys
+    to allow display in either uk or us system
     """
-    draw_table_title(table.get('title'))
-    draw_table_notes(table.get('notes'))
-    # print(f"\nid: {id}", table)
-    # print(tabulate(table["data"], headers="firstrow", tablefmt="fancy_outline", colalign=("right",)))
-    print(tabulate(table["data"], headers="firstrow", tablefmt="fancy_outline"))
-    # print(tabulate(table["data"], headers="firstrow", tablefmt="fancy_grid"))
+    table = db.tables[id]
+    tmp = "".join(table.get("data")[1]).strip()[:3].lower()
+    if tmp in ["nom", "voc", "acc", "gen", "dat"]:
+        table = convert_to_labelled_table(id, table, db)
+        draw_labelled_table(id, table, db)
+    else:
+        draw_table_title(table.get('title'))
+        draw_table_notes(table.get('notes'))
+        invoke_tabulate(table["data"])
 
 
-def draw_labelled_table(id, table, order="uk"):
+def convert_to_labelled_table(id, table,db):
+    tmp = table.copy()
+    tmp["data"] = {}
+    backup_label = "misc"
+    for row in table["data"]:
+        label = ""
+        heading = "".join(row[:2]).strip()
+        heading = heading.lower()[:3]
+        if heading:
+            label = db.label_lookup.get(heading)
+        if label:
+            backup_label = label
+        else:
+            label = backup_label
+        if label in tmp["data"]:
+            tmp["data"][label].append(row)
+        else:
+            tmp["data"][label] = [row]
+    return tmp
+
+# def draw_labelled_table(id, table, order="uk"):
+def draw_labelled_table(id, table, db):
     """
     In a labelled table, the ["data"] is a dictionary;
     each entry is a labelled row (e.g. 'nom', 'gender').
     These can then be displayed in any order,
     i.e. UK (nom, voc, acc, ...) vs US (nom, gen, dat)
     """
-    order = order.lower()
-    if order != "uk":
-        order = "us"
+    # order = order.lower()
+    # if order != "uk":
+    #     order = "us"
     ordering = {
         "uk": ["number", "gender", "nom", "voc", "acc", "gen", "par", "dat", "abl", "misc"],
         "us": ["number", "gender", "nom", "gen", "par", "dat", "acc", "abl", "voc", "misc"],
@@ -169,15 +198,19 @@ def draw_labelled_table(id, table, order="uk"):
     draw_table_title(table.get('title'))
     draw_table_notes(table.get('notes'))
     tmp = []
-    for key in ordering[order]:
+    # for key in ordering[order]:
+    for key in ordering[db.lang]:
         row = table["data"].get(key)
         if row:
             for entry in row:
                 # if key == "nom":
                 #     tmp.append(SEPARATING_LINE)
                 tmp.append(entry)
-    # print(tabulate(tmp, headers="firstrow", tablefmt="fancy_outline", colalign=("right",)))
-    print(tabulate(tmp, headers="firstrow", tablefmt="fancy_grid", colalign=("right",)))
+    invoke_tabulate(tmp)
+
+def invoke_tabulate(data):
+    print(tabulate(data, headers="firstrow", tablefmt="fancy_outline", colalign=("right",)))
+    # print(tabulate(data, headers="firstrow", tablefmt="fancy_outline")
 
 
 def print_entry(entry, result, num):
@@ -213,11 +246,9 @@ def display_menu(result):
     base_menu = f"\n\n{col.purple}quid est quaerendum? {col.green}(*<*:q*>*[uit], *<*:e*>*[nglish]"
     extended_menu = ")"
     menu_choices = ""
-    # print("debug:",result.prev.matches, result.prev.tables)
     if len(result.prev.matches):
         extended_menu = ", *<*:r*>*[epeat]"
         if len(result.prev.tables) > 1:
-            # print(f"menu: {result.prev.matches},{result.prev.tables}")
             start_index = len(result.prev.matches) - len(result.prev.tables)
             end_index = len(result.prev.matches) - 1
             extended_menu += ", or "
@@ -229,6 +260,22 @@ def display_menu(result):
     print(msg)
     return menu_choices
 
+def check_numeric_entry(result, menu_choices):
+    action = ""
+    error = ""
+    if result.prev.matches:
+        id_in_prev = int(result.term) - 1
+        if 0 <= id_in_prev < len(result.prev.matches) and result.prev.matches[id_in_prev].startswith("t"):
+            table_id = result.prev.matches[id_in_prev]
+            action = f"display:{table_id}"
+        else:
+            error = f"Enter *<*{menu_choices}*>* or a new term."
+            action = "continue"
+    else:
+        error = "Enter a word to search for."
+        action = "continue"
+    return (action, error)
+
 
 def check_input(result, menu_choices):
     result.error = ""
@@ -237,17 +284,7 @@ def check_input(result, menu_choices):
         result.error = "Quid facis?? Please input a latin word."
         action = "continue"
     elif result.term.isnumeric():
-        if result.prev.matches:
-            id_in_prev = int(result.term) - 1
-            if 0 <= id_in_prev < len(result.prev.matches) and result.prev.matches[id_in_prev].startswith("t"):
-                table_id = result.prev.matches[id_in_prev]
-                action = f"display:{table_id}"
-            else:
-                result.error = f"Enter *<*{menu_choices}*>* or a new term."
-                action = "continue"
-        else:
-            result.error = "Enter a word to search for."
-            action = "continue"
+        action, result.error = check_numeric_entry(result, menu_choices)
     else:
         result.term = result.term.lower()
         prefix = result.term[:2]
@@ -270,26 +307,67 @@ def check_input(result, menu_choices):
 
 def display_results(result, db):
     if result.matches:
-        # result_tables = [x for x in result.matches if x.startswith("t")]
         for num, id in enumerate(result.matches):
             entry = db.vocab[id]
-            # if len(result_tables) == 1 and id == result_tables[0]:
             if len(result.tables) == 1 and id == result.tables[0]:
-                draw_table(id, db.tables[id])
+                draw_table(id, db)
             else:
                 print_entry(entry, result, num)
     else:
         result.show_error()
 
+def update_and_display(matches, result, db):
+    result.update(matches)
+    display_results(result, db)
+    result.update([])
 
-
-def main():
-    db = Db(
+def create_db(lang):
+    return Db(
         {
             **read_json("wheelock_vocab.json"),
             **read_json("table_entries.json")
         },
-            read_json("tables.json"))
+        read_json("tables.json"),
+        {
+            "nom": "nom",
+            "voc": "voc",
+            "acc": "acc",
+            "gen": "gen",
+            "part": "par",
+            "dat": "dat",
+            "abl": "abl",
+            "mas": "gender",
+            "fem": "gender",
+            "neu": "gender",
+            "sin": "number",
+            "plu": "number",
+        },
+        lang)
+
+def parse_cmd_line(argv):
+    lang = ""
+    opts, _ = getopt.getopt(argv,"hl:",["help","lang=", "language="])
+    for opt, arg in opts:
+        if opt in ("-h", "--help"):
+            print ("""
+You can specify the following variables after pedigrees.py
+    -h / --help=                <prints this help message>
+    -l / --lang= / --language=  <us / uk style of listing noun cases>
+                                uk: nom, acc, gen, dat, abl
+                                us: nom, gen, dat, acc, abl
+                                e.g. -l us OR --lang=us
+""")
+            sys.exit()
+        elif opt in ("-l", "--lang", "--language"):
+            lang = arg.lower()
+    if not lang.startswith("us"):
+        lang = "uk"
+    return lang
+
+
+def main(argv):
+    lang = parse_cmd_line(argv)
+    db = create_db(lang)
     result = Result()
     while True:
         menu_choices = display_menu(result)
@@ -302,16 +380,12 @@ def main():
                 result.show_error()
             case str() as action if action.startswith("display"):
                 table_id = action.split(":")[1]
-                draw_table(table_id, db.tables[table_id])
+                # draw_table(table_id, db.tables[table_id])
+                draw_table(table_id, db)
             case "repeat":
-                result.update(result.prev.matches)
-                display_results(result, db)
-                result.update([])
+                update_and_display(result.prev.matches, result, db)
             case "search":
-                matches = build_match_list(result, db)
-                result.update(matches)
-                display_results(result,db)
-                result.update([])
+                update_and_display(build_match_list(result, db), result, db)
             case _:
                 print("Houston, we have a problem...")
 
@@ -319,5 +393,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])
 
