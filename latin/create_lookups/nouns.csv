@@ -158,17 +158,19 @@ Ablative	turre	turribus	parte	partibus	animālī	animālibus
 *sūs, suis swine, pig, hog m.f.
 *bōs, bovis ox, bullock m.f.
 *Iuppiter, Iovis Jupiter m.
+*1. Here ō or ū come from Old Latin ou. Thus bō-/bū- and Iū- before consonant endings are alternate developments of the bov- and Iov- before vowel endings. — The double pp in the preferred form Iu-ppiter "Father Jove" is an alternate way of marking the length of the u in the etymological form Iū-piter. i is weakened from a in pater (Allen and Greenough, sect. 79 b).
+*2. Genitive and dative singular cases are seldom used in vīs.
 %	Singular	Plural	Singular	Plural	Singular	Plural	Singular
 Nominative	vīs	vīrēs	sūs	suēs	bōs[i]	bovēs	Iuppiter
 %	%	%	%	%	%	%	%
-Accusative	vim	vīrēs	suem	sues	bovem	bove:s	Iovem
-%	vim	vīrīs	suem	sues	bovem	bove:s	Iovem
-Genitive	vīs[ii]	vīrium	suis	suum	bovis	boum	Iovis
+Accusative	vim	vīrēs	suem	sues	bovem	bovēs	Iovem
+%	%	vīrīs	%	%	%	%	%
+Genitive	vīs	vīrium	suis	suum	bovis	boum	Iovis
 %	%	%	%	%	bovum	%	%
-Dative	vī[ii]	vīribus	suī	suibus	bovī	bōbus	Iovī
-%	%	%	%	sūbus	%	būbus[i]	%	%
-Ablative	vī[ii]	vīribus	sue	suibus	bove	bōbus	Iove
-%	%	%	%	sūbus	%	būbus[i]	%
+Dative	vī	vīribus	suī	suibus	bovī	bōbus	Iovī
+%	%	%	%	sūbus	%	būbus	%	%
+Ablative	vī	vīribus	sue	suibus	bove	bōbus	Iove
+%	%	%	%	sūbus	%	būbus	%
 
 &n:4:p
 *Fourth declension (u stems) paradigm
@@ -179,9 +181,9 @@ Nominative	-us	-ūs	-ū	-ua
 Accusative	-um	-ūs	-ū	-ua
 Genitive	-ūs	-uum	-ūs	-uum
 Dative	-uī	-ibus	-ū	-ibus
-%	%	-ubus[i]	%	%
+%	%	-ubus	%	%
 Ablative	-u:	-ibus	-ū	-ibus
-%	%	-ubus[i]	%	%
+%	%	-ubus	%	%
 Locative	-ī	Dat.	-ī	Dat.
 
 &n:4:e=portus genu

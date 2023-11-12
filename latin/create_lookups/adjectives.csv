@@ -42,17 +42,6 @@ Genitive	sacrī	sacrae	sacrī	sacrōrum	sacrārum	sacrōrum
 Dative	sacrō	sacrae	sacrō	sacrīs	sacrīs	sacrīs
 Ablative	sacrō	sacrā	sacrō	sacrīs	sacrīs	sacrīs
 
-&a:1&2:pron=ullus
-*First and second declension pronominal adjectives
-*ūllus, ūlla, ūllum - any
-%	Singular	%	%	Plural	%	%
-%	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
-Nominative	ūllus	ūlla	ūllum	ūllī	ūllae	ūlla
-Accusative	ūllum	ūllam	u:llum	ūllōs	ūllās	u:lla
-Genitive	ūllīus	ūllīus	ūllīus	ūllōrum	ūllārum	ūllōrum
-Dative	ūllī	ūllī	ūllī	ūllīs	ūllīs	ūllīs
-Ablative	ūllō	ūllā	ūllō	ūllīs	ūllīs	ūllīs
-
 &a:3:e=atrox
 *Third declension adjectives with one ending
 *atrōx, atrōx - terrible, mean, cruel
@@ -154,6 +143,10 @@ arduus, ardua, arduum ('lofty, steep')	magis arduus	maximē arduus
 
 &a:comp&sup:i=bonus malus parvus multus propinquus maturus nequam posterus postumus superus summus exterus extimus inferus imus senex iuvenis iunior
 *Irregular comparative and superlative adjectives
+*[i] plūs: Noun used with genitive to express more of something in the singular; in the plural used as an adjective: plūrēs, plūra, genitive plūrium.
+*[ii] mātūrrimus: Often replaced by the regular form mātūrissimus, mātūrissima, mātūrissimum.
+*[iii] nequam: Indeclinable.
+*[iv] minimus nātū: Sometimes iunissimus is found in medieval Latin, e.g. Callistus Nicephorus, Ecclesiastica Historia, 1574.
 Positive	Comparative	Superlative
 bonus, bona, bonum ('good')	melior, melius ('better')	optimus, optima, optimum ('best')
 malus, mala, malum ('bad, evil')	pēior, pēius ('worse')	pessimus, pessima, pessimum ('worst')
@@ -164,13 +157,13 @@ propinquus, propinqua, propinquum ('near, close')	propior, propius ('nearer')	pr
 mātūrus, mātūra, mātūrum ('ripe, mature')	mātūrior, mātūrius ('riper')	mātūrrimus, mātūrrima, mātūrrimum[ii] ('ripest')
 nēquam[iii] ('worthless')	nēquior, nēquius ('more worthless')	nēquissimus, nēquissima, nēquissimum ('most worthless')
 posterus, postera, posterum ('next, future')	posterior, posterius ('later')	postrēmus, postrēma, postrēmum ('last, latest')
-postumus, postuma, postumum
+%	%	postumus, postuma, postumum
 superus, supera, superum ('above')	superior, superius ('upper')	suprēmus, suprēma, suprēmum ('uppermost')
-summus, summa, summum
+%	%	summus, summa, summum
 exterus, extera, exterum ('outward')	exterior, exterius ('outer')	extrēmus, extrēma, extrēmum ('outermost')
-extimus, extima, extimum
+%	%	extimus, extima, extimum
 īnferus, īnfera, īnferum ('below')	īnferior, īnferius ('lower')	īnfimus, īnfima, īnfimum ('lowest')
-īmus, īma, īmum
+%	%	īmus, īma, īmum
 senex, senis ('old, aged')	senior ('older, elder')	maximus nātū, maxima nātū ('oldest, eldest')
-iuvenis, iuvenis ('young, youthful')	iuvenior ('younger')
-iūnior	minimus nātū, minima nātū ('youngest')[iv]
+iuvenis, iuvenis ('young, youthful')	iuvenior ('younger')	minimus nātū, minima nātū ('youngest')[iv]
+%	iūnior	%

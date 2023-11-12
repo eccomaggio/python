@@ -200,10 +200,20 @@ Genitive	cuius	cuius	cuius	quōrum	quārum	quōrum
 Dative	cui	cui	cui	quibus	quibus	quibus
 Ablative	quō	quā	quō	quibus	quibus	quibus
 
+&a:1&2:pron=ullus
+*First and second declension pronominal adjectives
+*ūllus, ūlla, ūllum - any
+%	Singular	%	%	Plural	%	%
+%	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
+Nominative	ūllus	ūlla	ūllum	ūllī	ūllae	ūlla
+Accusative	ūllum	ūllam	u:llum	ūllōs	ūllās	u:lla
+Genitive	ūllīus	ūllīus	ūllīus	ūllōrum	ūllārum	ūllōrum
+Dative	ūllī	ūllī	ūllī	ūllīs	ūllīs	ūllīs
+Ablative	ūllō	ūllā	ūllō	ūllīs	ūllīs	ūllīs
 
-&p:uter:e=uter utra uturm
+&p:uter:e=uter utra utrum
 *First- and Second-declension pronominal adjectives: uter (which of two), either
-%	Singular		Plural
+%	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	uter	utra	utrum	utrī	utrae	utra
 Accusative	utrum	utram	utrum	utrōs	utrās	utra
@@ -213,7 +223,7 @@ Ablative	utrō	utrā	utrō	utrīs	utrīs	utrīs
 
 &p:neuter:e=neuter neutra neutrum
 *First- and Second-declension pronominal adjectives: neuter (neither)
-%	Singular		Plural
+%	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	neuter	neutra	neutrum	neutrī	neutrae	neutra
 Accusative	neutrum	neutram	neutrum	neutrōs	neutrās	neutra
@@ -223,7 +233,7 @@ Ablative	neutrō	neutrā	neutrō	neutrīs	neutrīs	neutrīs
 
 &p:solus:e=solus sola solum
 *First- and Second-declension pronominal adjectives: solus (sole, alone)
-%	Singular		Plural
+%	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	sōlus	sōla	sōlum	sōlī	sōlae	sōla
 Vocative	sōle	sōla	sōlum	sōlī	sōlae	sōla
@@ -234,7 +244,7 @@ Ablative	sōlō	sōlā	sōlō	sōlīs	sōlīs	sōlīs
 
 &p:alius:e=alius alia alium
 *First- and Second-declension pronominal adjectives: alius (another)
-%	Singular		Plural
+%	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	alius	alia	aliud	aliī	aliae	alia
 Vocative	alie	alia	aliud	aliī	aliae	alia
@@ -246,7 +256,7 @@ Ablative	aliō	aliā	aliō	aliīs	aliīs	aliīs
 
 &p:totus:e=totus tota totum
 *First- and Second-declension pronominal adjectives: totus (whole)
-%	Singular		Plural
+%	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	tōtus	tōta	tōtum	tōtī	tōtae	tōta
 Vocative	tōte	tōta	tōtum	tōtī	tōtae	tōta
@@ -257,7 +267,7 @@ Ablative	tōtō	tōtā	tōtō	tōtīs	tōtīs	tōtīs
 
 &p:alter:e=alter altera alterum
 *First- and Second-declension pronominal adjectives: alter (other of two)
-%	Singular		Plural
+%	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	alter	altera	alterum	alterī	alterae	altera
 Accusative	alterum	alteram	alterum	alterōs	alterās	altera

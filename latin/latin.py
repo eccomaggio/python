@@ -54,15 +54,30 @@ class col:
 
 
 
+
+class Db:
+    def __init__(self, vocab, tables, label_lookup={}, lang="uk") -> None:
+        self.vocab = vocab
+        self.tables = tables
+        self.label_lookup = label_lookup
+        self.lang = lang
+        self.latin_plain = 0
+        self.latin_macron = 1
+        self.english = 2
+        self.chapter = 3
+
+
+
+
 class Result:
-    def __init__(self):
+    def __init__(self, db):
         self.term = ""
         self.error = ""
-        # self.action = ""
         self.matches = []
         self.tables = []
         self.language = 0
         self.prev = self.Prev()
+        self.db = db
 
     def __repr__(self) -> str:
         return f"m:{self.matches}, {self.tables}\npm:{self.prev.matches}, {self.prev.tables}"
@@ -89,13 +104,16 @@ class Result:
 
     def set_language(self, lang_code="la"):
         if lang_code.startswith("la"):
-            self.language = 0
+            # self.language = 0
+            self.language = self.db.latin_plain
         else:
-            self.language = 2
+            # self.language = 2
+            self.language = self.db.english
         return self
 
     def get_language(self):
-        if self.language == 0:
+        # if self.language == 0:
+        if self.language == self.db.latin_plain:
             return "la"
         else:
             return "en"
@@ -107,14 +125,6 @@ class Result:
         return [x for x in matches if x.startswith("t")]
 
 
-
-
-class Db:
-    def __init__(self, vocab, tables, label_lookup={}, lang="uk") -> None:
-        self.vocab = vocab
-        self.tables = tables
-        self.label_lookup = label_lookup
-        self.lang = lang
 
 
 
@@ -214,8 +224,14 @@ def invoke_tabulate(data):
 
 
 def print_entry(entry, result, num):
-    lemma = result.language
-    gloss = 0 if lemma else 2
+    db = result.db
+    if result.language == db.latin_plain:
+        lemma = db.latin_macron
+        gloss = db.english
+    else:
+        lemma = db.english
+        gloss = db.latin_macron
+    # gloss = 0 if lemma else 2
     num_prefix = ""
     if num >= 0:
         num_prefix = f"{col.blue}{num + 1}. "
@@ -226,7 +242,8 @@ def search_db(term, language, db):
     return [id for id,entry in db.vocab.items() if re.search(term, entry[language])]
 
 
-def build_match_list(result, db):
+def build_match_list(result):
+    db = result.db
     term = result.term
     prefix = term[:2]
     if prefix == "e:":
@@ -305,20 +322,20 @@ def check_input(result, menu_choices):
     return action
 
 
-def display_results(result, db):
+def display_results(result):
     if result.matches:
         for num, id in enumerate(result.matches):
-            entry = db.vocab[id]
+            entry = result.db.vocab[id]
             if len(result.tables) == 1 and id == result.tables[0]:
-                draw_table(id, db)
+                draw_table(id, result.db)
             else:
                 print_entry(entry, result, num)
     else:
         result.show_error()
 
-def update_and_display(matches, result, db):
+def update_and_display(matches, result):
     result.update(matches)
-    display_results(result, db)
+    display_results(result)
     result.update([])
 
 def create_db(lang):
@@ -368,7 +385,7 @@ You can specify the following variables after pedigrees.py
 def main(argv):
     lang = parse_cmd_line(argv)
     db = create_db(lang)
-    result = Result()
+    result = Result(db)
     while True:
         menu_choices = display_menu(result)
         result.term = input().strip()
@@ -383,9 +400,9 @@ def main(argv):
                 # draw_table(table_id, db.tables[table_id])
                 draw_table(table_id, db)
             case "repeat":
-                update_and_display(result.prev.matches, result, db)
+                update_and_display(result.prev.matches, result)
             case "search":
-                update_and_display(build_match_list(result, db), result, db)
+                update_and_display(build_match_list(result), result)
             case _:
                 print("Houston, we have a problem...")
 
