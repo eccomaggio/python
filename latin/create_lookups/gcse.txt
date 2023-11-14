@@ -1,0 +1,578 @@
+#OCR Level 1/2 GCSE (9–1) in Latin – Defined Vocabulary List
+dvl@a, ab + ablative (also used as prefix with verbs) preposition from, away from, by (as prefix = away)
+dvl@absum abesse, afui verb irregular be absent, be away, be distant from
+dvl@ac, atque indeclinable conjunction and
+dvl@accido accidere, accidi verb 3 happen
+dvl@accipio accipere, accepi, acceptus verb 3 accept, take in, receive
+dvl@ad + accusative (also used as prefix with verbs) preposition to, towards, at
+dvl@adeo indeclinable adverb so much, so greatly, to such an extent
+dvl@adsum adesse, adfui verb irregular be here, be present
+dvl@advenio advenire, adveni verb 4 arrive
+dvl@aedifico aedificare, aedificavi, aedificatus verb 1 build
+dvl@ager agri, m noun 2 field
+dvl@ago agere, egi, actus verb 3 do, act, drive
+dvl@alii … alii some … others
+dvl@alius alia, aliud pronoun/adjective other, another, else
+dvl@alter altera, alterum pronoun/adjective the other, another, one (of two), the second (of two)
+dvl@altus alta, altum adjective high, deep
+dvl@ambulo ambulare, ambulavi verb 1 walk
+dvl@amicus amici, m noun 2 friend
+dvl@amo amare, amavi, amatus verb 1 love, like
+dvl@amor amoris, m noun 3 love
+dvl@ancilla ancillae, f noun 1 slave-girl, slave-woman
+dvl@animus animi, m noun 2 spirit, soul, mind
+dvl@annus anni, m noun 2 year
+dvl@antea indeclinable adverb before
+dvl@appropinquo appropinquare, appropinquavi + dative verb 1 approach, come near to
+dvl@aqua aquae, f noun 1 water
+dvl@arma armorum, n plural noun 2 plural arms, weapons
+dvl@ars artis, f noun 3 art, skill
+dvl@ascendo ascendere, ascendi, ascensus verb 3 climb
+dvl@audax audacis adjective bold, daring
+dvl@audeo audere, ausus sum verb 2 dare
+dvl@audio audire, audivi, auditus verb 4 hear, listen to
+dvl@aufero auferre, abstuli, ablatus verb irregular take away, carry off, steal
+dvl@auxilium auxilii, n noun 2 help
+dvl@bellum belli, n noun 2 war
+dvl@bene indeclinable adverb well
+dvl@bibo bibere, bibi verb 3 drink
+dvl@bonus bona, bonum adjective good
+dvl@brevis breve adjective short, brief
+dvl@cado cadere, cecidi, casus verb 3 fall
+dvl@caelum caeli, n noun 2 sky, heaven
+dvl@capio capere, cepi, captus verb 3 take, catch, capture, make (a plan)
+dvl@captivus captivi, m noun 2 captive, prisoner
+dvl@caput capitis, n noun 3 head
+dvl@castra castrorum, n plural noun 2 camp
+dvl@celer celeris, celere adjective quick, fast
+dvl@celo celare, celavi, celatus verb 1 hide
+dvl@cena cenae, f noun 1 dinner, meal
+dvl@ceteri ceterae, cetera adjective the rest, the others
+dvl@cibus cibi, m noun 2 food
+dvl@circum + accusative preposition around
+dvl@civis civis, m and f noun 3 citizen
+dvl@clamo clamare, clamavi, clamatus verb 1 shout
+dvl@clamor clamoris, m noun 3 shout, shouting, noise
+dvl@clarus clara, clarum adjective famous, clear
+dvl@coepi coepisse verb irregular began
+dvl@cogito cogitare, cogitavi, cogitatus verb 1 think, consider
+dvl@cognosco cognoscere, cognovi, cognitus verb 3 get to know, find out
+dvl@cogo cogere, coegi, coactus verb 3 force, compel
+dvl@comes comitis, m and f noun 3 comrade, companion
+dvl@conficio conficere, confeci, confectus verb 3 finish, wear out
+dvl@conor conari, conatus sum verb 1 deponent try
+dvl@consilium consilii, n noun 2 plan, idea, advice
+dvl@conspicio conspicere, conspexi, conspectus verb 3 catch sight of, notice
+dvl@constituo constituere, constitui, constitutus verb 3 decide
+dvl@consul consulis, m noun 3 consul
+dvl@consumo consumere, consumpsi, consumptus verb 3 eat
+dvl@contra + accusative preposition against
+dvl@convenio convenire, conveni verb 4 come together, gather, meet
+dvl@copiae copiarum, f plural noun 1 plural forces, troops
+dvl@corpus corporis, n noun 3 body
+dvl@cras indeclinable adverb tomorrow
+dvl@credo credere, credidi, creditus + dative verb 3 believe, trust
+dvl@crudelis crudele adjective cruel
+dvl@cum + ablative preposition with
+dvl@cum indeclinable conjunction when, since
+dvl@cupio cupere, cupivi, cupitus verb 3 want, desire
+dvl@cur? indeclinable adverb why?
+dvl@cura curae, f noun 1 care, worry
+dvl@curro currere, cucurri, cursus verb 3 run
+dvl@custodio custodire, custodivi, custoditus verb 4 guard
+dvl@custos custodis, m and f noun 3 guard
+dvl@de + ablative preposition from, down from, about
+dvl@dea deae, f noun 1 goddess
+dvl@debeo debere, debui, debitus verb 2 owe, ought, should, must
+dvl@defendo defendere, defendi, defensus verb 3 defend
+dvl@deinde indeclinable adverb then
+dvl@deleo delere, delevi, deletus verb 2 destroy
+dvl@descendo descendere, descendi, descensus verb 3 go down, come down
+dvl@deus dei, m noun 2 god
+dvl@dico dicere, dixi, dictus verb 3 say, speak, tell
+dvl@dies diei, m noun 5 day
+dvl@difficilis difficile adjective difficult
+dvl@diligens diligentis adjective careful
+dvl@dirus dira, dirum adjective dreadful
+dvl@discedo discedere, discessi verb 3 depart, leave
+dvl@diu indeclinable adverb for a long time
+dvl@do dare, dedi, datus verb 1 give
+dvl@doceo docere, docui, doctus verb 2 teach
+dvl@domina dominae, f noun 1 mistress
+dvl@dominus domini, m noun 2 master
+dvl@domus domus, f (domi = at home) noun 4 home
+dvl@donum doni, n noun 2 gift, present
+dvl@dormio dormire, dormivi verb 4 sleep
+dvl@duco ducere, duxi, ductus verb 3 lead, take
+dvl@dum indeclinable conjunction while, until
+dvl@dux ducis, m noun 3 leader
+dvl@e, ex + ablative (also used as prefix with verbs) preposition from, out of, out
+dvl@ecce! indeclinable adverb look!
+dvl@effugio effugere, effugi verb 3 escape
+dvl@ego mei pronoun I, me
+dvl@egredior egredi, egressus sum verb 3 deponent go out
+dvl@emo emere, emi, emptus verb 3 buy
+dvl@enim indeclinable conjunction for
+dvl@eo ire, i(v)i verb irregular go
+dvl@epistula epistulae, f noun 1 letter
+dvl@equus equi, m noun 2 horse
+dvl@et indeclinable conjunction and, even
+dvl@et ... et indeclinable both ... and
+dvl@etiam indeclinable adverb also, even
+dvl@exercitus exercitus, m noun 4 army
+dvl@exspecto exspectare, exspectavi, exspectatus verb 1 wait for, expect
+dvl@facilis facile adjective easy
+dvl@facio facere, feci, factus verb 3 make, do
+dvl@faveo favere, favi, fautus + dative verb 2 favour, support
+dvl@felix felicis adjective fortunate, happy
+dvl@femina feminae, f noun 1 woman
+dvl@fero ferre, tuli, latus verb irregular bring, carry, bear
+dvl@ferox ferocis adjective fierce, ferocious
+dvl@festino festinare, festinavi verb 1 hurry
+dvl@fidelis fidele adjective faithful, loyal
+dvl@filia filiae, f noun 1 daughter
+dvl@filius filii, m noun 2 son
+dvl@flumen fluminis, n noun 3 river
+dvl@forte indeclinable adverb by chance
+dvl@fortis forte adjective brave
+dvl@forum fori, n noun 2 forum, market place
+dvl@frater fratris, m noun 3 brother
+dvl@frustra indeclinable adverb in vain
+dvl@fugio fugere, fugi verb 3 run away, flee
+dvl@gaudeo gaudere, gavisus sum verb 2 be pleased, rejoice
+dvl@gaudium gaudii, n noun 2 joy, pleasure
+dvl@gens gentis, f noun 3 family, tribe, race, people
+dvl@gero gerere, gessi, gestus verb 3 wear (clothes), wage (war)
+dvl@gladius gladii, m noun 2 sword
+dvl@gravis grave adjective heavy, serious
+dvl@habeo habere, habui, habitus verb 2 have, hold
+dvl@habito habitare, habitavi, habitatus verb 1 live
+dvl@heri indeclinable adverb yesterday
+dvl@hic haec, hoc pronoun this, he, she, it
+dvl@hodie indeclinable adverb today
+dvl@homo hominis, m noun 3 man, human being
+dvl@hora horae, f noun 1 hour
+dvl@hortor hortari, hortatus sum verb 1 deponent encourage, urge
+dvl@hortus horti, m noun 2 garden
+dvl@hostis hostis, m noun 3 enemy
+dvl@iaceo iacere, iacui verb 2 lie
+dvl@iacio iacere, ieci, iactus (in compounds -icio) verb 3 throw
+dvl@iam indeclinable adverb now, already
+dvl@ianua ianuae, f noun 1 door
+dvl@ibi indeclinable adverb there
+dvl@idem eadem, idem pronoun the same
+dvl@igitur indeclinable adverb therefore, and so
+dvl@ille ilIa, illud pronoun that, he, she, it
+dvl@imperator imperatoris, m noun 3 emperor, general, leader
+dvl@imperium imperii, n noun 2 empire, power, command
+dvl@impero imperare, imperavi, imperatus + dative verb 1 order, command
+dvl@in + ablative (also used as prefix with verbs) preposition in, on
+dvl@in + accusative (also used as prefix with verbs) preposition into, onto
+dvl@incendo incendere, incendi, incensus verb 3 burn, set on fire
+dvl@infelix infelicis adjective unlucky, unhappy
+dvl@ingens ingentis adjective huge
+dvl@ingredior ingredi, ingressus sum verb 3 deponent enter
+dvl@inimicus inimici, m noun 2 enemy
+dvl@inquit verb irregular he/she says, he/she said
+dvl@insula insulae, f noun 1 island, block of flats
+dvl@intellego intellegere, intellexi, intellectus verb 3 understand, realise
+dvl@inter + accusative preposition among, between
+dvl@interea indeclinable adverb meanwhile
+dvl@interficio interficere, interfeci, interfectus verb 3 kill
+dvl@intro intrare, intravi, intratus verb 1 enter
+dvl@invenio invenire, inveni, inventus verb 4 find
+dvl@invito invitare, invitavi, invitatus verb 1 invite
+dvl@ipse ipsa, ipsum pronoun himself, herself, itself, themselves
+dvl@ira irae, f noun 1 anger
+dvl@iratus irata, iratum adjective angry
+dvl@is ea, id pronoun this, that, he, she, it, them
+dvl@ita indeclinable adverb in this way, to such an extent, so
+dvl@itaque indeclinable adverb and so, therefore
+dvl@iter itineris, n noun 3 journey
+dvl@iterum indeclinable adverb again
+dvl@iubeo iubere, iussi, iussus verb 2 order
+dvl@iuvenis iuvenis, m noun 3 young man
+dvl@labor laboris, m noun 3 work, toil
+dvl@laboro laborare, laboravi verb 1 work, toil
+dvl@lacrimo lacrimare, lacrimavi verb 1 weep, cry
+dvl@laetus laeta, laetum adjective happy
+dvl@laudo laudare, laudavi, laudatus verb 1 praise
+dvl@legio legionis, f noun 3 legion
+dvl@lego legere, legi, lectus verb 3 read, choose
+dvl@lentus lenta, lentum adjective slow
+dvl@libenter indeclinable adverb willingly, gladly
+dvl@liber libri, m noun 2 book
+dvl@liberi liberorum, m plural noun 2 children
+dvl@libero liberare, liberavi, liberatus verb 1 set free
+dvl@libertus liberti, m noun 2 freedman, ex-slave
+dvl@locus loci, m noun 2 place
+dvl@longus longa, longum adjective long
+dvl@loquor loqui, locutus sum verb 3 deponent speak, talk
+dvl@lux lucis, f noun 3 light, daylight
+dvl@magnus magna, magnum adjective big, large, great
+dvl@malo malle, malui verb irregular prefer
+dvl@malus mala, malum adjective evil, bad
+dvl@maneo manere, mansi verb 2 remain, stay
+dvl@manus manus, f noun 4 hand, group of people
+dvl@mare maris, n noun 3 sea
+dvl@maritus mariti, m noun 2 husband
+dvl@mater matris, f noun 3 mother
+dvl@maxime indeclinable adverb very greatly
+dvl@medius media, medium adjective middle
+dvl@meus mea, meum pronoun my
+dvl@miles militis, m noun 3 soldier
+dvl@minime indeclinable adverb very little, least, no
+dvl@miror mirari, miratus sum verb 1 deponent wonder at, admire
+dvl@miser misera, miserum adjective miserable, wretched, sad
+dvl@mitto mittere, misi, missus verb 3 send
+dvl@modus modi, m noun 2 manner, way, kind
+dvl@moneo monere, monui, monitus verb 2 warn, advise
+dvl@mons montis, m noun 3 mountain
+dvl@morior mori, mortuus sum verb 3 deponent die
+dvl@mors mortis, f noun 3 death
+dvl@moveo movere, movi, motus verb 2 move
+dvl@mox indeclinable adverb soon
+dvl@multo indeclinable adverb much
+dvl@multus multa, multum adjective much, many
+dvl@murus muri, m noun 2 wall
+dvl@nam indeclinable conjunction for
+dvl@narro narrare, narravi, narratus verb 1 tell, relate
+dvl@nauta nautae, m noun 1 sailor
+dvl@navigo navigare, navigavi verb 1 sail
+dvl@navis navis, f noun 3 ship
+dvl@-ne indeclinable particle (introduces question)
+dvl@ne indeclinable + subjunctive conjunction that ... not, so that ... not, that, lest
+dvl@nec, neque indeclinable conjunction and not, nor, neither
+dvl@neco necare, necavi, necatus verb 1 kill
+dvl@nemo nullius noun irregular no one, nobody
+dvl@nescio nescire, nescivi verb 4 not know
+dvl@nihil indeclinable noun irregular nothing
+dvl@nisi indeclinable conjunction unless, except
+dvl@nolo nolle, nolui verb irregular not want, refuse
+dvl@nomen nominis, n noun 3 name
+dvl@non indeclinable adverb not
+dvl@nonne …? indeclinable adverb surely ... ?
+dvl@nonnulli nonnullae, nonnulla adjective some, several
+dvl@nos nostrum pronoun we, us
+dvl@noster nostra, nostrum pronoun our
+dvl@novus nova, novum adjective new
+dvl@nox noctis, f noun 3 night
+dvl@nullus nulla, nullum adjective not any, no
+dvl@num indeclinable particle whether
+dvl@num ... ? indeclinable particle surely … not?
+dvl@numquam indeclinable adverb never
+dvl@nunc indeclinable adverb now
+dvl@nuntio nuntiare, nuntiavi, nuntiatus verb 1 announce, report
+dvl@nuntius nuntii, m noun 2 messenger, message, news
+dvl@occido occidere, occidi, occisus verb 3 kill
+dvl@offero offerre, obtuli, oblatus verb irregular offer
+dvl@olim indeclinable adverb once, some time ago
+dvl@omnis omne adjective all, every
+dvl@opprimo opprimere, oppressi, oppressus verb 3 crush, overwhelm
+dvl@oppugno oppugnare, oppugnavi, oppugnatus verb 1 attack
+dvl@oro orare, oravi, oratus verb 1 beg
+dvl@ostendo ostendere, ostendi, ostentus verb 3 show
+dvl@paene indeclinable adverb almost, nearly
+dvl@paro parare, paravi, paratus verb 1 prepare, provide
+dvl@pars partis, f noun 3 part
+dvl@parvus parva, parvum adjective small
+dvl@pater patris, m noun 3 father
+dvl@patior pati, passus sum verb 3 deponent suffer, endure
+dvl@patria patriae, f noun 1 country, homeland
+dvl@pauci paucae, pauca adjective plural few, a few
+dvl@pax pacis, f noun 3 peace
+dvl@pecunia pecuniae, f noun 1 money
+dvl@pello pellere, pepuli, pulsus verb 3 drive
+dvl@per + accusative preposition through, along
+dvl@pereo perire, perii verb irregular die, perish
+dvl@periculum periculi, n noun 2 danger
+dvl@persuadeo persuadere, persuasi + dative verb 2 persuade
+dvl@perterritus perterrita, perterritum adjective terrified
+dvl@pes pedis, m noun 3 foot
+dvl@peto petere, petivi, petitus verb 3 make for, seek, beg/ask for
+dvl@poena poenae, f noun 1 punishment
+dvl@poenas do pay the penalty, be punished
+dvl@pono ponere, posui, positus verb 3 put, place, set up
+dvl@porta portae, f noun 1 gate
+dvl@porto portare, portavi, portatus verb 1 carry, bear, take
+dvl@possum posse, potui verb irregular can, be able
+dvl@post + accusative preposition after, behind
+dvl@postea indeclinable adverb afterwards
+dvl@postquam indeclinable conjunction after, when
+dvl@postridie indeclinable adverb on the next day
+dvl@praemium praemii, n noun 2 prize, reward, profit
+dvl@primo indeclinable adverb at first
+dvl@primus prima, primum adjective first
+dvl@princeps principis, m noun 3 chief, emperor
+dvl@pro + ablative preposition in front of, for, in return for
+dvl@procedo procedere, processi verb 3 advance, proceed
+dvl@proelium proelii, n noun 2 battle
+dvl@proficiscor proficisci, profectus sum verb 3 deponent set out
+dvl@progredior progredi, progressus sum verb 3 deponent advance
+dvl@promitto promittere, promisi, promissus verb 3 promise
+dvl@prope + accusative preposition near
+dvl@propter + accusative preposition on account of, because of
+dvl@proximus proxima, proximum adjective nearest, next to
+dvl@puella puellae, f noun 1 girl
+dvl@puer pueri, m noun 2 boy
+dvl@pugno pugnare, pugnavi verb 1 fight
+dvl@pulcher pulchra, pulchrum adjective beautiful, handsome
+dvl@punio punire, punivi, punitus verb 4 punish
+dvl@puto putare, putavi, putatus verb 1 think
+dvl@quaero quaerere, quaesivi, quaesitus verb 3 search for, look for, ask
+dvl@qualis? quale adjective what sort of?
+dvl@quam + superlative adverb as … as possible
+dvl@quam indeclinable adverb than, how … ? how … !
+dvl@quamquam indeclinable conjunction although
+dvl@quando? indeclinable adverb when?
+dvl@quantus? quanta? quantum? adjective how big? how much?
+dvl@-que indeclinable conjunction and
+dvl@qui quae, quod pronoun who, which
+dvl@quidam quaedam, quoddam pronoun one, a certain, some
+dvl@quis? quid? pronoun who? what?
+dvl@quo? indeclinable adverb to where?
+dvl@quod indeclinable conjunction because
+dvl@quomodo? indeclinable adverb how?
+dvl@quoque indeclinable conjunction also, too
+dvl@quot? indeclinable adjective how many?
+dvl@rapio rapere, rapui, raptus verb 3 seize, grab
+dvl@re- (prefix used with verbs) prefix - back
+dvl@reddo reddere, reddidi, redditus verb 3 give back, restore
+dvl@redeo redire, redii verb irregular go back, come back, return
+dvl@refero referre, rettuli, relatus verb irregular bring/carry back, report, tell
+dvl@regina reginae, f noun 1 queen
+dvl@regnum regni, n noun 2 kingdom
+dvl@rego regere, rexi, rectus verb 3 rule
+dvl@regredior regredi, regressus sum verb 3 deponent go back, return
+dvl@relinquo relinquere, reliqui, relictus verb 3 leave, leave behind
+dvl@res rei, f noun 5 thing, matter, event
+dvl@resisto resistere, restiti + dative verb 3 resist
+dvl@respondeo respondere, respondi, responsus verb 2 reply
+dvl@rex regis, m noun 3 king
+dvl@rideo ridere, risi verb 2 laugh, smile
+dvl@rogo rogare, rogavi, rogatus verb 1 ask, ask for
+dvl@Roma Romae, f (Romae: at/in Rome) noun 1 Rome
+dvl@Romanus Romana, Romanum adjective Roman
+dvl@sacer sacra, sacrum adjective sacred
+dvl@saepe indeclinable adverb often
+dvl@saevus saeva, saevum adjective savage, cruel
+dvl@saluto salutare, salutavi, salutatus verb 1 greet
+dvl@sanguis sanguinis, m noun 3 blood
+dvl@scelestus scelesta, scelestum adjective wicked
+dvl@scelus sceleris, n noun 3 crime
+dvl@scio scire, scivi, scitus verb 4 know
+dvl@scribo scribere, scripsi, scriptus verb 3 write
+dvl@se sui pronoun himself, herself, itself, themselves
+dvl@sed indeclinable conjunction but
+dvl@sedeo sedere, sedi verb 2 sit
+dvl@semper indeclinable adverb always
+dvl@senator senatoris, m noun 3 senator
+dvl@senex senis, m noun 3 old man
+dvl@sentio sentire, sensi, sensus verb 4 feel, notice
+dvl@sequor sequi, secutus sum verb 3 deponent follow
+dvl@servo servare, servavi, servatus verb 1 save, protect, keep
+dvl@servus servi, m noun 2 slave
+dvl@si indeclinable conjunction if
+dvl@sic indeclinable adverb thus, in this way
+dvl@silva silvae, f noun 1 wood
+dvl@simul indeclinable adverb at the same time
+dvl@simulac, simulatque indeclinable conjunction as soon as
+dvl@sine + ablative preposition without
+dvl@soleo solere, solitus sum verb 2 be accustomed
+dvl@solus sola, solum adjective alone, lonely, only, on one's own
+dvl@specto spectare, spectavi, spectatus verb 1 look at, watch
+dvl@spero sperare, speravi, speratus verb 1 hope, expect
+dvl@spes spei, f noun 5 hope
+dvl@statim indeclinable adverb at once, immediately
+dvl@sto stare, steti verb 1 stand
+dvl@stultus stulta, stultum adjective stupid, foolish
+dvl@sub + accusative/ablative preposition under, beneath
+dvl@subito indeclinable adverb suddenly
+dvl@sum esse, fui verb irregular be
+dvl@summus summa, summum adjective highest, greatest, top (of)
+dvl@supero superare, superavi, superatus verb 1 overcome, overpower
+dvl@surgo surgere, surrexi verb 3 get up, stand up, rise
+dvl@suus sua, suum pronoun his, her, its, their (own)
+dvl@taberna tabernae, f noun 1 shop, inn
+dvl@taceo tacere, tacui, tacitus verb 2 be silent, be quiet
+dvl@talis tale adjective such, of such a kind
+dvl@tam indeclinable adverb so
+dvl@tamen indeclinable adverb however
+dvl@tandem indeclinable adverb at last, finally
+dvl@tantus tanta, tantum adjective so great, such a great
+dvl@tempestas tempestatis, f noun 3 storm
+dvl@templum templi, n noun 2 temple
+dvl@tempus temporis, n noun 3 time
+dvl@teneo tenere, tenui, tentus verb 2 hold
+dvl@terra terrae, f noun 1 ground, land, country
+dvl@terreo terrere, terrui, territus verb 2 frighten
+dvl@timeo timere, timui verb 2 fear, be afraid
+dvl@tollo tollere, sustuli, sublatus verb 3 raise, lift up, hold up
+dvl@tot indeclinable adjective so many
+dvl@totus tota, totum adjective whole
+dvl@trado tradere, tradidi, traditus verb 3 hand over, hand down
+dvl@traho trahere, traxi, tractus verb 3 drag
+dvl@trans + accusative (also used as prefix with verbs) preposition across
+dvl@tristis triste adjective sad
+dvl@tu tui pronoun you (singular)
+dvl@tum indeclinable adverb then
+dvl@turba turbae, f noun 1 crowd
+dvl@tuus tua, tuum pronoun your (singular), yours
+dvl@ubi indeclinable adverb where? where, when
+dvl@umquam indeclinable adverb ever
+dvl@unde? indeclinable adverb from where?
+dvl@urbs urbis, f noun 3 city
+dvl@ut indeclinable + subjunctive conjunction that, so that, in order that
+dvl@ut indeclinable + indicative conjunction as, when
+dvl@uxor uxoris, f noun 3 wife
+dvl@validus valida, validum adjective strong
+dvl@vehementer indeclinable adverb violently, loudly
+dvl@vendo vendere, vendidi, venditus verb 3 sell
+dvl@venio venire, veni verb 4 come
+dvl@verbum verbi, n noun 2 word
+dvl@verto vertere, verti, versus verb 3 turn
+dvl@vester vestra, vestrum pronoun your (plural), yours
+dvl@via viae, f noun 1 street, road, way
+dvl@victoria victoriae, f noun 1 victory
+dvl@video videre, vidi, visus verb 2 see
+dvl@videor videri, visus sum verb 2 deponent seem, appear
+dvl@villa villae, f noun 1 house, country villa
+dvl@vinco vincere, vici, victus verb 3 conquer, win, be victorious
+dvl@vinum vini, n noun 2 wine
+dvl@vir viri, m noun 2 man
+dvl@virtus virtutis, f noun 3 courage, virtue
+dvl@vita vitae, f noun 1 life
+dvl@vivo vivere, vixi verb 3 live, be alive
+dvl@voco vocare, vocavi, vocatus verb 1 call
+dvl@volo velle, volui verb irregular want, wish, be willing
+dvl@vos vestrum pronoun you (plural)
+dvl@vox vocis, f noun 3 voice, shout
+dvl@vulnero vulnerare, vulneravi, vulneratus verb 1 wound, injure
+dvl@vulnus vulneris, n noun 3 wound
+
+#OCR Level 1/2 GCSE (9–1) in Latin – Restricted Vocabulary List © OCR 2015
+rvl@a, ab + ablative preposition from, away from, by (as prefix = away)
+rvl@ad + accusative preposition to, towards, at
+rvl@advenio advenire, adveni verb 4 arrive
+rvl@aedifico aedificare, aedificavi, aedificatus verb 1 build
+rvl@ager agri, m noun 2 field
+rvl@ambulo ambulare, ambulavi verb 1 walk
+rvl@amicus amici, m noun 2 friend
+rvl@ancilla ancillae, f noun 1 slave-girl, slave-woman
+rvl@annus anni, m noun 2 year
+rvl@aqua aquae, f noun 1 water
+rvl@arma armorum, n plural noun 2 plural arms, weapons
+rvl@audio audire, audivi, auditus verb 4 hear, listen to
+rvl@auxilium auxilii, n noun 2 help
+rvl@bene indeclinable adverb well
+rvl@bibo bibere, bibi verb 3 drink
+rvl@bonus bona, bonum adjective good
+rvl@cado cadere, cecidi, casus verb 3 fall
+rvl@capio capere, cepi, captus verb 3 take, catch, capture, make (a plan)
+rvl@cena cenae, f noun 1 dinner, meal
+rvl@cibus cibi, m noun 2 food
+rvl@clamo clamare, clamavi, clamatus verb 1 shout
+rvl@consilium consilii, n noun 2 plan, idea, advice
+rvl@conspicio conspicere, conspexi, conspectus verb 3 catch sight of, notice
+rvl@constituo constituere, constitui, constitutus verb 3 decide
+rvl@contra + accusative preposition against
+rvl@cum + ablative preposition with
+rvl@cur? indeclinable adverb why?
+rvl@curro currere, cucurri, cursus verb 3 run
+rvl@custodio custodire, custodivi, custoditus verb 4 guard
+rvl@dea deae, f noun 1 goddess
+rvl@defendo defendere, defendi, defensus verb 3 defend
+rvl@deus dei, m noun 2 god
+rvl@dico dicere, dixi, dictus verb 3 say, speak, tell
+rvl@diu indeclinable adverb for a long time
+rvl@domina dominae, f noun 1 mistress
+rvl@dominus domini, m noun 2 master
+rvl@donum doni, n noun 2 gift, present
+rvl@dormio dormire, dormivi verb 4 sleep
+rvl@duco ducere, duxi, ductus verb 3 lead, take
+rvl@e, ex + ablative preposition from, out of, out
+rvl@epistula epistulae, f noun 1 letter
+rvl@et indeclinable conjunction and, even
+rvl@facio facere, feci, factus verb 3 make, do
+rvl@femina feminae, f noun 1 woman
+rvl@festino festinare, festinavi verb 1 hurry
+rvl@filia filiae, f noun 1 daughter
+rvl@filius filii, m noun 2 son
+rvl@forum fori, n noun 2 forum, market place
+rvl@fugio fugere, fugi verb 3 run away, flee
+rvl@gladius gladii, m noun 2 sword
+rvl@habeo habere, habui, habitus verb 2 have, hold
+rvl@habito habitare, habitavi, habitatus verb 1 live
+rvl@hora horae, f noun 1 hour
+rvl@hortus horti, m noun 2 garden
+rvl@in + ablative (also used as prefix with verbs) preposition in, on
+rvl@in + accusative preposition into, onto
+rvl@intro intrare, intravi, intratus verb 1 enter
+rvl@invenio invenire, inveni, inventus verb 4 find
+rvl@invito invitare, invitavi, invitatus verb 1 invite
+rvl@ira irae, f noun 1 anger
+rvl@iratus irata, iratum adjective angry
+rvl@laboro laborare, laboravi verb 1 work, toil
+rvl@laetus laeta, laetum adjective happy
+rvl@libertus liberti, m noun 2 freedman, ex-slave
+rvl@longus longa, longum adjective long
+rvl@magnus magna, magnum adjective big, large, great
+rvl@malus mala, malum adjective evil, bad
+rvl@maritus mariti, m noun 2 husband
+rvl@mitto mittere, misi, missus verb 3 send
+rvl@multus multa, multum adjective much, many
+rvl@murus muri, m noun 2 wall
+rvl@nauta nautae, m noun 1 sailor
+rvl@navigo navigare, navigavi verb 1 sail
+rvl@neco necare, necavi, necatus verb 1 kill
+rvl@non indeclinable adverb not
+rvl@novus nova, novum adjective new
+rvl@nuntio nuntiare, nuntiavi, nuntiatus verb 1 announce, report
+rvl@nuntius nuntii, m noun 2 messenger, message, news
+rvl@paro parare, paravi, paratus verb 1 prepare, provide
+rvl@parvus parva, parvum adjective small
+rvl@patria patriae, f noun 1 country, homeland
+rvl@pecunia pecuniae, f noun 1 money
+rvl@periculum periculi, n noun 2 danger
+rvl@peto petere, petivi, petitus verb 3 make for, seek, beg/ask for
+rvl@pono ponere, posui, positus verb 3 put, place, set up
+rvl@porta portae, f noun 1 gate
+rvl@porto portare, portavi, portatus verb 1 carry, bear, take
+rvl@possum posse, potui verb irregular can, be able
+rvl@puella puellae, f noun 1 girl
+rvl@puer pueri, m noun 2 boy
+rvl@quando? indeclinable adverb when?
+rvl@-que indeclinable conjunction and
+rvl@regina reginae, f noun 1 queen
+rvl@regnum regni, n noun 2 kingdom
+rvl@rego regere, rexi, rectus verb 3 rule
+rvl@relinquo relinquere, reliqui, relictus verb 3 leave, leave behind
+rvl@rogo rogare, rogavi, rogatus verb 1 ask, ask for
+rvl@saepe indeclinable adverb often
+rvl@saevus saeva, saevum adjective savage, cruel
+rvl@saluto salutare, salutavi, salutatus verb 1 greet
+rvl@scribo scribere, scripsi, scriptus verb 3 write
+rvl@semper indeclinable adverb always
+rvl@servo servare, servavi, servatus verb 1 save, protect, keep
+rvl@servus servi, m noun 2 slave
+rvl@silva silvae, f noun 1 wood
+rvl@statim indeclinable adverb at once, immediately
+rvl@subito indeclinable adverb suddenly
+rvl@sum esse, fui verb irregular be
+rvl@supero superare, superavi, superatus verb 1 overcome, overpower
+rvl@taberna tabernae, f noun 1 shop, inn
+rvl@taceo tacere, tacui, tacitus verb 2 be silent, be quiet
+rvl@tandem indeclinable adverb at last, finally
+rvl@templum templi, n noun 2 temple
+rvl@teneo tenere, tenui, tentus verb 2 hold
+rvl@terreo terrere, terrui, territus verb 2 frighten
+rvl@timeo timere, timui verb 2 fear, be afraid
+rvl@trado tradere, tradidi, traditus verb 3 hand over, hand down
+rvl@traho trahere, traxi, tractus verb 3 drag
+rvl@venio venire, veni verb 4 come
+rvl@via viae, f noun 1 street, road, way
+rvl@villa villae, f noun 1 house, country villa
+rvl@vinco vincere, vici, victus verb 3 conquer, win, be victorious
+rvl@vinum vini, n noun 2 wine
+rvl@vir viri, m noun 2 man
+rvl@voco vocare, vocavi, vocatus verb 1 call

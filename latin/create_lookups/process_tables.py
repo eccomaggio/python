@@ -339,7 +339,7 @@ def label_nouns(tables):
 
 
 def main():
-    files = ["nouns","pronouns", "adjectives", "adverbs", "verbs", "numbers"]
+    files = ["nouns","pronouns", "adjectives", "adverbs", "verbs", "numbers", "syntax"]
     id_count = 0
     tables = {}
     for file_name in files:
