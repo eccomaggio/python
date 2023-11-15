@@ -65,7 +65,7 @@ num	n'l	Latin	num	n'l	Latin
 
 &d:distrib:all
 *Distributive numbers 1-20
-*Another set of n'l adjectives, similar to the above but differing in the adjectives for 1, 3, and 4, were the distributive n'ls: singulī, bīnī, ternī, quaternī, quīnī, sēnī, and so on. The meaning of these is 'one each', 'two each' (or 'in pairs') and so on.
+*Another set of n'l adjectives, similar to the above but differing in the adjectives for 1, 3, and 4, were the distributive numerals: <singulī, bīnī, ternī, quaternī, quīnī, sēnī>, and so on. The meaning of these is "one each", "two each" (or "in pairs") and so on.
 num	n'l	Latin	num	n'l	Latin
 1	I	singulī	11	XI	ūndēnī
 2	II	bīnī	12	XII	duodēnī
@@ -94,7 +94,7 @@ num	n'l	Latin	num	n'l	Latin
 
 &d:adv:all
 *Adverbial numbers 1-20
-*Adverbial numerals are (as the name states) indeclinable adverbs, but because all of the other numeral constructions are adjectives, they are listed here with them. Adverbial numerals give how many times a thing happened. semel 'once', bis 'twice', ter 'thrice, three times', quater 'four times', and so on.
+*Adverbial numerals are (as the name states) indeclinable adverbs, but because all of the other numeral constructions are adjectives, they are listed here with them. Adverbial numerals give how many times a thing happened. <semel> "once", <bis> "twice", <ter> "thrice, three times", <quater> "four times", and so on.
 num	n'l	Latin	num	n'l	Latin	num	n'l	Latin	num	n'l	Latin
 1	I	semel	11	XI	ūndeciēns
 2	II	bis	12	XII	duodeciēns
@@ -106,7 +106,7 @@ num	n'l	Latin	num	n'l	Latin	num	n'l	Latin	num	n'l	Latin
 8	VIII	octiēns	18	XVIII	duodēvīciēns
 9	IX	noviēns	19	XIX	ūndēvīciēns
 10	X	deciēns	20	XX	vīciēns
-*The suffix -iēns may also be spelled -iēs: quinquiēs, sexiēs, etc. E.g. equidem deciēs dīxī (Plautus) 'indeed I've said it ten times already'
+*The suffix <-iēns> may also be spelled <-iēs>: <quinquiēs, sexiēs>, etc. E.g. <equidem deciēs dīxī> (Plautus) "indeed I"ve said it ten times already"
 
 &d:adv:all
 *Adverbial numbers 21-1000
@@ -124,7 +124,7 @@ num	n'l	Latin	num	n'l	Latin
 
 &d:prop:all
 *Proportional numbers 1-20
-*Proportional numerals are declinable adjectives. simplus 'simple', duplus 'twice as great', triplus 'thrice as great', quadruplus 'four times as great', and so on.
+*Proportional numerals are declinable adjectives. <simplus> "simple", <duplus> "twice as great", <triplus> "thrice as great", <quadruplus> "four times as great", and so on.
 num	n'l	Latin	num	n'l	Latin
 1	I	simplus	11	XI	ūndecuplus
 2	II	duplus	12	XII	duodecuplus
@@ -136,7 +136,7 @@ num	n'l	Latin	num	n'l	Latin
 8	VIII	octuplus	18	XVIII	duodēvīgentuplus
 9	IX	nōnuplus	19	XIX	ūndēvīgentuplus
 10	X	decuplus	20	XX	vīgentuplus
-*These are often used as nouns: simplum 'the simple sum', duplum 'double the amount of money' and so on. E.g. duplam pecūniam in thēsaurōs repōnī (Livy) 'double the amount of money to be replaced in the treasuries'
+*These are often used as nouns: <simplum> "the simple sum", <duplum> "double the amount of money" and so on. E.g. <duplam pecūniam in thēsaurōs repōnī> (Livy) "double the amount of money to be replaced in the treasuries"
 
 &d:prop:all
 *Proportional numbers 21-1000
@@ -153,8 +153,8 @@ num	n'l	Latin	num	n'l	Latin
 100	C	centuplus	1000	ↀ	mīlliplus
 
 &d:card:e=unus
-*Cardinal numerals: unus one
-*ūnus, ūna, ūnum - one
+*Cardinal numerals: <unus> one
+*<ūnus, ūna, ūnum> one
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	ūnus	ūna	ūnum	ūnī	ūnae	ūna
@@ -165,8 +165,8 @@ Dative	ūnī	ūnī	ūnī	ūnīs	ūnīs	ūnīs
 Ablative	ūnō	ūnā	ūnō	ūnīs	ūnīs	ūnīs
 
 &d:card:e=duo
-*Cardinal numerals: duo two
-*duo, duae, duo - two
+*Cardinal numerals: <duo> two
+*<duo, duae, duo> two
 %	Plural
 %	Masculine	Feminine	Neuter
 Nominative	duo	duae	duo
@@ -176,8 +176,8 @@ Dative	duōbus	duābus	duōbus
 Ablative	duōbus	duābus	duōbus
 
 &a:pron:e=ambo
-*Pronominal number: ambo both
-*ambō, ambae, ambō - both
+*Pronominal number: <ambo> both
+*<ambō, ambae, ambō> both
 %	Plural
 %	Masculine	Feminine	Neuter
 Nominative	ambō	ambae	ambō
@@ -187,8 +187,8 @@ Dative	ambōbus	ambābus	ambōbus
 Ablative	ambōbus	ambābus	ambōbus
 
 &d:card:e=tria
-*Cardinal numbers: tres three
-*trēs, tria - three
+*Cardinal numbers: <tres> three
+*<trēs, tria> three
 %	Plural
 %	Masc. & Fem.	Neuter
 Nominative	trēs	tria
@@ -199,8 +199,8 @@ Ablative	tribus	tribus
 
 &d:card:e=centum
 *Cardinal numbers: centum hundred
-*The n'l centum ('one hundred') is indeclinable, but all the other hundred n'ls are declinable (ducentī, trecentī, quadringentī, quīngentī, sescentī, septingentī, octingentī, nōngentī).
-* ducentī, ducentae, ducenta - two hundred
+*The numeral centum ("one hundred") is indeclinable, but all the other hundred numerals are declinable (<ducentī, trecentī, quadringentī, quīngentī, sescentī, septingentī, octingentī, nōngentī>).
+* <ducentī, ducentae, ducenta> - two hundred
 %	Plural
 %	Masculine	Feminine	Neuter
 Nominative	ducentī	ducentae	ducenta
@@ -211,7 +211,7 @@ Ablative	ducentīs	ducentīs	ducentīs
 
 &d:card:e=mille
 *Cardinal numbers: mille thousand
-*mīlle - (one) thousand	mīlia, mīlium - x thousand, thousands
+*<mīlle> - (one) thousand	<mīlia, mīlium> - x thousand, thousands
 %	Singular	Plural
 Nominative	mīlle	mīlia/mīllia
 Accusative	mīlle	mīlia/mīllia

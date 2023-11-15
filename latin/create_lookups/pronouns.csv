@@ -8,8 +8,8 @@
 
 
 &p:per:e=ego nos
-*First person pronouns: ego, nos
-*ego, nōs - I / we
+*First person pronouns: <ego, nos>
+*<ego, nōs> I / we
 %	Singular	Plural
 Nominative	ego (egō)	nōs
 Accusative	mē	nōs
@@ -19,8 +19,8 @@ Dative	mihi (mihī)	nōbīs
 Ablative	mē	nōbīs
 
 &p:per:e=tu vos
-*Second person pronouns: tu vos
-*tū, vōs - you
+*Second person pronouns: <tu vos>
+*<tū, vōs> you
 %	Singular	Plural
 Nominative	tū	vōs
 Accusative	tē	vōs
@@ -30,8 +30,8 @@ Dative	tibi (tibī)	vōbīs
 Ablative	tē	vōbīs
 
 &p:per:e=se
-*Third person reflexive pronoun: se
-*sē - him/her/it/oneself / themselves
+*Third person reflexive pronoun: <se>
+*<sē> him/her/it/oneself / themselves
 %	Sing. & Pl.
 Nominative	--
 Accusative	sē (sēsē)
@@ -40,8 +40,8 @@ Dative	sibi (sibī)
 Ablative	sē (sēsē)
 
 &p:poss=1s:e=meus
-*First person possessive pronoun: meus
-*meus, mea, meum - my, mine
+*First person possessive pronoun: <meus>
+*<meus, mea, meum> my, mine
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	meus	mea	meum	meī	meae	mea
@@ -52,8 +52,8 @@ Dative	meō	meae	meō	meīs	meīs	meīs
 Ablative	meā	meae	meō	meīs	meīs	meīs
 
 &p:poss=2s:e=tuus
-*Second person singular possessive pronoun: tuus
-*tuus, tua, tuum - your, yours (for singular possessor)
+*Second person singular possessive pronoun: <tuus>
+*<tuus, tua, tuum> your, yours (for singular possessor)
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	tuus	tua	tuum	tuī	tuae	tua
@@ -63,8 +63,8 @@ Dative	tuō	tuae	tuō	tuīs	tuīs	tuīs
 Ablative	tuā	tuae	tuō	tuīs	tuīs	tuīs
 
 &p:poss=reflexive:e=suus
-*Third person reflexive possessive pronoun: suus
-*suus, sua, suum - his, her, its, theirs (reflexive)
+*Third person reflexive possessive pronoun: <suus>
+*<suus, sua, suum> his, her, its, theirs (reflexive)
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	suus	sua	suum	suī	suae	sua
@@ -74,8 +74,8 @@ Dative	suō	suae	suō	suīs	suīs	suīs
 Ablative	suā	suae	suō	suīs	suīs	suīs
 
 &p:poss:e=noster
-*First person plural possessive pronoun: noster
-*noster, nostra, nostrum - our, ours
+*First person plural possessive pronoun: <noster>
+*<noster, nostra, nostrum> our, ours
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	noster	nostra	nostrum	nostrī	nostrae	nostra
@@ -85,8 +85,8 @@ Dative	nostrō	nostrae	nostrō	nostrīs	nostrīs	nostrīs
 Ablative	nostrā	nostrae	nostrō	nostrīs	nostrīs	nostrīs
 
 &p:poss:e=vester
-*Second person plural possessive pronoun: vester
-*vester - your, yours (for plural possessor)
+*Second person plural possessive pronoun: <vester>
+*<vester> your, yours (for plural possessor)
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	vester	vestra	vestrum	vestrī	vestrae	vestra
@@ -96,8 +96,8 @@ Dative	vestrō	vestrae	vestrō	vestrīs	vestrīs	vestrīs
 Ablative	vestrā	vestrae	vestrō	vestrīs	vestrīs	vestrīs
 
 &p:poss:e=voster
-*Second person plural possessive pronoun: voster (archaic)
-*voster - your, yours (for plural possessor) ARCHAIC
+*Second person plural possessive pronoun: <voster> (archaic)
+*<voster> your, yours (for plural possessor) ARCHAIC
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	voster	vostra	vostrum	vostrī	vostrae	vostra
@@ -108,7 +108,7 @@ Ablative	vostrā	vostrae	vostrō	vostrīs	vostrīs	vostrīs
 
 &p:dem:e=is ea id
 *Demonstrative pronouns and adjectives
-* is, ea, id - he, she, it
+* <is, ea, id> he, she, it
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	is	ea	id	eī (iī)	eae	ea
@@ -118,8 +118,8 @@ Dative	eī	eī	eī	īs (iīs)	īs (iīs)	īs (iīs)
 Ablative	eō	eā	eō	īs (iīs)	īs (iīs)	īs (iīs)
 
 &p:pron:i=idem
-*Declension of īdem
-*īdem, eadem, idem - the same, same as
+*Declension of <īdem>
+*<īdem, eadem, idem> the same, same as
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	īdem	eadem	idem	eīdem	eaedem	eadem
@@ -136,7 +136,7 @@ Ablative	eōdem	eādem	eōdem	eīsdem	eīsdem	eīsdem
 
 &p:dem:e=hic haec hoc
 *Other demonstrative pronouns
-*hic, haec, hoc - this, this one (proximal)
+*<hic, haec, hoc> this, this one (proximal)
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	hic	haec	hoc	hī	hae	haec
@@ -147,7 +147,7 @@ Ablative	hōc	hāc	hōc	hīs	hīs	hīs
 
 &p:dem:e=ille illa illud
 *Other demonstrative pronouns
-*ille, illa, illud - that, that one (distal)
+*<ille, illa, illud> that, that one (distal)
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	ille	illa	illud	illī	illae	illa
@@ -158,7 +158,7 @@ Ablative	illō	illā	illō	illīs	illīs	illīs
 
 &p:dem:e=iste ista istud
 *Other demonstrative pronouns
-*iste, ista, istud - that of yours (medial)
+*<iste, ista, istud> that of yours (medial)
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	iste	ista	istud	istī	istae	ista
@@ -169,7 +169,7 @@ Ablative	istō	istā	istō	istīs	istīs	istīs
 
 &p:intensive:e=ipse ipsa ipsum
 *Intensive pronoun
-*ipse, ipsa, ipsum - himself, herself, itself
+*<ipse, ipsa, ipsum> himself, herself, itself
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	ipse	ipsa	ipsum	ipsi	ipsae	ipsa
@@ -181,7 +181,7 @@ Ablative	ipsō	ipsā	ipsō	ipsīs	ipsīs	ipsīs
 &p:int:e=quis quid
 *Interrogative pronouns
 *Singular
-*quis? quid? - who?, what?
+*<quis? quid?> who?, what?
 %	Masc./Fem.	Neuter
 Nominative	quis?	quid?
 Accusative	quem?	quid?
@@ -191,7 +191,7 @@ Ablative	quō?	quō?
 
 &p:rel:e=qui quae quod
 *Relative pronouns
-*quī, quae, quod - who, which, that
+*<quī, quae, quod> who, which, that
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	quī	quae	quod	quī	quae	quae
@@ -202,7 +202,7 @@ Ablative	quō	quā	quō	quibus	quibus	quibus
 
 &a:1&2:pron=ullus
 *First and second declension pronominal adjectives
-*ūllus, ūlla, ūllum - any
+*<ūllus, ūlla, ūllum> any
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	ūllus	ūlla	ūllum	ūllī	ūllae	ūlla
@@ -212,7 +212,7 @@ Dative	ūllī	ūllī	ūllī	ūllīs	ūllīs	ūllīs
 Ablative	ūllō	ūllā	ūllō	ūllīs	ūllīs	ūllīs
 
 &p:uter:e=uter utra utrum
-*First- and Second-declension pronominal adjectives: uter (which of two), either
+*First- and Second-declension pronominal adjectives: <uter> which (of two), either
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	uter	utra	utrum	utrī	utrae	utra
@@ -222,7 +222,7 @@ Dative	utrī	utrī	utrī	utrīs	utrīs	utrīs
 Ablative	utrō	utrā	utrō	utrīs	utrīs	utrīs
 
 &p:neuter:e=neuter neutra neutrum
-*First- and Second-declension pronominal adjectives: neuter (neither)
+*First- and Second-declension pronominal adjectives: <neuter> neither
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	neuter	neutra	neutrum	neutrī	neutrae	neutra
@@ -232,7 +232,7 @@ Dative	neutrī	neutrī	neutrī	neutrīs	neutrīs	neutrīs
 Ablative	neutrō	neutrā	neutrō	neutrīs	neutrīs	neutrīs
 
 &p:solus:e=solus sola solum
-*First- and Second-declension pronominal adjectives: solus (sole, alone)
+*First- and Second-declension pronominal adjectives: <solus> sole, alone
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	sōlus	sōla	sōlum	sōlī	sōlae	sōla
@@ -243,7 +243,7 @@ Dative	sōlī	sōlī	sōlī	sōlīs	sōlīs	sōlīs
 Ablative	sōlō	sōlā	sōlō	sōlīs	sōlīs	sōlīs
 
 &p:alius:e=alius alia alium
-*First- and Second-declension pronominal adjectives: alius (another)
+*First- and Second-declension pronominal adjectives: <alius> another
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	alius	alia	aliud	aliī	aliae	alia
@@ -252,10 +252,10 @@ Accusative	alium	aliam	aliud	aliōs	aliās	alia
 Genitive	alterīus	alterīus	alterīus	aliōrum	aliārum	aliōrum
 Dative	aliī	aliī	aliī	aliīs	aliīs	aliīs
 Ablative	aliō	aliā	aliō	aliīs	aliīs	aliīs
-*The genitive singular alīus is often replaced by alterīus or by aliēnus 'of another'.
+*The genitive singular <alīus> is often replaced by <alterīus> or by <aliēnus> "of another".
 
 &p:totus:e=totus tota totum
-*First- and Second-declension pronominal adjectives: totus (whole)
+*First- and Second-declension pronominal adjectives: <totus> whole
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	tōtus	tōta	tōtum	tōtī	tōtae	tōta
@@ -266,7 +266,7 @@ Dative	tōtī	tōtī	tōtī	tōtīs	tōtīs	tōtīs
 Ablative	tōtō	tōtā	tōtō	tōtīs	tōtīs	tōtīs
 
 &p:alter:e=alter altera alterum
-*First- and Second-declension pronominal adjectives: alter (other of two)
+*First- and Second-declension pronominal adjectives: <alter> other (of two)
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	alter	altera	alterum	alterī	alterae	altera

@@ -10,7 +10,7 @@
 
 &a:1&2:e=altus
 *First and second declension adjectives
-*	altus, alta, altum - high, long, tall
+*	<altus, alta, altum> - high, long, tall
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	altus	alta	altum	altī	altae	alta
@@ -22,7 +22,7 @@ Ablative	altō	altā	altō	altīs	altīs	altīs
 
 &a:1&2:e=miser
 *First and second declension -r adjectives without contractions
-*miser, misera, miserum - sad, poor, unhappy
+*<miser, misera, miserum> - sad, poor, unhappy
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	miser	misera	miserum	miserī	miserae	misera
@@ -33,7 +33,7 @@ Dative	miserō	miserā	miserō	miserīs	miserīs	miserīs
 
 &a:1&2:e=sacer
 *First and second declension -r adjectives with contractions
-*sacer, sacra, sacrum - sacred, holy
+*<sacer, sacra, sacrum> - sacred, holy
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	sacer	sacra	sacrum	sacrī	sacrae	sacra
@@ -44,7 +44,7 @@ Ablative	sacrō	sacrā	sacrō	sacrīs	sacrīs	sacrīs
 
 &a:3:e=atrox
 *Third declension adjectives with one ending
-*atrōx, atrōx - terrible, mean, cruel
+*<atrōx, atrōx> - terrible, mean, cruel
 %	Singular	%	%	Plural	%	%
 %	Masc. & Fem.	Neuter	Masc. & Fem.	Neuter
 Nominative	atrōx	atrōx	atrōcēs	atrōcia
@@ -55,7 +55,7 @@ Ablative	atrōcī	atrōcī	atrōcibus	atrōcibus
 
 &a:3:e=vetus
 *Third declension adjectives non-i-stem variant
-*vetus, vetus - old, aged
+*<vetus, vetus> - old, aged
 %	Singular	%	%	Plural	%	%
 %	Masc. & Fem.	Neuter	Masc. & Fem.	Neuter
 Nominative	vetus	vetus	veterēs	vetera
@@ -66,7 +66,7 @@ Ablative	vetere	vetere	veteribus	veteribus
 
 &a:3:e=agilis
 *Third declension adjectives with two endings
-*agilis, agile - nimble, swift
+*<agilis, agile> - nimble, swift
 %	Singular	%	%	Plural	%	%
 %	Masc. & Fem.	Neuter	Masc. & Fem.	Neuter
 Nominative	agilis	agile	agilēs	agilia
@@ -77,7 +77,7 @@ Ablative	agilī	agilī	agilibus	agilibus
 
 &a:3:e=celeris
 *Third declension adjectives with three endings
-*celer, celeris, celere - swift, rapid, brash
+*<celer, celeris, celere> - swift, rapid, brash
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	celer	celeris	celere	celerēs	celerēs	celeria
@@ -88,7 +88,7 @@ Ablative	celerī	celerī	celerī	celeribus	celeribus	celeribus
 
 &a:3:e=alacer
 *Third declension adjectives with contractions
-*alacer, alacris, alacre - lively, jovial, animated
+*<alacer, alacris, alacre> - lively, jovial, animated
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	alacer	alacris	alacre	alacrēs	alacrēs	alacria
@@ -99,7 +99,7 @@ Ablative	alacrī	alacrī	alacrī	alacribus	alacribus	alacribus
 
 &a:comp:e=alter altior
 *General pattern for comparative of adjectives
-*altior, altius - higher, deeper (comparative of altus)
+*<altior, altius> - higher, deeper (comparative of altus)
 %	Singular	%	Plural	%
 %	Masc. & Fem.	Neuter	Masc. & Fem.	Neuter
 Nominative	altior	altius	altiōrēs	altiōra
@@ -110,7 +110,7 @@ Ablative	altiōre	altiōre	altiōribus	altiōribus
 
 &a:sup:e=altissimus altus
 *General pattern for superlative adjectives
-*altissimus, altissima, altissimum - highest, deepest (superlative of altus)
+*<altissimus, altissima, altissimum> - highest, deepest (superlative of altus)
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
 Nominative	altissimus	altissima	altissimum	altissimī	altissimae	altissima
@@ -121,7 +121,7 @@ Dative	altissimō	altissimae	altissimō	altissimīs	altissimīs	altissimīs
 Ablative	altissimō	altissiā	altissimō	altissimīs	altissimīs	altissimīs
 
 &a:comp&supp:e=facilis facilior facillimus
-*Comparatives and superlatives of -lis adjectives
+*Comparatives and superlatives of <-lis> adjectives
 Positive	Comparative	Superlative
 facilis, facile ('easy')	facilior, facilius	facillimus, facillima, facillimum
 difficilis, difficile ('hard, difficult')	difficilior, difficilius	difficillimus, difficillima, difficillimum
@@ -131,7 +131,7 @@ gracilis, gracile ('slender, slim')	gracilior, gracilius	gracillimus, gracillima
 humilis, humile ('low, humble')	humilior, humilius	humillimus, humillima, humillimum
 
 &a:comp&sup:e=idoneus solitarius ebrius meritorious gramineus bellatorius arduus
-*Comparatives and superlatives of -eus/-ius adjectives
+*Comparatives and superlatives of <-eus/-ius> adjectives
 Positive	Comparative	Superlative
 idōneus, idōnea, idōneum ('suitable, fitting, proper')	magis idōneus	maximē idōneus
 sōlitārius, sōlitāria, sōlitārium ('solitary, lonely')	magis sōlitārius	maximē sōlitārius
@@ -143,10 +143,10 @@ arduus, ardua, arduum ('lofty, steep')	magis arduus	maximē arduus
 
 &a:comp&sup:i=bonus malus parvus multus propinquus maturus nequam posterus postumus superus summus exterus extimus inferus imus senex iuvenis iunior
 *Irregular comparative and superlative adjectives
-*[i] plūs: Noun used with genitive to express more of something in the singular; in the plural used as an adjective: plūrēs, plūra, genitive plūrium.
-*[ii] mātūrrimus: Often replaced by the regular form mātūrissimus, mātūrissima, mātūrissimum.
-*[iii] nequam: Indeclinable.
-*[iv] minimus nātū: Sometimes iunissimus is found in medieval Latin, e.g. Callistus Nicephorus, Ecclesiastica Historia, 1574.
+*[i] <plūs>: Noun used with genitive to express more of something in the singular; in the plural used as an adjective: <plūrēs, plūra>, genitive <plūrium>.
+*[ii] <mātūrrimus>: Often replaced by the regular form <mātūrissimus, mātūrissima, mātūrissimum>.
+*[iii] <nequam>: Indeclinable.
+*[iv] <minimus nātū>: Sometimes <iunissimus> is found in medieval Latin, e.g. Callistus Nicephorus, Ecclesiastica Historia, 1574.
 Positive	Comparative	Superlative
 bonus, bona, bonum ('good')	melior, melius ('better')	optimus, optima, optimum ('best')
 malus, mala, malum ('bad, evil')	pēior, pēius ('worse')	pessimus, pessima, pessimum ('worst')

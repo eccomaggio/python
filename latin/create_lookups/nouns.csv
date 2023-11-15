@@ -18,8 +18,8 @@ Locative	Gen.	Dat.
 
 &n:1:e=mensa poeta
 *First declension nouns: masculine and feminine
-*mensa, mensae table f.
-*poēta, poētae poet m.
+*<mensa, mensae> table f.
+*<poēta, poētae> poet m.
 %	Singular	Plural	Singular	Plural
 Nominative	mensa	mensae	poēta	poētae
 Accusative	mensam	mensās	poētam	poētās
@@ -41,6 +41,7 @@ Locative	Gen.	-Gen.	Dat.	Dat.
 
 &n:2:e=dominus
 *Second declension Masculine nouns
+*<dominus, dominī> master m.
 %	Singular	Plural
 Nominative	dominus	dominī
 Vocative	domine	domini:
@@ -51,6 +52,7 @@ Ablative	dominō	dominīs
 
 &n:2:e=bellum
 *Second declension Neuter nouns
+*<bellum, bellum> war n.
 %	Singular	Plural
 Nominative	bellum	bella
 Accusative	bellum	bella
@@ -60,8 +62,8 @@ Dative	bellō	belli:s
 Ablative	bellō	belli:s
 
 &n:2:e=filius auxilium
-*Second declension -ius and -ium nouns
-*fīlius, filiī son m.
+*Second declension <-ius and -ium> nouns
+*<fīlius, filiī> son m.
 *auxilium, auxiliī aid, help n.
 %	Singular	Plural	Singular	Plural
 Nominative	fīlius	fīliī	auxilium	auxilia
@@ -72,10 +74,10 @@ Dative	fīliō	fīliīs	auxiliō	auxiliīs
 Ablative	fīliō	fīliīs	auxiliō	auxiliīs
 
 &n:2:e=puer ager vir
-*Second declension -r nouns
-*puer, puerī boy m.
-*ager, agrī field m.
-*vir, virī man m.
+*Second declension <-r> nouns
+*<puer, puerī> boy m.
+*<ager, agrī> field m.
+*<vir, virī> man m.
 %	Singular	Plural	Singular	Plural	Singular	Plural
 Nominative	puer	puerī	ager	agrī	vir	virī
 Accusative	puerum	puerōs	agrum	agrōs	virum	virōs
@@ -84,8 +86,8 @@ Dative	puerō	puerīs	agrō	agrīs	virō	virīs
 Ablative	puerō	puerīs	agrō	agrīs	virō	virīs
 
 &n:2:i=deus
-*Irregular nouns: deus
-*deus, deī god m.
+*Irregular nouns: <deus>
+*<deus, deī> god m.
 %	Singular	Plural
 Nominative	deus	deī diī dī
 Accusative	deum	deōs
@@ -106,9 +108,9 @@ Locative	Dat./Abl.	Dat.	Dat./Abl.	Dat.
 
 &n:3:e=dux virtus nomen
 Third declension nouns
-*dux, ducis leader m.
-*virtūs, virtūtis virtue f.
-*nōmen, nōminis name n.
+*<dux, ducis> leader m.
+*<virtūs, virtūtis> virtue f.
+*<nōmen, nōminis> name n.
 %	Singular	Plural	Singular	Plural	Singular	Plural
 Nominative	dux	ducēs	virtūs	virtūtēs	nōmen	nōmina
 Accusative	ducem	ducēs	virtūtem	virtūtēs	nōmen	nōmina
@@ -140,9 +142,9 @@ Locative	Dat./Abl.	Dat.	Dat./Abl.	Dat.
 
 &n:3:e=turris pars animal
 *Third declension special rules: Parisyllabic rule,	Double consonant rule,	Special neuter ending
-*turris, turris tower f. (pure)
-*pars, partis part, piece f. (mixed)
-*animal, animālis animal, living being n. (pure)
+*<turris, turris> tower f. (pure)
+*<pars, partis part> piece f. (mixed)
+*<animal, animālis animal> living being n. (pure)
 %	Singular	Plural	Singular	Plural	Singular	Plural
 Nominative	turris	turrēs	pars	partēs	animal	animālia
 Accusative	turrem	turre:s	partem	parte:s	animal	anima:lia
@@ -154,10 +156,10 @@ Ablative	turre	turribus	parte	partibus	animālī	animālibus
 
 &n:3:i=vis sus bos Iuppiter
 *Third declension Irregular nouns
-*vīs, vīs force, power f.
-*sūs, suis swine, pig, hog m.f.
-*bōs, bovis ox, bullock m.f.
-*Iuppiter, Iovis Jupiter m.
+*<vīs, vīs> force, power f.
+*<sūs, suis> swine, pig, hog m.f.
+*<bōs, bovis> ox, bullock m.f.
+*<Iuppiter, Iovis> Jupiter m.
 *1. Here ō or ū come from Old Latin ou. Thus bō-/bū- and Iū- before consonant endings are alternate developments of the bov- and Iov- before vowel endings. — The double pp in the preferred form Iu-ppiter "Father Jove" is an alternate way of marking the length of the u in the etymological form Iū-piter. i is weakened from a in pater (Allen and Greenough, sect. 79 b).
 *2. Genitive and dative singular cases are seldom used in vīs.
 %	Singular	Plural	Singular	Plural	Singular	Plural	Singular
@@ -174,8 +176,8 @@ Ablative	vī	vīribus	sue	suibus	bove	bōbus	Iove
 
 &n:4:p
 *Fourth declension (u stems) paradigm
-*-us ending nouns
-*-ū ending nouns
+*<-us> ending nouns
+*<-ū> ending nouns
 %	Singular	Plural	Singular	Plural
 Nominative	-us	-ūs	-ū	-ua
 Accusative	-um	-ūs	-ū	-ua
@@ -188,8 +190,8 @@ Locative	-ī	Dat.	-ī	Dat.
 
 &n:4:e=portus genu
 *Fourth declension nouns
-*portus, portūs port m.
-*genū, genūs knee n.
+*<portus, portūs> port m.
+*<genū, genūs> knee n.
 %	Singular	Plural	Singular	Plural
 Nominative	portus	portūs	genū	genua
 Accusative	portum	portūs	genū	genua
@@ -198,7 +200,7 @@ Dative	portuī	portibus	genū	genibus
 Ablative	portu:	portibus	genū	genibus
 
 &n:4:i=domus
-*Irregular nouns: domus f.
+*Irregular nouns: <domus> f.
 *All possible declensions (especially literature)
 %  All possible  %  Most Common  %
 %	Singular	Plural	Singular	Plural
@@ -226,8 +228,8 @@ Locative	domī	domibus	domī	domibus
 
 &n:5:p
 *Fifth declension noun (e stems) paradigm
-*-iēs ending nouns
-*-ēs ending nouns
+*<-iēs> ending nouns
+*<-ēs> ending nouns
 %	Singular	Plural	Singular	Plural
 Nominative	-iēs	-iēs	-ēs	-ēs
 Accusative	-iem	-ie:s	-em	-e:s
@@ -238,8 +240,8 @@ Locative	Abl.	Abl.	Abl.	Abl.
 
 &n:5:e=dies
 *Fifth declension noun (dies)
-*diēs, diēī day m., f.
-*rēs, reī thing f.
+*<diēs, diēī> day m., f.
+*<rēs, reī> thing f.
 %	Singular	Plural	Singular	Plural
 Nominative	diēs	diēs	rēs	rēs
 Accusative	diem	die:s	rem	re:s
