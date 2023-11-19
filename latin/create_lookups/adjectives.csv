@@ -13,133 +13,133 @@
 *	<altus, alta, altum> - high, long, tall
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
-Nominative	altus	alta	altum	altī	altae	alta
-Vocative	alte	alta	altum	altī	altae	alta
-Accusative	altum	altam	altum	altōs	altās	alta
-Genitive	altī	altae	altī	altōrum	altārum	altōrum
-Dative	altō	altae	altō	altīs	altīs	altīs
-Ablative	altō	altā	altō	altīs	altīs	altīs
+Nominative	<altus>	<alta>	<altum>	<altī>	<altae>	<alta>
+Vocative	<alte>	<alta>	<altum>	<altī>	<altae>	<alta>
+Accusative	<altum>	<altam>	<altum>	<altōs>	<altās>	<alta>
+Genitive	<altī>	<altae>	<altī>	<altōrum>	<altārum>	<altōrum>
+Dative	<altō>	<altae>	<altō>	<altīs>	<altīs>	<altīs>
+Ablative	<altō>	<altā>	<altō>	<altīs>	<altīs>	<altīs>
 
 &a:1&2:e=miser
 *First and second declension -r adjectives without contractions
 *<miser, misera, miserum> - sad, poor, unhappy
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
-Nominative	miser	misera	miserum	miserī	miserae	misera
-Accusative	miserum	miseram	miserum	miserōs	miserās	misera
-Genitive	miserī	miserae	miserī	miserōrum	miserārum	miserōrum
-Dative	miserō	miserae	miserō	miserīs	miserīs	miserīs
-Dative	miserō	miserā	miserō	miserīs	miserīs	miserīs
+Nominative	<miser>	<misera>	<miserum>	<miserī>	<miserae>	<misera>
+Accusative	<miserum>	<miseram>	<miserum>	<miserōs>	<miserās>	<misera>
+Genitive	<miserī>	<miserae>	<miserī>	<miserōrum>	<miserārum>	<miserōrum>
+Dative	<miserō>	<miserae>	<miserō>	<miserīs>	<miserīs>	<miserīs>
+Dative	<miserō>	<miserā>	<miserō>	<miserīs>	<miserīs>	<miserīs>
 
 &a:1&2:e=sacer
 *First and second declension -r adjectives with contractions
 *<sacer, sacra, sacrum> - sacred, holy
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
-Nominative	sacer	sacra	sacrum	sacrī	sacrae	sacra
-Accusative	sacrum	sacram	sacrum	sacrōs	sacrās	sacra
-Genitive	sacrī	sacrae	sacrī	sacrōrum	sacrārum	sacrōrum
-Dative	sacrō	sacrae	sacrō	sacrīs	sacrīs	sacrīs
-Ablative	sacrō	sacrā	sacrō	sacrīs	sacrīs	sacrīs
+Nominative	<sacer>	<sacra>	<sacrum>	<sacrī>	<sacrae>	<sacra>
+Accusative	<sacrum>	<sacram>	<sacrum>	<sacrōs>	<sacrās>	<sacra>
+Genitive	<sacrī>	<sacrae>	<sacrī>	<sacrōrum>	<sacrārum>	<sacrōrum>
+Dative	<sacrō>	<sacrae>	<sacrō>	<sacrīs>	<sacrīs>	<sacrīs>
+Ablative	<sacrō>	<sacrā>	<sacrō>	<sacrīs>	<sacrīs>	<sacrīs>
 
 &a:3:e=atrox
 *Third declension adjectives with one ending
 *<atrōx, atrōx> - terrible, mean, cruel
 %	Singular	%	%	Plural	%	%
 %	Masc. & Fem.	Neuter	Masc. & Fem.	Neuter
-Nominative	atrōx	atrōx	atrōcēs	atrōcia
-Accusative	atrōcem	atro:x	atrōcēs / atrōcīs 	atrōcia
-Genitive	atrōcis	atrōcis	atrōcium	atrōcium
-Dative	atrōcī	atrōcī	atrōcibus	atrōcibus
-Ablative	atrōcī	atrōcī	atrōcibus	atrōcibus
+Nominative	<atrōx>	<atrōx>	<atrōcēs>	<atrōcia>
+Accusative	<atrōcem>	<atrōx>	<atrōcēs / atrōcīs >	<atrōcia>
+Genitive	<atrōcis>	<atrōcis>	<atrōcium>	<atrōcium>
+Dative	<atrōcī>	<atrōcī>	<atrōcibus>	<atrōcibus>
+Ablative	<atrōcī>	<atrōcī>	<atrōcibus>	<atrōcibus>
 
 &a:3:e=vetus
 *Third declension adjectives non-i-stem variant
 *<vetus, vetus> - old, aged
 %	Singular	%	%	Plural	%	%
 %	Masc. & Fem.	Neuter	Masc. & Fem.	Neuter
-Nominative	vetus	vetus	veterēs	vetera
-Accusative	vetus	veterem	veterēs	vetera
-Genitive	veteris	veteris	veterum	veterum
-Dative	veterī	veterī	veteribus	veteribus
-Ablative	vetere	vetere	veteribus	veteribus
+Nominative	<vetus>	<vetus>	<veterēs>	<vetera>
+Accusative	<vetus>	<veterem>	<veterēs>	<vetera>
+Genitive	<veteris>	<veteris>	<veterum>	<veterum>
+Dative	<veterī>	<veterī>	<veteribus>	<veteribus>
+Ablative	<vetere>	<vetere>	<veteribus>	<veteribus>
 
 &a:3:e=agilis
 *Third declension adjectives with two endings
 *<agilis, agile> - nimble, swift
 %	Singular	%	%	Plural	%	%
 %	Masc. & Fem.	Neuter	Masc. & Fem.	Neuter
-Nominative	agilis	agile	agilēs	agilia
-Accusative	agilem	agile	agilēs (agilīs)	agilia
-Genitive	agilis	agilis	agilium	agilium
-Dative	agilī	agilī	agilibus	agilibus
-Ablative	agilī	agilī	agilibus	agilibus
+Nominative	<agilis>	<agile>	<agilēs>	<agilia>
+Accusative	<agilem>	<agile>	<agilēs (agilīs)>	<agilia>
+Genitive	<agilis>	<agilis>	<agilium>	<agilium>
+Dative	<agilī>	<agilī>	<agilibus>	<agilibus>
+Ablative	<agilī>	<agilī>	<agilibus>	<agilibus>
 
 &a:3:e=celeris
 *Third declension adjectives with three endings
 *<celer, celeris, celere> - swift, rapid, brash
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
-Nominative	celer	celeris	celere	celerēs	celerēs	celeria
-Accusative	celerem	celeris	celere	celerēs	celerēs	celeria
-Genitive	celeris	celeris	celeris	celerium	celerium	celerium
-Dative	celerī	celerī	celerī	celeribus	celeribus	celeribus
-Ablative	celerī	celerī	celerī	celeribus	celeribus	celeribus
+Nominative	<celer>	<celeris>	<celere>	<celerēs>	<celerēs>	<celeria>
+Accusative	<celerem>	<celeris>	<celere>	<celerēs>	<celerēs>	<celeria>
+Genitive	<celeris>	<celeris>	<celeris>	<celerium>	<celerium>	<celerium>
+Dative	<celerī>	<celerī>	<celerī>	<celeribus>	<celeribus>	<celeribus>
+Ablative	<celerī>	<celerī>	<celerī>	<celeribus>	<celeribus>	<celeribus>
 
 &a:3:e=alacer
 *Third declension adjectives with contractions
 *<alacer, alacris, alacre> - lively, jovial, animated
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
-Nominative	alacer	alacris	alacre	alacrēs	alacrēs	alacria
-Accusative	alacrem	alacris	alacre	alacrēs (alacrīs)	alacrēs	alacria
-Genitive	alacris	alacris	alacris	alacrium	alacrium	alacrium
-Dative	alacrī	alacrī	alacrī	alacribus	alacribus	alacribus
-Ablative	alacrī	alacrī	alacrī	alacribus	alacribus	alacribus
+Nominative	<alacer>	<alacris>	<alacre>	<alacrēs>	<alacrēs>	<alacria>
+Accusative	<alacrem>	<alacris>	<alacre>	<alacrēs (alacrīs)>	<alacrēs>	<alacria>
+Genitive	<alacris>	<alacris>	<alacris>	<alacrium>	<alacrium>	<alacrium>
+Dative	<alacrī>	<alacrī>	<alacrī>	<alacribus>	<alacribus>	<alacribus>
+Ablative	<alacrī>	<alacrī>	<alacrī>	<alacribus>	<alacribus>	<alacribus>
 
 &a:comp:e=alter altior
 *General pattern for comparative of adjectives
 *<altior, altius> - higher, deeper (comparative of altus)
 %	Singular	%	Plural	%
 %	Masc. & Fem.	Neuter	Masc. & Fem.	Neuter
-Nominative	altior	altius	altiōrēs	altiōra
-Accusative	altiōrem	altius	altiōrēs	altiōra
-Genitive	altiōris	altiōris	altiōrum	altiōrum
-Dative	altiōrī	altiōrī	altiōribus	altiōribus
-Ablative	altiōre	altiōre	altiōribus	altiōribus
+Nominative	<altior>	<altius>	<altiōrēs>	<altiōra>
+Accusative	<altiōrem>	<altius>	<altiōrēs>	<altiōra>
+Genitive	<altiōris>	<altiōris>	<altiōrum>	<altiōrum>
+Dative	<altiōrī>	<altiōrī>	<altiōribus>	<altiōribus>
+Ablative	<altiōre>	<altiōre>	<altiōribus>	<altiōribus>
 
 &a:sup:e=altissimus altus
 *General pattern for superlative adjectives
 *<altissimus, altissima, altissimum> - highest, deepest (superlative of altus)
 %	Singular	%	%	Plural	%	%
 %	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
-Nominative	altissimus	altissima	altissimum	altissimī	altissimae	altissima
-Vocative	altissime	altissima	altissimum	altissimī	altissimae	altissima
-Accusative	altissimum	altissimam	altissimum	altissimōs	altissimās	altissima
-Genitive	altissimī	altissimae	altissimī	altissimōrum	altissimārum	altissimōrum
-Dative	altissimō	altissimae	altissimō	altissimīs	altissimīs	altissimīs
-Ablative	altissimō	altissiā	altissimō	altissimīs	altissimīs	altissimīs
+Nominative	<altissimus>	<altissima>	<altissimum>	<altissimī>	<altissimae>	<altissima>
+Vocative	<altissime>	<altissima>	<altissimum>	<altissimī>	<altissimae>	<altissima>
+Accusative	<altissimum>	<altissimam>	<altissimum>	<altissimōs>	<altissimās>	<altissima>
+Genitive	<altissimī>	<altissimae>	<altissimī>	<altissimōrum>	<altissimārum>	<altissimōrum>
+Dative	<altissimō>	<altissimae>	<altissimō>	<altissimīs>	<altissimīs>	<altissimīs>
+Ablative	<altissimō>	<altissiā>	<altissimō>	<altissimīs>	<altissimīs>	<altissimīs>
 
 &a:comp&supp:e=facilis facilior facillimus
 *Comparatives and superlatives of <-lis> adjectives
 Positive	Comparative	Superlative
-facilis, facile ('easy')	facilior, facilius	facillimus, facillima, facillimum
-difficilis, difficile ('hard, difficult')	difficilior, difficilius	difficillimus, difficillima, difficillimum
-similis, simile ('similar, like)	similior, similius	simillimus, simillima, simillimum
-dissimilis, dissimile ('unlike, dissimilar')	dissimilior, dissimilius	dissimillimus, dissimillima, dissimillimum
-gracilis, gracile ('slender, slim')	gracilior, gracilius	gracillimus, gracillima, gracillimum
-humilis, humile ('low, humble')	humilior, humilius	humillimus, humillima, humillimum
+<facilis, facile> ("easy")	<facilior, facilius>	<facillimus, facillima, facillimum>
+<difficilis, difficile> ("hard, difficult")	<difficilior, difficilius>	<difficillimus, difficillima, difficillimum>
+<similis, simile> ("similar, like)	<similior, similius>	<simillimus, simillima, simillimum>
+<dissimilis, dissimile> ("unlike, dissimilar")	<dissimilior, dissimilius>	<dissimillimus, dissimillima, dissimillimum>
+<gracilis, gracile> ("slender, slim")	<gracilior, gracilius>	<gracillimus, gracillima, gracillimum>
+<humilis, humile> ("low, humble")	<humilior, humilius>	<humillimus, humillima, humillimum>
 
 &a:comp&sup:e=idoneus solitarius ebrius meritorious gramineus bellatorius arduus
 *Comparatives and superlatives of <-eus/-ius> adjectives
 Positive	Comparative	Superlative
-idōneus, idōnea, idōneum ('suitable, fitting, proper')	magis idōneus	maximē idōneus
-sōlitārius, sōlitāria, sōlitārium ('solitary, lonely')	magis sōlitārius	maximē sōlitārius
-ebrius, ebria, ebrium ('drunk')	magis ebrius	maximē ebrius
-meritōrius, meritōria, meritōrium ('meritorious')	magis meritōrius	maximē meritōrius
-grāmineus, grāminea, grāmineum ('grassy')	magis grāmineus	maximē grāmineus
-bellātōrius, bellātōria, bellātōrium ('warlike, bellicose')	magis bellātōrius	maximē bellātōrius
-arduus, ardua, arduum ('lofty, steep')	magis arduus	maximē arduus
+<idōneus, idōnea, idōneum> ("suitable, fitting, proper")	<magis idōneus>	<maximē idōneus>
+<sōlitārius, sōlitāria, sōlitārium> ("solitary, lonely")	<magis sōlitārius>	<maximē sōlitārius>
+<ebrius, ebria, ebrium> ("drunk")	<magis ebrius>	<maximē ebrius>
+<meritōrius, meritōria, meritōrium> ("meritorious")	<magis meritōrius>	<maximē meritōrius>
+<grāmineus, grāminea, grāmineum> ("grassy")	<magis grāmineus>	<maximē grāmineus>
+<bellātōrius, bellātōria, bellātōrium> ("warlike, bellicose")	<magis bellātōrius>	<maximē bellātōrius>
+<arduus, ardua, arduum> ("lofty, steep")	<magis arduus>	<maximē arduus>
 
 &a:comp&sup:i=bonus malus parvus multus propinquus maturus nequam posterus postumus superus summus exterus extimus inferus imus senex iuvenis iunior
 *Irregular comparative and superlative adjectives
@@ -148,22 +148,22 @@ arduus, ardua, arduum ('lofty, steep')	magis arduus	maximē arduus
 *[iii] <nequam>: Indeclinable.
 *[iv] <minimus nātū>: Sometimes <iunissimus> is found in medieval Latin, e.g. Callistus Nicephorus, Ecclesiastica Historia, 1574.
 Positive	Comparative	Superlative
-bonus, bona, bonum ('good')	melior, melius ('better')	optimus, optima, optimum ('best')
-malus, mala, malum ('bad, evil')	pēior, pēius ('worse')	pessimus, pessima, pessimum ('worst')
-magnus, magna, magnum ('great, large')	māior, māius ('greater')	maximus, maxima, maximum ('greatest')
-parvus, parva, parvum ('small, slight')	minor, minus ('lesser')	minimus, minima, minimum ('least')
-multus, multa, multum ('much, many')	plūs[i] ('more')	plūrimus, plūrima, plūrimum ('most')
-propinquus, propinqua, propinquum ('near, close')	propior, propius ('nearer')	proximus, proxima, proximum ('nearest, next')
-mātūrus, mātūra, mātūrum ('ripe, mature')	mātūrior, mātūrius ('riper')	mātūrrimus, mātūrrima, mātūrrimum[ii] ('ripest')
-nēquam[iii] ('worthless')	nēquior, nēquius ('more worthless')	nēquissimus, nēquissima, nēquissimum ('most worthless')
-posterus, postera, posterum ('next, future')	posterior, posterius ('later')	postrēmus, postrēma, postrēmum ('last, latest')
-%	%	postumus, postuma, postumum
-superus, supera, superum ('above')	superior, superius ('upper')	suprēmus, suprēma, suprēmum ('uppermost')
-%	%	summus, summa, summum
-exterus, extera, exterum ('outward')	exterior, exterius ('outer')	extrēmus, extrēma, extrēmum ('outermost')
-%	%	extimus, extima, extimum
-īnferus, īnfera, īnferum ('below')	īnferior, īnferius ('lower')	īnfimus, īnfima, īnfimum ('lowest')
-%	%	īmus, īma, īmum
-senex, senis ('old, aged')	senior ('older, elder')	maximus nātū, maxima nātū ('oldest, eldest')
-iuvenis, iuvenis ('young, youthful')	iuvenior ('younger')	minimus nātū, minima nātū ('youngest')[iv]
-%	iūnior	%
+<bonus, bona, bonum> ("good")	<melior, melius ("better")>	<optimus, optima, optimum ("best")>
+<malus, mala, malum> ("bad, evil")	<pēior, pēius ("worse")>	<pessimus, pessima, pessimum ("worst")>
+<magnus, magna, magnum> ("great, large")	<māior, māius ("greater")>	<maximus, maxima, maximum ("greatest")>
+<parvus, parva, parvum> ("small, slight")	<minor, minus ("lesser")>	<minimus, minima, minimum ("least")>
+<multus, multa, multum> ("much, many")	<plūs[i] ("more")>	<plūrimus, plūrima, plūrimum ("most")>
+<propinquus, propinqua, propinquum> ("near, close")	<propior, propius ("nearer")>	<proximus, proxima, proximum ("nearest, next")>
+<mātūrus, mātūra, mātūrum> ("ripe, mature")	<mātūrior, mātūrius ("riper")>	<mātūrrimus, mātūrrima, mātūrrimum[ii] ("ripest")>
+<nēquam>[iii] ("worthless")	<nēquior, nēquius ("more worthless")>	<nēquissimus, nēquissima, nēquissimum ("most worthless")>
+<posterus, postera, posterum> ("next, future")	<posterior, posterius ("later")>	<postrēmus, postrēma, postrēmum ("last, latest")>
+<%>	%	<postumus, postuma, postumum>
+<superus, supera, superum> ("above")	<superior, superius ("upper")>	<suprēmus, suprēma, suprēmum ("uppermost")>
+<%>	%	<summus, summa, summum>
+<exterus, extera, exterum> ("outward")	<exterior, exterius ("outer")>	<extrēmus, extrēma, extrēmum ("outermost")>
+<%>	%	<extimus, extima, extimum>
+<īnferus, īnfera, īnferum> ("below")	<īnferior, īnferius ("lower")>	<īnfimus, īnfima, īnfimum ("lowest")>
+<%>	%	<īmus, īma, īmum>
+<senex, senis> ("old, aged")	<senior ("older, elder")>	<maximus nātū, maxima nātū ("oldest, eldest")>
+<iuvenis, iuvenis> ("young, youthful")	<iuvenior ("younger")>	<minimus nātū, minima nātū ("youngest")[iv]>
+%	<iūnior>	%

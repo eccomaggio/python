@@ -157,19 +157,21 @@ def draw_table(id, db):
     table = db.tables[id]
     draw_table_title(table.get("title"))
     draw_table_notes(table.get("notes"))
-    tmp = "".join(table.get("data")[1]).strip()[:3].lower()
-    if tmp in ["nom", "voc", "acc", "gen", "dat"]:
-        table = convert_to_labelled_table(id, table, db)
-        draw_labelled_table(id, table, db)
+    table_data = [[colour_final(td) for td in row] for row in table.get("data")]
+    if second_row_begins_with_label(table_data):
+        table_data = convert_to_labelled_table(table_data, db)
+        draw_labelled_table(table_data, db)
     else:
-        invoke_tabulate(table.get("data"))
+        invoke_tabulate(table_data)
 
+def second_row_begins_with_label(table_rows):
+    tmp = "".join(table_rows[1]).strip()[:3].lower()
+    return tmp in ["nom", "voc", "acc", "gen", "dat"]
 
-def convert_to_labelled_table(id, table, db):
-    tmp = table.copy()
-    tmp["data"] = {}
+def convert_to_labelled_table(table, db):
+    tmp = {}
     backup_label = "misc"
-    for row in table["data"]:
+    for row in table:
         label = ""
         heading = "".join(row[:2]).strip()
         heading = heading.lower()[:3]
@@ -179,14 +181,14 @@ def convert_to_labelled_table(id, table, db):
             backup_label = label
         else:
             label = backup_label
-        if label in tmp["data"]:
-            tmp["data"][label].append(row)
+        if label in tmp:
+            tmp[label].append(row)
         else:
-            tmp["data"][label] = [row]
+            tmp[label] = [row]
     return tmp
 
 
-def draw_labelled_table(id, table, db):
+def draw_labelled_table(table, db):
     """
     In a labelled table, the ["data"] is a dictionary;
     each entry is a labelled row (e.g. 'nom', 'gender').
@@ -221,7 +223,7 @@ def draw_labelled_table(id, table, db):
     }
     tmp = []
     for key in ordering[db.lang]:
-        row = table["data"].get(key)
+        row = table.get(key)
         if row:
             for entry in row:
                 # if key == "nom":
@@ -236,7 +238,6 @@ def invoke_tabulate(data):
             data, headers="firstrow", tablefmt="fancy_outline", colalign=("right",)
         )
     )
-    # print(tabulate(data, headers="firstrow", tablefmt="fancy_outline")
 
 
 def draw_table_title(title):
@@ -248,6 +249,7 @@ def draw_table_notes(notes):
     for note in notes:
         for line in chunk_line(colour_pre(note), 70, 4, []):
             print(f"{col.reset}{colour_final(line)}{col.reset}")
+        print(" ")
 
 
 def chunk_line(line, limit=70, indent=6, sublines=[]):
@@ -295,6 +297,7 @@ def colour_pre(line):
 
 
 def colour_final(line):
+    # print(">>", line)
     """
     This continues on from colour_pre():
     <...> is interpreted as one colour (Latin)

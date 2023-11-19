@@ -103,3 +103,29 @@ PERFECTUM	%	%	%
 ama:vi:/du:xi:	ama:verim/du:xerim	ama:tus	ama:visse
 ama:vero:/du:xero:	--x--	--x--	--x--
 ama:veram/du:xeram	--x--	--x--	--x--
+
+&s::p
+*Syntax: conditional (if) clauses with open, ideal & unreal conditions. (Protasis & apodosis)
+*Conditional clauses in Latin are clauses which start with the conjunction <sī> "if" or the equivalent. The if-clause in a conditional sentence is known as the protasis, and the consequence is called the apodosis.
+*Conditional clauses are generally divided into three types: open conditions, when the truth of the condition is unknown ("if it is true that…"); ideal conditions, in which the speaker imagines a situation or event which might occur in the future ("if this were to happen…"); and unreal conditions, referring to an event or situation in the present or past known to be contrary to fact ("if it were true that…"). These three are also sometimes referred to as Type 1, Type 2, and Type 3 respectively.
+*Open conditional clauses in turn can be divided into particular and general. Open conditional sentences generally use the indicative mood in both protasis and apodosis, although in some general conditions the subjunctive mood is used in the protasis. Ideal and unreal conditionals use the subjunctive in the protasis, and usually they also use the subjunctive in the apodosis, though sometimes the indicative may be used. Conditional clauses of comparison ("as if") also use the subjunctive mood in the protasis.
+*The conjunction <sī> is only rarely used in classical Latin to introduce indirect questions, although this usage is found in medieval Latin. The use of "if" to make a wish, found in ancient Greek, is not usual in Latin, except sometimes in poetry.
+*A difference from English grammar is that in open future conditions, it is usual in Latin to use one of the future tenses, when English has the present tense.
+Type	Example	Protasis	Apodosis
+REAL	%	%	%
+Open (present)	If it is true	present / perfect INDIC	present (or perf) INDIC / IMPERATIVE
+%	%	<Si: id facit, 	prude:ns est.>
+Open (past)	If it happened	perfect / imperfect INDIC	perfect (or pluperf) / imperfect INDIC
+%	%	<Si: id fe:cit,	pru:dens fuit.>
+Open (future)	If it happens (in future)	future / future perfect INDIC	future INDIC / future IMPERATIVE
+%	%	<Si: id faciet,	pru:dens erit.>
+IMAGINARY	%	%	%
+Ideal (future)	If it were to happen	present / perfect SUBJ	present SUBJ
+%	%	<Si: id faciat,	pru:dens sit.>
+Ideal (past)	If it were to have happened	imperfect SUBJ	imperfect SUBJ
+Unreal (present)	If it were true now	(as above)	(as above)
+%	%	<Si: id faceret,	pru:dens esset.>
+Unreal (past)	If it had happened then	pluperfect / imperfect SUBJ	pluperfect / imperfect SUBJ
+%	%	<Si: id fe:cisset,	pru:dens fuisset.>
+*Positive conditions are shown by: <sīn> "but if" ( used for the second of two opposite conditions); <sīve ... sīve> (or Livy's preferred form: <seu ... seu>) "whether ... or"; <quod sī> "but if" or "if, however" can also introduce an alternative; <etsī, etiamsī (…tamen)> "although"; <etiam sī> (or <etiamsī>) 'even if', 'even though'; <siquidem> or <sī quidem> means '"f indeed" or "if it's true that"; <sī modō> "f indeed" expresses doubt that the situation mentioned is in fact true; <sī quis>  "f anyone", <sī quid> "if anything", <sī quī>  "if any", <sī quisquam> "if anyone at all", <sī quicquam> "if anything at all", <sī quandō> "if at any time' / if ever",  <sī quā> "if in any way"
+*When the conditional clause is negative, there are various possibilities: <nisi> 'if not/unless', <sī ... nōn> "if not",  <nī> "were it not that" and <sī minus> "otherwise".
