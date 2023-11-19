@@ -9,7 +9,7 @@
 
 &d:card:all
 *Cardinal numbers 1-20
-num	n'l	Latin	num	n'l	Latin
+[num]	[n'l]	[Latin]	[num]	[n'l]	[Latin]
 1	I	<ūnus>, <ūna>, <ūnum>	11	XI	<ūndecim>
 2	II	<duo>, <duae>, <duo>	12	XII	<duodecim>
 3	III	<trēs>, <tria>	13	XIII	<tredecim>
@@ -23,7 +23,7 @@ num	n'l	Latin	num	n'l	Latin
 
 &d:card:all
 *Cardinal numbers 21-1000
-num	n'l	Latin	num	n'l	Latin
+[num]	[n'l]	[Latin]	[num]	[n'l]	[Latin]
 21	XXI	<vīgintī et ūnus>	101	CI	<centum et ūnus>
 22	XXII	<vīgintī et duo>	200	CC	<ducentī>, <ducentae>, <ducenta>
 30	XXX	<trīgintā>	300	CCC	<trecentī>, <trecentae>, <trecenta>
@@ -37,7 +37,7 @@ num	n'l	Latin	num	n'l	Latin
 
 &d:ordinal:all
 *Ordinal numbers 1-20
-num	n'l	Latin	num	n'l	Latin
+[num]	[n'l]	[Latin]	[num]	[n'l]	[Latin]
 1	I	<prīmus>	11	XI	<ūndecimus>
 2	II	<secundus>	12	XII	<duodecimus>
 3	III	<tertius>	13	XIII	<tertius decimus>
@@ -51,7 +51,7 @@ num	n'l	Latin	num	n'l	Latin
 
 &d:ordinal:all
 *Ordinal numbers 21-1000
-num	n'l	Latin	num	n'l	Latin
+[num]	[n'l]	[Latin]	[num]	[n'l]	[Latin]
 21	XXI	<vīcēsimus prīmus>	101	CI	<centēsimus prīmus>
 22	XXII	<vīcēsimus secundus>	200	CC	<ducentēsimus>
 30	XXX	<trīcēsimus>	300	CCC	<trecentēsimus>
@@ -66,7 +66,7 @@ num	n'l	Latin	num	n'l	Latin
 &d:distrib:all
 *Distributive numbers 1-20
 *Another set of n'l adjectives, similar to the above but differing in the adjectives for 1, 3, and 4, were the distributive numerals: <singulī, bīnī, ternī, quaternī, quīnī, sēnī>, and so on. The meaning of these is "one each", "two each" (or "in pairs") and so on.
-num	n'l	Latin	num	n'l	Latin
+[num]	[n'l]	[Latin]	[num]	[n'l]	[Latin]
 1	I	<singulī>	11	XI	<ūndēnī>
 2	II	<bīnī>	12	XII	<duodēnī>
 3	III	<ternī>	13	XIII	<ternī>
@@ -80,7 +80,7 @@ num	n'l	Latin	num	n'l	Latin
 
 &d:distrib:all
 *Distributive numbers 21-1000
-num	n'l	Latin	num	n'l	Latin
+[num]	[n'l]	[Latin]	[num]	[n'l]	[Latin]
 21	XXI	<vīcēnī singulī>	101	CI	<centēnī singulī>
 22	XXII	<vīcēnī bīnī>	200	CC	<ducēnī>
 30	XXX	<trīcēnī>	300	CCC	<trecēnī>
@@ -95,7 +95,7 @@ num	n'l	Latin	num	n'l	Latin
 &d:adv:all
 *Adverbial numbers 1-20
 *Adverbial numerals are (as the name states) indeclinable adverbs, but because all of the other numeral constructions are adjectives, they are listed here with them. Adverbial numerals give how many times a thing happened. <semel> "once", <bis> "twice", <ter> "thrice, three times", <quater> "four times", and so on.
-num	n'l	Latin	num	n'l	Latin	num	n'l	Latin	num	n'l	Latin
+[num]	[n'l]	[Latin]	[num]	[n'l]	[Latin]
 1	I	<semel>	11	XI	<ūndeciēns>
 2	II	<bis>	12	XII	<duodeciēns>
 3	III	<ter>	13	XIII	<trēdeciēns>
@@ -110,7 +110,7 @@ num	n'l	Latin	num	n'l	Latin	num	n'l	Latin	num	n'l	Latin
 
 &d:adv:all
 *Adverbial numbers 21-1000
-num	n'l	Latin	num	n'l	Latin
+[num]	[n'l]	[Latin]	[num]	[n'l]	[Latin]
 21	XXI	<vīciēns semel>	101	CI	<centiēns semel>
 22	XXII	<vīciēns bis>	200	CC	<ducentiēns>
 30	XXX	<trīciēns>	300	CCC	<trecentiēns>
@@ -125,7 +125,7 @@ num	n'l	Latin	num	n'l	Latin
 &d:prop:all
 *Proportional numbers 1-20
 *Proportional numerals are declinable adjectives. <simplus> "simple", <duplus> "twice as great", <triplus> "thrice as great", <quadruplus> "four times as great", and so on.
-num	n'l	Latin	num	n'l	Latin
+[num]	[n'l]	[Latin]	[num]	[n'l]	[Latin]
 1	I	<simplus>	11	XI	<ūndecuplus>
 2	II	<duplus>	12	XII	<duodecuplus>
 3	III	<triplus>	13	XIII	<trēdecuplus>
@@ -140,7 +140,7 @@ num	n'l	Latin	num	n'l	Latin
 
 &d:prop:all
 *Proportional numbers 21-1000
-num	n'l	Latin	num	n'l	Latin
+[num]	[n'l]	[Latin]	[num]	[n'l]	[Latin]
 21	XXI	<vīgentuplus simplus>	101	CI	<centuplus simplus>
 22	XXII	<vīgentuplus duplus>	200	CC	<ducentuplus>
 30	XXX	<trīgintuplus>	300	CCC	<trecentuplus>
@@ -153,68 +153,68 @@ num	n'l	Latin	num	n'l	Latin
 100	C	<centuplus>	1000	ↀ	<mīlliplus>
 
 &d:card:e=unus
-*Cardinal numerals: <unus> one
-*<ūnus, ūna, ūnum> one
-%	Singular	%	%	Plural	%	%
-%	Masculine	Feminine	Neuter	Masculine	Feminine	Neuter
-Nominative	<ūnus>	<ūna>	<ūnum>	<ūnī>	<ūnae>	<ūna>
-Vocative	<ūne>	<ūna>	<ūnum>	<ūnī>	<ūnae>	<ūna>
-Accusative	<ūnum>	<ūnam>	<ūnum>	<ūnōs>	<ūnās>	<ūna>
-Genitive	<ūnīus / ūnius>	<ūnīus / ūnius>	<ūnīus / ūnius>	<ūnōrum>	<ūnārum>	<ūnōrum>
-Dative	<ūnī>	<ūnī>	<ūnī>	<ūnīs>	<ūnīs>	<ūnīs>
-Ablative	<ūnō>	<ūnā>	<ūnō>	<ūnīs>	<ūnīs>	<ūnīs>
+*Cardinal numbers: <unus> one
+*<ūnus, ūna, ū[num]> one
+%	[Singular]	%	%	[Plural]	%	%
+%	[Masculine]	[Feminine]	[Neuter]	[Masculine]	[Feminine]	[Neuter]
+[Nominative]	<ūnus>	<ūna>	<ūnum>	<ūnī>	<ūnae>	<ūna>
+[Vocative]	<ūne>	<ūna>	<ūnum>	<ūnī>	<ūnae>	<ūna>
+[Accusative]	<ūnum>	<ūnam>	<ūnum>	<ūnōs>	<ūnās>	<ūna>
+[Genitive]	<ūnīus / ūnius>	<ūnīus / ūnius>	<ūnīus / ūnius>	<ūnōrum>	<ūnārum>	<ūnōrum>
+[Dative]	<ūnī>	<ūnī>	<ūnī>	<ūnīs>	<ūnīs>	<ūnīs>
+[Ablative]	<ūnō>	<ūnā>	<ūnō>	<ūnīs>	<ūnīs>	<ūnīs>
 
 &d:card:e=duo
-*Cardinal numerals: <duo> two
+*Cardinal numbers: <duo> two
 *<duo, duae, duo> two
-%	Plural
-%	Masculine	Feminine	Neuter
-Nominative	<duo>	<duae>	<duo>
-Accusative	<duōs/duo>	<duās>	<duo>
-Genitive	<duōrum>	<duārum>	<duōrum>
-Dative	<duōbus>	<duābus>	<duōbus>
-Ablative	<duōbus>	<duābus>	<duōbus>
+%	[Plural]
+%	[Masculine]	[Feminine]	[Neuter]
+[Nominative]	<duo>	<duae>	<duo>
+[Accusative]	<duōs/duo>	<duās>	<duo>
+[Genitive]	<duōrum>	<duārum>	<duōrum>
+[Dative]	<duōbus>	<duābus>	<duōbus>
+[Ablative]	<duōbus>	<duābus>	<duōbus>
 
 &a:pron:e=ambo
 *Pronominal number: <ambo> both
 *<ambō, ambae, ambō> both
-%	Plural
-%	Masculine	Feminine	Neuter
-Nominative	<ambō>	<ambae>	<ambō>
-Accusative	<ambōs/ambō>	<ambās>	<ambō>
-Genitive	<ambōrum>	<ambārum>	<ambōrum>
-Dative	<ambōbus>	<ambābus>	<ambōbus>
-Ablative	<ambōbus>	<ambābus>	<ambōbus>
+%	[Plural]
+%	[Masculine]	[Feminine]	[Neuter]
+[Nominative]	<ambō>	<ambae>	<ambō>
+[Accusative]	<ambōs/ambō>	<ambās>	<ambō>
+[Genitive]	<ambōrum>	<ambārum>	<ambōrum>
+[Dative]	<ambōbus>	<ambābus>	<ambōbus>
+[Ablative]	<ambōbus>	<ambābus>	<ambōbus>
 
 &d:card:e=tria
 *Cardinal numbers: <tres> three
 *<trēs, tria> three
-%	Plural
-%	Masc. & Fem.	Neuter
-Nominative	<trēs>	<tria>
-Accusative	<trēs / trīs>	<tria>
-Genitive	<trium>	<trium>
-Dative	<tribus>	<tribus>
-Ablative	<tribus>	<tribus>
+%	[Plural]
+%	[Masc. & Fem.]	[Neuter]
+[Nominative]	<trēs>	<tria>
+[Accusative]	<trēs / trīs>	<tria>
+[Genitive]	<trium>	<trium>
+[Dative]	<tribus>	<tribus>
+[Ablative]	<tribus>	<tribus>
 
 &d:card:e=centum
 *Cardinal numbers: centum hundred
 *The numeral centum ("one hundred") is indeclinable, but all the other hundred numerals are declinable (<ducentī, trecentī, quadringentī, quīngentī, sescentī, septingentī, octingentī, nōngentī>).
 * <ducentī, ducentae, ducenta> - two hundred
-%	Plural
-%	Masculine	Feminine	Neuter
-Nominative	<ducentī>	<ducentae>	<ducenta>
-Accusative	<ducentōs>	<ducentās>	<ducenta>
-Genitive	<ducentōrum>	<ducentārum>	<ducentōrum>
-Dative	<ducentīs>	<ducentīs>	<ducentīs>
-Ablative	<ducentīs>	<ducentīs>	<ducentīs>
+%	[Plural]
+%	[Masculine]	[Feminine]	[Neuter]
+[Nominative]	<ducentī>	<ducentae>	<ducenta>
+[Accusative]	<ducentōs>	<ducentās>	<ducenta>
+[Genitive]	<ducentōrum>	<ducentārum>	<ducentōrum>
+[Dative]	<ducentīs>	<ducentīs>	<ducentīs>
+[Ablative]	<ducentīs>	<ducentīs>	<ducentīs>
 
 &d:card:e=mille
 *Cardinal numbers: mille thousand
 *<mīlle> - (one) thousand	<mīlia, mīlium> - x thousand, thousands
-%	Singular	Plural
-Nominative	<mīlle>	<mīlia/mīllia>
-Accusative	<mīlle>	<mīlia/mīllia>
-Genitive	<mīlle>	<mīlium/mīllium>
-Dative	<mīlle>	<mīlibus/mīllibus>
-Ablative	<mīlle>	<mīlibus/mīllibus>
+%	[Singular]	[Plural]
+[Nominative]	<mīlle>	<mīlia/mīllia>
+[Accusative]	<mīlle>	<mīlia/mīllia>
+[Genitive]	<mīlle>	<mīlium/mīllium>
+[Dative]	<mīlle>	<mīlibus/mīllibus>
+[Ablative]	<mīlle>	<mīlibus/mīllibus>

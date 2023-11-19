@@ -7,151 +7,151 @@
 
 &n:1:p
 *First declension paradigm (a stems)
-%	Singular	Plural
-Nominative	<-a>	<-ae>
-Accusative	<-am>	<-ās>
-Genitive	<-ae>	<-ārum>
-Dative	<-ae>	<-īs>
-Ablative	<-ā>	<-īs>
-Locative	<Gen.>	<Dat.>
+%	[Singular]	[Plural]
+[Nominative]	<-a>	<-ae>
+[Accusative]	<-am>	<-ās>
+[Genitive]	<-ae>	<-ārum>
+[Dative]	<-ae>	<-īs>
+[Ablative]	<-ā>	<-īs>
+[Locative]	<Gen.>	<Dat.>
 
 
 &n:1:e=mensa poeta
 *First declension nouns: masculine and feminine
 *<mensa, mensae> table f.
 *<poēta, poētae> poet m.
-%	Singular	Plural	Singular	Plural
-Nominative	<mensa>	<mensae>	<poēta>	<poētae>
-Accusative	<mensam>	<mensās>	<poētam>	<poētās>
-Genitive	<mensae>	<mensārum>	<poētae>	<poētārum>
-Dative	<mensae>	<mensīs>	<poētae>	<poētīs>
-Ablative	<mensae>	<mensā>	<poētae>	<poētā>
+%	[Singular]	[Plural]	[Singular]	[Plural]
+[Nominative]	<mensa>	<mensae>	<poēta>	<poētae>
+[Accusative]	<mensam>	<mensās>	<poētam>	<poētās>
+[Genitive]	<mensae>	<mensārum>	<poētae>	<poētārum>
+[Dative]	<mensae>	<mensīs>	<poētae>	<poētīs>
+[Ablative]	<mensae>	<mensā>	<poētae>	<poētā>
 
 &n:2:p
 *Second declension paradigm
-%	Singular	Plural	Singular	Plural
-%	Masculine	Neuter	Masculine	Neuter
-Nominative	<-us>	<-um>	<-ī>	<-a>
-Vocative	<-e>	<-um>	<-ī>	<-a>
-Accusative	<-um>	<-um>	<-ōs>	<-ōs>
-Genitive	<-ī>	<īī>	<-ōrum -ōrum>
-Dative	<-ō>	<-ō>	<-īs>	<-īs>
-Ablative	<-ō>	<-ō>	<-īs>	<-īs>
-Locative	<Gen.>	<-Gen.>	<Dat.>	<Dat.>
+%	[Singular]	[Plural]	[Singular]	[Plural]
+%	[Masculine]	[Neuter]	[Masculine]	[Neuter]
+[Nominative]	<-us>	<-um>	<-ī>	<-a>
+[Vocative]	<-e>	<-um>	<-ī>	<-a>
+[Accusative]	<-um>	<-um>	<-ōs>	<-ōs>
+[Genitive]	<-ī>	<īī>	<-ōrum -ōrum>
+[Dative]	<-ō>	<-ō>	<-īs>	<-īs>
+[Ablative]	<-ō>	<-ō>	<-īs>	<-īs>
+[Locative]	<Gen.>	<-Gen.>	<Dat.>	<Dat.>
 
 &n:2:e=dominus
 *Second declension Masculine nouns
 *<dominus, dominī> master m.
-%	Singular	Plural
-Nominative	<dominus>	<dominī>
-Vocative	<domine>	<dominī>
-Accusative	<dominum>	<dominōs>
-Genitive	<dominī>	<dominōrum>
-Dative	<dominō>	<dominīs>
-Ablative	<dominō>	<dominīs>
+%	[Singular]	[Plural]
+[Nominative]	<dominus>	<dominī>
+[Vocative]	<domine>	<dominī>
+[Accusative]	<dominum>	<dominōs>
+[Genitive]	<dominī>	<dominōrum>
+[Dative]	<dominō>	<dominīs>
+[Ablative]	<dominō>	<dominīs>
 
 &n:2:e=bellum
 *Second declension Neuter nouns
 *<bellum, bellum> war n.
-%	Singular	Plural
-Nominative	<bellum>	<bella>
-Accusative	<bellum>	<bella>
-Genitive	<bellī>	<bellōrum>
-Locative	<bellī>	<bellīs>
-Dative	<bellō>	<bellīs>
-Ablative	<bellō>	<bellīs>
+%	[Singular]	[Plural]
+[Nominative]	<bellum>	<bella>
+[Accusative]	<bellum>	<bella>
+[Genitive]	<bellī>	<bellōrum>
+[Locative]	<bellī>	<bellīs>
+[Dative]	<bellō>	<bellīs>
+[Ablative]	<bellō>	<bellīs>
 
 &n:2:e=filius auxilium
 *Second declension <-ius and -ium> nouns
 *<fīlius, filiī> son m.
 *auxilium, auxiliī aid, help n.
-%	Singular	Plural	Singular	Plural
-Nominative	<fīlius>	<fīliī>	<auxilium>	<auxilia>
-Vocative	<fīlī>	<fīliī>	<auxilium>	<auxilia>
-Accusative	<fīlium>	<fīliōsī>	<auxilium>	<auxilia>
-Genitive	<fīliī>	<fīliōrum>	<auxiliī>	<auxiliōrum>
-Dative	<fīliō>	<fīliīs>	<auxiliō>	<auxiliīs>
-Ablative	<fīliō>	<fīliīs>	<auxiliō>	<auxiliīs>
+%	[Singular]	[Plural]	[Singular]	[Plural]
+[Nominative]	<fīlius>	<fīliī>	<auxilium>	<auxilia>
+[Vocative]	<fīlī>	<fīliī>	<auxilium>	<auxilia>
+[Accusative]	<fīlium>	<fīliōsī>	<auxilium>	<auxilia>
+[Genitive]	<fīliī>	<fīliōrum>	<auxiliī>	<auxiliōrum>
+[Dative]	<fīliō>	<fīliīs>	<auxiliō>	<auxiliīs>
+[Ablative]	<fīliō>	<fīliīs>	<auxiliō>	<auxiliīs>
 
 &n:2:e=puer ager vir
 *Second declension <-r> nouns
 *<puer, puerī> boy m.
 *<ager, agrī> field m.
 *<vir, virī> man m.
-%	Singular	Plural	Singular	Plural	Singular	Plural
-Nominative	<puer>	<puerī>	<ager>	<agrī>	<vir>	<virī>
-Accusative	<puerum>	<puerōs>	<agrum>	<agrōs>	<virum>	<virōs>
-Genitive	<puerī>	<puerōrum>	<agrī>	<agrōrum>	<virī>	<virōrum (virum)>
-Dative	<puerō>	<puerīs>	<agrō>	<agrīs>	<virō>	<virīs>
-Ablative	<puerō>	<puerīs>	<agrō>	<agrīs>	<virō>	<virīs>
+%	[Singular]	[Plural]	[Singular]	[Plural]	[Singular]	[Plural]
+[Nominative]	<puer>	<puerī>	<ager>	<agrī>	<vir>	<virī>
+[Accusative]	<puerum>	<puerōs>	<agrum>	<agrōs>	<virum>	<virōs>
+[Genitive]	<puerī>	<puerōrum>	<agrī>	<agrōrum>	<virī>	<virōrum (virum)>
+[Dative]	<puerō>	<puerīs>	<agrō>	<agrīs>	<virō>	<virīs>
+[Ablative]	<puerō>	<puerīs>	<agrō>	<agrīs>	<virō>	<virīs>
 
 &n:2:i=deus
 *Irregular nouns: <deus>
 *<deus, deī> god m.
-%	Singular	Plural
-Nominative	<deus>	<deī diī dī>
-Accusative	<deum>	<deōs>
-Genitive	<deī>	<deōrum deum>
-Dative	<deō>	<deīs diīs dīs>
-Dative	<deō>	<deīs diīs dīs>
+%	[Singular]	[Plural]
+[Nominative]	<deus>	<deī diī dī>
+[Accusative]	<deum>	<deōs>
+[Genitive]	<deī>	<deōrum deum>
+[Dative]	<deō>	<deīs diīs dīs>
+[Ablative]	<deō>	<deīs diīs dīs>
 
 &n:3:p
 *Third declension paradigm (consonant stems)
 *Masculine & feminine	Neuter
-%	Singular	Plural	Singular	Plural
-Nominative	<(-s)>	<-ēs>	<—[i]>	<-a>
-Accusative	<-em>	<-ēs>	<—[i]>	<-a>
-Genitive	<-is>	<-um>	<-is>	<-um>
-Dative	<-ī>	<-ibus>	<-ī>	<-ibus>
-Ablative	<-e>	<-ibus>	<-e>	<-ibus>
-Locative	Dat./Abl.	Dat.	Dat./Abl.	Dat.
+%	[Singular]	[Plural]	[Singular]	[Plural]
+[Nominative]	<(-s)>	<-ēs>	<—[i]>	<-a>
+[Accusative]	<-em>	<-ēs>	<—[i]>	<-a>
+[Genitive]	<-is>	<-um>	<-is>	<-um>
+[Dative]	<-ī>	<-ibus>	<-ī>	<-ibus>
+[Ablative]	<-e>	<-ibus>	<-e>	<-ibus>
+[Locative]	Dat./Abl.	Dat.	Dat./Abl.	Dat.
 
 &n:3:e=dux virtus nomen
 Third declension nouns
 *<dux, ducis> leader m.
 *<virtūs, virtūtis> virtue f.
 *<nōmen, nōminis> name n.
-%	Singular	Plural	Singular	Plural	Singular	Plural
-Nominative	<dux>	<ducēs>	<virtūs>	<virtūtēs>	<nōmen>	<nōmina>
-Accusative	<ducem>	<ducēs>	<virtūtem>	<virtūtēs>	<nōmen>	<nōmina>
-Genitive	<ducis>	<ducum>	<virtūtis>	<virtūtum>	<nōminis>	<nōminum>
-Dative	<ducī>	<ducibus>	<virtūtī>	<virtūtibus>	<nōminī>	<nōminibus>
-Ablative	<duce>	<ducibus>	<virtūte>	<virtūtibus>	<nōmine>	<nōminibus>
+%	[Singular]	[Plural]	[Singular]	[Plural]	[Singular]	[Plural]
+[Nominative]	<dux>	<ducēs>	<virtūs>	<virtūtēs>	<nōmen>	<nōmina>
+[Accusative]	<ducem>	<ducēs>	<virtūtem>	<virtūtēs>	<nōmen>	<nōmina>
+[Genitive]	<ducis>	<ducum>	<virtūtis>	<virtūtum>	<nōminis>	<nōminum>
+[Dative]	<ducī>	<ducibus>	<virtūtī>	<virtūtibus>	<nōminī>	<nōminibus>
+[Ablative]	<duce>	<ducibus>	<virtūte>	<virtūtibus>	<nōmine>	<nōminibus>
 
 &n:3:p
 *Third declension paradigm (i-stem nouns)
 *Masculine & Feminine	Neuter
-%	Singular	Plural	Singular	Plural
-Nominative	<—>	<-ēs>	<—>	<-ia>
-Accusative	<-em -im>	<-ēs -īs>	<-ēs>	<-ia>
-Genitive	<-is>	<-ium>	<-is>	<-ium>
-Dative	<-ī>	<-ibus>	<-ī>	<-ibus>
-Ablative	<-e -ī>	<-ibus>	<-ī>	<-ibus>
-Locative	Dat./Abl.	Dat.	Dat./Abl.	Dat.
+%	[Singular]	[Plural]	[Singular]	[Plural]
+[Nominative]	<—>	<-ēs>	<—>	<-ia>
+[Accusative]	<-em -im>	<-ēs -īs>	<-ēs>	<-ia>
+[Genitive]	<-is>	<-ium>	<-is>	<-ium>
+[Dative]	<-ī>	<-ibus>	<-ī>	<-ibus>
+[Ablative]	<-e -ī>	<-ibus>	<-ī>	<-ibus>
+[Locative]	Dat./Abl.	Dat.	Dat./Abl.	Dat.
 
 &n:3:p
 *Third declension paradigm (mixed nouns)
 *Masculine & Feminine	Neuter
-%	Singular	Plural	Singular	Plural
-Nominative	<—>	<-ēs>	<—>	<-a>
-Accusative	<-em>	<-ēs -īs>	<-->	<-a>
-Genitive	<-is>	<-ium>	<-is>	<-ium>
-Dative	<-ī>	<-ibus>	<-ī>	<-ibus>
-Ablative	<-e>	<-ibus>	<-e>	<-ibus>
-Locative	Dat./Abl.	Dat.	Dat./Abl.	Dat.
+%	[Singular]	[Plural]	[Singular]	[Plural]
+[Nominative]	<—>	<-ēs>	<—>	<-a>
+[Accusative]	<-em>	<-ēs -īs>	<-->	<-a>
+[Genitive]	<-is>	<-ium>	<-is>	<-ium>
+[Dative]	<-ī>	<-ibus>	<-ī>	<-ibus>
+[Ablative]	<-e>	<-ibus>	<-e>	<-ibus>
+[Locative]	Dat./Abl.	Dat.	Dat./Abl.	Dat.
 
 &n:3:e=turris pars animal
 *Third declension special rules: Parisyllabic rule,	Double consonant rule,	Special neuter ending
 *<turris, turris> tower f. (pure)
 *<pars, partis part> piece f. (mixed)
 *<animal, animālis animal> living being n. (pure)
-%	Singular	Plural	Singular	Plural	Singular	Plural
-Nominative	<turris>	<turrēs>	<pars>	<partēs>	<animal>	<animālia>
-Accusative	<turrem>	<turrēs>	<partem>	<partēs>	<animal>	<animālia>
+%	[Singular]	[Plural]	[Singular]	[Plural]	[Singular]	[Plural]
+[Nominative]	<turris>	<turrēs>	<pars>	<partēs>	<animal>	<animālia>
+[Accusative]	<turrem>	<turrēs>	<partem>	<partēs>	<animal>	<animālia>
 %	<turrim>	<turrīs>	%	<partīs>	<animal>	<animālia>
-Genitive	<turris>	<turrium>	<partis>	<partium>	<animālis>	<animālium>
-Dative	<turrī>	<turribus>	<partī>	<partibus>	<animālī>	<animālibus>
-Ablative	<turre>	<turribus>	<parte>	<partibus>	<animālī>	<animālibus>
+[Genitive]	<turris>	<turrium>	<partis>	<partium>	<animālis>	<animālium>
+[Dative]	<turrī>	<turribus>	<partī>	<partibus>	<animālī>	<animālibus>
+[Ablative]	<turre>	<turribus>	<parte>	<partibus>	<animālī>	<animālibus>
 %	<turrī>	%	(<partī>)	%	%	%
 
 &n:3:i=vis sus bos Iuppiter
@@ -162,54 +162,54 @@ Ablative	<turre>	<turribus>	<parte>	<partibus>	<animālī>	<animālibus>
 *<Iuppiter, Iovis> Jupiter m.
 *1. Here <ō> or <ū> come from Old Latin ou. Thus <bō>-/<bū>- and <Iū>- before consonant endings are alternate developments of the <bov>- and <Iov>- before vowel endings. — The double <pp> in the preferred form <Iu>-<ppiter> "Father Jove" is an alternate way of marking the length of the <u> in the etymological form <Iū>-<piter>. i is weakened from <a> in <pater> (Allen and Greenough, sect. 79 b).
 *2. Genitive and dative singular cases are seldom used in vīs.
-%	Singular	Plural	Singular	Plural	Singular	Plural	Singular
-Nominative	<vīs>	<vīrēs>	<sūs>	<suēs>	<bōs>	<bovēs>	<Iuppiter>
+%	[Singular]	[Plural]	[Singular]	[Plural]	[Singular]	[Plural]	[Singular]
+[Nominative]	<vīs>	<vīrēs>	<sūs>	<suēs>	<bōs>	<bovēs>	<Iuppiter>
 %	%	%	%	%	%	%	%
-Accusative	<vim>	<vīrēs>	<suem>	<sues>	<bovem>	<bovēs>	<Iovem>
+[Accusative]	<vim>	<vīrēs>	<suem>	<sues>	<bovem>	<bovēs>	<Iovem>
 %	%	vīrīs	%	%	%	%	%
-Genitive	<vīs>	<vīrium>	<suis>	<suum>	<bovis>	<boum>	<Iovis>
+[Genitive]	<vīs>	<vīrium>	<suis>	<suum>	<bovis>	<boum>	<Iovis>
 %	%	%	%	%	<bovum>	%	%
-Dative	<vī>	<vīribus>	<suī>	<suibus>	<bovī>	<bōbus>	<Iovī>
+[Dative]	<vī>	<vīribus>	<suī>	<suibus>	<bovī>	<bōbus>	<Iovī>
 %	%	%	%	<sūbus>	%	<būbus>	%	%
-Ablative	<vī>	<vīribus>	<sue>	<suibus>	<bove>	<bōbus>	<Iove>
+[Ablative]	<vī>	<vīribus>	<sue>	<suibus>	<bove>	<bōbus>	<Iove>
 %	%	%	%	<sūbus>	%	<būbus>	%
 
 &n:4:p
 *Fourth declension (u stems) paradigm
 *<-us> ending nouns
 *<-ū> ending nouns
-%	Singular	Plural	Singular	Plural
-Nominative	-<us>	-<ūs>	-<ū>	-<ua>
-Accusative	-<um>	-<ūs>	-<ū>	-<ua>
-Genitive	-<ūs>	-<uum>	-<ūs>	-<uum>
-Dative	-<uī>	-<ibus>	-<ū>	-<ibus>
+%	[Singular]	[Plural]	[Singular]	[Plural]
+[Nominative]	-<us>	-<ūs>	-<ū>	-<ua>
+[Accusative]	-<um>	-<ūs>	-<ū>	-<ua>
+[Genitive]	-<ūs>	-<uum>	-<ūs>	-<uum>
+[Dative]	-<uī>	-<ibus>	-<ū>	-<ibus>
 %	%	-<ubus>	%	%
-Ablative	-<ū>	-<ibus>	-<ū>	-<ibus>
+[Ablative]	-<ū>	-<ibus>	-<ū>	-<ibus>
 %	%	-<ubus>	%	%
-Locative	-<ī>	Dat.	-<ī>	Dat.
+[Locative]	-<ī>	Dat.	-<ī>	Dat.
 
 &n:4:e=portus genu
 *Fourth declension nouns
 *<portus, portūs> port m.
 *<genū, genūs> knee n.
-%	Singular	Plural	Singular	Plural
-Nominative	<portus>	<portūs>	<genū>	<genua>
-Accusative	<portum>	<portūs>	<genū>	<genua>
-Genitive	<portūs>	<portuum>	<genūs>	<genuum>
-Dative	<portuī>	<portibus>	<genū>	<genibus>
-Ablative	<portū>	<portibus>	<genū>	<genibus>
+%	[Singular]	[Plural]	[Singular]	[Plural]
+[Nominative]	<portus>	<portūs>	<genū>	<genua>
+[Accusative]	<portum>	<portūs>	<genū>	<genua>
+[Genitive]	<portūs>	<portuum>	<genūs>	<genuum>
+[Dative]	<portuī>	<portibus>	<genū>	<genibus>
+[Ablative]	<portū>	<portibus>	<genū>	<genibus>
 
 &n:4:i=domus
 *Irregular nouns: <domus> f.
 *All possible declensions (especially literature)
 %  All possible  %  Most Common  %
-%	Singular	Plural	Singular	Plural
-Nominative	<domus>	<domūs>	<domus>	<domūs>
-Accusative	<domum>	<domūs>	<domum>	<domōs>
+%	[Singular]	[Plural]	[Singular]	[Plural]
+[Nominative]	<domus>	<domūs>	<domus>	<domūs>
+[Accusative]	<domum>	<domūs>	<domum>	<domōs>
 %	%	domōs  %  %
-Genitive	<domūs>	<domuum>	<domūs>	<domuum>
+[Genitive]	<domūs>	<domuum>	<domūs>	<domuum>
 %	domī	<domōrum>
-Dative	<domuī>	<domibus>	<domuī>	<domibus>
+[Dative]	<domuī>	<domibus>	<domuī>	<domibus>
 %	domū	%  %  %
 %	domō	%  %  %
 Ablative	<domū>	<domibus>	<domō>	<domibus>
@@ -220,28 +220,28 @@ Locative	<domī>	<domibus>	<domī>	<domibus>
 *Fifth declension noun (e stems) paradigm
 *<-iēs> ending nouns
 *<-ēs> ending nouns
-%	Singular	Plural	Singular	Plural
-Nominative	<-iēs>	<-iēs>	<-ēs>	<-ēs>
-Accusative	<-iem>	<-iēs>	<-em>	<-ēs>
-Genitive	<-iēī>	<-iērum>	<-eī>	<-ērum>
-Dative	<-iēī>	<-iēbus>	<-eī>	<-ēbus>
-Ablative	<-iē>	<-iēbus>	<-ē>	<-ēbus>
-Locative	<Abl.>	<Abl.>	<Abl.>	<Abl.>
+%	[Singular]	[Plural]	[Singular]	[Plural]
+[Nominative]	<-iēs>	<-iēs>	<-ēs>	<-ēs>
+[Accusative]	<-iem>	<-iēs>	<-em>	<-ēs>
+[Genitive]	<-iēī>	<-iērum>	<-eī>	<-ērum>
+[Dative]	<-iēī>	<-iēbus>	<-eī>	<-ēbus>
+[Ablative]	<-iē>	<-iēbus>	<-ē>	<-ēbus>
+[Locative]	<Abl.>	<Abl.>	<Abl.>	<Abl.>
 
 &n:5:e=dies
 *Fifth declension noun (dies)
 *<diēs, diēī> day m., f.
 *<rēs, reī> thing f.
-%	Singular	Plural	Singular	Plural
-Nominative	<diēs>	<diēs>	<rēs>	<rēs>
-Accusative	<diem>	<diēs>	<rem>	<rēs>
-Genitive	<diēī>	<diērum>	<reī>	<rērum>
-Dative	<diē>	<diēbus>	<rē>	<rēbus>
-Ablative	<diē>	<diēbus>	<rē>	<rēbus>
+[%]	[Singular]	[Plural]	[Singular]	[Plural]
+[Nominative]	<diēs>	<diēs>	<rēs>	<rēs>
+[Accusative]	<diem>	<diēs>	<rem>	<rēs>
+[Genitive]	<diēī>	<diērum>	<reī>	<rērum>
+[Dative]	<diē>	<diēbus>	<rē>	<rēbus>
+[Ablative]	<diē>	<diēbus>	<rē>	<rēbus>
 
 &n::e=balneum epulum frenum iocus rastrum
 *Heterogeneous nouns (vary in gender)
-Singular	Plural
+[Singular]	[Plural]
 <balneum> n.	('bath')	<balneae> f. or <balnea> n. ('bathhouse')
 <epulum> n.	('feast, banquet')	<epulae> f. ('feast, banquet')
 <frēnum> n.	('bridle, curb')	<frēnī> m. bridle, curb
@@ -251,7 +251,7 @@ Singular	Plural
 
 &n::e=aedes auxilium carcer castrum copia fortuna gratia impedimentum
 *Plural nouns with alternative meanings
-Singular	Plural
+[Singular]	[Plural]
 <aedēs>, <aedis> f. ('building, temple')	<aedēs>, <aedium> ('rooms, house')
 <auxilium>, <auxiliī> n. ('help, aid')	<auxilia>, <auxiliōrum> ('auxiliary troops')
 <carcer>, <carceris> m. ('prison, cell')	<carcerēs>, <carcerum> ('starting traps')

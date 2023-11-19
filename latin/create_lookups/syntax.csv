@@ -6,19 +6,19 @@
 *Syntax: Sequence of Tenses in Indirect Questions & Cum clauses
 
 Main	%	Subordinate	%	%
-(PRIMARY)	%	RELATIVE TIME	SUBJUNCTIVE	%
-Present	rogat/petit	same time	present	quid faciat
+[(PRIMARY)]	%	[RELATIVE TIME]	[SUBJUNCTIVE]	%
+[Present]	rogat/petit	same time	present	quid faciat
 %	%	%	%	_ pass.= faciatur
-Future	rogabit/petat	after	pres./periphr.	faciat/facturus sit
+[Future]	rogabit/petat	after	pres./periphr.	faciat/facturus sit
 %	%	%	%	_ pass.= faciatur
-Perfect	rogavit/petivit	before	perfect	quid fecerit
+[Perfect]	rogavit/petivit	before	perfect	quid fecerit
 %	%	%	%	_ pass.= factus sit
-(SECONDARY)	%	%	%	%
-Imperfect	rogabat/petebat	same time	imperfect	quid faceret
+[(SECONDARY)]	%	%	%	%
+[Imperfect]	rogabat/petebat	same time	imperfect	quid faceret
 %	%	%	%	_ pass.= faceretur
-Perfect	rogavit/petivit	after	imperf./periphr.	faceret/facturus esset
+[Perfect]	rogavit/petivit	after	imperf./periphr.	faceret/facturus esset
 %	%	%	%	_ pass.= faceretur
-Pluperfect	rogaverat/petiverat	before	pluperfect	quid fecisset
+[Pluperfect]	rogaverat/petiverat	before	pluperfect	quid fecisset
 %	%	%	%	_ pass.= factus esset
 *[1.i] Used with the indicative, the conjunction <cum> means "at that time when", or "whenever": <cum tacent, clāmant> (Cicero) —"when they are silent, (it is as if) they are shouting"
 *[1.ii] Used with the subjunctive, however, <cum> frequently means "at a time when".
@@ -33,10 +33,10 @@ Pluperfect	rogaverat/petiverat	before	pluperfect	quid fecisset
 
 &s::p
 *Syntax: Sequence of Tenses in Indirect Statements (accusative and infinitive pattern)
-Main	%	Rel. time	Infin.	%	Translation
-Pres	dicunt	same time	present	eum/se iuvare eam	They say he/they is helping her.
-Perf	dixerunt	before	perfect	eum/se iuvisse eam	They said he/they helped her.
-Fut	dicent	after	future	eum/se iuturum/-i (esse) eam	They say he/they would help her.
+[Main]	%	[Rel. time]	[Infin.]	%	[Translation]
+[Pres]	dicunt	same time	present	eum/se iuvare eam	They say he/they is helping her.
+[Perf]	dixerunt	before	perfect	eum/se iuvisse eam	They said he/they helped her.
+[Fut]	dicent	after	future	eum/se iuturum/-i (esse) eam	They say he/they would help her.
 *[1] One verb, <sum> "I am" has its own future infinitive <fore>, which may be used instead of <futūrum esse>. The verb <possum> "I am able" on the other hand has no future infinitive or future participle.
 *[2] The future participle combined with <fuisse>, which expresses a past or present potential ("would be doing" or "would have done"): <nisī dē viā fessus esset, continuō ad nōs ventūrum fuisse> (Cicero) — "(he said that) if he had not been tired from the journey, he would have come to us straightaway"
 *[3] The infinitive is used only for the main verb in an indirect statement; any other verbs are changed into the subjunctive mood, using one of the past tenses if the context is past: <locum ubi esset facile inventūrōs> (Nepos) — "(he told them that) they would easily find the place where he was"
@@ -45,50 +45,50 @@ Fut	dicent	after	future	eum/se iuturum/-i (esse) eam	They say he/they would help
 
 &s::p
 *Syntax: Main Latin Tense Forms Overview
-Tense & mood	Active	Passive/Deponent
-INDICATIVE	%	%
-Present	amō/dūcō	amor/ducor
-Future	amābō/du:cam	ama:bor/ducar(duce:tur)
-Imperfect	amābam/du:ce:bam	ama:bar/duce:bar
+[Tense & mood]	[Active]	[Passive/Deponent]
+[INDICATIVE]	%	%
+[Present]	amō/dūcō	amor/ducor
+[Future]	amābō/du:cam	ama:bor/ducar(duce:tur)
+[Imperfect]	amābam/du:ce:bam	ama:bar/duce:bar
 .
-Perfect	amāvī/du:xi:	ama:tus sum/ductus sum
-(Perfect II)	--x--	(ama:tus fui:/ductus fui:)
-Future perfect	amāverō/du:xero:	ama:tus ero:/ductus ero:
-(Future perf II)	--x--	(ama:tus fuero:/ductus fuero:)
-Pluperfect	amāveram/du:xeram	ama:tus eram/ductus eram
-(Pluperfect II)	--x--	(ama:tus fueram/ductus fueram
+[Perfect]	amāvī/du:xi:	ama:tus sum/ductus sum
+[(Perfect II)]	--x--	(ama:tus fui:/ductus fui:)
+[Future perfect]	amāverō/du:xero:	ama:tus ero:/ductus ero:
+[(Future perf II)]	--x--	(ama:tus fuero:/ductus fuero:)
+[Pluperfect]	amāveram/du:xeram	ama:tus eram/ductus eram
+[(Pluperfect II)]	--x--	(ama:tus fueram/ductus fueram
 .
-SUBJUNCTIVE	%	%
-Present	amem/du:cam	amer/ducar(duca:tur)
-Imperfect	ama:rem/du:cerem	ama:rer/ducerer
-Perfect	ama:verim/du:xerim	ama:tus sim/ductus sim
-(Perfect II)	--x--	(ama:tus sim/ductus sim)
-Pluperfect	ama:vissem/du:xissem	ama:tus essem/ductus essem
-(Pluperfect II)	--x--	(ama:tus essem/ductus essem)
+[SUBJUNCTIVE]	%	%
+[Present]	amem/du:cam	amer/ducar(duca:tur)
+[Imperfect]	ama:rem/du:cerem	ama:rer/ducerer
+[Perfect]	ama:verim/du:xerim	ama:tus sim/ductus sim
+[(Perfect II)]	--x--	(ama:tus sim/ductus sim)
+[Pluperfect]	ama:vissem/du:xissem	ama:tus essem/ductus essem
+[(Pluperfect II)]	--x--	(ama:tus essem/ductus essem)
 .
-IMPERATIVE	%	%
-Present	ama:(te)/duc(ite)	loquere,loquimini:/co:na:re,co:na:imini:
-Future	ama:to:(te)/dūcitō(te)	loquitor,loquuntor(3pl)/co:na:tor,co:nantor(3pl)
+[IMPERATIVE]	%	%
+[Present]	ama:(te)/duc(ite)	loquere,loquimini:/co:na:re,co:na:imini:
+[Future]	ama:to:(te)/dūcitō(te)	loquitor,loquuntor(3pl)/co:na:tor,co:nantor(3pl)
 .
-Infinitive	%	%
-Present	ama:re/du:cere	ama:ri:/du:ci:
-Future	ama:tu:rum esse/ductu:rum esse	ama:tum i:ri:/ductum i:ri:
-(Mediaeval L.)	--x--	(ama:tus fore/ductus fore)
-Perfect	ama:visse/du:xisse	ama:tus esse/ductus esse
-(Perfect II)	--x--	(ama:tus fuisse/ductus fuisse)
+[Infinitive]	%	%
+[Present]	ama:re/du:cere	ama:ri:/du:ci:
+[Future]	ama:tu:rum esse/ductu:rum esse	ama:tum i:ri:/ductum i:ri:
+[(Mediaeval L.)]	--x--	(ama:tus fore/ductus fore)
+[Perfect]	ama:visse/du:xisse	ama:tus esse/ductus esse
+[(Perfect II)]	--x--	(ama:tus fuisse/ductus fuisse)
 *The difference between the two sets of perfect tenses is sometimes one of time, the second set referring to an earlier time than the first, as in this example from Caesar which contains both kinds: <pōns, quī fuerat tempestāte interruptus, paene erat refectus> — "the bridge, which earlier on had been broken by a storm, had now almost been rebuilt"
 
 
 
 &s::p
 *Syntax: Main Latin Tense Overview (Active)
-INDICATIVE	Subjunctive	Participle	Infinitive
-INFECTUM	%	%	%
+[INDICATIVE]	[Subjunctive]	[Participle]	[Infinitive]
+[INFECTUM]	%	%	%
 Present	Present	Present	Present
 Future	--x--	Future	Future
 Imperfect	Imperfect	--x--	--x--
 .
-PERFECTUM	%	%	%
+[PERFECTUM]	%	%	%
 Perfect	Perfect	Perfect	Perfect
 Future perfect	--x--	--x--	--x--
 Pluperfect	--x--	Pluperfect	--x--	--x--
@@ -111,21 +111,21 @@ ama:veram/du:xeram	--x--	--x--	--x--
 *Open conditional clauses in turn can be divided into particular and general. Open conditional sentences generally use the indicative mood in both protasis and apodosis, although in some general conditions the subjunctive mood is used in the protasis. Ideal and unreal conditionals use the subjunctive in the protasis, and usually they also use the subjunctive in the apodosis, though sometimes the indicative may be used. Conditional clauses of comparison ("as if") also use the subjunctive mood in the protasis.
 *The conjunction <sī> is only rarely used in classical Latin to introduce indirect questions, although this usage is found in medieval Latin. The use of "if" to make a wish, found in ancient Greek, is not usual in Latin, except sometimes in poetry.
 *A difference from English grammar is that in open future conditions, it is usual in Latin to use one of the future tenses, when English has the present tense.
-Type	Example	Protasis	Apodosis
+[Type]	[Example]	[Protasis]	[Apodosis]
 REAL	%	%	%
-Open (present)	If it is true	present / perfect INDIC	present (or perf) INDIC / IMPERATIVE
-%	%	<Si: id facit, 	prude:ns est.>
-Open (past)	If it happened	perfect / imperfect INDIC	perfect (or pluperf) / imperfect INDIC
-%	%	<Si: id fe:cit,	pru:dens fuit.>
-Open (future)	If it happens (in future)	future / future perfect INDIC	future INDIC / future IMPERATIVE
-%	%	<Si: id faciet,	pru:dens erit.>
+[Open (present)]	If it is true	present / perfect INDIC	present (or perf) INDIC / IMPERATIVE
+%	%	<Si: id facit,> 	<prude:ns est.>
+[Open (past)]	If it happened	perfect / imperfect INDIC	perfect (or pluperf) / imperfect INDIC
+%	%	<Si: id fe:cit,>	<pru:dens fuit.>
+[Open (future)]	If it happens (in future)	future / future perfect INDIC	future INDIC / future IMPERATIVE
+%	%	<Si: id faciet,>	<pru:dens erit.>
 IMAGINARY	%	%	%
-Ideal (future)	If it were to happen	present / perfect SUBJ	present SUBJ
-%	%	<Si: id faciat,	pru:dens sit.>
-Ideal (past)	If it were to have happened	imperfect SUBJ	imperfect SUBJ
-Unreal (present)	If it were true now	(as above)	(as above)
-%	%	<Si: id faceret,	pru:dens esset.>
-Unreal (past)	If it had happened then	pluperfect / imperfect SUBJ	pluperfect / imperfect SUBJ
-%	%	<Si: id fe:cisset,	pru:dens fuisset.>
-*Positive conditions are shown by: <sīn> "but if" ( used for the second of two opposite conditions); <sīve ... sīve> (or Livy's preferred form: <seu ... seu>) "whether ... or"; <quod sī> "but if" or "if, however" can also introduce an alternative; <etsī, etiamsī (…tamen)> "although"; <etiam sī> (or <etiamsī>) 'even if', 'even though'; <siquidem> or <sī quidem> means '"f indeed" or "if it's true that"; <sī modō> "f indeed" expresses doubt that the situation mentioned is in fact true; <sī quis>  "f anyone", <sī quid> "if anything", <sī quī>  "if any", <sī quisquam> "if anyone at all", <sī quicquam> "if anything at all", <sī quandō> "if at any time' / if ever",  <sī quā> "if in any way"
-*When the conditional clause is negative, there are various possibilities: <nisi> 'if not/unless', <sī ... nōn> "if not",  <nī> "were it not that" and <sī minus> "otherwise".
+[Ideal (future)]	If it were to happen	present / perfect SUBJ	present SUBJ
+%	%	<Si: id faciat,>	<pru:dens sit.>
+[Ideal (past)]	If it were to have happened	imperfect SUBJ	imperfect SUBJ
+[Unreal (present)]	If it were true now	(as above)	(as above)
+%	%	<Si: id faceret,>	<pru:dens esset.>
+[Unreal (past)]	If it had happened then	pluperfect / imperfect SUBJ	pluperfect / imperfect SUBJ
+%	%	<Si: id fe:cisset,>	<pru:dens fuisset.>
+*Positive conditions are shown by: <sīn> "but if" ( used for the second of two opposite conditions); <sīve ... sīve> (or Livy's preferred form: <seu ... seu>) "whether ... or"; <quod sī> "but if" or "if, however" can also introduce an alternative; <etsī, etiamsī (…tamen)> "although"; <etiam sī> (or <etiamsī>) "even if", "even though"; <siquidem> or <sī quidem> means "if indeed" or "if it's true that"; <sī modō> "if indeed" expresses doubt that the situation mentioned is in fact true; <sī quis>  "if anyone", <sī quid> "if anything", <sī quī>  "if any", <sī quisquam> "if anyone at all", <sī quicquam> "if anything at all", <sī quandō> "if at any time / if ever",  <sī quā> "if in any way".
+*When the conditional clause is negative, there are various possibilities: <nisi> "if not/unless", <sī ... nōn> "if not",  <nī> "were it not that" and <sī minus> "otherwise".

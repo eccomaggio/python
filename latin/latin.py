@@ -165,8 +165,10 @@ def draw_table(id, db):
         invoke_tabulate(table_data)
 
 def second_row_begins_with_label(table_rows):
-    tmp = "".join(table_rows[1]).strip()[:3].lower()
-    return tmp in ["nom", "voc", "acc", "gen", "dat"]
+    second_row = "".join(table_rows[1]).strip()
+    second_row = second_row.replace("[","").replace("]","").replace("%","").replace(" ","")
+    # tmp = "".join(table_rows[1]).strip()[:3].lower()
+    return second_row[:3].lower() in ["nom", "voc", "acc", "gen", "dat"]
 
 def convert_to_labelled_table(table, db):
     tmp = {}
@@ -296,35 +298,50 @@ def colour_pre(line):
     return tmp
 
 
-def colour_final(line):
-    # print(">>", line)
+def colour_final(line, are_titles=True, reset=col.reset):
+    latin = col.red
+    english = col.green
+    titles = col.blue
     """
-    This continues on from colour_pre():
-    <...> is interpreted as one colour (Latin)
-    {...} is interpreted as another (often English translation)
+    This continues on from colour_pre() or can stand alone
     """
-    line = line.replace('<', col.red)
-    line = line.replace('>', col.reset)
-    line = line.replace('{', col.green)
-    line = line.replace('}', col.reset)
+    if are_titles:
+        line = line.replace('[', titles).replace(']', col.reset)
+    line = line.replace('<', latin).replace('>', reset)
+    line = line.replace('{', english).replace('}', col.reset)
     return line
 
 
 def print_entry(entry, result, num):
     db = result.db
     if result.language == db.latin_plain:
-        lemma = db.latin_macron
-        gloss = db.english
+        lemma = entry[db.latin_macron]
+        gloss = colour_final(entry[db.english])
     else:
-        lemma = db.english
-        gloss = db.latin_macron
+        lemma = colour_final(entry[db.english])
+        gloss = entry[db.latin_macron]
     # gloss = 0 if lemma else 2
     num_prefix = ""
     if num >= 0:
         num_prefix = f"{col.blue}{num + 1}. "
     print(
-        f"\t{num_prefix}{col.pink}{entry[lemma]} {col.reset}{col.bold}{entry[gloss]} {col.darkgrey}from chapter {col.lightblue}{entry[3]}{col.reset}"
+        f"\t{num_prefix}{col.pink}{lemma} {col.reset}{col.bold}{gloss} {col.darkgrey}from chapter {col.lightblue}{entry[3]}{col.reset}"
     )
+# def print_entry(entry, result, num):
+#     db = result.db
+#     if result.language == db.latin_plain:
+#         lemma = db.latin_macron
+#         gloss = db.english
+#     else:
+#         lemma = db.english
+#         gloss = db.latin_macron
+#     # gloss = 0 if lemma else 2
+#     num_prefix = ""
+#     if num >= 0:
+#         num_prefix = f"{col.blue}{num + 1}. "
+#     print(
+#         f"\t{num_prefix}{col.pink}{entry[lemma]} {col.reset}{col.bold}{entry[gloss]} {col.darkgrey}from chapter {col.lightblue}{entry[3]}{col.reset}"
+#     )
 
 
 def search_db(term, language, db):
