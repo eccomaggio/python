@@ -4,29 +4,28 @@
 
 &s::p
 *Syntax: Sequence of Tenses in Indirect Questions & Cum clauses
-
-Main	%	Subordinate	%	%
+[Main]	%	[Subordinate]	%	%
 [(PRIMARY)]	%	[RELATIVE TIME]	[SUBJUNCTIVE]	%
-[Present]	rogat/petit	same time	present	quid faciat
-%	%	%	%	_ pass.= faciatur
-[Future]	rogabit/petat	after	pres./periphr.	faciat/facturus sit
-%	%	%	%	_ pass.= faciatur
-[Perfect]	rogavit/petivit	before	perfect	quid fecerit
-%	%	%	%	_ pass.= factus sit
+[Present]	<rogat/petit>	same time	present	<quid faciat>
+%	%	%	%	pass.= <faciatur
+[Future]	<rogabit/petat>	after	pres./periphr.	<faciat/facturus sit>
+%	%	%	%	pass.= <faciatur>
+[Perfect]	<rogavit/petivit>	before	perfect	<quid fecerit>
+%	%	%	%	pass.= <factus sit>
 [(SECONDARY)]	%	%	%	%
-[Imperfect]	rogabat/petebat	same time	imperfect	quid faceret
-%	%	%	%	_ pass.= faceretur
-[Perfect]	rogavit/petivit	after	imperf./periphr.	faceret/facturus esset
-%	%	%	%	_ pass.= faceretur
-[Pluperfect]	rogaverat/petiverat	before	pluperfect	quid fecisset
-%	%	%	%	_ pass.= factus esset
+[Imperfect]	<rogabat/petebat>	same time	imperfect	<quid faceret>
+%	%	%	%	pass.= <faceretur>
+[Perfect]	<rogavit/petivit>	after	imperf./periphr.	<faceret/facturus esset>
+%	%	%	%	pass.= <faceretur>
+[Pluperfect]	<rogaverat/petiverat>	before	pluperfect	<quid fecisset>
+%	%	%	%	pass.= <factus esset>
 *[1.i] Used with the indicative, the conjunction <cum> means "at that time when", or "whenever": <cum tacent, clāmant> (Cicero) —"when they are silent, (it is as if) they are shouting"
 *[1.ii] Used with the subjunctive, however, <cum> frequently means "at a time when".
 *[1.iii] When <cum> is used with the Imperfect subjunctive, a common way of translating it is "while": <cum sedērem domī trīstis, accurrit Venerius> (Cicero) — "while I was sitting sadly at home, Venerius suddenly came running up"
 *(1.iv] With the Pluperfect subjunctive, <cum> often means "after X happened": <cum excessisset Aegyptō Antiochus, lēgātī ... Cyprum nāvigant> (Livy) — "after Antiochus had left Egypt, the ambassadors sailed to Cyprus"
 *[1.v] <Cum> can also mean "in view of the fact that" or "since": <quae cum ita sint> "in view of the fact that these things are so" / "since this is so"
 *[1.vi] Another, less common, meaning of <cum> is "though" (often with <tamen> in the <cum>-clause): <nihil mē adiūvit, cum posset> (Cicero) — "he did nothing to help me, though (or: at a time when) he could have done"
-*[2] In later Latin, quod with the subjunctive could substitute for the accusative and infinitive in indirect statement, though this did not become common until the second century AD: <et vīdit Deus quod esset bonum> (Vulgate Bible) —"and God saw that it was good"
+*[2] In later Latin, quod with the subjunctive could substitute for the accusative and infinitive in indirect statement, though this did not become common until the second century AD: <et vīdit Deus quod esset bonum> (Vulgate Bible) — "and God saw that it was good"
 *[3] Indirect questions expecting an answer yes or no can be introduced by <-ne> (<an>) or <num> ("whether", "if"): <quaesīvit ā mē vellemne sēcum in castra proficīscī> (Nepos) — "he asked me whether I wanted to go with him to the camp"; <pecūniam admōvit ad nārēs, scīscitāns num odōre offenderētur> (Suetonius) — "he held the money under Titus's nose, asking if he was offended by the smell"
 *[4] Most verbs of ordering, persuading, and encouraging are followed by <ut> (<utī>) "that" or <nē> "that not" and a subjunctive mood verb. This construction is common after verbs such as <imperō> "I order", <rogō> "I ask", <petō> "I request", <moneō> "I advise", <persuādeō> "I persuade", <hortor> "I exhort" and others.
 *[5] There is no future periphrastic form for the passive; use the present/imperfect and an adverb e.g. <cras>.
@@ -34,9 +33,9 @@ Main	%	Subordinate	%	%
 &s::p
 *Syntax: Sequence of Tenses in Indirect Statements (accusative and infinitive pattern)
 [Main]	%	[Rel. time]	[Infin.]	%	[Translation]
-[Pres]	dicunt	same time	present	eum/se iuvare eam	They say he/they is helping her.
-[Perf]	dixerunt	before	perfect	eum/se iuvisse eam	They said he/they helped her.
-[Fut]	dicent	after	future	eum/se iuturum/-i (esse) eam	They say he/they would help her.
+[Pres]	<dicunt>	same time	present	<eum/se iuvare eam>	They say he is/they are helping her.
+[Perf]	<dixerunt>	before	perfect	<eum/se iuvisse eam>	They said he/they helped her.
+[Fut]	<dicent>	after	future	<eum/se iuturum/-i (esse) eam>	They say he/they would help her.
 *[1] One verb, <sum> "I am" has its own future infinitive <fore>, which may be used instead of <futūrum esse>. The verb <possum> "I am able" on the other hand has no future infinitive or future participle.
 *[2] The future participle combined with <fuisse>, which expresses a past or present potential ("would be doing" or "would have done"): <nisī dē viā fessus esset, continuō ad nōs ventūrum fuisse> (Cicero) — "(he said that) if he had not been tired from the journey, he would have come to us straightaway"
 *[3] The infinitive is used only for the main verb in an indirect statement; any other verbs are changed into the subjunctive mood, using one of the past tenses if the context is past: <locum ubi esset facile inventūrōs> (Nepos) — "(he told them that) they would easily find the place where he was"
@@ -47,35 +46,35 @@ Main	%	Subordinate	%	%
 *Syntax: Main Latin Tense Forms Overview
 [Tense & mood]	[Active]	[Passive/Deponent]
 [INDICATIVE]	%	%
-[Present]	amō/dūcō	amor/ducor
-[Future]	amābō/du:cam	ama:bor/ducar(duce:tur)
-[Imperfect]	amābam/du:ce:bam	ama:bar/duce:bar
+[Present]	<amō/dūcō>	<amor/ducor>
+[Future]	<amābō/dūcam>	<ama:bor/ducar(duce:tur)>
+[Imperfect]	<amābam/dūce:bam>	<ama:bar/duce:bar>
 .
-[Perfect]	amāvī/du:xi:	ama:tus sum/ductus sum
-[(Perfect II)]	--x--	(ama:tus fui:/ductus fui:)
-[Future perfect]	amāverō/du:xero:	ama:tus ero:/ductus ero:
-[(Future perf II)]	--x--	(ama:tus fuero:/ductus fuero:)
-[Pluperfect]	amāveram/du:xeram	ama:tus eram/ductus eram
-[(Pluperfect II)]	--x--	(ama:tus fueram/ductus fueram
+[Perfect]	<amāvī/dūxi:>	<ama:tus sum/ductus sum>
+[(Perfect II)]	--x--	<(ama:tus fui:/ductus fui:)>
+[Future perfect]	<amāverō/dūxero:>	<ama:tus ero:/ductus ero:>
+[(Future perf II)]	--x--	<(ama:tus fuero:/ductus fuero:)>
+[Pluperfect]	<amāveram/dūxeram>	<ama:tus eram/ductus eram>
+[(Pluperfect II)]	--x--	<(ama:tus fueram/ductus fueram>
 .
 [SUBJUNCTIVE]	%	%
-[Present]	amem/du:cam	amer/ducar(duca:tur)
-[Imperfect]	ama:rem/du:cerem	ama:rer/ducerer
-[Perfect]	ama:verim/du:xerim	ama:tus sim/ductus sim
-[(Perfect II)]	--x--	(ama:tus sim/ductus sim)
-[Pluperfect]	ama:vissem/du:xissem	ama:tus essem/ductus essem
-[(Pluperfect II)]	--x--	(ama:tus essem/ductus essem)
+[Present]	<amem/dūcam>	<amer/ducar(duca:tur)>
+[Imperfect]	<amārem/dūcerem>	<ama:rer/ducerer>
+[Perfect]	<amāverim/dūxerim>	<ama:tus sim/ductus sim>
+[(Perfect II)]	--x--	<(ama:tus sim/ductus sim)>
+[Pluperfect]	<amāvissem/dūxissem>	<ama:tus essem/ductus essem>
+[(Pluperfect II)]	--x--	<(ama:tus essem/ductus essem)>
 .
 [IMPERATIVE]	%	%
-[Present]	ama:(te)/duc(ite)	loquere,loquimini:/co:na:re,co:na:imini:
-[Future]	ama:to:(te)/dūcitō(te)	loquitor,loquuntor(3pl)/co:na:tor,co:nantor(3pl)
+[Present]	<amā(te)/duc(ite)>	<loquere,loquimini:/co:na:re,co:na:imini:>
+[Future]	<amātō(te)/dūcitō(te)>	<loquitor,loquuntor(3pl)/co:na:tor,co:nantor(3pl)>
 .
 [Infinitive]	%	%
-[Present]	ama:re/du:cere	ama:ri:/du:ci:
-[Future]	ama:tu:rum esse/ductu:rum esse	ama:tum i:ri:/ductum i:ri:
-[(Mediaeval L.)]	--x--	(ama:tus fore/ductus fore)
-[Perfect]	ama:visse/du:xisse	ama:tus esse/ductus esse
-[(Perfect II)]	--x--	(ama:tus fuisse/ductus fuisse)
+[Present]	<amāre/dūcere>	<ama:ri:/du:ci:>
+[Future]	<amātūrum esse/ductūrum esse>	<ama:tum i:ri:/ductum i:ri:>
+[(Mediaeval L.)]	--x--	<(ama:tus fore/ductus fore)>
+[Perfect]	<amāvisse/dūxisse>	<ama:tus esse/ductus esse>
+[(Perfect II)]	--x--	<(ama:tus fuisse/ductus fuisse)>
 *The difference between the two sets of perfect tenses is sometimes one of time, the second set referring to an earlier time than the first, as in this example from Caesar which contains both kinds: <pōns, quī fuerat tempestāte interruptus, paene erat refectus> — "the bridge, which earlier on had been broken by a storm, had now almost been rebuilt"
 
 
@@ -95,14 +94,14 @@ Pluperfect	--x--	Pluperfect	--x--	--x--
 .
 ==examples==	%	%	%
 INFECTUM	%	%	%
-amo:i/duco:	amem/du:cam (du:cat)	amans/ducens	ama:re/du:cere
-amabo:/du:cam (du:cet)	--x--	ama:turus/ducturus	ama:turus esse/ducturus esse
-ama:bam/du:ce:bam	ama:rem/du:cerem	--x--	--x--
+<amo:i/duco:>	<amem/du:cam (du:cat)>	amans/ducens	<ama:re/du:cere>
+<amabo:/du:cam (du:cet)>	--x--	<ama:turus/ducturus>	<ama:turus esse/ducturus esse>
+<ama:bam/du:ce:bam>	<ama:rem/du:cerem>	--x--	--x--
 .
 PERFECTUM	%	%	%
-ama:vi:/du:xi:	ama:verim/du:xerim	ama:tus	ama:visse
-ama:vero:/du:xero:	--x--	--x--	--x--
-ama:veram/du:xeram	--x--	--x--	--x--
+<ama:vi:/du:xi:>	<ama:verim/du:xerim>	<ama:tus	ama:visse>
+<ama:vero:/du:xero:>	--x--	--x--	--x--
+<ama:veram/du:xeram>	--x--	--x--	--x--
 
 &s::p
 *Syntax: conditional (if) clauses with open, ideal & unreal conditions. (Protasis & apodosis)

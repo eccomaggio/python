@@ -62,6 +62,7 @@ def read_in_data(source_file, id_count, tables):
         # tables = {}
         # table = {}
         title_found = False
+        table_started = False
         # id_count = 0
         for line_num, curr_line in enumerate(f):
             # if line_num >= 52:
@@ -83,6 +84,7 @@ def read_in_data(source_file, id_count, tables):
                 vocab = parse_table_type(table_type)
                 table_type = table_type.split("=")[0]
                 title_found = False
+                table_started = False
                 table_id = f"t{id_count}"
                 tables[table_id] = {
                     # "id": id_count,
@@ -92,7 +94,9 @@ def read_in_data(source_file, id_count, tables):
                     "table_type": table_type,
                     "vocab": vocab,
                     "title": "",
-                    "notes": [],
+                    # "notes": [],
+                    "notes_pre": [],
+                    "notes_post": [],
                     "cols": 0,
                     "data": []
                 }
@@ -101,11 +105,16 @@ def read_in_data(source_file, id_count, tables):
             elif curr_line.startswith("*"):
                 text = curr_line[1:].strip()
                 if title_found:
-                    table["notes"].append(text)
+                    # table["notes"].append(text)
+                    if table_started:
+                        table["notes_post"].append(text)
+                    else:
+                        table["notes_pre"].append(text)
                 else:
                     table["title"] = text
                     title_found = True
             else:
+                table_started = True
                 curr_line = curr_line.replace("  ", "\t")
                 curr_line = add_macrons(curr_line)
                 table_row = curr_line.strip().split("\t")
@@ -260,10 +269,13 @@ def draw_table(id, table):
     """
     print(f"\nid: {id}")
     print(table["title"])
-    for title in table["notes"]:
-        print(title)
+    # for title in table["notes"]:
+    for note in table["notes_pre"]:
+        print(note)
     # print(tabulate(table["data"], headers="firstrow", tablefmt="fancy_outline", colalign=("right",)))
     print(tabulate(table["data"], headers="firstrow", tablefmt="fancy_outline"))
+    for note in table["notes_post"]:
+        print(note)
 
 def draw_labelled_table(id, table, order="uk"):
     """
@@ -281,8 +293,9 @@ def draw_labelled_table(id, table, order="uk"):
     }
     print(f"\nid: {id}")
     print(table["title"])
-    for title in table["notes"]:
-        print(title)
+    # for title in table["notes"]:
+    for note in table["notes_pre"]:
+        print(note)
     tmp = []
     for key in ordering[order]:
         row = table["data"].get(key)
@@ -292,6 +305,8 @@ def draw_labelled_table(id, table, order="uk"):
                 #     tmp.append(SEPARATING_LINE)
                 tmp.append(entry)
     print(tabulate(tmp, headers="firstrow", tablefmt="fancy_outline", colalign=("right",)))
+    for note in table["notes_post"]:
+        print(note)
 
 def label_nouns(tables):
     tmp_tables = []

@@ -10,46 +10,46 @@
 
 &b:1&2:e=clarus validus infirmus solidus integer liber
 *Adverbs from first and second declension adjectives
-Adjective	Adverb
-clārus, clāra, clārum ('clear, famous')	clārē ('clearly, famously')
-validus, valida, validum ('strong, robust')	validē ('strongly, robustly')
-īnfīrmus, īnfīrma, īnfīrmum ('weak')	īnfīrmē ('weakly')
-solidus, solida, solidum ('complete, firm')	solidē ('completely, firmly')
-integer, integra, integrum ('whole, fresh')	integrē ('wholly, freshly')
-līber, lībera, līberum ('free')	līberē ('freely')
+[Adjective]	[Adverb]
+<clārus, clāra, clārum> ('clear, famous')	<clārē> ('clearly, famously')
+<validus, valida, validum> ('strong, robust')	<validē> ('strongly, robustly')
+<īnfīrmus, īnfīrma, īnfīrmum> ('weak')	<īnfīrmē> ('weakly')
+<solidus, solida, solidum> ('complete, firm')	<solidē> ('completely, firmly')
+<integer, integra, integrum> ('whole, fresh')	<integrē> ('wholly, freshly')
+<līber, lībera, līberum> ('free')	<līberē> ('freely')
 
 &b:3:e=prudens audax virilis salubris
 *Adverbs from third declension adjectives
-Adjective	Adverb
-prūdēns, prūdēns (prūdentis) ('prudent')	prūdenter ('prudently')
-audāx, audāx (audācis) ('bold')	audācter ('boldly')
-virīlis, virīle ('courageous, spirited')	virīliter ('courageously, spiritedly')
-salūbris, salūbre ('wholesome')	salūbriter ('wholesomely')
+[Adjective]	[Adverb]
+<prūdēns>, <prūdēns> (prūdentis) ('prudent')	<prūdenter> ('prudently')
+<audāx>, <audāx> (<audācis>) ('bold')	<audācter> ('boldly')
+<virīlis>, <virīle> ('courageous, spirited')	<virīliter> ('courageously, spiritedly')
+<salūbris>, <salūbre> ('wholesome')	<salūbriter> ('wholesomely')
 
 &b:comp&supp:e=clare solide idonee prudenter salubriter
 *Comparative and superlative of adverbs
-Positive	Comparative	Superlative
-clārē ('clearly, famously')	clārius	clārissimē
-solidē ('completely, firmly')	solidius	solidissimē
-idōneē ('suitably, properly')	magis idōneē	maximē idōneē
-prudenter ('prudently')	prudentius	prudentissimē
-salūbriter ('wholesomely')	salūbrius	salūbrissimē
+[Positive]	[Comparative]	[Superlative]
+<clārē> ('clearly, famously')	<clārius>	<clārissimē>
+<solidē> ('completely, firmly')	<solidius>	<solidissimē>
+<idōneē> ('suitably, properly')	<magis> <idōneē>	<maximē> <idōneē>
+<prudenter> ('prudently')	<prudentius>	<prudentissimē>
+<salūbriter> ('wholesomely')	<salūbrius>	<salūbrissimē>
 
 &b:comp&supp:i=bene male magnopere multum parvum nequiter saepe mature prope nuper potis prius secus
 *Irregular adverbs with peculiar comparative and superlative forms.
-Positive	Comparative	Superlative
-bene ('well')	melius ('better')	optimē ('best')
-male ('badly, ill')	peius ('worse')	pessimē ('worst')
-magnopere ('greatly')	magis ('more')	maximē ('most')
-multum ('much, a lot')	plūs ('more')	plūrimum ('most')
-parvum ('little')	minus ('less')	minimē ('least')
-nēquiter ('worthlessly')	nēquius ('more worthlessly')	nēquissimē ('most worthlessly')
-saepe ('often')	saepius ('more often')	saepissimē ('most often')
-mātūrē ('seasonably, betimes')	mātūrius ('more seasonably')	māturrimē ('most seasonably')
-prope ('near')	propius ('nearer')	proximē ('nearest, next')
-nūper ('recently')	—	nūperrimē ('most recently, previously')
-potis ('possible')	potius ('rather')	potissimē ('especially')
-—	prius ('before, previously')	prīmō ('first')
-secus ('otherwise')	sētius/sequius ('less')	—
+[Positive]	[Comparative]	[Superlative]
+<bene> ('well')	<melius> ('better')	<optimē> ('best')
+<male> ('badly, ill')	<peius> ('worse')	<pessimē> ('worst')
+<magnopere> ('greatly')	<magis> ('more')	<maximē> ('most')
+<multum> ('much, a lot')	<plūs> ('more')	<plūrimum> ('most')
+<parvum> ('little')	<minus> ('less')	<minimē> ('least')
+<nēquiter> ('worthlessly')	<nēquius> ('more worthlessly')	<nēquissimē> ('most worthlessly')
+<saepe> ('often')	<saepius> ('more often')	<saepissimē> ('most often')
+<mātūrē> ('seasonably, betimes')	<mātūrius> ('more seasonably')	<māturrimē> ('most seasonably')
+<prope> ('near')	<propius> ('nearer')	<proximē> ('nearest, next')
+<nūper> ('recently')	—	<nūperrimē> ('most recently, previously')
+<potis> ('possible')	<potius> ('rather')	<potissimē> ('especially')
+—	<prius> ('before, previously')	<prīmō> ('first')
+<secus> ('otherwise')	<sētius>/<sequius> ('less')	—
 
 

@@ -144,7 +144,6 @@ def read_json(filename="latin.json"):
         return json.load(f)
 
 
-
 def draw_table(id, db):
     """
     In a standard table, the ["data"] consists of a list
@@ -156,19 +155,24 @@ def draw_table(id, db):
     """
     table = db.tables[id]
     draw_table_title(table.get("title"))
-    draw_table_notes(table.get("notes"))
+    draw_table_notes(table.get("notes_pre"))
     table_data = [[colour_final(td) for td in row] for row in table.get("data")]
     if second_row_begins_with_label(table_data):
         table_data = convert_to_labelled_table(table_data, db)
         draw_labelled_table(table_data, db)
     else:
         invoke_tabulate(table_data)
+    draw_table_notes(table.get("notes_post"))
+
 
 def second_row_begins_with_label(table_rows):
     second_row = "".join(table_rows[1]).strip()
-    second_row = second_row.replace("[","").replace("]","").replace("%","").replace(" ","")
+    second_row = (
+        second_row.replace("[", "").replace("]", "").replace("%", "").replace(" ", "")
+    )
     # tmp = "".join(table_rows[1]).strip()[:3].lower()
     return second_row[:3].lower() in ["nom", "voc", "acc", "gen", "dat"]
+
 
 def convert_to_labelled_table(table, db):
     tmp = {}
@@ -244,13 +248,18 @@ def invoke_tabulate(data):
 
 def draw_table_title(title):
     if title:
-        print(f"§ {col.bold}{col.orange}{title}{col.reset}")
+        prefix = "§ "
+        print(" ")
+        print(f"{prefix}{col.bold}{col.orange}{title}{col.reset}")
+        print("=" * len(prefix + title))
 
 
 def draw_table_notes(notes):
     for note in notes:
         for line in chunk_line(colour_pre(note), 70, 4, []):
-            print(f"{col.reset}{colour_final(line)}{col.reset}")
+            line = terminate_quote(line, ("<",">"))
+            line = terminate_quote(line, ("{","}"))
+            print(f"{col.reset}{colour_final(line,False)}{col.reset}")
         print(" ")
 
 
@@ -281,6 +290,34 @@ def chunk_line(line, limit=70, indent=6, sublines=[]):
     return sublines
 
 
+def terminate_quote(line, q):
+    acc = 0
+    for c in line:
+        if c == q[0]:
+            acc += 1
+        elif c == q[1]:
+            acc -= 1
+    if acc == -1:
+        line = q[0] + line
+    elif acc == 1:
+        line = line + q[1]
+    return line
+
+
+def terminate_english_quote(line):
+    acc = 0
+    for c in line:
+        if c == "{":
+            acc += 1
+        elif c == "}":
+            acc -= 1
+    if acc == -1:
+        line = "{" + line
+    elif acc == 1:
+        line = line + "}"
+    return line
+
+
 def colour_pre(line):
     """
     This works along with colour_final() to convert simple markup
@@ -306,9 +343,9 @@ def colour_final(line, are_titles=True, reset=col.reset):
     This continues on from colour_pre() or can stand alone
     """
     if are_titles:
-        line = line.replace('[', titles).replace(']', col.reset)
-    line = line.replace('<', latin).replace('>', reset)
-    line = line.replace('{', english).replace('}', col.reset)
+        line = line.replace("[", titles).replace("]", col.reset)
+    line = line.replace("<", latin).replace(">", reset)
+    line = line.replace("{", english).replace("}", col.reset)
     return line
 
 
@@ -327,21 +364,6 @@ def print_entry(entry, result, num):
     print(
         f"\t{num_prefix}{col.pink}{lemma} {col.reset}{col.bold}{gloss} {col.darkgrey}from chapter {col.lightblue}{entry[3]}{col.reset}"
     )
-# def print_entry(entry, result, num):
-#     db = result.db
-#     if result.language == db.latin_plain:
-#         lemma = db.latin_macron
-#         gloss = db.english
-#     else:
-#         lemma = db.english
-#         gloss = db.latin_macron
-#     # gloss = 0 if lemma else 2
-#     num_prefix = ""
-#     if num >= 0:
-#         num_prefix = f"{col.blue}{num + 1}. "
-#     print(
-#         f"\t{num_prefix}{col.pink}{entry[lemma]} {col.reset}{col.bold}{entry[gloss]} {col.darkgrey}from chapter {col.lightblue}{entry[3]}{col.reset}"
-#     )
 
 
 def search_db(term, language, db):
