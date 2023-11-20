@@ -5,17 +5,17 @@
 &s::p
 *Syntax: Sequence of Tenses in Indirect Questions & Cum clauses
 [Main]	%	[Subordinate]	%	%
-[(PRIMARY)]	%	[RELATIVE TIME]	[SUBJUNCTIVE]	%
+PRIMARY	%	[RELATIVE TIME]	[SUBJUNCTIVE]	%
 [Present]	<rogat/petit>	same time	present	<quid faciat>
 %	%	%	%	pass.= <faciatur
-[Future]	<rogabit/petat>	after	pres./periphr.	<faciat/facturus sit>
+[Future]	<rogabit/petat>	after	pres./periphr.	<quid faciat/facturus sit>
 %	%	%	%	pass.= <faciatur>
 [Perfect]	<rogavit/petivit>	before	perfect	<quid fecerit>
 %	%	%	%	pass.= <factus sit>
-[(SECONDARY)]	%	%	%	%
+SECONDARY	%	%	%	%
 [Imperfect]	<rogabat/petebat>	same time	imperfect	<quid faceret>
 %	%	%	%	pass.= <faceretur>
-[Perfect]	<rogavit/petivit>	after	imperf./periphr.	<faceret/facturus esset>
+[Perfect]	<rogavit/petivit>	after	imperf./periphr.	<quid faceret/facturus esset>
 %	%	%	%	pass.= <faceretur>
 [Pluperfect]	<rogaverat/petiverat>	before	pluperfect	<quid fecisset>
 %	%	%	%	pass.= <factus esset>

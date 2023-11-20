@@ -256,14 +256,28 @@ def draw_table_title(title):
 
 def draw_table_notes(notes):
     for note in notes:
-        for line in chunk_line(colour_pre(note), 70, 4, []):
-            line = terminate_quote(line, ("<",">"))
-            line = terminate_quote(line, ("{","}"))
+        chunked_note = chunk_note(note)
+        for line in chunked_note:
+            # print(line)
             print(f"{col.reset}{colour_final(line,False)}{col.reset}")
         print(" ")
 
+def chunk_note(note):
+    indent = 4
+    chunked_lines = [line for line in chunk(colour_pre(note), 70, indent, [])]
+    ## include previous markup status to catch lines
+    # that contain no markup because they run on from previous
+    prev_status = 0
+    for quote_type in [("<",">"), ("{","}")]:
+        tmp = []
+        for line in chunked_lines:
+            line, prev_status = terminate_quote(line, quote_type, prev_status)
+            tmp.append(line.rstrip())
+        chunked_lines = tmp
+    return chunked_lines
 
-def chunk_line(line, limit=70, indent=6, sublines=[]):
+
+def chunk(line, limit=70, indent=6, sublines=[]):
     """
     Takes a long string and then divides it into lines
     at spaces (where possible) with a maximum line length.
@@ -286,37 +300,27 @@ def chunk_line(line, limit=70, indent=6, sublines=[]):
             subline = line[:end]
     sublines.append(spacer + subline)
     line = line[end:].lstrip()
-    chunk_line(line, limit, indent, sublines)
+    chunk(line, limit, indent, sublines)
     return sublines
 
 
-def terminate_quote(line, q):
-    # acc = 0
-    # for c in line:
-    #     if c == q[0]:
-    #         acc += 1
-    #     elif c == q[1]:
-    #         acc -= 1
+def terminate_quote(line, q, prev_status):
+    """
+    Strips off any indent spacing (for neatness),
+    restores broken quote sequences,
+    adds back indent
+    """
     acc = line.count(q[0]) - line.count(q[1])
+    old_len = len(line)
+    line = line.lstrip()
+    spacer = " " * (old_len - len(line))
     if acc == -1:
         line = q[0] + line
     elif acc == 1:
         line = line + q[1]
-    return line
-
-
-def terminate_english_quote(line):
-    acc = 0
-    for c in line:
-        if c == "{":
-            acc += 1
-        elif c == "}":
-            acc -= 1
-    if acc == -1:
-        line = "{" + line
-    elif acc == 1:
-        line = line + "}"
-    return line
+    elif acc == 0 and prev_status == 1:
+        line = q[0] + line + q[1]
+    return (spacer + line, acc)
 
 
 def colour_pre(line):
