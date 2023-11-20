@@ -291,12 +291,13 @@ def chunk_line(line, limit=70, indent=6, sublines=[]):
 
 
 def terminate_quote(line, q):
-    acc = 0
-    for c in line:
-        if c == q[0]:
-            acc += 1
-        elif c == q[1]:
-            acc -= 1
+    # acc = 0
+    # for c in line:
+    #     if c == q[0]:
+    #         acc += 1
+    #     elif c == q[1]:
+    #         acc -= 1
+    acc = line.count(q[0]) - line.count(q[1])
     if acc == -1:
         line = q[0] + line
     elif acc == 1:
