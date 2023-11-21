@@ -379,21 +379,29 @@ def build_match_list(result):
     db = result.db
     term = result.term
     prefix = term[:2]
-    if prefix == "e:":
+    # if prefix == "e:":
+    if prefix in ["e:", "x:"]:
         result.set_language("en")
         term = term[2:]
+        if prefix == "x:":
+            term = term + "\\b"
     else:
         result.set_language("la")
-    search_string = f"\b{term}"
+    search_string = f"\\b{term}"
     matches = search_db(search_string, result.language, db)
-    if not matches:
-        search_string = f"{term}"
-        matches = search_db(search_string, result.language, db)
+    # if not matches:
+    #     search_string = term
+    #     matches = search_db(search_string, result.language, db)
+    if prefix == "x:":
+        result.set_language("la")
+        matches.extend(search_db(search_string, result.language, db))
+    if matches:
+        matches.sort()
     return matches
 
 
 def display_menu(result):
-    base_menu = f"\n\n{col.purple}quid est quaerendum? {col.green}(*<*:q*>*[uit], *<*:e*>*[nglish]"
+    base_menu = f"\n\n{col.purple}quid est quaerendum? {col.green}(*<*:q*>*[uit], *<*:e*>*[nglish], e*<*:x*>*act word"
     extended_menu = ")"
     menu_choices = ""
     if len(result.prev.matches):
@@ -447,10 +455,12 @@ def check_input(result, menu_choices):
             action = "quit"
         elif prefix in [":r", "r:", "rr"]:
             action = "repeat"
-        elif prefix in [":e", "e:", "ee"]:
+        # elif prefix in [":e", "e:", "ee"]:
+        elif prefix in [":e", "e:", "ee", ":x", "x:", "xx"]:
+            prefix = "e:" if "e" in prefix else "x:"
             suffix = result.term[2:]
             if suffix:
-                result.term = "e:" + suffix
+                result.term = prefix + suffix
                 action = "search"
             else:
                 result.error = "Add an English term to search for."
