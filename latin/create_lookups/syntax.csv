@@ -45,31 +45,27 @@ SECONDARY	%	%	%	%
 &s::p
 *Syntax: Main Latin Tense Forms Overview
 [Tense & mood]	[Active]	[Passive/Deponent]
-[INDICATIVE]	%	%
+INDICATIVE	%	%
 [Present]	<amō/dūcō>	<amor/ducor>
 [Future]	<amābō/dūcam>	<ama:bor/ducar(duce:tur)>
 [Imperfect]	<amābam/dūce:bam>	<ama:bar/duce:bar>
-.
-[Perfect]	<amāvī/dūxi:>	<ama:tus sum/ductus sum>
+Perfect	<amāvī/dūxi:>	<ama:tus sum/ductus sum>
 [(Perfect II)]	--x--	<(ama:tus fui:/ductus fui:)>
 [Future perfect]	<amāverō/dūxero:>	<ama:tus ero:/ductus ero:>
 [(Future perf II)]	--x--	<(ama:tus fuero:/ductus fuero:)>
 [Pluperfect]	<amāveram/dūxeram>	<ama:tus eram/ductus eram>
 [(Pluperfect II)]	--x--	<(ama:tus fueram/ductus fueram>
-.
-[SUBJUNCTIVE]	%	%
+SUBJUNCTIVE	%	%
 [Present]	<amem/dūcam>	<amer/ducar(duca:tur)>
 [Imperfect]	<amārem/dūcerem>	<ama:rer/ducerer>
 [Perfect]	<amāverim/dūxerim>	<ama:tus sim/ductus sim>
 [(Perfect II)]	--x--	<(ama:tus sim/ductus sim)>
 [Pluperfect]	<amāvissem/dūxissem>	<ama:tus essem/ductus essem>
 [(Pluperfect II)]	--x--	<(ama:tus essem/ductus essem)>
-.
-[IMPERATIVE]	%	%
+IMPERATIVE	%	%
 [Present]	<amā(te)/duc(ite)>	<loquere,loquimini:/co:na:re,co:na:imini:>
 [Future]	<amātō(te)/dūcitō(te)>	<loquitor,loquuntor(3pl)/co:na:tor,co:nantor(3pl)>
-.
-[Infinitive]	%	%
+Infinitive	%	%
 [Present]	<amāre/dūcere>	<ama:ri:/du:ci:>
 [Future]	<amātūrum esse/ductūrum esse>	<ama:tum i:ri:/ductum i:ri:>
 [(Mediaeval L.)]	--x--	<(ama:tus fore/ductus fore)>
@@ -82,22 +78,19 @@ SECONDARY	%	%	%	%
 &s::p
 *Syntax: Main Latin Tense Overview (Active)
 [INDICATIVE]	[Subjunctive]	[Participle]	[Infinitive]
-[INFECTUM]	%	%	%
-Present	Present	Present	Present
-Future	--x--	Future	Future
-Imperfect	Imperfect	--x--	--x--
-.
-[PERFECTUM]	%	%	%
-Perfect	Perfect	Perfect	Perfect
-Future perfect	--x--	--x--	--x--
-Pluperfect	--x--	Pluperfect	--x--	--x--
-.
+INFECTUM	%	%	%
+[Present]	[Present]	[Present]	[Present]
+[Future]	--x--	[Future]	[Future]
+[Imperfect]	[Imperfect]	--x--	--x--
+PERFECTUM	%	%	%
+[Perfect]	[Perfect]	[Perfect]	[Perfect]
+[Future perfect]	--x--	--x--	--x--
+[Pluperfect]	--x--	[Pluperfect]	--x--	--x--
 ==examples==	%	%	%
 INFECTUM	%	%	%
-<amo:i/duco:>	<amem/du:cam (du:cat)>	amans/ducens	<ama:re/du:cere>
+<amo:/duco:>	<amem/du:cam (du:cat)>	<amans/ducens>	<ama:re/du:cere>
 <amabo:/du:cam (du:cet)>	--x--	<ama:turus/ducturus>	<ama:turus esse/ducturus esse>
 <ama:bam/du:ce:bam>	<ama:rem/du:cerem>	--x--	--x--
-.
 PERFECTUM	%	%	%
 <ama:vi:/du:xi:>	<ama:verim/du:xerim>	<ama:tus	ama:visse>
 <ama:vero:/du:xero:>	--x--	--x--	--x--

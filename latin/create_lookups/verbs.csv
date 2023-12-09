@@ -1707,3 +1707,105 @@ fruī	<frūctum/fruitum>	<fruitūrus>	going to enjoy
 nāscī	<nātum>	<nātūrus>/<nascitūrus>	going to be born
 morī	<mortuum>	<moritūrus>	going to die
 orīrī	<ortum>	<oritūrus>	going to rise
+
+&v:dep:e
+*DEPONENT VERBS
+*Deponent Verbs have the forms of the Passive Voice, with an active or reflexive signification
+INDICATIVE	<-āre>	<-ēre>	<-ere>	<-īre>
+[PRES. 1s]	<mīror>	<vereor>	<sequor>	<partior>
+[2s]	<mīrāris (-re)>	<verēris (-re)>	<sequeris (-re)>	<partīris (-re)>
+[3s]	<mīrātur>	<verētur>	<sequitur>	<partītur>
+[1p]	<mīrāmur>	<verēmur>	<sequimur>	<partīmur>
+[2p]	<mīrāminī>	<verēminī>	<sequiminī>	<partīminī>
+[3p]	<mīrantur>	<verentur>	<sequuntur>	<partiuntur>
+[IMPF.]	<mīrābar>	<verēbar>	<sequēbar>	<partiēbar>
+[FUT.]	<mīrābor>	<verēbor>	<sequar>	<partiar>
+[PERF.]	<mīrātus sum>	<veritus sum>	<secūtus sum>	<partītus sum>
+[PLUP.]	<mīrātus eram>	<veritus eram>	<secūtus eram>	<partītus eram>
+[F. P.]	<mīrātus erō>	<veritus erō>	<secūtus erō>	<partītus erō>
+SUBJUNCTIVE	%	%	%	%
+[PRES.]	<mīrer>	<verear>	<sequar>	<partiar>
+[IMPF.]	<mīrārer>	<verērer>	<sequerer>	<partīrer>
+[PERF.]	<mīrātus sim>	<veritus sim>	<secūtus sim>	<partītus sim>
+[PLUP.]	<mīrātus essem>	<veritus essem>	<secūtus essem>	<partītus essem>
+IMPERATIVE	%	%	%	%
+[PRES.]	<mīrāre>	<verēre>	<sequere>	<partīre>
+[FUT.]	<mīrātor>	<verētor>	<sequitor>	<partītor>
+INFINITIVE	%	%	%	%
+[PRES.]	<mīrārī>	<verērī>	<sequī>	<partīrī>
+[PERF.]	<mīrātus esse>	<veritus esse>	<secūtus esse>	<partītus esse>
+[FUT.]	<mīrātūrus esse>	<veritūrus esse>	<secūtūrus esse>	<partītūrus esse>
+PARTICIPLES	%	%	%	%
+[PRES.]	<mīrāns>	<verēns>	<sequēns>	<partiēns>
+[FUT.]	<mīrātūrus>	<veritūrus>	<secūtūrus>	<partītūrus>
+[PERF.]	<mīrātus>	<veritus>	<secūtus>	<partītus>
+[GER.]	<mīrandus>	<verendus>	<sequendus>	<partiendus>
+GERUND	%	%	%	%
+%	<mīrandī, -ō, etc.>	<verendī, etc.>	<sequendī, etc.>	<partiendī, etc.>
+SUPINE	%	%	%	%
+%	<mīrātum, -tū>	<veritum, -tū>	<secūtum, -tū>	<partītum, -tū>
+
+
+&v:dep:e
+*PARTICIPLES OF DEPONENT VERBS
+*Deponent verbs have participles, formed in the same way as for normal verbs and the meaning is always active. For example (<sequor> "to follow"):
+[TIME]	[FORM]	[MEANING]	[VOICE]
+[present]	<sequens, sequentis>	"following"	[active]
+[past]	 <secutus, -a, -um>	"having followed"	[active]
+[future]	<secuturus, -a, -um>	"about to follow"	[active]
+[gerundive]	<sequendus, -a, -um>	"should be followed"	PASSIVE
+*More examples of the gerundive:
+*<hōc cōnfitendum est> "this must be acknowledged"
+*<moriendum est omnibus> "all must die".
+
+&v:dep:e
+*Most Common Deponent Verbs
+[pres]	[infin]	[perf]	[Meaning]
+<arbitror>	 <arbitrārī>	<arbitrātus sum>	judge, think
+<cōnor>	<cōnārī>	<cōnātus sum>	try, attempt
+<ēgredior>	<ēgredī>	<ēgressus sum>	go out, leave
+<experior>	<experīrī>	<expertus sum>	test, experience
+<fateor>	<fatērī>	<fassus sum>	confess
+<for>	<fārī>	<fātus sum>	say, speak
+<fruor>	<fruī>	<frūctus sum>	enjoy (+ ablative)
+<fungor>	<fungī>	<fūnctus sum>	perform, do (+ ablative)
+<hortor>	<hortārī>	<hortātus sum>	encourage, urge
+<ingredior>	<ingredī>	<ingressus sum>	enter, go in
+<īrāscor>	<īrāscī>	<īrātus sum>	grow angry, get angry
+<loquor>	<loquī>	<locūtus sum>	speak
+<mīror>	<mīrārī>	<mīrātus sum>	marvel at, admire
+<morior>	<morī>	<mortuus sum>	die
+<moror>	<morārī>	<morātus sum>	delay
+<nāscor>	<nāscī>	<nātus sum>	be born
+<orior>	<orīrī>	<ortus sum>	rise, arise
+<patior>	<patī>	<passus sum>	suffer, allow
+<potior>	<potīrī>	<potītus sum>	obtain, acquire (+ ablative)
+<precor>	<precārī>	<precātus sum>	beg, entreat
+<proficīscor>	<proficīscī>	<profectus sum>	set out, depart
+<queror>	<querī>	<questus sum>	complain
+<reor>	<rērī>	<ratus sum>	reckon, think
+<sequor>	<sequī>	<secūtus sum>	follow
+<ūtor>	<ūtī>	<ūsus sum>	use (+ ablative)
+<vereor>	<verērī>	<veritus sum>	fear, respect
+
+
+&v:dep-abl:e
+*Deponent Verbs that Govern the Ablative Case as Direct Objective
+[pres]	[infin]	[perf]	[Meaning]
+<ūtor>	<ūtī>	<ūsus sum>	use, to employ, to enjoy (use)
+<abutor>	<abuti>	<abusus sum>	abuse
+<fruor>	<fruī>	<fructus sum>	enjoy
+<fungor>	<fungī>	<functus sum>	perform
+<potior>	<potīrī>	<potītus sum>	gain possession of + ablative or genitive case
+<nītor>	<nītī>	<nīsus sum>	lean or rest upon, to strive, to rely on
+<vescor>	<vescī>	--	to feed on
+
+&v:semi-dep:e
+*Most Common Semi-deponent verbs
+[pres]	[infin]	[perf]	[Meaning]
+<audeō>	<audēre>	<ausus sum>	dare
+<fīdō>	<fīdere>	<fīsus sum>	trust
+<confido>	<confidere>	<confisus sum>	to trust
+<diffido>	<diffidere>	<diffisus sum>	to distrust
+<gaudeō>	<gaudēre>	<gāvīsus sum>	rejoice
+<soleō>	<solēre>	<solitus sum>	be accustomed to
