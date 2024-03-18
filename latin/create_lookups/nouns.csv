@@ -166,7 +166,7 @@ Third declension nouns
 [Nominative]	<vīs>	<vīrēs>	<sūs>	<suēs>	<bōs>	<bovēs>	<Iuppiter>
 %	%	%	%	%	%	%	%
 [Accusative]	<vim>	<vīrēs>	<suem>	<sues>	<bovem>	<bovēs>	<Iovem>
-%	%	vīrīs	%	%	%	%	%
+%	%	<vīrīs>	%	%	%	%	%
 [Genitive]	<vīs>	<vīrium>	<suis>	<suum>	<bovis>	<boum>	<Iovis>
 %	%	%	%	%	<bovum>	%	%
 [Dative]	<vī>	<vīribus>	<suī>	<suibus>	<bovī>	<bōbus>	<Iovī>
@@ -260,8 +260,8 @@ Locative	<domī>	<domibus>	<domī>	<domibus>
 <fortūna>, <fortūnae> f. ('luck, chance')	<fortūnae>, <fortūnārum> ('wealth, fortune')
 <grātia>, <grātiae> f. ('charm, favor')	<grātiae>, <grātiārum> ('thanks')
 <impedīmentum>, <impedīmentī> m. ('impediment, hindrance')	<impedīmenta>, <impedīmentōrum> ('baggage, baggage train')
-<littera>, <litterae> f. ('letter [alphabet]')	<litterae>, <litterārum> ('letter [message], epistle, scholarship, literature')
+<littera>, <litterae> f. ('letter of alphabet')	<litterae>, <litterārum> ('letter [message], epistle, scholarship, literature')
 <mōs>, <mōris> m. ('habit, inclination')	<mōrēs>, <mōrum> m. ('morals, character')
 <opera>, <operae> f. ('trouble, pains')	<operae>, <operārum> m. ('workmen')
-[<Ops>, <Opis> f.[goddess] ('help')]	<opēs>, <opium> ('resources, wealth')
+[<Ops>, <Opis> f. (goddess; help)]	<opēs>, <opium> ('resources, wealth')
 <pars>, <partis> f. ('part, piece')	<partēs>, <partium> ('office, function')
