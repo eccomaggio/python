@@ -1,0 +1,19 @@
+What output do we want? (exact format / purpose)?
+
+Poss workflows:
+1) manual, i.e. copy and paste from pdfs -- simple, clear
+2) extract existing OCR from pdfs
+3) extract and ocr text
+
+Use ocrmypdf from the cmdline to add ocr text to pdfs
+see https://ocrmypdf.readthedocs.io/en/latest/cookbook.html for details
+or ocrmypdf -h
+
+
+to try:
+https://medium.com/@dr.booma19/extracting-text-from-pdf-files-using-ocr-a-step-by-step-guide-with-python-code-becf221529ef
+
+https://towardsdatascience.com/extracting-text-from-pdf-files-with-python-a-comprehensive-guide-9fc4003d517
+
+pyMuPDF utilities:
+https://github.com/pymupdf/PyMuPDF-Utilities
