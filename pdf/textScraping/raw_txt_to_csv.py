@@ -103,30 +103,39 @@ def chunk_line(line, contents, item_delimiter=None):
     return contents
 
 def categorize_as_dict(contents):
-  tmp = []
+  result = []
   for i, item in enumerate(contents):
-    print(i)
     item = [field for field in item if len(field)]
-    tmp_dict = {
+    tmp = {
        "ids": [],
        "notes": "",
        "author": "",
        }
     try:
-      tmp_dict["ref"] = item[0][0]
-      tmp_dict["artist"] = item[1][0]
-      tmp_dict["title"] = item[2][0]
-      tmp_dict["description"] = item[3]
-      tmp_dict["literature"], tmp_dict["text"] = split_literature_and_text(item)
-      tmp_dict["text"], tmp_dict["notes"] = split_notes_from_text(tmp_dict["text"])
-      tmp_dict["ids"] = get_ids(tmp_dict["description"])
-      tmp_dict["text"] = run_on_lines(tmp_dict["text"])
-      tmp_dict["author"] = get_author_initials(tmp_dict["text"])
+      tmp["ref"] = item[0][0]
+      tmp["artist"] = item[1][0]
+      tmp["title"] = item[2][0]
+      tmp["description"] = item[3]
+      tmp["literature"], tmp["text"] = split_literature_and_text(item)
+      tmp["text"], \
+      tmp["notes"] = split_notes_from_text(tmp["text"])
+      tmp["ids"] = get_ids(tmp["description"], i, tmp["ref"])[0]
+      tmp["text"] = run_on_lines(tmp["text"])
+      tmp["author"] = get_author_initials(tmp["text"])
+
+      tmp["description"] = list_to_newlines(tmp["description"])
+      tmp["literature"] = list_to_newlines(tmp["literature"])
+      tmp["notes"] = rebuild_numbered_list(tmp["notes"])
+      tmp["text"] = list_to_paragraphs(tmp["text"])
+      tmp["notes"] = list_to_paragraphs(tmp["notes"])
     except IndexError:
        print(f"Record {i} has only {len(item)} field(s).")
 
-    tmp.append(tmp_dict)
-  return tmp
+    result.append(tmp)
+  return result
+
+
+
 
 
 def split_literature_and_text(item):
@@ -139,11 +148,11 @@ def split_literature_and_text(item):
     text = item[4:]
   return (literature, text)
 
+
 def split_notes_from_text(field, notes_identifier=None):
   if not notes_identifier:
     notes_identifier = "1."
   notes = []
-
   note_start = -1
   for j, line in enumerate(field):
     if len(line) and line[0].startswith(notes_identifier):
@@ -151,19 +160,57 @@ def split_notes_from_text(field, notes_identifier=None):
   if note_start >= 0:
       notes = field[note_start:]
       field = field[:note_start]
-  return (field, notes)
+  return (field, notes[0])
 
-def get_ids(field):
+
+def get_ids(field, index="n/a", ref="n/a"):
   ids = []
   for line in field:
       ids.extend(re.findall(r'[A-Z]{2}\d{4}\.\d+', line))
+  id_count = len(ids)
+  if not id_count:
+     print(f"No id found for record no.{index + 1}, ref {ref}")
+  elif id_count > 1:
+     print(f"More than one item for record no.{index + 1}, ref {ref}")
   return ids
 
+
 def run_on_lines(para_arr):
+  if not para_arr:
+     return []
   tmp = []
   for para in para_arr:
     tmp.append(" ".join(para).replace("  ", " "))
   return tmp
+
+
+def list_to_paragraphs(para_arr):
+  if not para_arr:
+     return ""
+  return ("\n\n").join(para_arr)
+
+def list_to_newlines(line_arr):
+   if not line_arr:
+      return ""
+   return("\n".join(line_arr))
+
+
+def rebuild_numbered_list(line_arr, pattern=None):
+  if not line_arr:
+     return []
+  if not pattern:
+     pattern = r"^\d+\."
+  # tmp = [""]
+  tmp = []
+  for line in line_arr:
+    match = re.match(pattern, line)
+    if match:
+       tmp.append(line)
+    else:
+       tmp_line = tmp[-1] + " " + line
+       tmp[-1] = tmp_line.replace("  ", "")
+  return tmp
+
 
 def get_author_initials(field):
    initials = ""
@@ -183,8 +230,10 @@ if __name__ == '__main__':
     contents = categorize_as_dict(contents)
     # pprint.pp(contents)
     print(f"{len(contents)} items/records found.")
+    for i,item in enumerate(contents):
+       print(i, item["ref"], len(item))
 
-    output_filename = get_file_basename(input_filename, ".out.txt")
+    output_filename = get_file_basename(input_filename, ".out.csv")
     print(f"Writing to: {output_filename}")
     save_dict_as_csv(output_filename, contents)
   else:
