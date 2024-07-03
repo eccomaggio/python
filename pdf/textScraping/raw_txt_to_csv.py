@@ -1,3 +1,17 @@
+"""
+Takes OCR text that is structured to the point that:
+1) it is clearly divided into records
+2) fields and paragraphs are separated by blank lines
+
+This could be a file created by raw_to_structured_txt.py (or a (semi-)manually created one)
+
+It then attempts to:
+1) identify and label the individual fields
+2) clean them up (creating run-on lines within paragraphs & dividing numbered lists correctly into lines)
+
+It then saves this as a .csv file
+"""
+
 import os
 import sys
 import argparse
@@ -132,17 +146,22 @@ def run_on_lines(para_arr):
   tmp = []
   for para in para_arr:
     # print(">>", para)
-    tmp.append(" ".join(para).replace("  ", " "))
+    # tmp.append(" ".join(para).replace("  ", " "))
+    tmp.append(join_lines_in_para(para))
   return tmp
 
+def join_lines_in_para(line_arr):
+  return " ".join(line_arr).replace("  ", " ")
 
-def list_to_paragraphs(para_arr):
+
+
+def list_to_paragraph(para_arr):
   if not para_arr:
      return ""
   return ("\n\n").join(para_arr)
 
 
-def list_to_newlines(line_arr):
+def lines_to_paragraph(line_arr):
    if not line_arr:
       return ""
    return("\n".join(line_arr))
@@ -174,9 +193,9 @@ def get_author_initials(field):
 
 
 def show(item_arr):
-  # pprint.pp(itemArr)
-  for i,item in enumerate(item_arr):
-    print(i, item["ref"], len(item))
+  pprint.pp(item_arr)
+  # for i,item in enumerate(item_arr):
+  #   print(i, item["ref"], len(item))
 
 
 
@@ -184,7 +203,8 @@ def show(item_arr):
 
 def chunk_line(line, contents, item_delimiter=None):
   if not item_delimiter:
-    item_delimiter = chr(12)
+    # item_delimiter = chr(12)
+    item_delimiter = "@@@"
 
   match (line):
     case line if line.startswith(item_delimiter):
@@ -229,6 +249,11 @@ def chunk_line(line, contents, item_delimiter=None):
 #     result.append(tmp)
 #   return result
 
+
+#### THE CONTENTS OF THE FOLLOWING TWO FUNCTIONS ARE SPECIFIC TO EACH FLAVOUR OF FILE
+
+### FOR BRITISH DRAWING CATALOGUE
+
 def define_fields(contents):
   result = []
   for i, item in enumerate(contents):
@@ -260,19 +285,66 @@ def refine_fields(contents):
     # pprint.pp(item)
     try:
       item["text"] = run_on_lines(item["text"])
-      item["description"] = list_to_newlines(item["description"])
-      item["literature"] = list_to_newlines(item["literature"])
+      item["description"] = lines_to_paragraph(item["description"])
+      item["literature"] = lines_to_paragraph(item["literature"])
       item["notes"] = rebuild_numbered_list(item["notes"])
-      item["text"] = list_to_paragraphs(item["text"])
-      item["notes"] = list_to_paragraphs(item["notes"])
+      item["text"] = list_to_paragraph(item["text"])
+      item["notes"] = list_to_paragraph(item["notes"])
     except (IndexError, KeyError):
       pass
   return contents
 
+
+
+
+#### FOR NP1-174_ITALIAN
+
+def _define_fields(contents):
+  result = []
+  for i, item in enumerate(contents):
+    item = [field for field in item if len(field)]
+    tmp = {"num": ""}
+    try:
+      # tmp["source"] = item[0][0]
+      # tmp["title"] = item[1][0]
+      tmp["source"] = item[0]
+      tmp["title"] = item[1]
+      tmp["description"] = item[2:]
+
+      if (num_end:= tmp["title"][0].find(".")) >= 0:
+        tmp["num"] = tmp["title"][0][:num_end]
+
+    except IndexError:
+      print(f"Record {i} has only {len(item)} field(s).")
+    result.append(tmp)
+  return result
+
+def _refine_fields(contents):
+  for item in contents:
+    # pprint.pp(item)
+    try:
+      item["source"] = join_lines_in_para(item["source"])
+      item["title"] = join_lines_in_para(item["title"])
+      item["description"] = run_on_lines(item["description"])
+
+      markup = r"@@\w+?@@"
+      item["title"] = re.sub(markup, "", item["title"])
+      item["source"] = re.sub(markup, "", item["source"])
+      item["num"] = re.sub(markup, "", item["num"])
+
+    except (IndexError, KeyError):
+      pass
+  return contents
+
+
+
+###### THE MAIN PROGRAM LOOP
 if __name__ == '__main__':
   input_filename, contents = get_input()
   # contents = categorize_as_dict(contents)
   contents = define_fields(contents)
+  # pprint.pp(contents)
+  # quit()
   contents = refine_fields(contents)
   save_as_csv(input_filename, contents)
   show(contents)
