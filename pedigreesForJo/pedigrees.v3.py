@@ -19,7 +19,8 @@ from dataclasses import dataclass
 from pathlib import Path
 import sys
 import getopt
-
+import asyncio
+from pyppeteer import launch
 
 def make_gems_lookup():
     return {
@@ -437,6 +438,8 @@ def write_html_pedigree(html_string, filename="out.html"):
     html_file_address = Path(get_current_directory() / filename)
     with open(html_file_address, "w") as html_file:
         html_file.write(html_string)
+    write_pdf_pedigree(html_file_address)
+
 
 
 def retrieve_file_by_suffix(suffix="csv"):
@@ -844,7 +847,7 @@ def pair_parents(pedigree):
 def parse_cmd_line(argv):
     ids = ""
     ## Change these three variables according to needs
-    id_list = [1,2,3,4]
+    id_list = [1,2,3,4,5,6]
     depth = 5
     basefont = 12
 
@@ -901,6 +904,27 @@ class Pedigree:
         self.by_gen = recurse_and_pair(self.id, self.db.cats, self.depth)
         # self.flat = recurse_for_grid(self.id, self.db.cats, self.depth)
 
+async def create_pdf(url, pdf_path, format='A4', is_portrait=True):
+  browser = await launch()
+  page = await browser.newPage()
+
+  await page.goto(url)
+  await page.pdf({'path': pdf_path, 'format': format, 'landscape': is_portrait})
+  await browser.close()
+
+
+def write_pdf_pedigree(html_file_address):
+    browser_url = "file:///" + str(html_file_address)
+    pdf_address = html_file_address.with_suffix('.pdf')
+    print(f"Creating {Path(pdf_address).name}...")
+    # asyncio.get_event_loop().run_until_complete(create_pdf(browser_url, str(pdf_address), "A3", False))
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    try:
+        loop.run_until_complete(create_pdf(browser_url, str(pdf_address), "A3", False))
+    except KeyboardInterrupt:
+        pass
+
 
 def main(argv):
     settings = dict(zip(("to_print", "font_size", "depth"), parse_cmd_line(argv)))
@@ -913,7 +937,6 @@ def main(argv):
         # pedigrees.append(tmp_pedigree)
         pedigrees.append(Pedigree(cat_id, db, settings))
     build_grid(pedigrees)
-
 
 if __name__ == "__main__":
     main(sys.argv[1:])
