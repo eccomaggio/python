@@ -1,0 +1,9 @@
+[project]
+name = "selenium-tests"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12.0"
+dependencies = [
+    "selenium>=4.34.2",
+]
