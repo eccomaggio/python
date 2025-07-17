@@ -3,6 +3,9 @@ from csv import reader, writer
 import argparse
 from pprint import pprint
 from openpyxl import load_workbook  # type: ignore
+import datetime
+import pytz
+
 
 
 def argument_parser() -> tuple[Path, Path, Path]:
@@ -41,7 +44,6 @@ def read_csv(file_path: Path) -> list:
         return list(csv_reader)
 
 
-# def extract_from_excel(excel_sheet) -> list[list[str]]:
 def extract_from_excel(excel_file_address: Path) -> list[list[str]]:
     """
     excel seems pretty random in how it assigns string/int/float, so...
@@ -88,14 +90,14 @@ def make_concordance(excel_file_path: Path) -> dict[int, list[str]]:
     return concordance
 
 
-def process_text(source: list) -> dict[int, list]:
+def group_lines(raw_lines: list) -> dict[int, list]:
     """Process the text from the source list and return a list of processed lines."""
     processed_text: dict[int, list[str]] = {}
     section_number:int = 0
     the_rest: list[int] = []
     is_multiple = False
     section: list[str] = []
-    for line in source:
+    for line in raw_lines:
         line = line.strip()
         if not line:
             continue
@@ -133,26 +135,31 @@ def process_text(source: list) -> dict[int, list]:
     return processed_text
 
 
-def prepare_for_csv(processed_text: dict[int, list], concordance: dict[int, list]):
-    # ID	Import identifier	Audience ("public")	Date	Notes	Reason	Sort	Source	Status ("05 Published")	Text	Title / Ref. No.	Type ("catalogue text")	Language ("en") -> [=13]
+def prepare_for_csv(processed_text: dict[int, list], concordance: dict[int, list]) -> list[tuple]:
+    # ID (int)	Import identifier	Audience ("public")	Date	Notes	Reason	Sort [int]	Source	Status ("05 Published")	Text	Title / Ref. No.	Type ("catalogue text")	Language ("en") -> [=13]
+    headings = ("ID", "Import identifier", "Audience", "Date", "Notes", "Reason", "Sort", "Source", "Status", "Text", "Title / Ref. No.", "Type", "Language")
 
-    output: list[tuple[int, str, str, str, str, str, int, str, str, str, str, str, str]] = []
-    import_id = ""
+    output: list[tuple[int|str, str, str, str, str, str, int|str, str, str, str, str, str, str]] = []
+    import_id: str
     audience = "public"
-    date = ""
+    date = str(datetime.datetime.now(pytz.timezone("Europe/London")))[:10]
     notes = ""
     reason = ""
     source = ""
     status = "05 Published"
     _type = "catalogue text"
     language = "en"
+    output.append(headings)
     for num, lines in processed_text.items():
-        if (tmp := concordance.get(num, "")) and tmp.isnumeric():
-            object_num = int(tmp)
-            sort = 1
-            text = "\n".join(lines)
-            ref_no = ""
-            output.append((int(object_num), import_id, audience, date, notes, reason, sort, source, status, text, ref_no, _type, language))
+        if not (tmp := concordance.get(num, "")):
+            continue
+        else:
+            import_id = tmp[0]
+        sort = 1
+        text = "\n".join(lines)
+        ref_no = ""
+        output.append((num, import_id, audience, date, notes, reason, sort, source, status, text, ref_no, _type, language))
+    return output
 
 
 
@@ -163,14 +170,17 @@ def main() -> None:
      concordance_file) = argument_parser()
     concordance = make_concordance(Path(concordance_file))
     print(f"Reading from {source_file.name} and writing to {destination_file.name}...")
-    raw_text: list[str] = read_lines(source_file)
-    processed_text = process_text(raw_text)
-    processed_text = prepare_for_csv(processed_text, concordance)
+    raw_lines: list[str] = read_lines(source_file)
+    processed_text = group_lines(raw_lines)
+    del raw_lines
+    csv_ready_text = prepare_for_csv(processed_text, concordance)
+    del processed_text
 
-    print(f"Processed {len(processed_text)} sections from {source_file.name}." )
+    print(f"Processed {len(csv_ready_text) - 1} sections from {source_file.name}." )
     # pprint(processed_text.get(1, []))
-    pprint(concordance)
-    write_csv(destination_file, [[num, "\\n".join(lines)] for num, lines in processed_text.items()])
+    # pprint(concordance)
+    # write_csv(destination_file, [[num, "\\n".join(lines)] for num, lines in processed_text.items()])
+    write_csv(destination_file, csv_ready_text)
 
 
 
