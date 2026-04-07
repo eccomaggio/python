@@ -15,7 +15,10 @@ def argument_parser() -> tuple[Path, Path, Path]:
     parser.add_argument("-o", "--output", type=Path, default=Path("output.csv"), help="Destination file path")
     parser.add_argument("-c", "--concordance", type=Path, default=Path("concordance.xlsx"), help="Concordance file path")
     args = parser.parse_args()
-    return (args.source, args.output, args.concordance)
+    working_files: tuple[Path, Path, Path]
+    working_files= (args.source, args.output, args.concordance)
+    # return (args.source, args.output, args.concordance)
+    return working_files
 
 
 def read_lines(file_path: Path) -> list[str]:
@@ -165,11 +168,14 @@ def prepare_for_csv(processed_text: dict[int, list], concordance: dict[int, list
 
 
 def main() -> None:
+    # (source_file,
+    #  destination_file,
+    #  concordance_file) = argument_parser()
     (source_file,
      destination_file,
-     concordance_file) = argument_parser()
-    concordance = make_concordance(Path(concordance_file))
+     concordance_file) = (Path("penny_EuropeanSculpture.vol1.edited.txt"), Path("output.txt"), Path("PennyCatalogue.concordance.xlsx"))
     print(f"Reading from {source_file.name} and writing to {destination_file.name}...")
+    concordance = make_concordance(Path(concordance_file))
     raw_lines: list[str] = read_lines(source_file)
     processed_text = group_lines(raw_lines)
     del raw_lines
